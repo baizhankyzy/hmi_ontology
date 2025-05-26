@@ -1,0 +1,76 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:BigFivePersonalityTrait a owl:Class ;
+    rdfs:label "Big Five Personality Trait"@en ;
+    rdfs:comment "A personality trait from the Big Five personality model."@en .
+
+ahmi:Aggressiveness a owl:Class ;
+    rdfs:label "Aggressiveness"@en ;
+    rdfs:subClassOf ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "The tendency to act in an aggressive or hostile manner."@en .
+
+ahmi:Conscientiousness a owl:Class ;
+    rdfs:label "Conscientiousness"@en ;
+    rdfs:subClassOf ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "The tendency to be organized, responsible, and self-disciplined."@en .
+
+ahmi:Extraversion a owl:Class ;
+    rdfs:label "Extraversion"@en ;
+    rdfs:subClassOf ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "The tendency to be outgoing, sociable, and assertive."@en .
+
+ahmi:Neuroticism a owl:Class ;
+    rdfs:label "Neuroticism"@en ;
+    rdfs:subClassOf ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "The tendency to experience negative emotions, such as anxiety and depression."@en .
+
+ahmi:Openness a owl:Class ;
+    rdfs:label "Openness"@en ;
+    rdfs:subClassOf ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "The tendency to be open to new experiences, ideas, and perspectives."@en .
+
+ahmi:hasPersonalityTrait a owl:ObjectProperty ;
+    rdfs:label "has personality trait"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "Relates a driver to their personality traits from the Big Five model."@en .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "A person who operates a vehicle."@en .
+
+ahmi:DrivingBehavior a owl:Class ;
+    rdfs:label "Driving Behavior"@en ;
+    rdfs:comment "The manner in which a driver operates a vehicle."@en .
+
+ahmi:hasTypicalDrivingBehavior a owl:ObjectProperty ;
+    rdfs:label "has typical driving behavior"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DrivingBehavior ;
+    rdfs:comment "Relates a driver to their typical driving behavior patterns."@en .
+
+ahmi:DriverProfile a owl:Class ;
+    rdfs:label "Driver Profile"@en ;
+    rdfs:comment "A profile containing information about a driver, including their personality traits and typical driving behavior."@en .
+
+ahmi:hasDriverProfile a owl:ObjectProperty ;
+    rdfs:label "has driver profile"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DriverProfile ;
+    rdfs:comment "Relates a driver to their profile."@en .
+
+ahmi:includesPersonalityTrait a owl:ObjectProperty ;
+    rdfs:label "includes personality trait"@en ;
+    rdfs:domain ahmi:DriverProfile ;
+    rdfs:range ahmi:BigFivePersonalityTrait ;
+    rdfs:comment "Relates a driver profile to the personality traits it includes."@en .
+
+ahmi:includesTypicalDrivingBehavior a owl:ObjectProperty ;
+    rdfs:label "includes typical driving behavior"@en ;
+    rdfs:domain ahmi:DriverProfile ;
+    rdfs:range ahmi:DrivingBehavior ;
+    rdfs:comment "Relates a driver profile to the typical driving behavior it includes."@en .

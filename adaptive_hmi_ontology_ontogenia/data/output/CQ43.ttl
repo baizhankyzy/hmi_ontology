@@ -1,0 +1,97 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:comment "The physical posture and body position of the driver." ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The mental state and level of attention of the driver." ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "The state of the driver being engaged in non-driving activities." ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:BodyPosture a owl:Class ;
+    rdfs:label "Body Posture"@en ;
+    rdfs:comment "The physical posture and position of the driver's body." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:AttentionLevel a owl:Class ;
+    rdfs:label "Attention Level"@en ;
+    rdfs:comment "The level of attention and vigilance of the driver." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:NonDrivingActivity a owl:Class ;
+    rdfs:label "Non-Driving Activity"@en ;
+    rdfs:comment "An activity not related to driving that the driver is engaged in." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:PostureTransition a owl:Class ;
+    rdfs:label "Posture Transition"@en ;
+    rdfs:comment "A change in the driver's posture state." ;
+    rdfs:subClassOf dul:Event .
+
+ahmi:hasPostureTransition a owl:ObjectProperty ;
+    rdfs:label "has posture transition"@en ;
+    rdfs:comment "Relates a posture state to a posture transition event." ;
+    rdfs:domain ahmi:PostureState ;
+    rdfs:range ahmi:PostureTransition .
+
+ahmi:indicatesReadiness a owl:ObjectProperty ;
+    rdfs:label "indicates readiness"@en ;
+    rdfs:comment "Relates a posture transition to a readiness for manual control assumption." ;
+    rdfs:domain ahmi:PostureTransition ;
+    rdfs:range ahmi:ReadinessForManualControl .
+
+ahmi:ReadinessForManualControl a owl:Class ;
+    rdfs:label "Readiness for Manual Control"@en ;
+    rdfs:comment "The state of the driver being ready to assume manual control of the vehicle." ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies." ;
+    rdfs:domain dul:Situation ;
+    rdfs:range dul:Description .
+
+ahmi:PostureStateDescription a owl:Class ;
+    rdfs:label "Posture State Description"@en ;
+    rdfs:comment "A description of the driver's posture state." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:CognitiveStateDescription a owl:Class ;
+    rdfs:label "Cognitive State Description"@en ;
+    rdfs:comment "A description of the driver's cognitive state." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:DistractionStateDescription a owl:Class ;
+    rdfs:label "Distraction State Description"@en ;
+    rdfs:comment "A description of the driver's distraction state." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:hasBodyPosture a owl:ObjectProperty ;
+    rdfs:label "has body posture"@en ;
+    rdfs:comment "Relates a posture state description to a body posture description." ;
+    rdfs:domain ahmi:PostureStateDescription ;
+    rdfs:range ahmi:BodyPosture .
+
+ahmi:hasAttentionLevel a owl:ObjectProperty ;
+    rdfs:label "has attention level"@en ;
+    rdfs:comment "Relates a cognitive state description to an attention level description." ;
+    rdfs:domain ahmi:CognitiveStateDescription ;
+    rdfs:range ahmi:AttentionLevel .
+
+ahmi:hasNonDrivingActivity a owl:ObjectProperty ;
+    rdfs:label "has non-driving activity"@en ;
+    rdfs:comment "Relates a distraction state description to a non-driving activity description." ;
+    rdfs:domain ahmi:DistractionStateDescription ;
+    rdfs:range ahmi:NonDrivingActivity .

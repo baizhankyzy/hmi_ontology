@@ -1,0 +1,96 @@
+CQID,CompetencyQuestion,StoryID
+CQ1-1,What PostureState indicators signal a driver's transition into Drowsiness within the InattentionState class?,US1
+CQ1-2,What Detection methodologies are used to identify Drowsiness in drivers?,US1
+CQ1-3,What are the subclasses of CognitiveState that can be detected by Vehicle system (HMI)?,US1
+CQ1-4,What Visual feedback elements should be modified in response to detected InattentionState?,US1
+CQ1-5,What Tactile feedback types are employed when driver Head Position shows signs of Drowsiness?,US1
+CQ1-6,What Audio feedback parameters change when Driver parameters indicate Fatigue?,US1
+CQ1-7,What DrivingBehaviour patterns indicate severe InattentionState requiring immediate intervention?,US1
+CQ1-8,What is the relationship between PostureState changes and InattentionState classification?,US1
+CQ1-9,What Message Structure is most effective for communicating with drivers experiencing Drowsiness?,US1
+CQ1-10,What road type influences the Vehicle system (HMI) responses to detected InattentionState?,US1
+CQ2-1,What Physiological Sensors are used to detect elevated cognitive load in drivers?,US2
+CQ2-2,What EmotionalState indicators are associated with high traffic conditions (high congestion)?,US2
+CQ2-3,What relationship exists between Environment factors and CognitiveState detection accuracy?,US2
+CQ2-4,What Visual Elements should be prioritized when a driver is experiencing elevated CognitiveState load?,US2
+CQ2-5,What ADAS features should adapt their intervention level based on detected CognitiveState?,US2
+CQ2-6,What Multimodal Integration patterns are employed in response to detected DistractionState?,US2
+CQ2-7,What traffic conditions most significantly impact driver CognitiveState measurements?,US2
+CQ2-8,What is the relationship between weather conditions and appropriate Vehicle system (HMI) adaptations?,US2
+CQ2-9,What are the components of Dialog Design that should change based on driver CognitiveState?,US2
+CQ2-10,What Driver-facing Visual sensors provide the most reliable indicators of DistractionState?,US2
+CQ3-1,What PersonalityFactor traits are associated with Aggressive driving tendency?,US3
+CQ3-2,What components comprise the Big Five Personality traits in driver profiles?,US3
+CQ3-3,What DiscreteEmotiveStates are triggered by traffic conditions (high congestion)?,US3
+CQ3-4,What Vehicle Data Analysis methods detect Frustration in drivers?,US3
+CQ3-5,What is the relationship between PersonalityFactor traits and appropriate Driver state adaptation rules?,US3
+CQ3-6,What Visual Elements help reduce Arousal levels in drivers experiencing Frustration?,US3
+CQ3-7,What Force Feedback parameters effectively discourage aggressive Speed Management patterns?,US3
+CQ3-8,What is the relationship between EmotionalState and DrivingBehaviour?,US3
+CQ3-9,What Contextual Analysis metrics indicate elevated Frustration requiring intervention?,US3
+CQ3-10,What Auditory Displays are most effective for drivers with specific PersonalityFactor traits?,US3
+CQ4-1,What Display Types are most appropriate for elderly drivers?,US4
+CQ4-2,What weather conditions affect Environmental condition assessment for elderly drivers?,US4
+CQ4-3,What relationship exists between driver age and appropriate Visual Elements configuration?,US4
+CQ4-4,What Steering Behavior Analysis metrics indicate increased cognitive load in elderly drivers?,US4
+CQ4-5,What Audio Parameters should adjust based on a driver's age-related characteristics?,US4
+CQ4-6,What Lane keeping assist sensitivity settings are appropriate for different driver profiles?,US4
+CQ4-7,What is the relationship between journey context unfamiliarity and CognitiveState measurements?,US4
+CQ4-8,What Message Structure elements should adapt for drivers with slower processing capabilities?,US4
+CQ4-9,What Haptic Alerts characteristics are most effective for elderly drivers?,US4
+CQ4-10,What Driver-facing Visual sensors provide the most reliable Eye tracking data for elderly drivers?,US4
+CQ5-1,What Detection methodologies are used to assess DistractionState during autonomous driving?,US5
+CQ5-2,What 'Non-driving related (has type)' activities are most common during autonomous mode?,US5
+CQ5-3,What PostureState transitions indicate readiness for manual control assumption?,US5
+CQ5-4,What components comprise an effective Multimodal Integration protocol for control transitions?,US5
+CQ5-5,What Visual feedback elements are most important during autonomous-to-manual transitions?,US5
+CQ5-6,What is the relationship between Eye tracking metrics and driver readiness assessment?,US5
+CQ5-7,What Tactile feedback characteristics are most effective for transition alerting?,US5
+CQ5-8,What Interaction Timing parameters should be adjusted based on driver CognitiveState?,US5
+CQ5-9,What Trust calibration mechanisms are implemented during automation mode transitions?,US5
+CQ5-10,What Lane detection visualizations best support driver situation awareness during handovers?,US5
+CQ6-1,What Questionnaires are used to assess driver PersonalityFactor traits?,US6
+CQ6-2,What components comprise the NASA-TLX measure for driver workload assessment?,US6
+CQ6-3,What is the relationship between Self-measures and physiological Detection methodologies?,US6
+CQ6-4,What Electrodermal activity and Skin conductance measurement (EDA) patterns correlate with reported Frustration?,US6
+CQ6-5,What Electroencephalogram (EEG) signals indicate various CognitiveState conditions?,US6
+CQ6-6,What Driver parameters are most accurately assessed through Self-measures versus physiological sensors?,US6
+CQ6-7,What Trust calibration mechanisms require adjustment based on discrepancies between subjective and objective measures?,US6
+CQ6-8,What is the relationship between PersonalityFactor traits and responsiveness to different Vehicle system (HMI) adaptations?,US6
+CQ6-9,What Measures assess driver satisfaction with different Tactile feedback types?,US6
+CQ6-10,What Cross-modal congruence principles emerge from comparing subjective and objective Detection methodologies?,US6
+CQ7-1,What road conditions affect PostureState measurements in drivers?,US7
+CQ7-2,What air quality classifications are defined in the Environment factors taxonomy?,US7
+CQ7-3,What is the relationship between air quality and appropriate vehicle climate control responses?,US7
+CQ7-4,What Biological Sensors are used to detect driver reactions to environmental air quality?,US7
+CQ7-5,What daytime conditions affect appropriate Display Types brightness parameters?,US7
+CQ7-6,What Steering Behavior Analysis metrics change in response to road conditions ('even' to 'uneven')?,US7
+CQ7-7,What combination of weather conditions and daytime conditions create the highest Road complexity analysis scores?,US7
+CQ7-8,What Speed violation tendency measurement thresholds should adjust based on Environment factors?,US7
+CQ7-9,What Trip duration tracking metrics indicate increased risk of Fatigue?,US7
+CQ7-10,What relationship exists between Seat occupancy sensors data and road conditions assessment?,US7
+CQ8-1,What Regulation strategies govern Lane keeping assist interventions?,US8
+CQ8-2,What components comprise Cross-modal congruence assessment for ADAS features?,US8
+CQ8-3,What Force Feedback parameters are evaluated for Lane keeping assist interventions?,US8
+CQ8-4,What Visual Elements must be included in standardized lane departure warnings?,US8
+CQ8-5,What Urgency-based timing thresholds apply to different driver alert scenarios?,US8
+CQ8-6,What Message Structure adaptations are appropriate for drivers experiencing Confusion?,US8
+CQ8-7,What User Experience Factors affect driver acceptance of safety interventions?,US8
+CQ8-8,What Trust calibration mechanisms are required for ADAS features?,US8
+CQ8-9,What is the relationship between Speed violation tendency and appropriate intervention intensity?,US8
+CQ8-10,What Dialog Design elements most effectively communicate both intervention status and rationale?,US8
+CQG-1,What are all the subclasses of Driver parameters in the ontology?,GEN
+CQG-2,What Detection methodologies are employed for each driver state category?,GEN
+CQG-3,What is the composition of the Vehicle system (HMI) in terms of feedback systems?,GEN
+CQG-4,What are the components of the PostureState class?,GEN
+CQG-5,What is the relationship between EmotionalState and CognitiveState classes?,GEN
+CQG-6,What are all the subclasses of Environment factors that affect driver state detection?,GEN
+CQG-7,What is the type of each Physiological Sensor in the detection system?,GEN
+CQG-8,What ADAS features are integrated with the Vehicle system (HMI)?,GEN
+CQG-9,What is the composition of the Dialog Design system?,GEN
+CQG-10,What are the components of the Multimodal Integration framework?,GEN
+CQG-11,What is the relationship between PersonalityFactor traits and DrivingBehaviour patterns?,GEN
+CQG-12,What are the different types of Visual feedback employed in the Vehicle system (HMI)?,GEN
+CQG-13,What are all the measurement metrics used in Detection methodologies?,GEN
+CQG-14,What is the relationship between Road-facing Cameras and Environmental condition assessment?,GEN
+CQG-15,What are the subclasses of DiscreteEmotiveStates that can be detected by the system?,GEN

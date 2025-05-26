@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:VisualElement rdfs:subClassOf dul:Entity ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:comment "A visual component of a human-machine interface." .
+
+ahmi:ColorScheme rdfs:subClassOf ahmi:VisualElement ;
+    rdfs:label "Color Scheme"@en ;
+    rdfs:comment "A combination of colors used in a visual interface." .
+
+ahmi:BlueColorScheme rdfs:subClassOf ahmi:ColorScheme ;
+    rdfs:label "Blue Color Scheme"@en ;
+    rdfs:comment "A color scheme predominantly using shades of blue." .
+
+ahmi:ArousalLevel rdfs:subClassOf dul:Parameter ;
+    rdfs:label "Arousal Level"@en ;
+    rdfs:comment "A parameter representing the level of physiological and psychological activation." .
+
+ahmi:hasArousalLevel rdfs:subPropertyOf dul:hasParameter ;
+    rdfs:label "has arousal level"@en ;
+    rdfs:domain ahmi:EmotiveState ;
+    rdfs:range ahmi:ArousalLevel .
+
+ahmi:EmotiveState rdfs:subClassOf dul:Concept ;
+    rdfs:label "Emotive State"@en ;
+    rdfs:comment "A concept representing an emotional or affective state." .
+
+ahmi:ContinuousEmotiveState rdfs:subClassOf ahmi:EmotiveState ;
+    rdfs:label "Continuous Emotive State"@en ;
+    rdfs:comment "An emotive state characterized by a continuous range of intensity levels." .
+
+ahmi:DiscreteEmotiveState rdfs:subClassOf ahmi:EmotiveState ;
+    rdfs:label "Discrete Emotive State"@en ;
+    rdfs:comment "An emotive state characterized by distinct, categorical emotions." .
+
+ahmi:Frustration rdfs:subClassOf ahmi:DiscreteEmotiveState ;
+    rdfs:label "Frustration"@en ;
+    rdfs:comment "A discrete emotive state of feeling upset or annoyed due to being hindered or opposed." .
+
+ahmi:reducesArousalLevelFor rdfs:subPropertyOf dul:isParameterFor ;
+    rdfs:label "reduces arousal level for"@en ;
+    rdfs:domain ahmi:VisualElement ;
+    rdfs:range ahmi:ContinuousEmotiveState ;
+    rdfs:comment "Relates a visual element to a continuous emotive state for which it helps reduce the arousal level." .
+
+ahmi:BlueColorScheme ahmi:reducesArousalLevelFor ahmi:ContinuousEmotiveState .
+
+ahmi:Situation rdfs:subClassOf dul:Situation ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of events related to a driver's emotive state and the vehicle's adaptive response." .
+
+ahmi:FrustrationSituation rdfs:subClassOf ahmi:Situation ;
+    rdfs:label "Frustration Situation"@en ;
+    rdfs:comment "A situation involving a driver experiencing frustration and the vehicle's adaptive response to reduce arousal levels." ;
+    dul:satisfies [
+        rdf:type dul:Description ;
+        dul:isRelatedToConcept ahmi:Frustration
+    ] .
+
+ahmi:hasVisualElement rdfs:subPropertyOf dul:isPartOf ;
+    rdfs:label "has visual element"@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:VisualElement ;
+    rdfs:comment "Relates a situation to the visual elements used in the vehicle's adaptive response." .
+
+ahmi:FrustrationSituation ahmi:hasVisualElement ahmi:BlueColorScheme .

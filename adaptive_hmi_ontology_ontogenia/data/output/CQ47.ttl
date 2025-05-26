@@ -1,0 +1,95 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:TactileAlert a owl:Class ;
+    rdfs:label "Tactile Alert"@en ;
+    rdfs:comment "A haptic feedback mechanism used to alert the driver."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A sensory channel used to provide feedback to the driver."@en .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Visual cues and information displayed to the driver."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AudibleFeedback a owl:Class ;
+    rdfs:label "Audible Feedback"@en ;
+    rdfs:comment "Audio cues and notifications provided to the driver."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:MultimodalIntegration a owl:Class ;
+    rdfs:label "Multimodal Integration"@en ;
+    rdfs:comment "A process that combines multiple feedback modalities for effective communication."@en ;
+    rdfs:subClassOf dul:Process .
+
+ahmi:hasModality a owl:ObjectProperty ;
+    rdfs:label "has modality"@en ;
+    rdfs:comment "Relates a multimodal integration process to the feedback modalities it employs."@en ;
+    rdfs:domain ahmi:MultimodalIntegration ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:AlertingEvent a owl:Class ;
+    rdfs:label "Alerting Event"@en ;
+    rdfs:comment "An event that triggers an alert or notification to the driver."@en ;
+    rdfs:subClassOf dul:Event .
+
+ahmi:TransitionAlert a owl:Class ;
+    rdfs:label "Transition Alert"@en ;
+    rdfs:comment "An alert related to an upcoming transition from autonomous to manual driving mode."@en ;
+    rdfs:subClassOf ahmi:AlertingEvent .
+
+ahmi:AlertingSituation a owl:Class ;
+    rdfs:label "Alerting Situation"@en ;
+    rdfs:comment "A situation that represents a specific interpretation or view of an alerting event."@en ;
+    rdfs:subClassOf dul:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty dul:satisfies ;
+        owl:someValuesFrom ahmi:AlertingDescription
+    ] .
+
+ahmi:AlertingDescription a owl:Class ;
+    rdfs:label "Alerting Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting alerting situations and events."@en ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:hasEffectiveness a owl:DatatypeProperty ;
+    rdfs:label "has effectiveness"@en ;
+    rdfs:comment "A measure of how effective a feedback modality is for a particular alerting situation."@en ;
+    rdfs:domain ahmi:AlertingSituation ;
+    rdfs:range xsd:float .
+
+ahmi:hasTactileCharacteristic a owl:ObjectProperty ;
+    rdfs:label "has tactile characteristic"@en ;
+    rdfs:comment "Relates an alerting situation to the tactile characteristics of the feedback modality used."@en ;
+    rdfs:domain ahmi:AlertingSituation ;
+    rdfs:range ahmi:TactileCharacteristic .
+
+ahmi:TactileCharacteristic a owl:Class ;
+    rdfs:label "Tactile Characteristic"@en ;
+    rdfs:comment "A characteristic or property of a tactile feedback mechanism."@en .
+
+ahmi:intensity a owl:DatatypeProperty ;
+    rdfs:label "intensity"@en ;
+    rdfs:comment "The intensity or strength of a tactile alert."@en ;
+    rdfs:domain ahmi:TactileCharacteristic ;
+    rdfs:range xsd:float .
+
+ahmi:frequency a owl:DatatypeProperty ;
+    rdfs:label "frequency"@en ;
+    rdfs:comment "The frequency or repetition rate of a tactile alert."@en ;
+    rdfs:domain ahmi:TactileCharacteristic ;
+    rdfs:range xsd:float .
+
+ahmi:pattern a owl:DatatypeProperty ;
+    rdfs:label "pattern"@en ;
+    rdfs:comment "The pattern or sequence of a tactile alert."@en ;
+    rdfs:domain ahmi:TactileCharacteristic ;
+    rdfs:range xsd:string .

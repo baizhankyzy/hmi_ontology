@@ -1,0 +1,148 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "A person operating a vehicle."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive and physical condition of a driver."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The mental condition of a driver."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:AgeRelatedFactor a owl:Class ;
+    rdfs:label "Age-Related Factor"@en ;
+    rdfs:comment "A characteristic related to the age of a driver."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:SlowerReactionTime a owl:Class ;
+    rdfs:label "Slower Reaction Time"@en ;
+    rdfs:comment "A condition where a driver has a slower response time."@en ;
+    rdfs:subClassOf ahmi:AgeRelatedFactor .
+
+ahmi:Vehicle a owl:Class ;
+    rdfs:label "Vehicle"@en ;
+    rdfs:comment "A means of transportation."@en .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A system or component of a vehicle."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:HMI a owl:Class ;
+    rdfs:label "Human-Machine Interface"@en ;
+    rdfs:comment "The interface between a driver and a vehicle system."@en ;
+    rdfs:subClassOf ahmi:VehicleSystem .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Visual information provided to the driver."@en ;
+    rdfs:subClassOf ahmi:HMI .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:comment "The type of visual display used."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:SimplifiedDisplay a owl:Class ;
+    rdfs:label "Simplified Display"@en ;
+    rdfs:comment "A display with reduced complexity."@en ;
+    rdfs:subClassOf ahmi:DisplayType .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:comment "A visual component of a display."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:LargeVisualElement a owl:Class ;
+    rdfs:label "Large Visual Element"@en ;
+    rdfs:comment "A visual element with increased size."@en ;
+    rdfs:subClassOf ahmi:VisualElement .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "Auditory information provided to the driver."@en ;
+    rdfs:subClassOf ahmi:HMI .
+
+ahmi:AudioParameter a owl:Class ;
+    rdfs:label "Audio Parameter"@en ;
+    rdfs:comment "A parameter that affects audio feedback."@en ;
+    rdfs:subClassOf ahmi:AudioFeedback .
+
+ahmi:EarlyVoicePrompt a owl:Class ;
+    rdfs:label "Early Voice Prompt"@en ;
+    rdfs:comment "A voice prompt provided earlier than usual."@en ;
+    rdfs:subClassOf ahmi:AudioParameter .
+
+ahmi:ClearDialogDesign a owl:Class ;
+    rdfs:label "Clear Dialog Design"@en ;
+    rdfs:comment "A dialog design with improved clarity."@en ;
+    rdfs:subClassOf ahmi:AudioParameter .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a driver to their current state."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:hasAgeRelatedFactor a owl:ObjectProperty ;
+    rdfs:label "has age-related factor"@en ;
+    rdfs:comment "Relates a driver state to an age-related factor."@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:AgeRelatedFactor .
+
+ahmi:hasVehicleSystem a owl:ObjectProperty ;
+    rdfs:label "has vehicle system"@en ;
+    rdfs:comment "Relates a vehicle to its systems."@en ;
+    rdfs:domain ahmi:Vehicle ;
+    rdfs:range ahmi:VehicleSystem .
+
+ahmi:hasHMI a owl:ObjectProperty ;
+    rdfs:label "has HMI"@en ;
+    rdfs:comment "Relates a vehicle system to its human-machine interface."@en ;
+    rdfs:domain ahmi:VehicleSystem ;
+    rdfs:range ahmi:HMI .
+
+ahmi:hasVisualFeedback a owl:ObjectProperty ;
+    rdfs:label "has visual feedback"@en ;
+    rdfs:comment "Relates an HMI to its visual feedback components."@en ;
+    rdfs:domain ahmi:HMI ;
+    rdfs:range ahmi:VisualFeedback .
+
+ahmi:hasDisplayType a owl:ObjectProperty ;
+    rdfs:label "has display type"@en ;
+    rdfs:comment "Relates visual feedback to the type of display used."@en ;
+    rdfs:domain ahmi:VisualFeedback ;
+    rdfs:range ahmi:DisplayType .
+
+ahmi:hasVisualElement a owl:ObjectProperty ;
+    rdfs:label "has visual element"@en ;
+    rdfs:comment "Relates visual feedback to its visual elements."@en ;
+    rdfs:domain ahmi:VisualFeedback ;
+    rdfs:range ahmi:VisualElement .
+
+ahmi:hasAudioFeedback a owl:ObjectProperty ;
+    rdfs:label "has audio feedback"@en ;
+    rdfs:comment "Relates an HMI to its audio feedback components."@en ;
+    rdfs:domain ahmi:HMI ;
+    rdfs:range ahmi:AudioFeedback .
+
+ahmi:hasAudioParameter a owl:ObjectProperty ;
+    rdfs:label "has audio parameter"@en ;
+    rdfs:comment "Relates audio feedback to its parameters."@en ;
+    rdfs:domain ahmi:AudioFeedback ;
+    rdfs:range ahmi:AudioParameter .
+
+ahmi:adjustsFor a owl:ObjectProperty ;
+    rdfs:label "adjusts for"@en ;
+    rdfs:comment "Relates an audio parameter to the driver state it adjusts for."@en ;
+    rdfs:domain ahmi:AudioParameter ;
+    rdfs:range ahmi:DriverState .

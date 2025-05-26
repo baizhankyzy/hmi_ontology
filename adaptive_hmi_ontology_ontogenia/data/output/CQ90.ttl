@@ -1,0 +1,96 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:MultimodalIntegrationFramework a owl:Class ;
+    rdfs:label "Multimodal Integration Framework"@en ;
+    rdfs:comment "A framework for integrating multiple modalities in human-machine interactions."@en .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process that occurs over time."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a description."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:Event
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "A person operating a vehicle."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "A description of the driver's physical, cognitive, or emotional state."@en .
+
+ahmi:Vehicle a owl:Class ;
+    rdfs:label "Vehicle"@en ;
+    rdfs:comment "A means of transportation operated by a driver."@en .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A description of a vehicle's subsystem or component."@en .
+
+ahmi:Environment a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Environment"@en ;
+    rdfs:comment "A description of the external conditions or surroundings."@en .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A description of a method for providing feedback to the driver."@en .
+
+ahmi:AdaptationStrategy a owl:Class ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:label "Adaptation Strategy"@en ;
+    rdfs:comment "A description of how the system adapts to the driver's state or situation."@en .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a situation to the driver state it describes."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:hasVehicleSystem a owl:ObjectProperty ;
+    rdfs:label "has vehicle system"@en ;
+    rdfs:comment "Relates a situation to the vehicle system it describes."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:VehicleSystem .
+
+ahmi:hasEnvironment a owl:ObjectProperty ;
+    rdfs:label "has environment"@en ;
+    rdfs:comment "Relates a situation to the environment it describes."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Environment .
+
+ahmi:hasFeedbackModality a owl:ObjectProperty ;
+    rdfs:label "has feedback modality"@en ;
+    rdfs:comment "Relates a situation to the feedback modality it describes."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:hasAdaptationStrategy a owl:ObjectProperty ;
+    rdfs:label "has adaptation strategy"@en ;
+    rdfs:comment "Relates a situation to the adaptation strategy it describes."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:AdaptationStrategy .

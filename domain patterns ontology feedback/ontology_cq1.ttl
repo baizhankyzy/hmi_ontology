@@ -1,0 +1,385 @@
+@prefix ns1: <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology#AttentionReduction> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#madeObservation> ;
+            owl:someValuesFrom <http://example.org/ontology#EyeTracking> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#AuditoryDisplays> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#generated> ;
+            owl:someValuesFrom <http://example.org/ontology#IncreasedVolume> ],
+        <http://example.org/ontology#AudioFeedback> .
+
+<http://example.org/ontology#DisplayTypes> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#wasInfluencedBy> ;
+            owl:someValuesFrom <http://example.org/ontology#DriverFatigue> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#DriverParameters> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#Drowsiness> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#observes> ;
+            owl:someValuesFrom <http://example.org/ontology#EEG> ],
+        <http://example.org/ontology#CognitiveState> .
+
+<http://example.org/ontology#Fatigue> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#observes> ;
+            owl:someValuesFrom <http://example.org/ontology#RespirationSensors> ],
+        <http://example.org/ontology#CognitiveState> .
+
+<http://example.org/ontology#ForceFeeback> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#wasInfluencedBy> ;
+            owl:someValuesFrom <http://example.org/ontology#DriverStateAdaptationRules> ],
+        <http://example.org/ontology#TactileFeedback> .
+
+<http://example.org/ontology#HapticAlerts> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#isPartOf> ;
+            owl:someValuesFrom <http://example.org/ontology#SteeringWheel> ],
+        <http://example.org/ontology#TactileFeedback> .
+
+<http://example.org/ontology#MessageStructure> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#NoddingPatterns> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#hasProperty> ;
+            owl:someValuesFrom <http://example.org/ontology#HeadPosition> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#RestStopDistance> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#generated> ;
+            owl:someValuesFrom <http://example.org/ontology#VisualAlert> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#SteeringBehaviorAnalysis> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#madeObservation> ;
+            owl:someValuesFrom <http://example.org/ontology#LaneKeepingPatterns> ],
+        <http://example.org/ontology#VehicleDataAnalysis> .
+
+<http://example.org/ontology#VisualElements> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#wasInfluencedBy> ;
+            owl:someValuesFrom <http://example.org/ontology#DriverFatigue> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#Wording> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#hasPart> ;
+            owl:someValuesFrom <http://example.org/ontology#DialogDesign> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#hasObservation> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#Situation> ;
+    rdfs:range <http://example.org/ontology#Observation> .
+
+<http://example.org/ontology#hasParameter> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#Observation> ;
+    rdfs:range <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#hasSetting> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#Situation> ;
+    rdfs:range <http://example.org/ontology#Thing> .
+
+<http://example.org/ontology#isObservationOf> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#Observation> ;
+    rdfs:range <http://example.org/ontology#Situation> .
+
+<http://example.org/ontology#isRealizedBy> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#InformationObject> ;
+    rdfs:range <http://example.org/ontology#InformationRealization> .
+
+<http://example.org/ontology#isSettingFor> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#Thing> ;
+    rdfs:range <http://example.org/ontology#Situation> .
+
+<http://example.org/ontology#realizes> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#InformationRealization> ;
+    rdfs:range <http://example.org/ontology#InformationObject> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#hasObservation> a owl:ObjectProperty ;
+    rdfs:label "has observation"@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> ;
+    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting> ;
+    owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isObservationOf> .
+
+ns1:coversRequirements a owl:AnnotationProperty .
+
+ns1:extractedFrom a owl:AnnotationProperty .
+
+ns1:hasAuthor a owl:AnnotationProperty .
+
+ns1:hasConsequences a owl:AnnotationProperty .
+
+ns1:hasIntent a owl:AnnotationProperty .
+
+ns1:isSpecializationOf a owl:AnnotationProperty .
+
+ns1:relatedCPs a owl:AnnotationProperty .
+
+ns1:scenarios a owl:AnnotationProperty .
+
+rdfs:comment a owl:AnnotationProperty .
+
+rdfs:isDefinedBy a owl:AnnotationProperty .
+
+rdfs:label a owl:AnnotationProperty .
+
+owl:versionInfo a owl:AnnotationProperty .
+
+<http://example.org/ontology#AudioFeedback> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#provides> ;
+            owl:someValuesFrom <http://example.org/ontology#HMI> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#Cameras> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#VisualSensors> .
+
+<http://example.org/ontology#DialogDesign> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#generated> ;
+            owl:someValuesFrom <http://example.org/ontology#VoiceAlert> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#DriverStateAdaptationRules> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#EEG> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#PhysiologicalSensors> .
+
+<http://example.org/ontology#EyeTracking> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#observes> ;
+            owl:someValuesFrom <http://example.org/ontology#Cameras> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#HeadPosition> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#PostureState> .
+
+<http://example.org/ontology#IncreasedVolume> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#LaneKeepingPatterns> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#PostureState> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#RespirationSensors> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#PhysiologicalSensors> .
+
+<http://example.org/ontology#SteeringWheel> a owl:Class .
+
+<http://example.org/ontology#VehicleDataAnalysis> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#VehicleSystem> a owl:Class .
+
+<http://example.org/ontology#VisualAlert> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#VisualFeedback> .
+
+<http://example.org/ontology#VisualFeedback> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#provides> ;
+            owl:someValuesFrom <http://example.org/ontology#HMI> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#VisualSensors> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#VoiceAlert> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#hasParameter> a owl:ObjectProperty ;
+    rdfs:label "has parameter"@en ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Parameter> ;
+    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor> ;
+    owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isParameterOf> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#inDate> a owl:DatatypeProperty ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isParameterOf> a owl:ObjectProperty ;
+    rdfs:label "is parameter of"@en ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Parameter> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> ;
+    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting> .
+
+<http://example.org/ontology#CognitiveState> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#DriverFatigue> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Situation> .
+
+<http://example.org/ontology#InformationObject> a owl:Class .
+
+<http://example.org/ontology#InformationRealization> a owl:Class .
+
+<http://example.org/ontology#PhysiologicalSensors> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#TactileFeedback> a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://example.org/ontology#provides> ;
+            owl:someValuesFrom <http://example.org/ontology#HMI> ],
+        <http://example.org/ontology#Parameter> .
+
+<http://example.org/ontology#Thing> a owl:Class .
+
+<http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#isRealizedBy> a owl:ObjectProperty ;
+    rdfs:label "is realized by"@en ;
+    rdfs:comment "A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution." ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationObject> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> ;
+    owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#realizes> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#realizes> a owl:ObjectProperty ;
+    rdfs:label "realizes"@en ;
+    rdfs:comment "A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution." ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationObject> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isObservationOf> a owl:ObjectProperty ;
+    rdfs:label "is observation of"@en ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    rdfs:range owl:Thing ;
+    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting> a owl:ObjectProperty ;
+    rdfs:label "has setting"@en ;
+    rdfs:comment "A relation between entities and situations, e.g. 'this morning I've prepared my coffee with a new fantastic Arabica' (i.e.: (an amount of) a new fantastic Arabica hasSetting the preparation of my coffee this morning)." ;
+    rdfs:domain owl:Thing ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/situation.owl> ;
+    rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation> ;
+    owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor> .
+
+<http://example.org/ontology#HMI> a owl:Class ;
+    rdfs:subClassOf <http://example.org/ontology#VehicleSystem> .
+
+<http://example.org/ontology#Observation> a owl:Class .
+
+<http://example.org/ontology#observes> a owl:ObjectProperty .
+
+<http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationObject> a owl:Class ;
+    rdfs:label "Information object"@en ;
+    rdfs:comment "A piece of information, such as a musical composition, a text, a word, a picture, independently from how it is concretely realized." ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#isRealizedBy> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#isRealizedBy> ;
+            owl:someValuesFrom <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> ] ;
+    owl:disjointWith <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Parameter> a owl:Class ;
+    rdfs:label "Parameter"@en ;
+    rdfs:comment "The parameters of an observation describe the context and content of the observation. For example in a medical context an observation of a patient may contain a set of symptoms, that are the parameters of that observation." ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    owl:disjointWith <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation> .
+
+<http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl> a owl:Ontology ;
+    rdfs:label "information realization"^^rdf:PlainLiteral ;
+    ns1:coversRequirements "what are the physical realizations of this information object?, what information objects are realized by this physical object?"^^rdf:PlainLiteral ;
+    ns1:extractedFrom "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"^^rdf:PlainLiteral ;
+    ns1:hasConsequences "This CP allows designers to model information objects and their realizations. This allows to reason about physical objects and the information they realize, by keeping them distinguished."^^xsd:string ;
+    ns1:hasIntent "To represent information objects and physical entities that realize them."^^xsd:string ;
+    ns1:relatedCPs "It is specialized by multimedia data segment decomposition."^^xsd:string ;
+    ns1:scenarios "John Lennon’s biography I Me Mine has been realized in a limited 2000-copy edition."^^xsd:string ;
+    owl:imports <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl> ;
+    owl:versionInfo "1.1 added rdfs:isDefinedBy for all named entities"^^xsd:string,
+        "Created by Aldo Gangemi and Valentina Presutti"^^xsd:string .
+
+<http://www.ontologydesignpatterns.org/cp/owl/situation.owl> a owl:Ontology ;
+    rdfs:label "situation"^^rdf:PlainLiteral ;
+    ns1:coversRequirements "What is the context or situation of something? What are the things present in this context or situation?"^^rdf:PlainLiteral ;
+    ns1:extractedFrom "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"^^rdf:PlainLiteral ;
+    ns1:hasAuthor "Aldo Gangemi"^^rdf:PlainLiteral ;
+    ns1:hasConsequences """We can contextualize things that have something in common, or are associated: a same place, time, view, causal link, systemic dependence, etc.
+We can also reify n-ary relations as situations."""^^rdf:PlainLiteral ;
+    ns1:hasIntent "To represent contexts or situations, and the things that are contextualized."^^rdf:PlainLiteral ;
+    ns1:scenarios "The lecture was held in January 1921 by Bela Fleck, with some physicians in the audience making questions, in a very relaxed athmosphere."^^rdf:PlainLiteral ;
+    owl:imports <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl> ;
+    owl:versionInfo "1.1 added rdfs:isDefinedBy for all named entities"^^xsd:string,
+        "Created by Aldo Gangemi and Valentina Presutti"^^xsd:string .
+
+<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation> a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment """A view on a set of entities. It can be seen as a 'relational context', reifying a relation.
+For example, a PlanExecution is a context including some actions executed by agents according to certain parameters and expected tasks to be achieved from a Plan; a DiagnosedSituation is a context of observed entities that is interpreted on the basis of a Diagnosis, etc.
+Situation is also able to represent reified n-ary relations, where isSettingFor is the top-level relation for all binary projections of the n-ary relation. If used in a transformation pattern for n-ary relations, the designer should take care of:
+- creating only one situation for each instance of an n-ary relation, otherwise the 'identification constraint' (Calvanese et al., IJCAI 2001) could be violated
+- adding an 'exact cardinality' restriction corresponding to the arity of the n-ary relation, otherwise the designer would actually represent a polymorphic relation.""" ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/situation.owl> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor> ] .
+
+<http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor> a owl:ObjectProperty ;
+    rdfs:label "is setting for"@en ;
+    rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation> ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/situation.owl> ;
+    rdfs:range owl:Thing .
+
+<http://example.org/ontology#Situation> a owl:Class .
+
+<http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization> a owl:Class ;
+    rdfs:label "Information realization"@en ;
+    rdfs:comment "A concrete realization of an information object, e.g. the written document containing the text of a law." ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#realizes> ;
+            owl:someValuesFrom <http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationObject> ] .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation> a owl:Class ;
+    rdfs:label "Observation"@en ;
+    rdfs:comment "A specific situation where some thing is observed with respect ot a set of parameters." ;
+    rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/observation.owl> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#inDate> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isObservationOf> ;
+            owl:someValuesFrom owl:Thing ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#hasParameter> ;
+            owl:someValuesFrom <http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Parameter> ],
+        <http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation> .
+
+owl:Thing a owl:Class .
+
+<http://www.ontologydesignpatterns.org/cp/owl/observation.owl> a owl:Ontology ;
+    ns1:coversRequirements "What objects have been observed? What are the observations of this object? What are the parameters under which this object was observed? What objects were observed under this parameter?"^^rdf:PlainLiteral ;
+    ns1:hasIntent "The intent of this pattern is to represent observations of things, under as et of parameters. Common parameters may be the time and place of the observation, but may be any feature that is observed concerning the specific thing being observed."^^rdf:PlainLiteral ;
+    ns1:isSpecializationOf "http://www.ontologydesignpatterns.org/cp/owl/situation.owl"^^rdf:PlainLiteral ;
+    ns1:scenarios "The aquatic species 'Skipjack tuna' was observed in 2004 having the exploitation state 'fully exploited' in the climatic zone 'tropical' at the vertical distance 'pelagic'."^^rdf:PlainLiteral ;
+    owl:imports <http://www.ontologydesignpatterns.org/cp/owl/situation.owl> ;
+    owl:versionInfo "Created by Eva Blomqvist"^^rdf:PlainLiteral,
+        "1.0"^^xsd:string,
+        "1.1 added rdfs:isDefinedBy for all named entities"^^xsd:string .
+
+<http://example.org/ontology#Parameter> a owl:Class .
+

@@ -1,0 +1,35 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:PostureState a owl:Class ;
+    rdfs:label "PostureState"@en ;
+    rdfs:comment "A class representing the posture state of a driver." .
+
+:HeadPosition a owl:Class ;
+    rdfs:label "Head Position"@en ;
+    rdfs:comment "A class representing the position of the driver's head." ;
+    rdfs:subClassOf :PostureState .
+
+:NoddingPattern a owl:Class ;
+    rdfs:label "Nodding Pattern"@en ;
+    rdfs:comment "A class representing patterns of nodding or head movements indicating fatigue." ;
+    rdfs:subClassOf :HeadPosition .
+
+:hasPart a owl:ObjectProperty ;
+    rdfs:label "has part"@en ;
+    rdfs:comment "A property indicating that a subject has a particular part or component." ;
+    rdfs:domain :PostureState ;
+    rdfs:range [ a owl:Class ;
+        owl:unionOf (:HeadPosition :NoddingPattern)
+    ] .
+
+:hasProperty a owl:ObjectProperty ;
+    rdfs:label "has property"@en ;
+    rdfs:comment "A property indicating that a subject has a particular property or characteristic." ;
+    rdfs:domain :HeadPosition ;
+    rdfs:range :NoddingPattern .

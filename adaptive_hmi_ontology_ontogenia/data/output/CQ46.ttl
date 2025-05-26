@@ -1,0 +1,106 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The state of the driver, including cognitive, physical, and behavioral aspects."@en .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The cognitive state of the driver, including attention, distraction, and vigilance levels."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "The state of the driver being distracted from the driving task."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:NonDrivingRelatedActivity a owl:Class ;
+    rdfs:label "Non-Driving Related Activity"@en ;
+    rdfs:comment "An activity not related to the driving task, such as reading emails."@en ;
+    rdfs:subClassOf ahmi:DistractionState .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:comment "The physical posture state of the driver, including body position and vigilance."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:BodyPosture a owl:Class ;
+    rdfs:label "Body Posture"@en ;
+    rdfs:comment "The position and orientation of the driver's body."@en ;
+    rdfs:subClassOf ahmi:PostureState .
+
+ahmi:RelaxedBodyPosition a owl:Class ;
+    rdfs:label "Relaxed Body Position"@en ;
+    rdfs:comment "A relaxed body position indicating low vigilance."@en ;
+    rdfs:subClassOf ahmi:BodyPosture .
+
+ahmi:AttentiveBodyPosition a owl:Class ;
+    rdfs:label "Attentive Body Position"@en ;
+    rdfs:comment "A body position indicating attentiveness and readiness for driving."@en ;
+    rdfs:subClassOf ahmi:BodyPosture .
+
+ahmi:DriverReadinessAssessment a owl:Class ;
+    rdfs:label "Driver Readiness Assessment"@en ;
+    rdfs:comment "The assessment of the driver's readiness to take control of the vehicle."@en .
+
+ahmi:EyeTrackingMetric a owl:Class ;
+    rdfs:label "Eye Tracking Metric"@en ;
+    rdfs:comment "A metric derived from tracking the driver's eye movements and gaze."@en .
+
+ahmi:HeadPositionMetric a owl:Class ;
+    rdfs:label "Head Position Metric"@en ;
+    rdfs:comment "A metric derived from tracking the driver's head position and orientation."@en .
+
+ahmi:hasEyeTrackingMetric a owl:ObjectProperty ;
+    rdfs:label "has eye tracking metric"@en ;
+    rdfs:comment "Relates a driver readiness assessment to the eye tracking metrics used."@en ;
+    rdfs:domain ahmi:DriverReadinessAssessment ;
+    rdfs:range ahmi:EyeTrackingMetric .
+
+ahmi:hasHeadPositionMetric a owl:ObjectProperty ;
+    rdfs:label "has head position metric"@en ;
+    rdfs:comment "Relates a driver readiness assessment to the head position metrics used."@en ;
+    rdfs:domain ahmi:DriverReadinessAssessment ;
+    rdfs:range ahmi:HeadPositionMetric .
+
+ahmi:assessesDriverState a owl:ObjectProperty ;
+    rdfs:label "assesses driver state"@en ;
+    rdfs:comment "Relates a driver readiness assessment to the driver state being assessed."@en ;
+    rdfs:domain ahmi:DriverReadinessAssessment ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:HandoverSituation a owl:Class ;
+    rdfs:label "Handover Situation"@en ;
+    rdfs:comment "A situation representing the handover of control from the autonomous system to the driver."@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:hasDriverReadinessAssessment a owl:ObjectProperty ;
+    rdfs:label "has driver readiness assessment"@en ;
+    rdfs:comment "Relates a handover situation to the driver readiness assessment performed."@en ;
+    rdfs:domain ahmi:HandoverSituation ;
+    rdfs:range ahmi:DriverReadinessAssessment .
+
+ahmi:HandoverEvent a owl:Class ;
+    rdfs:label "Handover Event"@en ;
+    rdfs:comment "The event of transferring control from the autonomous system to the driver."@en .
+
+ahmi:observesEvent a owl:ObjectProperty ;
+    rdfs:label "observes event"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain dul:Situation ;
+    rdfs:range owl:Thing .
+
+ahmi:HandoverDescription a owl:Class ;
+    rdfs:label "Handover Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting handover situations and events."@en ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:equivalentProperty dul:satisfies ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en .

@@ -1,0 +1,98 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+<http://www.example.org/test#Camera> a owl:Class ;
+    rdfs:label "Camera"@en ;
+    rdfs:comment "A device used to capture visual data."@en ;
+    rdfs:subClassOf <http://www.example.org/test#VisualSensor> .
+
+<http://www.example.org/test#EEG> a owl:Class ;
+    rdfs:label "Electroencephalogram (EEG)"@en ;
+    rdfs:comment "A physiological sensor that measures electrical activity in the brain."@en ;
+    rdfs:subClassOf <http://www.example.org/test#PhysiologicalSensor> .
+
+<http://www.example.org/test#RespirationSensor> a owl:Class ;
+    rdfs:label "Respiration Sensor"@en ;
+    rdfs:comment "A sensor that measures respiration rate and patterns."@en ;
+    rdfs:subClassOf <http://www.example.org/test#PhysiologicalSensor> .
+
+<http://www.example.org/test#hasPart> a owl:ObjectProperty ;
+    rdfs:label "has part"@en ;
+    rdfs:comment "A property indicating that a subject has a particular part or component." ;
+    rdfs:domain <http://www.example.org/test#PostureState> ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( <http://www.example.org/test#HeadPosition> <http://www.example.org/test#NoddingPattern> ) ] .
+
+<http://www.example.org/test#hasProperty> a owl:ObjectProperty ;
+    rdfs:label "has property"@en ;
+    rdfs:comment "A property indicating that a subject has a particular property or characteristic." ;
+    rdfs:domain <http://www.example.org/test#HeadPosition> ;
+    rdfs:range <http://www.example.org/test#NoddingPattern> .
+
+<http://www.example.org/test#isPartOf> a owl:ObjectProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "Relates an entity to a larger whole it is a part of."@en .
+
+<http://www.example.org/test#observes> a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a sensor to the physical quantity or state it observes."@en ;
+    rdfs:domain <http://www.example.org/test#Sensor> ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( <http://www.example.org/test#Drowsiness> <http://www.example.org/test#Fatigue> <http://www.example.org/test#CognitiveState> ) ] .
+
+<http://www.example.org/test#CognitiveState> a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "A mental state related to cognitive functions."@en .
+
+<http://www.example.org/test#DetectionMethodology> a owl:Class ;
+    rdfs:label "Detection Methodology"@en ;
+    rdfs:comment "A methodology for detecting drowsiness in drivers."@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#requires> ;
+            owl:someValuesFrom <http://www.example.org/test#Sensor> ] .
+
+<http://www.example.org/test#Drowsiness> a owl:Class ;
+    rdfs:label "Drowsiness"@en ;
+    rdfs:comment "A state of impaired alertness and reduced cognitive performance."@en .
+
+<http://www.example.org/test#Fatigue> a owl:Class ;
+    rdfs:label "Fatigue"@en ;
+    rdfs:comment "A state of physical or mental exhaustion."@en .
+
+<http://www.example.org/test#VisualSensor> a owl:Class ;
+    rdfs:label "Visual Sensor"@en ;
+    rdfs:comment "A sensor that captures visual data, such as cameras."@en ;
+    rdfs:subClassOf <http://www.example.org/test#Sensor> .
+
+<http://www.example.org/test#requires> a owl:ObjectProperty ;
+    rdfs:label "requires"@en ;
+    rdfs:comment "Relates a detection methodology to the sensors it requires."@en ;
+    rdfs:domain <http://www.example.org/test#DetectionMethodology> ;
+    rdfs:range <http://www.example.org/test#Sensor> .
+
+<http://www.example.org/test#NoddingPattern> a owl:Class ;
+    rdfs:label "Nodding Pattern"@en ;
+    rdfs:comment "A class representing patterns of nodding or head movements indicating fatigue." ;
+    rdfs:subClassOf <http://www.example.org/test#HeadPosition> .
+
+<http://www.example.org/test#PhysiologicalSensor> a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that measures physiological signals, such as EEG or respiration."@en ;
+    rdfs:subClassOf <http://www.example.org/test#Sensor> .
+
+<http://www.example.org/test#PostureState> a owl:Class ;
+    rdfs:label "PostureState"@en ;
+    rdfs:comment "A class representing the posture state of a driver." .
+
+<http://www.example.org/test#HeadPosition> a owl:Class ;
+    rdfs:label "Head Position"@en ;
+    rdfs:comment "A class representing the position of the driver's head." ;
+    rdfs:subClassOf <http://www.example.org/test#PostureState> .
+
+<http://www.example.org/test#Sensor> a owl:Class ;
+    rdfs:label "Sensor"@en ;
+    rdfs:comment "A device used to observe and measure a physical quantity."@en .
+

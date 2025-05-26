@@ -1,0 +1,66 @@
+Link-https://6poq7jfwb5xl3xujin32htosoq0mqlxz.lambda-url.eu-central-1.on.aws/
+
+import boto3
+import json
+ 
+def add_cors_headers(response):
+    response['headers'] = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Content-Type': 'application/json'
+    }
+    return response
+ 
+def lambda_handler(event, context):
+    if event['requestContext']['http']['method'] == 'OPTIONS':
+        return add_cors_headers({
+            'statusCode': 200,
+            'body': json.dumps('OK')
+        })
+    # TODO implement
+    body = json.loads(event['body'])
+    user_prompt = body.get('prompt',"Unknown")
+    answer = askToLLM(user_prompt)
+ 
+    data = {'answer' : answer}
+ 
+    return add_cors_headers({
+        'statusCode': 200,
+        'body': json.dumps({'data': data})
+    })
+ 
+ 
+def askToLLM(
+    user_prompt: str
+    ):
+ 
+    LLM = boto3.client(
+        service_name='bedrock-runtime',
+        region_name='eu-central-1'
+    )
+ 
+    body = json.dumps({
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": 3000,
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": user_prompt
+                    }
+                ]
+            }
+        ],
+        "temperature": 0.01,
+        "top_p": 0.999,
+    })
+ 
+    response = LLM.invoke_model(body=body, modelId="anthropic.claude-3-sonnet-20240229-v1:0")
+    final_response = json.loads(response.get('body').read())['content'][0]['text']
+   
+    return final_response
+ 
+ 

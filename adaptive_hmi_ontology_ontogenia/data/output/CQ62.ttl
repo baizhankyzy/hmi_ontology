@@ -1,0 +1,70 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:AirQualityClassification a owl:Class ;
+    rdfs:label "Air Quality Classification"@en ;
+    rdfs:comment "A categorization of air quality conditions."@en .
+
+ahmi:Clean a owl:Class ;
+    rdfs:label "Clean"@en ;
+    rdfs:comment "A classification for clean air quality."@en ;
+    rdfs:subClassOf ahmi:AirQualityClassification .
+
+ahmi:Pollution a owl:Class ;
+    rdfs:label "Pollution"@en ;
+    rdfs:comment "A classification for polluted air quality."@en ;
+    rdfs:subClassOf ahmi:AirQualityClassification .
+
+ahmi:Pollen a owl:Class ;
+    rdfs:label "Pollen"@en ;
+    rdfs:comment "A classification for air quality with high pollen levels."@en ;
+    rdfs:subClassOf ahmi:AirQualityClassification .
+
+ahmi:EnvironmentFactor a owl:Class ;
+    rdfs:label "Environment Factor"@en ;
+    rdfs:comment "A factor that characterizes the environment."@en .
+
+ahmi:AirQuality a owl:Class ;
+    rdfs:label "Air Quality"@en ;
+    rdfs:comment "The quality of air in the environment."@en ;
+    rdfs:subClassOf ahmi:EnvironmentFactor .
+
+ahmi:hasAirQualityClassification a owl:ObjectProperty ;
+    rdfs:label "has air quality classification"@en ;
+    rdfs:comment "Relates an air quality condition to its classification."@en ;
+    rdfs:domain ahmi:AirQuality ;
+    rdfs:range ahmi:AirQualityClassification .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view on a set of entities, consistent with a description."@en ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:AirQualitySituation a owl:Class ;
+    rdfs:label "Air Quality Situation"@en ;
+    rdfs:comment "A situation that interprets air quality conditions."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:hasAirQualityView a owl:ObjectProperty ;
+    rdfs:label "has air quality view"@en ;
+    rdfs:comment "Relates an air quality situation to the air quality it interprets."@en ;
+    rdfs:domain ahmi:AirQualitySituation ;
+    rdfs:range ahmi:AirQuality .

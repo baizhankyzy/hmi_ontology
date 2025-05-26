@@ -1,0 +1,109 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:SpeedViolationTendency a owl:Class ;
+    rdfs:label "Speed violation tendency"@en ;
+    rdfs:comment "A driver state characterized by a tendency to exceed speed limits or drive at unsafe speeds."@en .
+
+ahmi:InterventionIntensity a owl:Class ;
+    rdfs:label "Intervention intensity"@en ;
+    rdfs:comment "The level or degree of intensity of an intervention or feedback provided by the vehicle's HMI system."@en .
+
+ahmi:hasAppropriateInterventionIntensity a owl:ObjectProperty ;
+    rdfs:label "has appropriate intervention intensity"@en ;
+    rdfs:comment "Relates a driver state or behavior to the appropriate level of intervention intensity for that state or behavior."@en ;
+    rdfs:domain ahmi:SpeedViolationTendency ;
+    rdfs:range ahmi:InterventionIntensity .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver state"@en ;
+    rdfs:comment "A state or condition of the driver, such as an emotional state, cognitive state, or behavioral tendency."@en .
+
+ahmi:SpeedViolationTendency rdfs:subClassOf ahmi:DriverState .
+
+ahmi:HMIIntervention a owl:Class ;
+    rdfs:label "HMI intervention"@en ;
+    rdfs:comment "An intervention or feedback provided by the vehicle's HMI system to the driver."@en .
+
+ahmi:hasIntensity a owl:ObjectProperty ;
+    rdfs:label "has intensity"@en ;
+    rdfs:comment "Relates an HMI intervention to its intensity level."@en ;
+    rdfs:domain ahmi:HMIIntervention ;
+    rdfs:range ahmi:InterventionIntensity .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process or occurrence."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a particular description or conceptualization."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:Event
+    ] .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies or is consistent with."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:SpeedViolationEvent a owl:Class ;
+    rdfs:label "Speed violation event"@en ;
+    rdfs:comment "An event where the driver exceeds the speed limit or drives at an unsafe speed."@en ;
+    rdfs:subClassOf ahmi:Event .
+
+ahmi:SpeedViolationSituation a owl:Class ;
+    rdfs:label "Speed violation situation"@en ;
+    rdfs:comment "A situation that interprets a speed violation event from a particular perspective or conceptualization."@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:SpeedViolationEvent
+    ] .
+
+ahmi:SafetyPerspective a owl:Class ;
+    rdfs:label "Safety perspective"@en ;
+    rdfs:comment "A description or conceptualization that emphasizes safety considerations."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:UserExperiencePerspective a owl:Class ;
+    rdfs:label "User experience perspective"@en ;
+    rdfs:comment "A description or conceptualization that emphasizes user experience factors."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:SafetyInterventionSituation a owl:Class ;
+    rdfs:label "Safety intervention situation"@en ;
+    rdfs:comment "A situation that interprets a speed violation event from a safety perspective, emphasizing the need for intervention."@en ;
+    rdfs:subClassOf ahmi:SpeedViolationSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:SafetyPerspective
+    ] .
+
+ahmi:UserExperienceSituation a owl:Class ;
+    rdfs:label "User experience situation"@en ;
+    rdfs:comment "A situation that interprets a speed violation event from a user experience perspective, emphasizing user acceptance and trust calibration."@en ;
+    rdfs:subClassOf ahmi:SpeedViolationSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:UserExperiencePerspective
+    ] .

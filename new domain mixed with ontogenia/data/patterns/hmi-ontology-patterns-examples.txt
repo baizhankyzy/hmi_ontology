@@ -1,0 +1,81 @@
+
+
+#################################################################
+# Combined Pattern Example: Complete Drowsiness Detection Scenario
+#################################################################
+
+# 1. The driver (Agent-Role)
+:Michael a agentrole:Agent ;
+    agentrole:hasRole :LongDistanceDriver, :NightShiftWorker ;
+    :currentState :Drowsy ;
+    :drivingHours "2.5h"^^xsd:duration .
+
+# 2. The driving context (Situation)
+:NightHighwayDrivingContext a :DrivingSituation ;
+    situation:isSettingFor :Michael, :Highway_A1, :NightTime, :LowTraffic ;
+    :weatherCondition :Clear ;
+    :visibility "moderate" ;
+    :riskFactors :Darkness, :Monotony, :LongDuration .
+
+# 3. Physiological observation (Observation)
+:ComprehensiveDriverMonitoring a observation:Observation ;
+    observation:isObservationOf :Michael ;
+    observation:hasParameter :EEGThetaWaves, :BlinkDuration, :HeadNodding ;
+    observation:inDate "2024-01-15T22:45:00"^^xsd:dateTime ;
+    :aggregatedDrowsinessScore 0.78 ;
+    :trend "increasing" .
+
+# 4. Drowsiness event (Participation)
+:CriticalDrowsinessEvent a :DrowsinessEvent ;
+    participation:hasParticipant :Michael, :Vehicle_01, :Highway_A1 ;
+    :detectedAt "2024-01-15T22:45:30"^^xsd:dateTime ;
+    :riskLevel "high" ;
+    :immediateAction :EmergencyAlert ;
+    :suggestedAction :ImmediateRest .
+
+# 5. Time-indexed state (Time-Indexed Role)
+:MichaelCriticalDrowsyState a timeindexed:TimeIndexedPersonRole ;
+    timeindexed:forEntity :Michael ;
+    :hasRole :CriticallyDrowsyDriver ;
+    :hasTimeInterval [
+        time:hasBeginning "2024-01-15T22:40:00"^^xsd:dateTime ;
+        time:hasEnd "2024-01-15T23:00:00"^^xsd:dateTime
+    ] ;
+    :interventionUrgency "immediate" .
+
+# 6. Multimodal alert (Information Realization)
+:UrgentRestAreaAlert a inforeal:InformationObject ;
+    dct:description "ATTENTION: High drowsiness detected. Rest area 2km ahead. Strongly recommend immediate stop." ;
+    inforeal:isRealizedBy :UrgentAudioAlert, :UrgentVisualAlert, :UrgentHapticAlert .
+
+:UrgentAudioAlert a :AudioFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :volume "high" ;
+    :voiceTone "urgent" ;
+    :repetitions 3 .
+
+:UrgentVisualAlert a :VisualFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :displayMode "flashing" ;
+    :color "red" ;
+    :position "center" ;
+    :mapHighlight :NearestRestArea .
+
+:UrgentHapticAlert a :TactileFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :vibrationType "strong_pulse" ;
+    :pattern "SOS" ;
+    :location :SteeringWheel, :DriverSeat .
+
+# System response coordination
+:DrowsinessResponseCoordination a :SystemResponse ;
+    :triggeredBy :CriticalDrowsinessEvent ;
+    :activates :UrgentRestAreaAlert ;
+    :adjustsVehicleSettings [
+        :reducesSpeed true ;
+        :increasesFollowingDistance true ;
+        :activatesHazardLights false  # Not yet, unless critical
+    ] ;
+    :monitoringFrequency "continuous" ;
+    :escalationPlan :ContactEmergencyServices .
+

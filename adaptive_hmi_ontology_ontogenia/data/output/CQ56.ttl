@@ -1,0 +1,164 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DriverParameter a owl:Class ;
+    rdfs:label "Driver Parameter"@en ;
+    rdfs:comment "A parameter related to the state or behavior of a driver." .
+
+ahmi:PersonalityFactor a owl:Class ;
+    rdfs:label "Personality Factor"@en ;
+    rdfs:subClassOf ahmi:DriverParameter ;
+    rdfs:comment "A factor related to the personality traits of a driver." .
+
+ahmi:BigFivePersonalityTrait a owl:Class ;
+    rdfs:label "Big Five Personality Trait"@en ;
+    rdfs:subClassOf ahmi:PersonalityFactor .
+
+ahmi:AggressiveDrivingTendency a owl:Class ;
+    rdfs:label "Aggressive Driving Tendency"@en ;
+    rdfs:subClassOf ahmi:PersonalityFactor .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:subClassOf ahmi:DriverParameter ;
+    rdfs:comment "The cognitive state of a driver, such as distraction or mental workload." .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:MentalWorkload a owl:Class ;
+    rdfs:label "Mental Workload"@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:Frustration a owl:Class ;
+    rdfs:label "Frustration"@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:Effort a owl:Class ;
+    rdfs:label "Effort"@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:PhysiologicalMeasure a owl:Class ;
+    rdfs:label "Physiological Measure"@en ;
+    rdfs:subClassOf ahmi:DriverParameter ;
+    rdfs:comment "A measure of a driver's physiological state." .
+
+ahmi:ElectrodermalActivity a owl:Class ;
+    rdfs:label "Electrodermal Activity"@en ;
+    rdfs:subClassOf ahmi:PhysiologicalMeasure .
+
+ahmi:SkinConductance a owl:Class ;
+    rdfs:label "Skin Conductance"@en ;
+    rdfs:subClassOf ahmi:PhysiologicalMeasure .
+
+ahmi:HeartRate a owl:Class ;
+    rdfs:label "Heart Rate"@en ;
+    rdfs:subClassOf ahmi:PhysiologicalMeasure .
+
+ahmi:ElectroencephalogramReading a owl:Class ;
+    rdfs:label "Electroencephalogram Reading"@en ;
+    rdfs:subClassOf ahmi:PhysiologicalMeasure .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A modality through which feedback is provided to the driver." .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:SelfMeasure a owl:Class ;
+    rdfs:label "Self-Measure"@en ;
+    rdfs:subClassOf ahmi:DriverParameter ;
+    rdfs:comment "A measure of a driver's state or experience based on self-reporting." .
+
+ahmi:Questionnaire a owl:Class ;
+    rdfs:label "Questionnaire"@en ;
+    rdfs:subClassOf ahmi:SelfMeasure .
+
+ahmi:NASATLXQuestionnaire a owl:Class ;
+    rdfs:label "NASA-TLX Questionnaire"@en ;
+    rdfs:subClassOf ahmi:Questionnaire .
+
+ahmi:hasPersonalityFactor a owl:ObjectProperty ;
+    rdfs:label "has personality factor"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:PersonalityFactor .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:CognitiveState .
+
+ahmi:hasPhysiologicalMeasure a owl:ObjectProperty ;
+    rdfs:label "has physiological measure"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:PhysiologicalMeasure .
+
+ahmi:hasFeedbackModality a owl:ObjectProperty ;
+    rdfs:label "has feedback modality"@en ;
+    rdfs:domain ahmi:VehicleSystem ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:hasSelfMeasure a owl:ObjectProperty ;
+    rdfs:label "has self-measure"@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:SelfMeasure .
+
+ahmi:assessedThrough a owl:ObjectProperty ;
+    rdfs:label "assessed through"@en ;
+    rdfs:domain ahmi:DriverParameter ;
+    rdfs:range owl:unionOf(ahmi:PhysiologicalMeasure ahmi:SelfMeasure) .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "A person operating a vehicle." .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A system within a vehicle, such as a human-machine interface (HMI)." .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "A state or condition experienced by a driver." ;
+    rdfs:subClassOf ahmi:DriverParameter .
+
+ahmi:DriverEvent a owl:Class ;
+    rdfs:label "Driver Event"@en ;
+    rdfs:comment "An event involving a driver's actions or experiences." .
+
+ahmi:DriverSituation a owl:Class ;
+    rdfs:label "Driver Situation"@en ;
+    rdfs:subClassOf owl:Situation ;
+    rdfs:comment "A view or interpretation of a driver event, based on a particular description or conceptualization." .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:Description .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting driver situations and events." .
+
+ahmi:hasDriverEvent a owl:ObjectProperty ;
+    rdfs:label "has driver event"@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DriverEvent .
+
+ahmi:hasDriverSituation a owl:ObjectProperty ;
+    rdfs:label "has driver situation"@en ;
+    rdfs:domain ahmi:DriverEvent ;
+    rdfs:range ahmi:DriverSituation .

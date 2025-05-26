@@ -1,0 +1,90 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "The overall system in a vehicle that includes feedback systems and other components."@en .
+
+ahmi:FeedbackSystem a owl:Class ;
+    rdfs:label "Feedback System"@en ;
+    rdfs:comment "A system that provides feedback to the driver or other entities."@en ;
+    rdfs:subClassOf ahmi:VehicleSystem .
+
+ahmi:VisualFeedbackSystem a owl:Class ;
+    rdfs:label "Visual Feedback System"@en ;
+    rdfs:comment "A feedback system that provides visual feedback."@en ;
+    rdfs:subClassOf ahmi:FeedbackSystem .
+
+ahmi:AuditoryFeedbackSystem a owl:Class ;
+    rdfs:label "Auditory Feedback System"@en ;
+    rdfs:comment "A feedback system that provides auditory feedback."@en ;
+    rdfs:subClassOf ahmi:FeedbackSystem .
+
+ahmi:HapticFeedbackSystem a owl:Class ;
+    rdfs:label "Haptic Feedback System"@en ;
+    rdfs:comment "A feedback system that provides haptic feedback."@en ;
+    rdfs:subClassOf ahmi:FeedbackSystem .
+
+ahmi:hasComponent a owl:ObjectProperty ;
+    rdfs:label "has component"@en ;
+    rdfs:comment "Relates a system to its components."@en ;
+    rdfs:domain ahmi:VehicleSystem ;
+    rdfs:range ahmi:FeedbackSystem .
+
+ahmi:providesVisualFeedback a owl:ObjectProperty ;
+    rdfs:label "provides visual feedback"@en ;
+    rdfs:comment "Relates a feedback system to the visual feedback it provides."@en ;
+    rdfs:domain ahmi:VisualFeedbackSystem ;
+    rdfs:range ahmi:VisualFeedback .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Visual feedback provided by a feedback system."@en .
+
+ahmi:providesAuditoryFeedback a owl:ObjectProperty ;
+    rdfs:label "provides auditory feedback"@en ;
+    rdfs:comment "Relates a feedback system to the auditory feedback it provides."@en ;
+    rdfs:domain ahmi:AuditoryFeedbackSystem ;
+    rdfs:range ahmi:AuditoryFeedback .
+
+ahmi:AuditoryFeedback a owl:Class ;
+    rdfs:label "Auditory Feedback"@en ;
+    rdfs:comment "Auditory feedback provided by a feedback system."@en .
+
+ahmi:providesHapticFeedback a owl:ObjectProperty ;
+    rdfs:label "provides haptic feedback"@en ;
+    rdfs:comment "Relates a feedback system to the haptic feedback it provides."@en ;
+    rdfs:domain ahmi:HapticFeedbackSystem ;
+    rdfs:range ahmi:HapticFeedback .
+
+ahmi:HapticFeedback a owl:Class ;
+    rdfs:label "Haptic Feedback"@en ;
+    rdfs:comment "Haptic feedback provided by a feedback system."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view, consistent with a Description, on a set of entities related to the vehicle system and feedback systems."@en ;
+    rdfs:subClassOf ahmi:SocialObject ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:SocialObject a owl:Class ;
+    rdfs:label "Social Object"@en ;
+    rdfs:comment "An object that is created in a social context related to the vehicle system and feedback systems."@en .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events related to the vehicle system and feedback systems."@en ;
+    rdfs:subClassOf ahmi:SocialObject .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .

@@ -1,0 +1,120 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, emotional, or physiological state of a driver."@en .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The cognitive state of a driver, such as cognitive load or distraction."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "A state where the driver's attention is diverted from the driving task."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State"@en ;
+    rdfs:comment "The emotional state of a driver, such as stress or calmness."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DriverSensor a owl:Class ;
+    rdfs:label "Driver Sensor"@en ;
+    rdfs:comment "A sensor that monitors the driver's state or behavior."@en .
+
+ahmi:VisualSensor a owl:Class ;
+    rdfs:label "Visual Sensor"@en ;
+    rdfs:comment "A sensor that captures visual data related to the driver."@en ;
+    rdfs:subClassOf ahmi:DriverSensor .
+
+ahmi:EyeTrackingSensor a owl:Class ;
+    rdfs:label "Eye Tracking Sensor"@en ;
+    rdfs:comment "A sensor that tracks the driver's eye movements."@en ;
+    rdfs:subClassOf ahmi:VisualSensor .
+
+ahmi:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that monitors the driver's physiological signals."@en ;
+    rdfs:subClassOf ahmi:DriverSensor .
+
+ahmi:HeartRateSensor a owl:Class ;
+    rdfs:label "Heart Rate Sensor"@en ;
+    rdfs:comment "A sensor that measures the driver's heart rate."@en ;
+    rdfs:subClassOf ahmi:PhysiologicalSensor .
+
+ahmi:BehavioralSensor a owl:Class ;
+    rdfs:label "Behavioral Sensor"@en ;
+    rdfs:comment "A sensor that monitors the driver's behavior or actions."@en ;
+    rdfs:subClassOf ahmi:DriverSensor .
+
+ahmi:SteeringWheelSensor a owl:Class ;
+    rdfs:label "Steering Wheel Sensor"@en ;
+    rdfs:comment "A sensor that monitors the driver's grip or interaction with the steering wheel."@en ;
+    rdfs:subClassOf ahmi:BehavioralSensor .
+
+ahmi:DriverEvent a owl:Class ;
+    rdfs:label "Driver Event"@en ;
+    rdfs:comment "An event related to the driver's state or behavior."@en .
+
+ahmi:DriverSituation a owl:Class ;
+    rdfs:label "Driver Situation"@en ;
+    rdfs:comment "A view or interpretation of a driver event based on sensor data and context."@en ;
+    rdfs:subClassOf owl:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:DriverEvent
+    ] .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DriverEvent .
+
+ahmi:hasIndicator a owl:ObjectProperty ;
+    rdfs:label "has indicator"@en ;
+    rdfs:comment "Relates a driver situation to the sensor data that indicates or supports that interpretation."@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DriverSensor .
+
+ahmi:hasReliability a owl:DatatypeProperty ;
+    rdfs:label "has reliability"@en ;
+    rdfs:comment "The reliability or confidence level of a sensor indicator for a particular driver situation."@en ;
+    rdfs:domain ahmi:hasIndicator ;
+    rdfs:range xsd:float .
+
+ahmi:DistractionSituation a owl:Class ;
+    rdfs:label "Distraction Situation"@en ;
+    rdfs:comment "A situation where the driver is interpreted as being in a distracted state."@en ;
+    rdfs:subClassOf ahmi:DriverSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:DistractionState
+    ] .
+
+ahmi:HMISystem a owl:Class ;
+    rdfs:label "HMI System"@en ;
+    rdfs:comment "The human-machine interface system of a vehicle."@en .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "The visual feedback provided by the HMI system."@en ;
+    rdfs:subClassOf ahmi:HMISystem .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "The audio feedback provided by the HMI system."@en ;
+    rdfs:subClassOf ahmi:HMISystem .
+
+ahmi:adaptsTo a owl:ObjectProperty ;
+    rdfs:label "adapts to"@en ;
+    rdfs:comment "Relates an HMI system to the driver situation it adapts to."@en ;
+    rdfs:domain ahmi:HMISystem ;
+    rdfs:range ahmi:DriverSituation .

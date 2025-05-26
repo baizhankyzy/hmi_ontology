@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:SpeedManagementEvent a owl:Class ;
+    rdfs:label "Speed Management Event"@en ;
+    rdfs:comment "An event related to the management of vehicle speed." ;
+    rdfs:subClassOf dul:Event .
+
+ahmi:AggressiveSpeedManagementEvent a owl:Class ;
+    rdfs:label "Aggressive Speed Management Event"@en ;
+    rdfs:comment "A speed management event characterized by aggressive driving behavior." ;
+    rdfs:subClassOf ahmi:SpeedManagementEvent .
+
+ahmi:SpeedManagementSituation a owl:Class ;
+    rdfs:label "Speed Management Situation"@en ;
+    rdfs:comment "A situation representing a view or interpretation of a speed management event." ;
+    rdfs:subClassOf dul:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty dul:satisfies ;
+        owl:someValuesFrom ahmi:SpeedManagementDescription
+    ] .
+
+ahmi:AggressiveSpeedManagementSituation a owl:Class ;
+    rdfs:label "Aggressive Speed Management Situation"@en ;
+    rdfs:comment "A situation representing an interpretation of an aggressive speed management event." ;
+    rdfs:subClassOf ahmi:SpeedManagementSituation .
+
+ahmi:SpeedManagementDescription a owl:Class ;
+    rdfs:label "Speed Management Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting speed management situations and events." ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:ForceParameter a owl:Class ;
+    rdfs:label "Force Parameter"@en ;
+    rdfs:comment "A parameter representing the force applied in a feedback mechanism." ;
+    rdfs:subClassOf dul:Parameter .
+
+ahmi:ForceThresholdParameter a owl:Class ;
+    rdfs:label "Force Threshold Parameter"@en ;
+    rdfs:comment "A parameter representing the threshold force value for a feedback mechanism." ;
+    rdfs:subClassOf ahmi:ForceParameter .
+
+ahmi:ForceFeedbackMechanism a owl:Class ;
+    rdfs:label "Force Feedback Mechanism"@en ;
+    rdfs:comment "A mechanism that provides force feedback to discourage aggressive driving behavior." ;
+    rdfs:subClassOf dul:Concept ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasForceParameter ;
+        owl:someValuesFrom ahmi:ForceParameter
+    ] .
+
+ahmi:hasForceParameter a owl:ObjectProperty ;
+    rdfs:label "has force parameter"@en ;
+    rdfs:comment "Relates a force feedback mechanism to its force parameters." ;
+    rdfs:domain ahmi:ForceFeedbackMechanism ;
+    rdfs:range ahmi:ForceParameter .
+
+ahmi:isParameterForSituation a owl:ObjectProperty ;
+    rdfs:label "is parameter for situation"@en ;
+    rdfs:comment "Relates a parameter to the situation it constrains." ;
+    rdfs:subPropertyOf dul:isParameterFor ;
+    rdfs:domain dul:Parameter ;
+    rdfs:range ahmi:SpeedManagementSituation .
+
+ahmi:hasEffectOnEvent a owl:ObjectProperty ;
+    rdfs:label "has effect on event"@en ;
+    rdfs:comment "Relates a force feedback mechanism to the events it affects." ;
+    rdfs:domain ahmi:ForceFeedbackMechanism ;
+    rdfs:range ahmi:SpeedManagementEvent .

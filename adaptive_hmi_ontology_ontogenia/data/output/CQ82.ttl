@@ -1,0 +1,100 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "A condition or situation of the driver that affects their ability to operate the vehicle."@en .
+
+ahmi:DetectionMethodology a owl:Class ;
+    rdfs:label "Detection Methodology"@en ;
+    rdfs:comment "A method or technique used to detect and monitor the driver's state."@en .
+
+ahmi:employsDetectionMethodology a owl:ObjectProperty ;
+    rdfs:label "employs detection methodology"@en ;
+    rdfs:comment "Relates a driver state to the detection methodology used to identify it."@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DetectionMethodology .
+
+ahmi:VisualMonitoring a owl:Class ;
+    rdfs:label "Visual Monitoring"@en ;
+    rdfs:comment "Detection methodology that uses visual cues, such as eye gaze, head pose, and facial expressions, to assess the driver's state."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:BiometricMonitoring a owl:Class ;
+    rdfs:label "Biometric Monitoring"@en ;
+    rdfs:comment "Detection methodology that uses biometric data, such as heart rate, respiration, and brain activity, to assess the driver's state."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:VehicleDynamicsMonitoring a owl:Class ;
+    rdfs:label "Vehicle Dynamics Monitoring"@en ;
+    rdfs:comment "Detection methodology that uses vehicle dynamics data, such as steering, acceleration, and braking patterns, to infer the driver's state."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:Distraction a owl:Class ;
+    rdfs:label "Distraction"@en ;
+    rdfs:comment "A driver state where the driver's attention is diverted from the driving task."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Fatigue a owl:Class ;
+    rdfs:label "Fatigue"@en ;
+    rdfs:comment "A driver state characterized by physical or mental exhaustion, which can impair driving performance."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Impairment a owl:Class ;
+    rdfs:label "Impairment"@en ;
+    rdfs:comment "A driver state where the driver's abilities are diminished due to factors such as alcohol, drugs, or medical conditions."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DistractionSituation a owl:Class ;
+    rdfs:label "Distraction Situation"@en ;
+    rdfs:comment "A situation that represents a view or interpretation of a distraction event."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:FatigueSituation a owl:Class ;
+    rdfs:label "Fatigue Situation"@en ;
+    rdfs:comment "A situation that represents a view or interpretation of a fatigue event."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:ImpairmentSituation a owl:Class ;
+    rdfs:label "Impairment Situation"@en ;
+    rdfs:comment "A situation that represents a view or interpretation of an impairment event."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:hasDetectionMethodology a owl:ObjectProperty ;
+    rdfs:label "has detection methodology"@en ;
+    rdfs:comment "Relates a situation to the detection methodology used to identify the driver state."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:DetectionMethodology .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events."@en ;
+    rdfs:subClassOf ahmi:SocialObject .
+
+ahmi:SocialObject a owl:Class ;
+    rdfs:label "Social Object"@en ;
+    rdfs:comment "An object that is created in a social context."@en .
+
+ahmi:DistractionDescription a owl:Class ;
+    rdfs:label "Distraction Description"@en ;
+    rdfs:comment "A description that conceptualizes the context for interpreting distraction situations."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:FatigueDescription a owl:Class ;
+    rdfs:label "Fatigue Description"@en ;
+    rdfs:comment "A description that conceptualizes the context for interpreting fatigue situations."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:ImpairmentDescription a owl:Class ;
+    rdfs:label "Impairment Description"@en ;
+    rdfs:comment "A description that conceptualizes the context for interpreting impairment situations."@en ;
+    rdfs:subClassOf ahmi:Description .

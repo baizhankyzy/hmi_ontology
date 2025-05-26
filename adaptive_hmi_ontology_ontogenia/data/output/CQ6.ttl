@@ -1,0 +1,228 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "A state representing the condition or behavior of a driver."@en .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:comment "A state related to the physical posture or position of the driver."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:HeadPosition a owl:Class ;
+    rdfs:label "Head Position"@en ;
+    rdfs:comment "The position or orientation of the driver's head."@en ;
+    rdfs:subClassOf ahmi:PostureState .
+
+ahmi:NoddingPattern a owl:Class ;
+    rdfs:label "Nodding Pattern"@en ;
+    rdfs:comment "A pattern of head movements indicating nodding or drowsiness."@en ;
+    rdfs:subClassOf ahmi:HeadPosition .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "A state related to the cognitive or mental condition of the driver."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:InattentionState a owl:Class ;
+    rdfs:label "Inattention State"@en ;
+    rdfs:comment "A state indicating reduced attention or focus of the driver."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:Drowsiness a owl:Class ;
+    rdfs:label "Drowsiness"@en ;
+    rdfs:comment "A state of feeling sleepy or fatigued."@en ;
+    rdfs:subClassOf ahmi:InattentionState .
+
+ahmi:Fatigue a owl:Class ;
+    rdfs:label "Fatigue"@en ;
+    rdfs:comment "A state of physical or mental exhaustion."@en ;
+    rdfs:subClassOf ahmi:InattentionState .
+
+ahmi:DetectionMethod a owl:Class ;
+    rdfs:label "Detection Method"@en ;
+    rdfs:comment "A method or technique used to detect or monitor the driver's state."@en .
+
+ahmi:VisualSensor a owl:Class ;
+    rdfs:label "Visual Sensor"@en ;
+    rdfs:comment "A sensor that captures visual data, such as cameras or image processing systems."@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:DriverFacingVisualSensor a owl:Class ;
+    rdfs:label "Driver-facing Visual Sensor"@en ;
+    rdfs:comment "A visual sensor that is oriented towards the driver's face or body."@en ;
+    rdfs:subClassOf ahmi:VisualSensor .
+
+ahmi:EyeTracking a owl:Class ;
+    rdfs:label "Eye Tracking"@en ;
+    rdfs:comment "A technique for monitoring the movement and focus of the driver's eyes."@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:BlinkDuration a owl:Class ;
+    rdfs:label "Blink Duration"@en ;
+    rdfs:comment "The duration or length of time the driver's eyes are closed during a blink."@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that measures physiological signals or data from the driver's body."@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:BehavioralAnalysis a owl:Class ;
+    rdfs:label "Behavioral Analysis"@en ;
+    rdfs:comment "A method for analyzing and interpreting the driver's behavior patterns."@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A type of feedback or output modality used by the vehicle's HMI system."@en .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Feedback provided through visual displays or elements."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:comment "A type of visual display used for presenting information or feedback."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:comment "A visual component or element used in the user interface."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:comment "Feedback provided through tactile or haptic sensations."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:HapticAlert a owl:Class ;
+    rdfs:label "Haptic Alert"@en ;
+    rdfs:comment "An alert or notification delivered through tactile or haptic feedback."@en ;
+    rdfs:subClassOf ahmi:TactileFeedback .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "Feedback provided through auditory or sound outputs."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AuditoryDisplay a owl:Class ;
+    rdfs:label "Auditory Display"@en ;
+    rdfs:comment "A display or output that presents information through sound or audio."@en ;
+    rdfs:subClassOf ahmi:AudioFeedback .
+
+ahmi:NavigationPrompt a owl:Class ;
+    rdfs:label "Navigation Prompt"@en ;
+    rdfs:comment "An auditory prompt or instruction related to navigation or routing."@en ;
+    rdfs:subClassOf ahmi:AuditoryDisplay .
+
+ahmi:DialogDesign a owl:Class ;
+    rdfs:label "Dialog Design"@en ;
+    rdfs:comment "The design and structure of dialogues or interactions between the system and the user."@en .
+
+ahmi:MessageStructure a owl:Class ;
+    rdfs:label "Message Structure"@en ;
+    rdfs:comment "The structure or format of a message or prompt presented to the user."@en ;
+    rdfs:subClassOf ahmi:DialogDesign .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A system or component of the vehicle responsible for monitoring and adapting the HMI."@en .
+
+ahmi:HMI a owl:Class ;
+    rdfs:label "Human-Machine Interface (HMI)"@en ;
+    rdfs:comment "The interface that facilitates interaction between the driver and the vehicle systems."@en ;
+    rdfs:subClassOf ahmi:VehicleSystem .
+
+ahmi:VehicleDataAnalysis a owl:Class ;
+    rdfs:label "Vehicle Data Analysis"@en ;
+    rdfs:comment "A system or process for analyzing data collected by the vehicle sensors and systems."@en ;
+    rdfs:subClassOf ahmi:VehicleSystem .
+
+ahmi:DrivingBehavior a owl:Class ;
+    rdfs:label "Driving Behavior"@en ;
+    rdfs:comment "The behavior or patterns exhibited by the driver while operating the vehicle."@en .
+
+ahmi:ForceFeedback a owl:Class ;
+    rdfs:label "Force Feedback"@en ;
+    rdfs:comment "A feedback mechanism that applies physical forces or resistance to the driver's inputs."@en ;
+    rdfs:subClassOf ahmi:TactileFeedback .
+
+ahmi:AdaptivityParameter a owl:Class ;
+    rdfs:label "Adaptivity Parameter"@en ;
+    rdfs:comment "A parameter or setting that governs how the system adapts its feedback or behavior."@en .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process that occurs over time."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event based on a particular description or context."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:hasParameter a owl:ObjectProperty ;
+    rdfs:label "has parameter"@en ;
+    rdfs:comment "Relates a concept to the parameters that constrain it."@en ;
+    rdfs:domain ahmi:Concept ;
+    rdfs:range ahmi:Parameter .
+
+ahmi:Concept a owl:Class ;
+    rdfs:label "Concept"@en ;
+    rdfs:comment "A concept that represents a category of entities."@en .
+
+ahmi:Parameter a owl:Class ;
+    rdfs:label "Parameter"@en ;
+    rdfs:comment "A parameter that constrains the attributes of entities in a situation."@en .
+
+ahmi:isParameterFor a owl:ObjectProperty ;
+    rdfs:label "is parameter for"@en ;
+    rdfs:comment "Relates a parameter to the concept it constrains."@en ;
+    rdfs:domain ahmi:Parameter ;
+    rdfs:range ahmi:Concept ;
+    owl:inverseOf ahmi:hasParameter .
+
+ahmi:isPartOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "Indicates that an entity is a part of another entity."@en ;
+    rdfs:domain ahmi:Entity ;
+    rdfs:range ahmi:Entity .
+
+ahmi:Entity a owl:Class ;
+    rdfs:label "Entity"@en ;
+    rdfs:comment "Any physical, social, or mental object, event, or quality."@en .
+
+ahmi:indicatesState a owl:ObjectProperty ;
+    rdfs:label "indicates state"@en ;
+    rdfs:comment "Relates a detection method or observation to the driver state it indicates."@en ;
+    rdfs:domain ahmi:DetectionMethod ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:triggers a owl:ObjectProperty ;
+    rdfs:label "triggers"@en ;
+    rdfs:comment "Relates a driver state or situation to the feedback modality it triggers."@en ;
+    rdfs:domain [ owl:unionOf (ahmi:DriverState ahmi:Situation) ] ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:hasParameter a owl:ObjectProperty ;
+    rdfs:label "has parameter"@en ;
+    rdfs:comment "Relates a feedback modality to the parameters that govern

@@ -1,0 +1,63 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:Measure rdfs:subClassOf owl:Thing ;
+    rdfs:label "Measure"@en ;
+    rdfs:comment "An assessment or evaluation method used to quantify or qualify a particular aspect." .
+
+ahmi:DriverSatisfactionMeasure rdfs:subClassOf ahmi:Measure ;
+    rdfs:label "Driver Satisfaction Measure"@en ;
+    rdfs:comment "A measure used to assess the driver's level of satisfaction with a particular aspect of the vehicle system." .
+
+ahmi:TactileFeedback rdfs:subClassOf owl:Thing ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:comment "A type of feedback provided through the sense of touch, such as vibrations or force feedback." .
+
+ahmi:TactileFeedbackType rdfs:subClassOf ahmi:TactileFeedback ;
+    rdfs:label "Tactile Feedback Type"@en ;
+    rdfs:comment "A specific type or modality of tactile feedback used in the vehicle system." .
+
+ahmi:assessesSatisfactionWith rdfs:domain ahmi:DriverSatisfactionMeasure ;
+    rdfs:range ahmi:TactileFeedbackType ;
+    rdfs:label "assesses satisfaction with"@en ;
+    rdfs:comment "Relates a driver satisfaction measure to the specific type of tactile feedback it is used to assess." .
+
+ahmi:hasParameter rdfs:domain ahmi:DriverSatisfactionMeasure ;
+    rdfs:range ahmi:Parameter ;
+    rdfs:label "has parameter"@en ;
+    rdfs:comment "Relates a driver satisfaction measure to the parameters or constraints that define its application." .
+
+ahmi:Parameter rdfs:subClassOf owl:Thing ;
+    rdfs:label "Parameter"@en ;
+    rdfs:comment "A constraint or condition that defines the application or interpretation of a measure or concept." .
+
+ahmi:isParameterFor rdfs:domain ahmi:Parameter ;
+    rdfs:range ahmi:DriverSatisfactionMeasure ;
+    rdfs:label "is parameter for"@en ;
+    rdfs:comment "Relates a parameter to the driver satisfaction measure it constrains or defines." ;
+    owl:inverseOf ahmi:hasParameter .
+
+ahmi:Situation rdfs:subClassOf owl:Thing ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of events or entities based on a particular conceptualization or description." .
+
+ahmi:satisfies rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description or conceptualization it is based on." .
+
+ahmi:Description rdfs:subClassOf owl:Thing ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization or framework used to interpret or provide context for situations and events." .
+
+ahmi:Event rdfs:subClassOf owl:Thing ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process or occurrence." .
+
+ahmi:isViewOf rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event ;
+    rdfs:label "is view of"@en ;
+    rdfs:comment "Relates a situation to the event or process it is an interpretation or view of." .

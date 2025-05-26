@@ -1,0 +1,101 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that detects physiological signals from a driver."@en ;
+    rdfs:subClassOf ahmi:Sensor .
+
+ahmi:Sensor a owl:Class ;
+    rdfs:label "Sensor"@en ;
+    rdfs:comment "A device that detects or measures a physical property and records, indicates, or otherwise responds to it."@en ;
+    rdfs:subClassOf ahmi:DetectionSystem .
+
+ahmi:DetectionSystem a owl:Class ;
+    rdfs:label "Detection System"@en ;
+    rdfs:comment "A system that detects and monitors the state of a driver or environment."@en ;
+    rdfs:subClassOf ahmi:HMISystem .
+
+ahmi:HMISystem a owl:Class ;
+    rdfs:label "HMI System"@en ;
+    rdfs:comment "A system that facilitates the interaction between humans and machines."@en .
+
+ahmi:hasType a owl:ObjectProperty ;
+    rdfs:label "has type"@en ;
+    rdfs:comment "Relates a sensor to its type or category."@en ;
+    rdfs:domain ahmi:Sensor ;
+    rdfs:range ahmi:SensorType .
+
+ahmi:SensorType a owl:Class ;
+    rdfs:label "Sensor Type"@en ;
+    rdfs:comment "A category or classification of sensors based on their function or the property they measure."@en .
+
+ahmi:isPartOfSystem a owl:ObjectProperty ;
+    rdfs:label "is part of system"@en ;
+    rdfs:comment "Relates a component to the system it is a part of."@en ;
+    rdfs:domain ahmi:DetectionSystem ;
+    rdfs:range ahmi:HMISystem ;
+    rdfs:subPropertyOf ahmi:isPartOf .
+
+ahmi:isPartOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "A relation between any entities, where one entity is a part of another."@en ;
+    rdfs:domain ahmi:Entity ;
+    rdfs:range ahmi:Entity .
+
+ahmi:Entity a owl:Class ;
+    rdfs:label "Entity"@en ;
+    rdfs:comment "Any physical, social, or mental object, event, or quality."@en .
+
+ahmi:detects a owl:ObjectProperty ;
+    rdfs:label "detects"@en ;
+    rdfs:comment "Relates a sensor to the physiological signal or property it detects."@en ;
+    rdfs:domain ahmi:PhysiologicalSensor ;
+    rdfs:range ahmi:PhysiologicalSignal .
+
+ahmi:PhysiologicalSignal a owl:Class ;
+    rdfs:label "Physiological Signal"@en ;
+    rdfs:comment "A measurable signal or property related to the physiological state of a person."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The physiological, cognitive, or emotional state of a driver."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of a set of entities, consistent with a description."@en ;
+    rdfs:subClassOf ahmi:SocialObject ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:SocialObject a owl:Class ;
+    rdfs:label "Social Object"@en ;
+    rdfs:comment "An object that is created in a social context."@en .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events."@en ;
+    rdfs:subClassOf ahmi:SocialObject .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event or set of entities it is a view or interpretation of."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process or occurrence."@en .

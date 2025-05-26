@@ -1,0 +1,98 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:RoadCondition a owl:Class ;
+    rdfs:label "Road Condition"@en ;
+    rdfs:comment "The state or quality of the road surface."@en .
+
+ahmi:EvenRoad a owl:Class ;
+    rdfs:label "Even Road"@en ;
+    rdfs:subClassOf ahmi:RoadCondition ;
+    rdfs:comment "A road with a smooth, level surface."@en .
+
+ahmi:UnevenRoad a owl:Class ;
+    rdfs:label "Uneven Road"@en ;
+    rdfs:subClassOf ahmi:RoadCondition ;
+    rdfs:disjointWith ahmi:EvenRoad ;
+    rdfs:comment "A road with an irregular or bumpy surface."@en .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:comment "The physical position or orientation of the driver's body."@en .
+
+ahmi:BodyPosture a owl:Class ;
+    rdfs:label "Body Posture"@en ;
+    rdfs:subClassOf ahmi:PostureState ;
+    rdfs:comment "The overall positioning of the driver's body."@en .
+
+ahmi:TrunkPosition a owl:Class ;
+    rdfs:label "Trunk Position"@en ;
+    rdfs:subClassOf ahmi:PostureState ;
+    rdfs:comment "The positioning of the driver's upper body or torso."@en .
+
+ahmi:affectsPostureState a owl:ObjectProperty ;
+    rdfs:label "affects posture state"@en ;
+    rdfs:comment "Relates a road condition to the posture state it influences."@en ;
+    rdfs:domain ahmi:RoadCondition ;
+    rdfs:range ahmi:PostureState .
+
+ahmi:hasPostureState a owl:ObjectProperty ;
+    rdfs:label "has posture state"@en ;
+    rdfs:comment "Relates a driver to their posture state."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:PostureState .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "A person operating a vehicle."@en .
+
+ahmi:PostureStateSituation a owl:Class ;
+    rdfs:label "Posture State Situation"@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:comment "A view or interpretation of a driver's posture state in relation to road conditions."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view, consistent with a Description, on a set of entities."@en ;
+    rdfs:subClassOf ahmi:SocialObject ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:SocialObject a owl:Class ;
+    rdfs:label "Social Object"@en ;
+    rdfs:comment "An object that is created in a social context."@en .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events."@en ;
+    rdfs:subClassOf ahmi:SocialObject .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:hasPostureStateSituation a owl:ObjectProperty ;
+    rdfs:label "has posture state situation"@en ;
+    rdfs:comment "Relates a driver to a situation interpreting their posture state."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:PostureStateSituation .
+
+ahmi:observesPostureState a owl:ObjectProperty ;
+    rdfs:label "observes posture state"@en ;
+    rdfs:comment "Relates a posture state situation to the posture state it observes."@en ;
+    rdfs:domain ahmi:PostureStateSituation ;
+    rdfs:range ahmi:PostureState .
+
+ahmi:inRoadCondition a owl:ObjectProperty ;
+    rdfs:label "in road condition"@en ;
+    rdfs:comment "Relates a posture state situation to the road condition it occurs in."@en ;
+    rdfs:domain ahmi:PostureStateSituation ;
+    rdfs:range ahmi:RoadCondition .

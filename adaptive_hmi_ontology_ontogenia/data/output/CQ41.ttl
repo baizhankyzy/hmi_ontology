@@ -1,0 +1,84 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process that occurs over time."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a particular description."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:Event
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, physical, and behavioral state of the driver."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "The state of the driver being distracted from the driving task."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DetectionMethodology a owl:Class ;
+    rdfs:label "Detection Methodology"@en ;
+    rdfs:comment "A method or technique used to detect and assess the driver's state."@en .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies or is consistent with."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:usesDetectionMethodology a owl:ObjectProperty ;
+    rdfs:label "uses detection methodology"@en ;
+    rdfs:comment "Relates a situation to the detection methodology used to assess the driver's state."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:DetectionMethodology .
+
+ahmi:CameraDetection a owl:Class ;
+    rdfs:label "Camera Detection"@en ;
+    rdfs:comment "A detection methodology that uses cameras to monitor the driver's behavior and attention."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:PhysiologicalSensing a owl:Class ;
+    rdfs:label "Physiological Sensing"@en ;
+    rdfs:comment "A detection methodology that uses physiological sensors to monitor the driver's physical state."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:EyeTracking a owl:Class ;
+    rdfs:label "Eye Tracking"@en ;
+    rdfs:comment "A detection methodology that tracks the driver's eye movements and gaze direction."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:HeadPositionTracking a owl:Class ;
+    rdfs:label "Head Position Tracking"@en ;
+    rdfs:comment "A detection methodology that tracks the driver's head position and orientation."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .
+
+ahmi:PostureStateAnalysis a owl:Class ;
+    rdfs:label "Posture State Analysis"@en ;
+    rdfs:comment "A detection methodology that analyzes the driver's body posture and position."@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology .

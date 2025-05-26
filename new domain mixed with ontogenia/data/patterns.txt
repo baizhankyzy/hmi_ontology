@@ -1,0 +1,1032 @@
+
+================================================================================
+
+Pattern: agentrole.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY agentrole "http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#" >
+    <!ENTITY objectrole "http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl#" >
+    <!ENTITY cpannotationschema "http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl"
+     xmlns:agentrole="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:objectrole="http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl">
+        <rdfs:label rdf:datatype="&rdf;PlainLiteral">agent role</rdfs:label>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">Created by Aldo Gangemi and Valentina Presutti</owl:versionInfo>
+        <cpannotationschema:scenarios rdf:datatype="&rdf;PlainLiteral">She greeted us all in her various roles of mother, friend, and daughter.</cpannotationschema:scenarios>
+        <cpannotationschema:relatedCPs rdf:datatype="&rdf;PlainLiteral">The time indexed person role CP available at http://www.ontologydesignpatterns.org/cp/owl/timeiindexedpersonrole.owl allows to represent temporariness of roles played by persons. It can be generalized for including objects or, alternatively the n-ary classification CP avaliable at http://www.ontologydesignpatterns.org/cp/owl/naryclassification.owl can be specialized in order to obtain the same expressivity.</cpannotationschema:relatedCPs>
+        <cpannotationschema:hasConsequences rdf:datatype="&rdf;PlainLiteral">This CP allows designers to make assertions on roles played by agents without involving the agents that play that roles, and vice versa. It does not allow to express temporariness of roles.</cpannotationschema:hasConsequences>
+        <cpannotationschema:hasIntent rdf:datatype="&rdf;PlainLiteral">To represent agents and the roles they play.</cpannotationschema:hasIntent>
+        <cpannotationschema:isSpecializationOf rdf:datatype="&rdf;PlainLiteral">http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl</cpannotationschema:isSpecializationOf>
+        <cpannotationschema:extractedFrom rdf:datatype="&rdf;PlainLiteral">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl</cpannotationschema:extractedFrom>
+        <cpannotationschema:coversRequirements rdf:datatype="&rdf;PlainLiteral">which agent does play this role? 
+what is the role that played by that agent?</cpannotationschema:coversRequirements>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;isCloneOf"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasConsequences"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;scenarios"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;extractedFrom"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;coversRequirements"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasIntent"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;isSpecializationOf"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;relatedCPs"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#Agent -->
+
+    <owl:Class rdf:about="&agentrole;Agent">
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
+        <rdfs:label xml:lang="it">Agente</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&objectrole;Object"/>
+        <owl:disjointWith rdf:resource="&objectrole;Role"/>
+        <cpannotationschema:isCloneOf>http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent</cpannotationschema:isCloneOf>
+        <rdfs:comment>Any agentive Object , either physical, or social.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl#Object -->
+
+    <owl:Class rdf:about="&objectrole;Object"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl#Role -->
+
+    <owl:Class rdf:about="&objectrole;Role"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+
+
+
+================================================================================
+
+Pattern: event_pattern.xml
+
+================================================================================
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" w:macrosPresent="no" w:embeddedObjPresent="no" w:ocxPresent="no" xml:space="preserve"><o:DocumentProperties></o:DocumentProperties><w:fonts><w:defaultFonts w:ascii="Times New Roman" w:fareast="Times New Roman" w:h-ansi="Times New Roman" w:cs="Times New Roman"/></w:fonts><w:docPr>w:defaultTabStop w:val="720"/></w:docPr><w:body><wx:sect><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;!--  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event  --&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:label xml:lang="en"&gt;Event&lt;/rdfs:label&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:label xml:lang="it"&gt;Evento&lt;/rdfs:label&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Entity"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Object"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTimeInterval"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Object"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"&gt;Any physical, social, or mental process, event, or state. More theoretically, events can be classified in different ways, possibly based on 'aspect' (e.g. stative, continuous, accomplishement, achievement, etc.), on 'agentivity' (e.g. intentional, natural, etc.), or on 'typical participants' (e.g. human, physical, abstract, food, etc.). Here no special direction is taken, and the following explains why: events are related to observable situations, and they can have different views at a same time. If a position has to be suggested here anyway, the participant-based classification of events seems the most stable and appropriate for many modelling problems. (1) Alternative aspectual views Consider a same event 'rock erosion in the Sinni valley': it can be conceptualized as an accomplishment (what has brought a certain state to occur), as an achievement (the state resulting from a previous accomplishment), as a punctual event (if we collapse the time interval of the erosion into a time point), or as a transition (something that has changed from a state to a different one). In the erosion case, we could therefore have good motivations to shift from one aspect to another: a) causation focus, b) effectual focus, c) historical condensation, d) transition (causality). The different views refer to the same event, but are still different: how to live with this seeming paradox? A typical solution e.g. in linguistics (cf. Levin's aspectual classes) and in DOLCE Full (cf. WonderWeb D18 axiomatization) is to classify events based on aspectual differences. But this solution would create different identities for a same event, where the difference is only based on the modeller's attitude. An alternative solution is applied here, and exploits the notion of (observable) Situation; a Situation is a view, consistent with a Description, which can be observed of a set of entities. It can also be seen as a 'relational context' created by an observer on the basis of a 'frame'. Therefore, a Situation allows to create a context where each particular view can have a proper identity, while the Event preserves its own identity. For example, ErosionAsAccomplishment is a Situation where rock erosion is observed as a process leading to a certain achievement: the conditions (roles, parameters) that suggest such view are stated in a Description, which acts as a 'theory of accomplishments'. Similarly, ErosionAsTransition is a Situation where rock erosion is observed as an event that has changed a state to another: the conditions for such interpretation are stated in a different Description, which acts as a 'theory of state transitions'. Consider that in no case the actual event is changed or enriched in parts by the aspectual view. (2) Alternative intentionality views Similarly to aspectual views, several intentionality views can be provided for a same Event. For example, one can investigate if an avalanche has been caused by immediate natural forces, or if there is any hint of an intentional effort to activate those natural forces. Also in this case, the Event as such has not different identities, while the causal analysis generates situations with different identities, according to what Description is taken for interpreting the Event. On the other hand, if the possible actions of an Agent causing the starting of an avalanche are taken as parts of the Event, then this makes its identity change, because we are adding a part to it. Therefore, if intentionality is a criterion to classify events or not, this depends on if an ontology designer wants to consider causality as a relevant dimension for events' identity. (3) Alternative participant views A slightly different case is when we consider the basic participants to an Event. In this case, the identity of the Event is affected by the participating objects, because it depends on them. For example, if snow, mountain slopes, wind, waves, etc. are considered as an avalanche basic participants, or if we also want to add water, human agents, etc., that makes the identity of an avalanche change. Anyway, this approach to event classification is based on the designer's choices, and more accurately mirrors lexical or commonsense classifications (see. e.g. WordNet 'supersenses' for verb synsets). Ultimately, this discussion has no end, because realists will keep defending the idea that events in reality are not changed by the way we describe them, while constructivists will keep defending the idea that, whatever 'true reality' is about, it can't be modelled without the theoretical burden of how we observe and describe it. Both positions are in principle valid, but, if taken too radically, they focus on issues that are only partly relevant to the aim of computational ontologies, which only attempt to assist domain experts in representing what they want to conceptualize a certain portion of reality according to their own ideas. For this reason, in this ontology both events and situations are allowed, together with descriptions, in order to encode the modelling needs, independently from the position (if any) chosen by the designer.&lt;/rdfs:comment&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Class&gt;</w:t></w:r></w:p><w:sectPr><w:pgSz w:w="11900" w:h="16840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr></wx:sect></w:body></w:wordDocument>
+
+================================================================================
+
+Pattern: hmi-ontology-patterns-examples.txt
+
+================================================================================
+
+
+
+#################################################################
+# Combined Pattern Example: Complete Drowsiness Detection Scenario
+#################################################################
+
+# 1. The driver (Agent-Role)
+:Michael a agentrole:Agent ;
+    agentrole:hasRole :LongDistanceDriver, :NightShiftWorker ;
+    :currentState :Drowsy ;
+    :drivingHours "2.5h"^^xsd:duration .
+
+# 2. The driving context (Situation)
+:NightHighwayDrivingContext a :DrivingSituation ;
+    situation:isSettingFor :Michael, :Highway_A1, :NightTime, :LowTraffic ;
+    :weatherCondition :Clear ;
+    :visibility "moderate" ;
+    :riskFactors :Darkness, :Monotony, :LongDuration .
+
+# 3. Physiological observation (Observation)
+:ComprehensiveDriverMonitoring a observation:Observation ;
+    observation:isObservationOf :Michael ;
+    observation:hasParameter :EEGThetaWaves, :BlinkDuration, :HeadNodding ;
+    observation:inDate "2024-01-15T22:45:00"^^xsd:dateTime ;
+    :aggregatedDrowsinessScore 0.78 ;
+    :trend "increasing" .
+
+# 4. Drowsiness event (Participation)
+:CriticalDrowsinessEvent a :DrowsinessEvent ;
+    participation:hasParticipant :Michael, :Vehicle_01, :Highway_A1 ;
+    :detectedAt "2024-01-15T22:45:30"^^xsd:dateTime ;
+    :riskLevel "high" ;
+    :immediateAction :EmergencyAlert ;
+    :suggestedAction :ImmediateRest .
+
+# 5. Time-indexed state (Time-Indexed Role)
+:MichaelCriticalDrowsyState a timeindexed:TimeIndexedPersonRole ;
+    timeindexed:forEntity :Michael ;
+    :hasRole :CriticallyDrowsyDriver ;
+    :hasTimeInterval [
+        time:hasBeginning "2024-01-15T22:40:00"^^xsd:dateTime ;
+        time:hasEnd "2024-01-15T23:00:00"^^xsd:dateTime
+    ] ;
+    :interventionUrgency "immediate" .
+
+# 6. Multimodal alert (Information Realization)
+:UrgentRestAreaAlert a inforeal:InformationObject ;
+    dct:description "ATTENTION: High drowsiness detected. Rest area 2km ahead. Strongly recommend immediate stop." ;
+    inforeal:isRealizedBy :UrgentAudioAlert, :UrgentVisualAlert, :UrgentHapticAlert .
+
+:UrgentAudioAlert a :AudioFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :volume "high" ;
+    :voiceTone "urgent" ;
+    :repetitions 3 .
+
+:UrgentVisualAlert a :VisualFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :displayMode "flashing" ;
+    :color "red" ;
+    :position "center" ;
+    :mapHighlight :NearestRestArea .
+
+:UrgentHapticAlert a :TactileFeedback ;
+    inforeal:realizes :UrgentRestAreaAlert ;
+    :vibrationType "strong_pulse" ;
+    :pattern "SOS" ;
+    :location :SteeringWheel, :DriverSeat .
+
+# System response coordination
+:DrowsinessResponseCoordination a :SystemResponse ;
+    :triggeredBy :CriticalDrowsinessEvent ;
+    :activates :UrgentRestAreaAlert ;
+    :adjustsVehicleSettings [
+        :reducesSpeed true ;
+        :increasesFollowingDistance true ;
+        :activatesHazardLights false  # Not yet, unless critical
+    ] ;
+    :monitoringFrequency "continuous" ;
+    :escalationPlan :ContactEmergencyServices .
+
+
+
+================================================================================
+
+Pattern: informationrealization.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY cpannotationschema "http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#" >
+    <!ENTITY informationrealization "http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:informationrealization="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl">
+        <rdfs:label rdf:datatype="&rdf;PlainLiteral">information realization</rdfs:label>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">Created by Aldo Gangemi and Valentina Presutti</owl:versionInfo>
+        <cpannotationschema:relatedCPs rdf:datatype="&xsd;string">It is specialized by multimedia data segment decomposition.</cpannotationschema:relatedCPs>
+        <cpannotationschema:scenarios rdf:datatype="&xsd;string">John Lennon’s biography I Me Mine has been realized in a limited 2000-copy edition.</cpannotationschema:scenarios>
+        <cpannotationschema:hasConsequences rdf:datatype="&xsd;string">This CP allows designers to model information objects and their realizations. This allows to reason about physical objects and the information they realize, by keeping them distinguished.</cpannotationschema:hasConsequences>
+        <cpannotationschema:hasIntent rdf:datatype="&xsd;string">To represent information objects and physical entities that realize them.</cpannotationschema:hasIntent>
+        <cpannotationschema:extractedFrom rdf:datatype="&rdf;PlainLiteral">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl</cpannotationschema:extractedFrom>
+        <cpannotationschema:coversRequirements rdf:datatype="&rdf;PlainLiteral">what are the physical realizations of this information object?, what information objects are realized by this physical object?</cpannotationschema:coversRequirements>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasConsequences"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;scenarios"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;extractedFrom"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;coversRequirements"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasIntent"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;relatedCPs"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#isRealizedBy -->
+
+    <owl:ObjectProperty rdf:about="&informationrealization;isRealizedBy">
+        <rdfs:label xml:lang="en">is realized by</rdfs:label>
+        <rdfs:comment>A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl"/>
+        <rdfs:domain rdf:resource="&informationrealization;InformationObject"/>
+        <rdfs:range rdf:resource="&informationrealization;InformationRealization"/>
+        <owl:inverseOf rdf:resource="&informationrealization;realizes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#realizes -->
+
+    <owl:ObjectProperty rdf:about="&informationrealization;realizes">
+        <rdfs:label xml:lang="en">realizes</rdfs:label>
+        <rdfs:comment>A relation between an information realization and an information object, e.g. the paper copy of the Italian Constitution realizes the text of the Constitution.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl"/>
+        <rdfs:range rdf:resource="&informationrealization;InformationObject"/>
+        <rdfs:domain rdf:resource="&informationrealization;InformationRealization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationObject -->
+
+    <owl:Class rdf:about="&informationrealization;InformationObject">
+        <rdfs:label xml:lang="en">Information object</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&informationrealization;isRealizedBy"/>
+                <owl:allValuesFrom rdf:resource="&informationrealization;InformationRealization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&informationrealization;isRealizedBy"/>
+                <owl:someValuesFrom rdf:resource="&informationrealization;InformationRealization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&informationrealization;InformationRealization"/>
+        <rdfs:comment>A piece of information, such as a musical composition, a text, a word, a picture, independently from how it is concretely realized.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl#InformationRealization -->
+
+    <owl:Class rdf:about="&informationrealization;InformationRealization">
+        <rdfs:label xml:lang="en">Information realization</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&informationrealization;realizes"/>
+                <owl:someValuesFrom rdf:resource="&informationrealization;InformationObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A concrete realization of an information object, e.g. the written document containing the text of a law.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/informationrealization.owl"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+
+
+
+================================================================================
+
+Pattern: observation.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY situation "http://www.ontologydesignpatterns.org/cp/owl/situation.owl#" >
+    <!ENTITY observation "http://www.ontologydesignpatterns.org/cp/owl/observation.owl#" >
+    <!ENTITY cpannotationschema "http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/observation.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:observation="http://www.ontologydesignpatterns.org/cp/owl/observation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:situation="http://www.ontologydesignpatterns.org/cp/owl/situation.owl#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/observation.owl">
+        <owl:versionInfo rdf:datatype="&xsd;string">1.0</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">Created by Eva Blomqvist</owl:versionInfo>
+        <cpannotationschema:scenarios rdf:datatype="&rdf;PlainLiteral">The aquatic species &#39;Skipjack tuna&#39; was observed in 2004 having the exploitation state &#39;fully exploited&#39; in the climatic zone &#39;tropical&#39; at the vertical distance &#39;pelagic&#39;.</cpannotationschema:scenarios>
+        <cpannotationschema:hasIntent rdf:datatype="&rdf;PlainLiteral">The intent of this pattern is to represent observations of things, under as et of parameters. Common parameters may be the time and place of the observation, but may be any feature that is observed concerning the specific thing being observed.</cpannotationschema:hasIntent>
+        <cpannotationschema:coversRequirements rdf:datatype="&rdf;PlainLiteral">What objects have been observed? What are the observations of this object? What are the parameters under which this object was observed? What objects were observed under this parameter?</cpannotationschema:coversRequirements>
+        <cpannotationschema:isSpecializationOf rdf:datatype="&rdf;PlainLiteral">http://www.ontologydesignpatterns.org/cp/owl/situation.owl</cpannotationschema:isSpecializationOf>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/situation.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;scenarios"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;coversRequirements"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasIntent"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;isSpecializationOf"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#hasObservation -->
+
+    <owl:ObjectProperty rdf:about="&observation;hasObservation">
+        <rdfs:label xml:lang="en">has observation</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+        <rdfs:range rdf:resource="&observation;Observation"/>
+        <owl:inverseOf rdf:resource="&observation;isObservationOf"/>
+        <rdfs:subPropertyOf rdf:resource="&situation;hasSetting"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#hasParameter -->
+
+    <owl:ObjectProperty rdf:about="&observation;hasParameter">
+        <rdfs:label xml:lang="en">has parameter</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+        <rdfs:domain rdf:resource="&observation;Observation"/>
+        <rdfs:range rdf:resource="&observation;Parameter"/>
+        <owl:inverseOf rdf:resource="&observation;isParameterOf"/>
+        <rdfs:subPropertyOf rdf:resource="&situation;isSettingFor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isObservationOf -->
+
+    <owl:ObjectProperty rdf:about="&observation;isObservationOf">
+        <rdfs:label xml:lang="en">is observation of</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+        <rdfs:domain rdf:resource="&observation;Observation"/>
+        <rdfs:subPropertyOf rdf:resource="&situation;isSettingFor"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#isParameterOf -->
+
+    <owl:ObjectProperty rdf:about="&observation;isParameterOf">
+        <rdfs:label xml:lang="en">is parameter of</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+        <rdfs:range rdf:resource="&observation;Observation"/>
+        <rdfs:domain rdf:resource="&observation;Parameter"/>
+        <rdfs:subPropertyOf rdf:resource="&situation;hasSetting"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting -->
+
+    <owl:ObjectProperty rdf:about="&situation;hasSetting"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor -->
+
+    <owl:ObjectProperty rdf:about="&situation;isSettingFor"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#inDate -->
+
+    <owl:DatatypeProperty rdf:about="&observation;inDate">
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+        <rdfs:domain rdf:resource="&observation;Observation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Observation -->
+
+    <owl:Class rdf:about="&observation;Observation">
+        <rdfs:label xml:lang="en">Observation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&situation;Situation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&observation;inDate"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&observation;isObservationOf"/>
+                <owl:someValuesFrom rdf:resource="&owl;Thing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&observation;hasParameter"/>
+                <owl:someValuesFrom rdf:resource="&observation;Parameter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A specific situation where some thing is observed with respect ot a set of parameters.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/observation.owl#Parameter -->
+
+    <owl:Class rdf:about="&observation;Parameter">
+        <rdfs:label xml:lang="en">Parameter</rdfs:label>
+        <owl:disjointWith rdf:resource="&situation;Situation"/>
+        <rdfs:comment>The parameters of an observation describe the context and content of the observation. For example in a medical context an observation of a patient may contain a set of symptoms, that are the parameters of that observation.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/observation.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation -->
+
+    <owl:Class rdf:about="&situation;Situation"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+
+
+
+================================================================================
+
+Pattern: parameter owl.xml
+
+================================================================================
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" w:macrosPresent="no" w:embeddedObjPresent="no" w:ocxPresent="no" xml:space="preserve"><o:DocumentProperties></o:DocumentProperties><w:fonts><w:defaultFonts w:ascii="Times New Roman" w:fareast="Times New Roman" w:h-ansi="Times New Roman" w:cs="Times New Roman"/></w:fonts><w:docPr>w:defaultTabStop w:val="720"/></w:docPr><w:body><wx:sect><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;!--  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter  --&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:label xml:lang="en"&gt;Parameter&lt;/rdfs:label&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:label xml:lang="it"&gt;Parametro&lt;/rdfs:label&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Region"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Restriction&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/rdfs:subClassOf&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"&gt;A Concept that classifies a Region; the difference between a Region and a Parameter is that regions represent sets of observable values, e.g. the height of a given building, while parameters represent constraints or selections on observable values, e.g. 'VeryHigh'. Therefore, parameters can also be used to constrain regions, e.g. VeryHigh on a subset of values of the Region Height applied to buildings, or to add an external selection criterion , such as measurement units, to regions, e.g. Meter on a subset of values from the Region Length applied to the Region Length applied to roads.&lt;/rdfs:comment&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/&gt;</w:t></w:r></w:p><w:p><w:pPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Courier" w:h-ansi="Courier" w:cs="Courier"/><wx:font wx:val="Courier"/><w:sz w:val="26"/><w:sz-cs w:val="26"/><w:spacing w:val="0"/></w:rPr><w:t>&lt;/owl:Class&gt;</w:t></w:r></w:p><w:sectPr><w:pgSz w:w="11900" w:h="16840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr></wx:sect></w:body></w:wordDocument>
+
+================================================================================
+
+Pattern: participation.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY participation "http://www.ontologydesignpatterns.org/cp/owl/participation.owl#" >
+    <!ENTITY cpannotationschema "http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/participation.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/participation.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:participation="http://www.ontologydesignpatterns.org/cp/owl/participation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/participation.owl">
+        <rdfs:label rdf:datatype="&rdf;PlainLiteral">participation</rdfs:label>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1
+- Improved annotation
+1.0 
+- Created by Aldo Gangemi and Valentina Presutti</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <cpannotationschema:scenarios rdf:datatype="&xsd;string">Aldo Gangemi participated in the premiere of La Dolce Vita.</cpannotationschema:scenarios>
+        <cpannotationschema:relatedCPs rdf:datatype="&xsd;string">Co-participation allows to model the relation between two objects that 
+par ticipate in a same event (implicitly); n-ary participation allows to model par ticipation over different dimensions e.g., temporal, spatial, etc., as well as explicitly relate more than one object to the same event; object role, n-ary classiﬁcation are examples of CPs that can be composed with this CP.</cpannotationschema:relatedCPs>
+        <cpannotationschema:hasConsequences rdf:datatype="&xsd;string">It is possible to model whatever relation between objects and events. Using cardinality restrictions appropriately allows to limit the number of participants, e.g. &#39;life of&#39; is a specialization of this pattern that requires a functional object property (cardinality 1. . .1).
+This is a non-temporal version of the particpation relation. If we need a time-indexed relation, use http://ontologydesignpatterns.owl/cp/owl/timeindexedparticipation.owl</cpannotationschema:hasConsequences>
+        <rdfs:comment rdf:datatype="&rdf;PlainLiteral">The basic participation pattern, without temporal indexing. 
+It clones equivalent elements from DOLCE-UltraLite.</rdfs:comment>
+        <cpannotationschema:relatedCPs rdf:datatype="&rdf;PlainLiteral">Time indexed participation</cpannotationschema:relatedCPs>
+        <cpannotationschema:hasIntent rdf:datatype="&xsd;string">To represent participation of an object in an event.</cpannotationschema:hasIntent>
+        <cpannotationschema:coversRequirements rdf:datatype="&xsd;string">Which objects do participate in this event? Which events do this object participate in?</cpannotationschema:coversRequirements>
+        <cpannotationschema:extractedFrom rdf:datatype="&rdf;PlainLiteral">http://ontologydesignpatterns.org/ont/dul/DUL.owl</cpannotationschema:extractedFrom>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasConsequences"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;scenarios"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;extractedFrom"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;coversRequirements"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasIntent"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;relatedCPs"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/participation.owl#hasParticipant -->
+
+    <owl:ObjectProperty rdf:about="&participation;hasParticipant">
+        <rdfs:label xml:lang="en">has participant</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/participation.owl"/>
+        <rdfs:domain rdf:resource="&participation;Event"/>
+        <rdfs:range rdf:resource="&participation;Object"/>
+        <owl:inverseOf rdf:resource="&participation;isParticipantIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/participation.owl#isParticipantIn -->
+
+    <owl:ObjectProperty rdf:about="&participation;isParticipantIn">
+        <rdfs:label xml:lang="en">is participant in</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/participation.owl"/>
+        <rdfs:range rdf:resource="&participation;Event"/>
+        <rdfs:domain rdf:resource="&participation;Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/participation.owl#Event -->
+
+    <owl:Class rdf:about="&participation;Event">
+        <rdfs:label xml:lang="en">Event</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&participation;hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="&participation;Object"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&participation;Object"/>
+        <rdfs:comment>Any physical, social, or mental process, event, or state.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/participation.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/participation.owl#Object -->
+
+    <owl:Class rdf:about="&participation;Object">
+        <rdfs:label xml:lang="en">Object</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&participation;isParticipantIn"/>
+                <owl:someValuesFrom rdf:resource="&participation;Event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Any physical, social, or mental object, or substance</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/participation.owl"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+
+
+
+================================================================================
+
+Pattern: situation.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY situation "http://www.ontologydesignpatterns.org/cp/owl/situation.owl#" >
+    <!ENTITY cpannotationschema "http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/situation.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/situation.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:situation="http://www.ontologydesignpatterns.org/cp/owl/situation.owl#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/situation.owl">
+        <rdfs:label rdf:datatype="&rdf;PlainLiteral">situation</rdfs:label>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <cpannotationschema:hasAuthor rdf:datatype="&rdf;PlainLiteral">Aldo Gangemi</cpannotationschema:hasAuthor>
+        <owl:versionInfo rdf:datatype="&xsd;string">Created by Aldo Gangemi and Valentina Presutti</owl:versionInfo>
+        <cpannotationschema:scenarios rdf:datatype="&rdf;PlainLiteral">The lecture was held in January 1921 by Bela Fleck, with some physicians in the audience making questions, in a very relaxed athmosphere.</cpannotationschema:scenarios>
+        <cpannotationschema:hasIntent rdf:datatype="&rdf;PlainLiteral">To represent contexts or situations, and the things that are contextualized.</cpannotationschema:hasIntent>
+        <cpannotationschema:hasConsequences rdf:datatype="&rdf;PlainLiteral">We can contextualize things that have something in common, or are associated: a same place, time, view, causal link, systemic dependence, etc.
+We can also reify n-ary relations as situations.</cpannotationschema:hasConsequences>
+        <cpannotationschema:coversRequirements rdf:datatype="&rdf;PlainLiteral">What is the context or situation of something? What are the things present in this context or situation?</cpannotationschema:coversRequirements>
+        <cpannotationschema:extractedFrom rdf:datatype="&rdf;PlainLiteral">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl</cpannotationschema:extractedFrom>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasAuthor"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasConsequences"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;scenarios"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;extractedFrom"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;coversRequirements"/>
+    <owl:AnnotationProperty rdf:about="&cpannotationschema;hasIntent"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting -->
+
+    <owl:ObjectProperty rdf:about="&situation;hasSetting">
+        <rdfs:label xml:lang="en">has setting</rdfs:label>
+        <rdfs:comment>A relation between entities and situations, e.g. &#39;this morning I&#39;ve prepared my coffee with a new fantastic Arabica&#39; (i.e.: (an amount of) a new fantastic Arabica hasSetting the preparation of my coffee this morning).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/situation.owl"/>
+        <rdfs:range rdf:resource="&situation;Situation"/>
+        <owl:inverseOf rdf:resource="&situation;isSettingFor"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#isSettingFor -->
+
+    <owl:ObjectProperty rdf:about="&situation;isSettingFor">
+        <rdfs:label xml:lang="en">is setting for</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/situation.owl"/>
+        <rdfs:domain rdf:resource="&situation;Situation"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/situation.owl#Situation -->
+
+    <owl:Class rdf:about="&situation;Situation">
+        <rdfs:label xml:lang="en">Situation</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&situation;isSettingFor"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A view on a set of entities. It can be seen as a &#39;relational context&#39;, reifying a relation.
+For example, a PlanExecution is a context including some actions executed by agents according to certain parameters and expected tasks to be achieved from a Plan; a DiagnosedSituation is a context of observed entities that is interpreted on the basis of a Diagnosis, etc.
+Situation is also able to represent reified n-ary relations, where isSettingFor is the top-level relation for all binary projections of the n-ary relation. If used in a transformation pattern for n-ary relations, the designer should take care of:
+- creating only one situation for each instance of an n-ary relation, otherwise the &#39;identification constraint&#39; (Calvanese et al., IJCAI 2001) could be violated
+- adding an &#39;exact cardinality&#39; restriction corresponding to the arity of the n-ary relation, otherwise the designer would actually represent a polymorphic relation.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/situation.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+
+
+
+================================================================================
+
+Pattern: timeindexedpersonrole.owl.xml
+
+================================================================================
+
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY agentrole "http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#" >
+    <!ENTITY classification "http://www.ontologydesignpatterns.org/cp/owl/classification.owl#" >
+    <!ENTITY timeindexedsituation "http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#" >
+    <!ENTITY timeindexedpersonrole "http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl#" >
+    <!ENTITY timeindexedclassification "http://www.ontologydesignpatterns.org/cp/owl/timeindexedclassification.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl"
+     xmlns:timeindexedsituation="http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#"
+     xmlns:agentrole="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:timeindexedpersonrole="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl#"
+     xmlns:classification="http://www.ontologydesignpatterns.org/cp/owl/classification.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:timeindexedclassification="http://www.ontologydesignpatterns.org/cp/owl/timeindexedclassification.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl">
+        <owl:versionInfo rdf:datatype="&xsd;string">1.1 added rdfs:isDefinedBy for all named entities</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/classification.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/objectrole.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/timeindexedclassification.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;isDefinedBy"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#forEntity -->
+
+    <owl:ObjectProperty rdf:about="&timeindexedsituation;forEntity"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/agentrole.owl#Agent -->
+
+    <owl:Class rdf:about="&agentrole;Agent"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/classification.owl#Concept -->
+
+    <owl:Class rdf:about="&classification;Concept"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/timeindexedclassification.owl#TimeIndexedClassification -->
+
+    <owl:Class rdf:about="&timeindexedclassification;TimeIndexedClassification"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl#Person -->
+
+    <owl:Class rdf:about="&timeindexedpersonrole;Person">
+        <rdfs:label xml:lang="en">Person</rdfs:label>
+        <rdfs:label>Persona {it}</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&agentrole;Agent"/>
+        <rdfs:comment>Persons in commonsense intuition, i.e. either as physical agents (humans) or social persons.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl#TimeIndexedPersonRole -->
+
+    <owl:Class rdf:about="&timeindexedpersonrole;TimeIndexedPersonRole">
+        <rdfs:label xml:lang="en">Time indexed person role</rdfs:label>
+        <rdfs:label xml:lang="it">Classificazione</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&timeindexedclassification;TimeIndexedClassification"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&timeindexedsituation;forEntity"/>
+                <owl:someValuesFrom rdf:resource="&timeindexedpersonrole;Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A situation that expresses time indexing for the relation between persons and roles they play.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/timeindexedpersonrole.owl"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1602) http://owlapi.sourceforge.net -->
+

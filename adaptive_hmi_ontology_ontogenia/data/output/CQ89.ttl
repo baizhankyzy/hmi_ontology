@@ -1,0 +1,88 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DialogDesignSystem a owl:Class ;
+    rdfs:label "Dialog Design System"@en ;
+    rdfs:comment "The overall system responsible for designing and managing the dialog between the human and the machine interface."@en .
+
+ahmi:DialogComponent a owl:Class ;
+    rdfs:label "Dialog Component"@en ;
+    rdfs:comment "A component of the dialog design system, such as input modalities, output modalities, dialog strategies, etc."@en ;
+    rdfs:subClassOf ahmi:DialogDesignSystem .
+
+ahmi:InputModality a owl:Class ;
+    rdfs:label "Input Modality"@en ;
+    rdfs:comment "A way for the user to provide input to the system, such as speech, gestures, touch, etc."@en ;
+    rdfs:subClassOf ahmi:DialogComponent .
+
+ahmi:OutputModality a owl:Class ;
+    rdfs:label "Output Modality"@en ;
+    rdfs:comment "A way for the system to provide output to the user, such as visual displays, audio, haptic feedback, etc."@en ;
+    rdfs:subClassOf ahmi:DialogComponent .
+
+ahmi:DialogStrategy a owl:Class ;
+    rdfs:label "Dialog Strategy"@en ;
+    rdfs:comment "A strategy for managing the dialog flow, such as system-initiated, user-initiated, mixed-initiative, etc."@en ;
+    rdfs:subClassOf ahmi:DialogComponent .
+
+ahmi:DialogEvent a owl:Class ;
+    rdfs:label "Dialog Event"@en ;
+    rdfs:comment "An event that occurs during the dialog, such as user input, system output, context changes, etc."@en .
+
+ahmi:DialogSituation a owl:Class ;
+    rdfs:subClassOf owl:Situation ;
+    rdfs:label "Dialog Situation"@en ;
+    rdfs:comment "A view or interpretation of a dialog event, taking into account the context, user state, system state, etc."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:interpretsEvent ;
+        owl:someValuesFrom ahmi:DialogEvent
+    ] .
+
+ahmi:DialogDescription a owl:Class ;
+    rdfs:subClassOf owl:Description ;
+    rdfs:label "Dialog Description"@en ;
+    rdfs:comment "A conceptualization or model that provides context for interpreting dialog situations and events."@en .
+
+ahmi:interpretsEvent a owl:ObjectProperty ;
+    rdfs:label "interprets event"@en ;
+    rdfs:comment "Relates a dialog situation to the dialog event it interprets or provides a view on."@en ;
+    rdfs:domain ahmi:DialogSituation ;
+    rdfs:range ahmi:DialogEvent .
+
+ahmi:hasComponent a owl:ObjectProperty ;
+    rdfs:label "has component"@en ;
+    rdfs:comment "Relates the dialog design system to its components."@en ;
+    rdfs:domain ahmi:DialogDesignSystem ;
+    rdfs:range ahmi:DialogComponent .
+
+ahmi:satisfiesDescription a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:satisfies ;
+    rdfs:label "satisfies description"@en ;
+    rdfs:comment "Relates a dialog situation to the dialog description it satisfies or is consistent with."@en ;
+    rdfs:domain ahmi:DialogSituation ;
+    rdfs:range ahmi:DialogDescription .
+
+ahmi:hasInputModality a owl:ObjectProperty ;
+    rdfs:subPropertyOf ahmi:hasComponent ;
+    rdfs:label "has input modality"@en ;
+    rdfs:comment "Relates the dialog design system to the input modalities it supports."@en ;
+    rdfs:domain ahmi:DialogDesignSystem ;
+    rdfs:range ahmi:InputModality .
+
+ahmi:hasOutputModality a owl:ObjectProperty ;
+    rdfs:subPropertyOf ahmi:hasComponent ;
+    rdfs:label "has output modality"@en ;
+    rdfs:comment "Relates the dialog design system to the output modalities it uses."@en ;
+    rdfs:domain ahmi:DialogDesignSystem ;
+    rdfs:range ahmi:OutputModality .
+
+ahmi:usesDialogStrategy a owl:ObjectProperty ;
+    rdfs:subPropertyOf ahmi:hasComponent ;
+    rdfs:label "uses dialog strategy"@en ;
+    rdfs:comment "Relates the dialog design system to the dialog strategies it employs."@en ;
+    rdfs:domain ahmi:DialogDesignSystem ;
+    rdfs:range ahmi:DialogStrategy .

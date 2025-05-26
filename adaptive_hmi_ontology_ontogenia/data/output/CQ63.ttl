@@ -1,0 +1,128 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:AirQuality a owl:Class ;
+    rdfs:label "Air Quality"@en ;
+    rdfs:comment "The state or condition of the air in terms of pollutants, allergens, or other substances."@en .
+
+ahmi:ClimateControl a owl:Class ;
+    rdfs:label "Climate Control"@en ;
+    rdfs:comment "The system in a vehicle that regulates the temperature, air quality, and other environmental factors inside the cabin."@en .
+
+ahmi:ClimateControlResponse a owl:Class ;
+    rdfs:label "Climate Control Response"@en ;
+    rdfs:comment "The action or adaptation performed by the climate control system in response to changes in air quality or other environmental factors."@en ;
+    rdfs:subClassOf ahmi:VehicleAdaptation .
+
+ahmi:VehicleAdaptation a owl:Class ;
+    rdfs:label "Vehicle Adaptation"@en ;
+    rdfs:comment "Any adjustment or modification made by the vehicle systems in response to changes in the environment or driver state."@en .
+
+ahmi:hasAirQuality a owl:ObjectProperty ;
+    rdfs:label "has air quality"@en ;
+    rdfs:comment "Relates a situation to the air quality condition observed in that situation."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:AirQuality .
+
+ahmi:triggersClimateControlResponse a owl:ObjectProperty ;
+    rdfs:label "triggers climate control response"@en ;
+    rdfs:comment "Relates an air quality condition to the appropriate climate control response triggered by that condition."@en ;
+    rdfs:domain ahmi:AirQuality ;
+    rdfs:range ahmi:ClimateControlResponse .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of events and environmental conditions, consistent with a particular description or conceptualization."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization or model that provides context for interpreting situations and events."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description or conceptualization it is consistent with."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:AirQualityDescription a owl:Class ;
+    rdfs:label "Air Quality Description"@en ;
+    rdfs:comment "A conceptualization or model that defines different air quality conditions and their implications."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:ClimateControlDescription a owl:Class ;
+    rdfs:label "Climate Control Description"@en ;
+    rdfs:comment "A conceptualization or model that defines the appropriate climate control responses for different air quality conditions."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:AirQualitySituation a owl:Class ;
+    rdfs:label "Air Quality Situation"@en ;
+    rdfs:comment "A situation that represents a specific air quality condition and its implications."@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:AirQualityDescription
+    ] .
+
+ahmi:ClimateControlSituation a owl:Class ;
+    rdfs:label "Climate Control Situation"@en ;
+    rdfs:comment "A situation that represents the appropriate climate control response for a given air quality condition."@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:ClimateControlDescription
+    ] .
+
+ahmi:hasClimateControlResponse a owl:ObjectProperty ;
+    rdfs:label "has climate control response"@en ;
+    rdfs:comment "Relates a climate control situation to the specific climate control response it represents."@en ;
+    rdfs:domain ahmi:ClimateControlSituation ;
+    rdfs:range ahmi:ClimateControlResponse .
+
+ahmi:Clean a owl:NamedIndividual , ahmi:AirQuality ;
+    rdfs:label "Clean"@en ;
+    rdfs:comment "Air quality condition with low levels of pollutants or allergens."@en .
+
+ahmi:Pollution a owl:NamedIndividual , ahmi:AirQuality ;
+    rdfs:label "Pollution"@en ;
+    rdfs:comment "Air quality condition with high levels of pollutants or industrial emissions."@en .
+
+ahmi:Pollen a owl:NamedIndividual , ahmi:AirQuality ;
+    rdfs:label "Pollen"@en ;
+    rdfs:comment "Air quality condition with high levels of pollen or other allergens."@en .
+
+ahmi:AirFilteringResponse a owl:NamedIndividual , ahmi:ClimateControlResponse ;
+    rdfs:label "Air Filtering Response"@en ;
+    rdfs:comment "The climate control system activates air filtering to remove pollutants or allergens from the cabin air."@en .
+
+ahmi:CleanAirSituation a owl:NamedIndividual , ahmi:AirQualitySituation ;
+    rdfs:label "Clean Air Situation"@en ;
+    ahmi:satisfies ahmi:AirQualityDescription ;
+    ahmi:hasAirQuality ahmi:Clean .
+
+ahmi:PollutionSituation a owl:NamedIndividual , ahmi:AirQualitySituation ;
+    rdfs:label "Pollution Situation"@en ;
+    ahmi:satisfies ahmi:AirQualityDescription ;
+    ahmi:hasAirQuality ahmi:Pollution .
+
+ahmi:PollenSituation a owl:NamedIndividual , ahmi:AirQualitySituation ;
+    rdfs:label "Pollen Situation"@en ;
+    ahmi:satisfies ahmi:AirQualityDescription ;
+    ahmi:hasAirQuality ahmi:Pollen .
+
+ahmi:AirFilteringResponseSituation a owl:NamedIndividual , ahmi:ClimateControlSituation ;
+    rdfs:label "Air Filtering Response Situation"@en ;
+    ahmi:satisfies ahmi:ClimateControlDescription ;
+    ahmi:hasClimateControlResponse ahmi:AirFilteringResponse .
+
+ahmi:Pollution ahmi:triggersClimateControlResponse ahmi:AirFilteringResponse .
+ahmi:Pollen ahmi:triggersClimateControlResponse ahmi:AirFilteringResponse .
