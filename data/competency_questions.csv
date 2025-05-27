@@ -1,0 +1,97 @@
+CQ_ID,Competency_Question,Story_ID
+CQ1-1,What characteristics of HeadPosition and EyesCharacteristics indicate DrowsinessState within InattentionState class?,US1
+CQ1-2,What analyses do DriverFacingCamera and PhysiologicalMonitor perform to detect DrowsinessState?,US1
+CQ1-3,What types of CognitiveState can VehicleSystem detect?,US1
+CQ1-4,What VehicleSystem components modify DisplayBrightness in response to detected InattentionState?,US1
+CQ1-5,What TouchFeedback does VehicleSystem activate when analyses indicate DrowsinessState?,US1
+CQ1-6,What Volume and AlertMessage does SoundSystem adjust when analyses indicate FatigueState?,US1
+CQ1-7,What patterns does DrivingAnalyzer detect that indicate severe InattentionState requiring intervention?,US1
+CQ1-8,How do HeadTracking and EyeTracking results relate to InattentionState classification?,US1
+CQ1-9,What AlertMessage does VoiceAssistant generate for drivers in DrowsinessState?,US1
+CQ1-10,What EnvironmentalConditions influence VehicleSystem responses to detected InattentionState?,US1
+CQ1-11,How does GazeAnalysis within EyeTracking detect InattentionState?,US1
+CQ1-12,How does PupilAnalysis detect changes in CognitiveState?,US1
+CQ2-1,What analyses detect HighCognitiveLoad in drivers?,US2
+CQ2-2,What patterns do HeartMonitor and SkinMonitor detect that indicate StressLevel during HighCongestion?,US2
+CQ2-3,How do VisibilityMeasure and TrafficMonitor data affect CognitiveState detection?,US2
+CQ2-4,What VisualElements does VisualSystem prioritize when analyses indicate elevated CognitiveState?,US2
+CQ2-5,Which driver assistance features adapt based on CognitiveState results?,US2
+CQ2-6,What coordination happens for detected DistractionState?,US2
+CQ2-7,What TrafficDensity patterns impact CognitiveState measurements?,US2
+CQ2-8,How do WeatherMonitor and VisibilityMeasure readings influence VehicleSystem adaptations?,US2
+CQ2-9,What changes does NotificationSystem make based on CognitiveState results?,US2
+CQ2-10,What do SkinMonitor ConductanceAnalysis and HeartMonitor VariabilityAnalysis provide for DistractionState detection?,US2
+CQ2-11,How does ForceAnalysis from GripSensor correlate with StressLevel?,US2
+CQ2-12,What modifications does InstrumentPanel make for HighCognitiveLoad states?,US2
+CQ3-1,What PersonalityTraits and PersonalityScore values indicate AggressiveTendency?,US3
+CQ3-2,What are the measured dimensions in PersonalityScore?,US3
+CQ3-3,What anger expressions does SoundAnalysis detect during HighCongestion?,US3
+CQ3-4,What analyses do StressAnalyzer and SpeechRecognizer perform to detect Frustration?,US3
+CQ3-5,How do PersonalityTraits influence AdaptationRule parameters?,US3
+CQ3-6,What BlueScheme does ColorController use to reduce ArousalLevel in frustrated drivers?,US3
+CQ3-7,What resistance does AcceleratorPedal provide to discourage aggressive driving?,US3
+CQ3-8,How do EmotionalState results relate to PatternAnalysis findings?,US3
+CQ3-9,What metrics does ContextAnalyzer calculate that indicate elevated Frustration?,US3
+CQ3-10,What MusicPlaylist does SoundSystem suggest for drivers with specific PersonalityTraits?,US3
+CQ3-11,How do BrakeSensor and AcceleratorSensor analyses reflect EmotionalState changes?,US3
+CQ3-12,What NavigationDisplay adaptations suit drivers with high Neuroticism scores?,US3
+CQ4-1,What DisplaySettings does VisualSystem configure for elderly drivers?,US4
+CQ4-2,What measurements do WeatherMonitor and VisibilityMeasure provide for elderly drivers?,US4
+CQ4-3,How do AgeFactors in DriverProfile influence TextSize across displays?,US4
+CQ4-4,What patterns does SteeringAnalyzer detect that indicate increased AttentionDemand in elderly drivers?,US4
+CQ4-5,What Timing adjustments does VoiceAssistant make based on AgeFactors?,US4
+CQ4-6,What sensitivity settings does LaneAssist use for different age groups?,US4
+CQ4-7,How do GPS and MapAnalyzer results relate to CognitiveState measurements?,US4
+CQ4-8,What simple words does MessageSystem use for drivers with slower ReactionTime?,US4
+CQ4-9,What VibrationPattern does TouchFeedback generate for elderly drivers?,US4
+CQ4-10,What environmental data do LightSensor and VisibilityMeasure provide for elderly driver support?,US4
+CQ4-11,How does NavigationDisplay complexity adapt based on ReactionTime measurements?,US4
+CQ4-12,What PostureChanges does SeatSensor detect that indicate FatigueState in elderly drivers?,US4
+CQ5-1,What analyses do DriverFacingCamera and InfraredCamera perform during AutonomousMode?,US5
+CQ5-2,What NonDrivingActivity types does DistractionDetector identify during AutonomousMode?,US5
+CQ5-3,What PostureType from SeatSensor indicates readiness for manual control?,US5
+CQ5-4,What components does CoordinationSystem manage for control transitions?,US5
+CQ5-5,What information does HeadUpDisplay show during autonomous-to-manual transitions?,US5
+CQ5-6,How do GazePattern and PupilSize results relate to driver readiness?,US5
+CQ5-7,What TouchCues does SeatVibrator generate for transition alerting?,US5
+CQ5-8,What parameters does TimingController adjust based on CognitiveState?,US5
+CQ5-9,What calculations does TrustAlgorithm perform during mode transitions?,US5
+CQ5-10,What visualization does LaneVisualizer display during handovers?,US5
+CQ5-11,How do SeatAdjuster changes facilitate better PostureType?,US5
+CQ5-12,How does ConstructionDetector output affect handover timing?,US5
+CQ6-1,What tests does QuestionnaireSystem administer to assess PersonalityProfile?,US6
+CQ6-2,What ratings does WorkloadScale collect for driver assessment?,US6
+CQ6-3,How do self-reported measures correlate with SkinSensor SweatAnalysis and HeartMonitor VariabilityAnalysis?,US6
+CQ6-4,What SweatAnalysis patterns correlate with reported FrustrationLevel?,US6
+CQ6-5,What WaveAnalysis patterns from BrainMonitor indicate different CognitiveState conditions?,US6
+CQ6-6,Which DriverStates are assessed through SatisfactionScale versus BodyMonitor?,US6
+CQ6-7,What adjustments does CalibrationTool make based on subjective and objective differences?,US6
+CQ6-8,How do PersonalityScore values relate to VehicleSystem adaptation effectiveness?,US6
+CQ6-9,What ratings does SatisfactionScale collect for SteeringVibration and SeatVibration and PedalFeedback?,US6
+CQ6-10,What patterns does CrossModalChecker identify from data comparison?,US6
+CQ6-11,How does VariabilityAnalysis data complement self-reported stress?,US6
+CQ6-12,What capabilities does VirtualSimulator provide for driver studies?,US6
+CQ7-1,What surface conditions does RoadSensor detect that affect PostureAnalysis?,US7
+CQ7-2,What air quality levels does AirMonitor detect and what pollen levels does PollenSensor measure?,US7
+CQ7-3,How do AirMonitor and PollenSensor readings influence AirFilter responses?,US7
+CQ7-4,What breathing patterns does BreathingSensor detect in response to air quality?,US7
+CQ7-5,What light levels does LightSensor measure that affect DisplayBrightness?,US7
+CQ7-6,What patterns does MicroMovementCounter detect with changing road conditions?,US7
+CQ7-7,What combination of DayNightSensor and WeatherMonitor readings creates highest ComplexityScore?,US7
+CQ7-8,What thresholds does SpeedChecker use based on RoadSensor and environmental data?,US7
+CQ7-9,What metrics does TripTimer calculate that indicate FatigueRisk?,US7
+CQ7-10,How do SeatPressure patterns relate to RoadSensor readings?,US7
+CQ7-11,How does AirFilter respond to PollenSensor measurements?,US7
+CQ7-12,What PhysicalState changes does BodyResponseMonitor detect when AirMonitor shows poor quality?,US7
+CQ8-1,What regulations govern LaneController interventions?,US8
+CQ8-2,What coordination does MatchingChecker assess for driver assistance features?,US8
+CQ8-3,What ForceFeedback does SteeringWheel generate for LaneController?,US8
+CQ8-4,What standard symbols does InstrumentPanel show for lane departure?,US8
+CQ8-5,What timing does TimingChecker measure for alerts across Speaker and displays?,US8
+CQ8-6,What message improvements does ClarityChecker measure for confused drivers?,US8
+CQ8-7,What ExperienceMetrics affect driver acceptance of safety features?,US8
+CQ8-8,What confidence calculations does TrustChecker perform for driver assistance?,US8
+CQ8-9,How do SpeedingTester results relate to intervention intensity?,US8
+CQ8-10,What understanding metrics does GuidanceOptimizer track?,US8
+CQ8-11,How does PrivacyChecker verify protection in monitoring systems?,US8
+CQ8-12,What compliance checks does DocumentationSystem perform?,US8
