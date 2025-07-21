@@ -1,0 +1,23 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverAcceptanceOfSafetyFeatures a owl:Class ;
+    rdfs:label "Driver Acceptance of Safety Features" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isAffectedBy ;
+        owl:someValuesFrom :ExperienceMetric
+    ] .
+
+:ExperienceMetric a owl:Class ;
+    rdfs:label "Experience Metric" .
+
+:isAffectedBy a owl:ObjectProperty ;
+    rdfs:label "is affected by" ;
+    rdfs:domain :DriverAcceptanceOfSafetyFeatures ;
+    rdfs:range :ExperienceMetric .

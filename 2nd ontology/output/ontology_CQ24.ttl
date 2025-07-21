@@ -1,0 +1,147 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:HighCognitiveLoad a owl:Class ;
+    rdfs:label "High Cognitive Load" ;
+    rdfs:subClassOf :CognitiveState .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State" .
+
+:InstrumentPanel a owl:Class ;
+    rdfs:label "Instrument Panel" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :makesModificationFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:makesModificationFor a owl:ObjectProperty ;
+    rdfs:label "makes modification for" ;
+    rdfs:domain :InstrumentPanel ;
+    rdfs:range :CognitiveState .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "Visual System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :simplifiesFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:simplifiesFor a owl:ObjectProperty ;
+    rdfs:label "simplifies for" ;
+    rdfs:domain :VisualSystem ;
+    rdfs:range :CognitiveState .
+
+:DisplayContent a owl:Class ;
+    rdfs:label "Display Content" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isSimplifiedBy ;
+        owl:someValuesFrom :VisualSystem
+    ] .
+
+:isSimplifiedBy a owl:ObjectProperty ;
+    rdfs:label "is simplified by" ;
+    rdfs:domain :DisplayContent ;
+    rdfs:range :VisualSystem .
+
+:VisualElement a owl:Class ;
+    rdfs:label "Visual Element" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isHiddenBy ;
+        owl:someValuesFrom :InstrumentPanel
+    ] .
+
+:isHiddenBy a owl:ObjectProperty ;
+    rdfs:label "is hidden by" ;
+    rdfs:domain :VisualElement ;
+    rdfs:range :InstrumentPanel .
+
+:NotificationSystem a owl:Class ;
+    rdfs:label "Notification System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :pausesFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:pausesFor a owl:ObjectProperty ;
+    rdfs:label "pauses for" ;
+    rdfs:domain :NotificationSystem ;
+    rdfs:range :CognitiveState .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "Navigation Display" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :showsCriticalInfoFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:showsCriticalInfoFor a owl:ObjectProperty ;
+    rdfs:label "shows critical info for" ;
+    rdfs:domain :NavigationDisplay ;
+    rdfs:range :CognitiveState .
+
+:LaneAssist a owl:Class ;
+    rdfs:label "Lane Assist" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :becomesMoreActiveFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:becomesMoreActiveFor a owl:ObjectProperty ;
+    rdfs:label "becomes more active for" ;
+    rdfs:domain :LaneAssist ;
+    rdfs:range :CognitiveState .
+
+:SteeringSupport a owl:Class ;
+    rdfs:label "Steering Support" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :providesHelpFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:providesHelpFor a owl:ObjectProperty ;
+    rdfs:label "provides help for" ;
+    rdfs:domain :SteeringSupport ;
+    rdfs:range :CognitiveState .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "Sound System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjustsAudioLevelFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:adjustsAudioLevelFor a owl:ObjectProperty ;
+    rdfs:label "adjusts audio level for" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :CognitiveState .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:label "Voice Assistant" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :usesCalmerToneFor ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:usesCalmerToneFor a owl:ObjectProperty ;
+    rdfs:label "uses calmer tone for" ;
+    rdfs:domain :VoiceAssistant ;
+    rdfs:range :CognitiveState .
+
+:Speaker a owl:Class ;
+    rdfs:label "Speaker" .

@@ -1,0 +1,44 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverProfile a owl:Class ;
+    rdfs:label "DriverProfile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgeFactors ;
+        owl:someValuesFrom :AgeFactors
+    ] .
+
+:AgeFactors a owl:Class ;
+    rdfs:label "AgeFactors" .
+
+:Display a owl:Class ;
+    rdfs:label "Display" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasTextSize ;
+        owl:someValuesFrom :TextSize
+    ] .
+
+:TextSize a owl:Class ;
+    rdfs:label "TextSize" .
+
+:hasAgeFactors a owl:ObjectProperty ;
+    rdfs:label "hasAgeFactors" ;
+    rdfs:domain :DriverProfile ;
+    rdfs:range :AgeFactors .
+
+:hasTextSize a owl:ObjectProperty ;
+    rdfs:label "hasTextSize" ;
+    rdfs:domain :Display ;
+    rdfs:range :TextSize .
+
+:influences a owl:ObjectProperty ;
+    rdfs:label "influences" ;
+    rdfs:domain :AgeFactors ;
+    rdfs:range :TextSize .

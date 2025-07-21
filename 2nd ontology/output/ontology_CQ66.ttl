@@ -1,0 +1,31 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverState a owl:Class ;
+    rdfs:label "DriverState" .
+
+:SatisfactionScale a owl:Class ;
+    rdfs:label "SatisfactionScale" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :assessesDriverState ;
+        owl:someValuesFrom :DriverState
+    ] .
+
+:BodyMonitor a owl:Class ;
+    rdfs:label "BodyMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :assessesDriverState ;
+        owl:someValuesFrom :DriverState
+    ] .
+
+:assessesDriverState a owl:ObjectProperty ;
+    rdfs:label "assessesDriverState" ;
+    rdfs:domain [ rdf:type owl:Class ; owl:unionOf ( :SatisfactionScale :BodyMonitor ) ] ;
+    rdfs:range :DriverState .

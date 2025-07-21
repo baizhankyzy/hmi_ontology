@@ -1,0 +1,43 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "PersonalityScore" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasMeasuredDimension ;
+        owl:someValuesFrom :PersonalityDimension
+    ] .
+
+:PersonalityDimension a owl:Class ;
+    rdfs:label "PersonalityDimension" .
+
+:hasMeasuredDimension a owl:ObjectProperty ;
+    rdfs:label "hasMeasuredDimension" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range :PersonalityDimension .
+
+:Conscientiousness a owl:Class ;
+    rdfs:label "Conscientiousness" ;
+    rdfs:subClassOf :PersonalityDimension .
+
+:Extraversion a owl:Class ;
+    rdfs:label "Extraversion" ;
+    rdfs:subClassOf :PersonalityDimension .
+
+:Agreeableness a owl:Class ;
+    rdfs:label "Agreeableness" ;
+    rdfs:subClassOf :PersonalityDimension .
+
+:Neuroticism a owl:Class ;
+    rdfs:label "Neuroticism" ;
+    rdfs:subClassOf :PersonalityDimension .
+
+:Openness a owl:Class ;
+    rdfs:label "Openness" ;
+    rdfs:subClassOf :PersonalityDimension .

@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # API endpoint
-API_URL = "https://6poq7jfwb5xl3xujin32htosoq0mqlxz.lambda-url.eu-central-1.on.aws/"
+CLAUDE_ENDPOINT = "https://6poq7jfwb5xl3xujin32htosoq0mqlxz.lambda-url.eu-central-1.on.aws/""
 
 def load_patterns() -> str:
     """
@@ -308,7 +308,7 @@ O:"""
         
         # Make the API request
         logger.info("Sending request to Claude API...")
-        response = requests.post(API_URL, json=payload)
+        response = requests.post(CLAUDE_ENDPOINT, json=payload)
         response.raise_for_status()
         
         # Parse the response

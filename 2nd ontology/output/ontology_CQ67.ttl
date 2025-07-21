@@ -1,0 +1,31 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:CalibrationTool a owl:Class ;
+    rdfs:label "CalibrationTool" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :makesAdjustmentBasedOn ;
+        owl:someValuesFrom :SubjectiveDifference
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :makesAdjustmentBasedOn ;
+        owl:someValuesFrom :ObjectiveDifference
+    ] .
+
+:SubjectiveDifference a owl:Class ;
+    rdfs:label "SubjectiveDifference" .
+
+:ObjectiveDifference a owl:Class ;
+    rdfs:label "ObjectiveDifference" .
+
+:makesAdjustmentBasedOn a owl:ObjectProperty ;
+    rdfs:label "makesAdjustmentBasedOn" ;
+    rdfs:domain :CalibrationTool ;
+    rdfs:range [ owl:unionOf ( :SubjectiveDifference :ObjectiveDifference ) ] .

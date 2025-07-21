@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:MicroMovementCounter a owl:Class ;
+    rdfs:label "MicroMovementCounter" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsPattern ;
+        owl:someValuesFrom :RoadConditionPattern
+    ] .
+
+:RoadConditionPattern a owl:Class ;
+    rdfs:label "RoadConditionPattern" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasRoadSurfaceChange ;
+        owl:someValuesFrom :RoadSurfaceChange
+    ] .
+
+:RoadSurfaceChange a owl:Class ;
+    rdfs:label "RoadSurfaceChange" .
+
+:hasRoadSurfaceChange a owl:ObjectProperty ;
+    rdfs:label "hasRoadSurfaceChange" ;
+    rdfs:domain :RoadConditionPattern ;
+    rdfs:range :RoadSurfaceChange .
+
+:detectsPattern a owl:ObjectProperty ;
+    rdfs:label "detectsPattern" ;
+    rdfs:domain :MicroMovementCounter ;
+    rdfs:range :RoadConditionPattern .

@@ -1,0 +1,30 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverAssistanceSystem a owl:Class ;
+    rdfs:label "Driver Assistance System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasConfidenceCalculation ;
+        owl:someValuesFrom :ConfidenceCalculation
+    ] .
+
+:ConfidenceCalculation a owl:Class ;
+    rdfs:label "Confidence Calculation" ;
+    rdfs:subClassOf :Observation .
+
+:TrustChecker a owl:Class ;
+    rdfs:label "TrustChecker" ;
+    rdfs:subClassOf :ConfidenceCalculation .
+
+:hasConfidenceCalculation a owl:ObjectProperty ;
+    rdfs:label "has confidence calculation" ;
+    rdfs:domain :DriverAssistanceSystem ;
+    rdfs:range :ConfidenceCalculation .
+
+:Observation a owl:Class .

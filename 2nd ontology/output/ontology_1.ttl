@@ -1,0 +1,59 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:InattentionState a owl:Class ;
+    rdfs:label "InattentionState" .
+
+:DrowsinessState a owl:Class ;
+    rdfs:label "DrowsinessState" ;
+    rdfs:subClassOf :InattentionState ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicatedByHeadPosition ;
+        owl:someValuesFrom :NoddingPattern
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicatedByEyesCharacteristics ;
+        owl:someValuesFrom [
+            rdf:type owl:Class ;
+            owl:unionOf ( :ReducedBlinkRate :IrregularGazePattern :AbnormalPupilSize )
+        ]
+    ] .
+
+:HeadPosition a owl:Class ;
+    rdfs:label "HeadPosition" .
+
+:NoddingPattern a owl:Class ;
+    rdfs:label "NoddingPattern" ;
+    rdfs:subClassOf :HeadPosition .
+
+:EyesCharacteristics a owl:Class ;
+    rdfs:label "EyesCharacteristics" .
+
+:ReducedBlinkRate a owl:Class ;
+    rdfs:label "ReducedBlinkRate" ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:IrregularGazePattern a owl:Class ;
+    rdfs:label "IrregularGazePattern" ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:AbnormalPupilSize a owl:Class ;
+    rdfs:label "AbnormalPupilSize" ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:indicatedByHeadPosition a owl:ObjectProperty ;
+    rdfs:label "indicatedByHeadPosition" ;
+    rdfs:domain :DrowsinessState ;
+    rdfs:range :HeadPosition .
+
+:indicatedByEyesCharacteristics a owl:ObjectProperty ;
+    rdfs:label "indicatedByEyesCharacteristics" ;
+    rdfs:domain :DrowsinessState ;
+    rdfs:range :EyesCharacteristics .

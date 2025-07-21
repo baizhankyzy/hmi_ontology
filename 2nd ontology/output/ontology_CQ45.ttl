@@ -1,0 +1,52 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:TouchFeedback a owl:Class ;
+    rdfs:label "TouchFeedback" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :generatesVibrationPattern ;
+        owl:someValuesFrom :VibrationPattern
+    ] .
+
+:VibrationPattern a owl:Class ;
+    rdfs:label "VibrationPattern" .
+
+:generatesVibrationPattern a owl:ObjectProperty ;
+    rdfs:label "generatesVibrationPattern" ;
+    rdfs:domain :TouchFeedback ;
+    rdfs:range :VibrationPattern .
+
+:ElderlyDriver a owl:Class ;
+    rdfs:label "ElderlyDriver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasDriverProfile ;
+        owl:someValuesFrom :DriverProfile
+    ] .
+
+:DriverProfile a owl:Class ;
+    rdfs:label "DriverProfile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgeFactors ;
+        owl:someValuesFrom :AgeFactors
+    ] .
+
+:AgeFactors a owl:Class ;
+    rdfs:label "AgeFactors" .
+
+:hasDriverProfile a owl:ObjectProperty ;
+    rdfs:label "hasDriverProfile" ;
+    rdfs:domain :ElderlyDriver ;
+    rdfs:range :DriverProfile .
+
+:hasAgeFactors a owl:ObjectProperty ;
+    rdfs:label "hasAgeFactors" ;
+    rdfs:domain :DriverProfile ;
+    rdfs:range :AgeFactors .

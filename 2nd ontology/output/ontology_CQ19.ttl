@@ -1,0 +1,86 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:TrafficDensity a owl:Class ;
+    rdfs:label "TrafficDensity" .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :impactedBy ;
+        owl:someValuesFrom :TrafficDensity
+    ] .
+
+:impactedBy a owl:ObjectProperty ;
+    rdfs:label "impactedBy" ;
+    rdfs:domain :CognitiveState ;
+    rdfs:range :TrafficDensity .
+
+:EnvironmentalCondition a owl:Class ;
+    rdfs:label "EnvironmentalCondition" .
+
+:VisibilityMeasure a owl:Class ;
+    rdfs:label "VisibilityMeasure" .
+
+:TrafficMonitor a owl:Class ;
+    rdfs:label "TrafficMonitor" .
+
+:RoadType a owl:Class ;
+    rdfs:label "RoadType" .
+
+:GripSensor a owl:Class ;
+    rdfs:label "GripSensor" .
+
+:PhysiologicalMonitor a owl:Class ;
+    rdfs:label "PhysiologicalMonitor" .
+
+:HeartMonitor a owl:Class ;
+    rdfs:subClassOf :PhysiologicalMonitor .
+
+:SkinMonitor a owl:Class ;
+    rdfs:subClassOf :PhysiologicalMonitor .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" .
+
+:RoadComplexity a owl:Class ;
+    rdfs:label "RoadComplexity" .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "VehicleSystem" .
+
+:VisualSystem a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:InstrumentPanel a owl:Class ;
+    rdfs:subClassOf :VisualSystem .
+
+:NotificationSystem a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:subClassOf :VisualSystem .
+
+:LaneAssist a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:SteeringSupport a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:SoundSystem a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:subClassOf :VehicleSystem .
+
+:Speaker a owl:Class ;
+    rdfs:label "Speaker" .

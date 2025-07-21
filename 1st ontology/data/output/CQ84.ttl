@@ -1,0 +1,98 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "PostureState"@en ;
+    rdfs:comment "A state representing the posture of a driver"@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "DriverState"@en ;
+    rdfs:comment "A state representing the condition or behavior of a driver"@en .
+
+ahmi:hasPosture a owl:ObjectProperty ;
+    rdfs:label "has posture"@en ;
+    rdfs:comment "Relates a driver state to the posture of the driver"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:PostureState .
+
+ahmi:PostureDetectionMethod a owl:Class ;
+    rdfs:label "PostureDetectionMethod"@en ;
+    rdfs:comment "A method for detecting the posture of a driver"@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:DetectionMethod a owl:Class ;
+    rdfs:label "DetectionMethod"@en ;
+    rdfs:comment "A method for detecting a driver state"@en .
+
+ahmi:detectedByMethod a owl:ObjectProperty ;
+    rdfs:label "detected by method"@en ;
+    rdfs:comment "Relates a driver state to the method used to detect it"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DetectionMethod .
+
+ahmi:PostureEvent a owl:Class ;
+    rdfs:label "PostureEvent"@en ;
+    rdfs:comment "An event representing a change in the posture of a driver"@en ;
+    rdfs:subClassOf ahmi:DriverEvent .
+
+ahmi:DriverEvent a owl:Class ;
+    rdfs:label "DriverEvent"@en ;
+    rdfs:comment "An event related to the state or behavior of a driver"@en .
+
+ahmi:PostureSituation a owl:Class ;
+    rdfs:label "PostureSituation"@en ;
+    rdfs:comment "A situation representing a view or interpretation of a posture event"@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:PostureEvent
+    ] .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event"@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets"@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "An occurrence or process"@en .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events"@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies"@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:PostureAdaptationStrategy a owl:Class ;
+    rdfs:label "PostureAdaptationStrategy"@en ;
+    rdfs:comment "A strategy for adapting the HMI based on the driver's posture"@en ;
+    rdfs:subClassOf ahmi:AdaptationStrategy .
+
+ahmi:AdaptationStrategy a owl:Class ;
+    rdfs:label "AdaptationStrategy"@en ;
+    rdfs:comment "A strategy for adapting the HMI based on the driver's state"@en .
+
+ahmi:hasAdaptationStrategy a owl:ObjectProperty ;
+    rdfs:label "has adaptation strategy"@en ;
+    rdfs:comment "Relates a situation to the adaptation strategy to be applied"@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:AdaptationStrategy .

@@ -1,4 +1,6 @@
 @prefix : <http://www.example.org/test#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <http://www.example.org/test#rdf:> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -25,8 +27,29 @@
             owl:onProperty :indicates ;
             owl:someValuesFrom :CognitiveState ] .
 
+:AmbientLightingFeature_colorchoice a :AmbientLightingFeature ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :requiresAdditionalResearch :ResearchGoal_idealcoloremotionmatching .
+
+:AmbientLighting_orangeambientlighting a :AmbientLighting ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isImportantFor :EmotionalState .
+
+:AutomationLevel_automationlevel a :AutomationLevel ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isNecessaryFor :DrivingExperienceEnhancement_drivingexperienceenhancement .
+
 :AutonomousMode a owl:Class ;
     rdfs:label "AutonomousMode" .
+
+:Benefit_potentialperks a :Benefit ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :relatesTo :VoiceAssistantAdaptation_matchingemotionalvalenceofvoiceassistanttodriveremotion .
+
+:CalmingMusic_calmmusicinstance a :CalmingMusic ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :improves :DrivingPerformance ;
+    :increases :PositiveAffectivity_positiveaffectivityinstance .
 
 :CenterDisplay a owl:Class ;
     rdfs:label "CenterDisplay" ;
@@ -35,8 +58,26 @@
             owl:someValuesFrom :EmailReading ],
         :DisplayBrightness .
 
+:ChoiceArchitectureFrame_choicearchitectureframe a :ChoiceArchitectureFrame ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isDrawnAs :VehicleInteriorElement_vehicleinteriorelements ;
+    :isInContextOf :DrivingContext_driving .
+
+:ChoiceArchitecture_choicearchitecture1 a :ChoiceArchitecture ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :benefits :Driver_angrydriver1 ;
+    :hasAbility "allow users to select options that benefit them" ;
+    :hasDefaultOption :Music_calmermusic1 ;
+    :isDesignedAs "well-designed" ;
+    :isTriggeredBy :EmotionDetection_angerdetected1 ;
+    ns1:type :ChoiceArchitectureCharacteristic_unavoidable .
+
 :CognitiveMonitor a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
+
+:CognitiveRegulationTechnique_reframing a :CognitiveRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :indirectlyAffects :EmotionalState .
 
 :CognitiveStateMeasurement a owl:Class ;
     rdfs:label "Cognitive State Measurement" ;
@@ -61,8 +102,28 @@
 :ConstructionDetector a owl:Class ;
     rdfs:label "ConstructionDetector" .
 
+:CoolAir_coolairinstance a :CoolAir ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :increases :DriverAlertness_driveralertnessinstance .
+
 :DataCombiner a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
+
+:DataSource_survey a :DataSource ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasShown "People experiencing negative situations ask for better information management and higher degrees of automation" .
+
+:DesignConcept_choicearchitecture a :DesignConcept ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :designs :Environment_decisionenvironment .
+
+:DesignDecision_inclusionOfInvehicleVoiceAssistantsInHmiDesign a :DesignDecision ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :occurredDuring "recent years" .
+
+:DesignProcess_feedbackdesigninvolvingvoiceassistant a :DesignProcess ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isPromisingSolutionFor :InterventionStrategy .
 
 :DistractionTrigger a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
@@ -73,12 +134,89 @@
             owl:onProperty :assesses ;
             owl:someValuesFrom :DriverState ] .
 
+:Driver_participants a :Driver ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasPreference :FeedbackType_olfactoryFeedback ;
+    :receivedNotification :NotificationType_olfactoryNotification,
+        :NotificationType_visualFeedback .
+
+:EmotionRegulationTechnique_emotionRegulation a :EmotionRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :implementedUsing :Nudge_nudges ;
+    :isNecessaryFor "less distractions",
+        "less risky driving behaviors" .
+
+:EmotionRegulationTechnique_influencingemotions a :EmotionRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :affects :Action,
+        :Decision,
+        :Intention .
+
+:EmotionRegulationTechnique_music a :EmotionRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasCapability "regulate driver emotions" ;
+    :isA :EmotionRegulationTechnique_mostResearchedTechniques ;
+    :regulatesEmotionOf :Person_driver .
+
+:EmotionRegulationTechnique_reframing a :EmotionRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :affects "drivers experience fewer negative emotions after reappraisal" ;
+    :hasOutcome :DrivingPerformance .
+
+:EmotionalRegulationTechnique_matchingemotionalvalencetechnique a :EmotionalRegulationTechnique ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasOutcome :OutcomeDescription_promisingresults .
+
+:EnvironmentalCondition_cooling a :EnvironmentalCondition ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :activates :PhysiologicalSystem_sympatheticNervousSystem .
+
 :ExperienceMetrics a owl:Class .
 
 :Extraversion a owl:Class ;
     rdfs:label "Extraversion" ;
     rdfs:subClassOf :PersonalityDimension,
         :PersonalityScore .
+
+:Feature_somefeature a :Feature ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :triggers :EmotionalState .
+
+:FeedbackChannel_feedbackchannel a :FeedbackChannel ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isNotLimitedTo :FeedbackModality_acousticspeech,
+        :FeedbackModality_visual .
+
+:FeedbackMechanism_feedback a :FeedbackMechanism ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasTarget :DriverError_mistake,
+        "good performance" .
+
+:FeedbackMechanism_olfactoryfeedback a :FeedbackMechanism ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isPartOf :ChoiceArchitecture_choicearchitecture .
+
+:FeedbackType_acousticfeedback a :FeedbackType ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasUsageExtent "extensively" ;
+    :isUsedIn :HMIDesign_hmidesign .
+
+:FeedbackType_olfactoryfeedbackinstance a :FeedbackType ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasCharacteristic "less_distracting",
+        "more_helpful" ;
+    :isBetterThan :FeedbackType_visualfeedbackinstance .
+
+:FeedbackType_visualfeedback a :FeedbackType ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasUsageExtent "extensively" ;
+    :isUsedIn :HMIDesign_hmidesign .
+
+:Feedback_feedback a :Feedback ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasFrequency "frequency_value" ;
+    :hasIntensity "intensity_value" ;
+    :isPartOf :NudgingStrategy_invehiclenudgingstrategy .
 
 :FrontCamera a owl:Class ;
     rdfs:label "FrontCamera" ;
@@ -94,7 +232,85 @@
             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
         :Observation .
 
+:HMIComponent_choicearchitecture a :HMIComponent ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasDesignRequirement "ability to suit various emotions and decisions" .
+
+:HMIElement_otherhmielement a :HMIElement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasInfluenceOn :EmotionalState .
+
+:HMIElement_userinterface a :HMIElement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasInfluenceOn :EmotionalState ;
+    :hasNegativeInfluenceOn :EmotionalState ;
+    :hasPositiveInfluenceOn :EmotionalState .
+
+:HeatSensation_heatsensation1 a :HeatSensation ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasAssociatedState :EmotionalState .
+
+:HumanMachineInterface_adaptivehmisystem a :HumanMachineInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :canAlter :DriverBehavior_driverbehavior ;
+    :changesFromMusicSelection :MusicSelection_selfselectedmusic ;
+    :changesToMusicSelection :MusicSelection_calmingmusic ;
+    :hasRegulationCapability :EmotionalState .
+
+:HumanMachineInterface_hmi a :HumanMachineInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasAdaptationCapabilityFor :EmotionalContext_differentContextsWhereUsersExperienceDifferentEmotions .
+
+:HumanMachineInterface_voiceassistant a :HumanMachineInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isInvolvedIn :DesignProcess_feedbackdesign .
+
+:InfotainmentFeature_navigation a :InfotainmentFeature ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasProperty "commonly used" ;
+    :isPartOf :InfotainmentSystem_infotainmentSystem .
+
+:InteractionDesign_interactiondesign a :InteractionDesign ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :shouldConsider :WorkloadFactor_increasedworkloadduetonegativeemotionalstate .
+
+:InteriorElement_interiorelement1 a :InteriorElement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    ns1:type :Lighting_lighting .
+
+:InteriorElement_interiorelement2 a :InteriorElement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    ns1:type :Temperature_temperature .
+
+:InteriorElement_interiorelement3 a :InteriorElement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    ns1:type :Infotainment_infotainment .
+
+:InteriorFeature_lighting a :InteriorFeature ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isEmployedIn :HumanMachineInterface_adaptiveHmi ;
+    ns1:type :InteriorFeature_salientInteriorFeature .
+
+:Intervention_feedback a :Intervention ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :helpsImprove :PerformanceMetric_performance ;
+    ns1:type :Method_effectivemethod .
+
 :LaneCamera a owl:Class .
+
+:LightingCondition_nolightingCondition a :LightingCondition ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isComparedTo :AmbientLighting_blueAmbientLight,
+        :AmbientLighting_orangeAmbientLight .
+
+:LightingCue_bluelightcue a :LightingCue ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :affects :EmotionalState ;
+    :hasCondition :EmotionalState .
+
+:LightingSystem_ambientlighting a :LightingSystem ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isImportantElementOf :HumanMachineInterface_adaptivehmi .
 
 :LowVigilance a owl:Class ;
     rdfs:label "LowVigilance" ;
@@ -110,15 +326,59 @@
 
 :MeasurementTool a owl:Class .
 
+:MusicListeningActivity_happymusiclistening a :MusicListeningActivity ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isComparativeTo :MusicListeningActivity_sadmusiclistening .
+
+:MusicListeningEvent_musiclisteningevent a :MusicListeningEvent ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasEmotion :EmotionType_happy,
+        :EmotionType_sad ;
+    :reducesBehavior :DriverState ;
+    :regulatesEmotionTo :EmotionType_neutral .
+
+:MusicProperty_musicvalence a :MusicProperty ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isImportantFor :DesignTask_hmiarchitecturedesign .
+
+:MusicProperty_valenceofmusic a :MusicProperty ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isImportantFactorFor :DrivingActivity_safedriving .
+
+:Music_calmingmusic a :Music ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :affects :EmotionRegulation_negativeemotionregulation,
+        :PerformanceRegulation_drivingperformanceregulation .
+
+:Music_happymusicinstance a :Music ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :decreases :DrivingPerformance ;
+    :hasDefaultStatus "true" ;
+    :influences :Driver_driver .
+
+:NavigationSystem_navigationSystem a :NavigationSystem ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :calculatesRoute :Route_route .
+
 :Neuroticism a owl:Class ;
     rdfs:label "Neuroticism" ;
     rdfs:subClassOf :PersonalityDimension,
         :PersonalityScore .
 
+:NudgingStrategy_nudgingstrategy1 a :NudgingStrategy ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasReframingStyle "positive" ;
+    ns1:type :NudgingTechnique_eventreframing ;
+    :reframesEvent :NegativeEvent_negativeevent .
+
 :Openness a owl:Class ;
     rdfs:label "Openness" ;
     rdfs:subClassOf :PersonalityDimension,
         :PersonalityScore .
+
+:Path_route a :Path ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :influences :Experience_drivingexperience .
 
 :PrivacyProtectionCheck a owl:Class ;
     rdfs:label "PrivacyProtectionCheck" ;
@@ -128,10 +388,24 @@
     rdfs:label "RegulatoryComplianceCheck" ;
     rdfs:subClassOf :ComplianceCheck .
 
-:RiskTaking a owl:Class ;
-    rdfs:label "RiskTaking" ;
-    rdfs:subClassOf :PersonalityTrait,
-        :PersonalityTraits .
+:Research_study a :Research ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :suggests :NavigationSystem_developingNavigationSystems .
+
+:RiskFactor_mistake a :RiskFactor ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasSource :CognitiveBias_cognitiveBias,
+        :Heuristic_heuristic,
+        :Heuristic_ruleOfThumb .
+
+:Role_choicearchitect a :Role ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasJob "provide environment that encourages users to make decisions in their best interests" .
+
+:RouteRecommendation_routeproposal a :RouteRecommendation ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasGoal :DriverExperience_enjoyableexperience ;
+    :usesArchitecture :SystemArchitecture_nudgesbasedarchitecture .
 
 :SkinSensor a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
@@ -146,6 +420,14 @@
     rdfs:subClassOf :DriverStudyCapability .
 
 :SystemMonitor a owl:Class .
+
+:System_architecture a :System ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasFunction :FeedbackMechanism_providingFeedback .
+
+:TechnicalSystem_navigationsystem a :TechnicalSystem ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasFunction :Function_emotionregulationtool .
 
 :TimeKeeper a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
@@ -170,7 +452,14 @@
     rdfs:label "UserExperienceCheck" ;
     rdfs:subClassOf :ComplianceCheck .
 
-:Vehicle a owl:Class .
+:VehicleComponent_airventilationsystem a :VehicleComponent ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasInfluenceOn :MentalState_emotionalstate ;
+    :hasRegulationTarget :PhysiologicalState_bodyreaction .
+
+:VehicleComponent_interiorelements a :VehicleComponent ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :includes :HMIComponent_hmicomponents .
 
 :VisualAlert a owl:Class ;
     rdfs:label "VisualAlert" ;
@@ -178,6 +467,60 @@
 
 :VisualElements a owl:Class ;
     rdfs:label "VisualElements" .
+
+:VisualNotification_visualnotification a :VisualNotification ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :requires :AttentionDiversion_attentiondiversion .
+
+:VoiceAlertSystem_recentemotionallyadaptivevoicealertsystem1 a :VoiceAlertSystem ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasAlert :Alert_emotionallyadaptivealert1 .
+
+:VoiceAlert_voicealert1 a :VoiceAlert ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasConveyanceMode "moderately" ;
+    :isTriggeredBy :EmotionState_positiveemotionstate1 .
+
+:VoiceAlert_voicealert2 a :VoiceAlert ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasConveyanceMode "intensely" ;
+    :isTriggeredBy :EmotionState_negativeemotionstate1 .
+
+:VoiceAssistant_conversationalvoiceassistant1 a :VoiceAssistant ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isComponentOf :AdaptiveHMIDesign_adaptivehmidesign1 .
+
+:VoiceAssistant_invehicleVoiceAssistant a :VoiceAssistant ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isIncludedIn :HMIDesign_hmiDesign .
+
+:VoiceAssistant_voiceassistant a :VoiceAssistant ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasCapability :EmotionDetectionCapability_driveremotiondetection ;
+    :hasResponseBehavior :EmotionalResponse_appropriateemotion ;
+    :reappraisedEvent :FrustratingEvent_frustratingevent .
+
+:VoiceAssistant_voiceassistant1 a :VoiceAssistant ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :aimsToInduce :EmotionalState ;
+    :hasAdaptationCapability :DriverEmotion_driveremotion ;
+    :hasFunction :InputChannel_voiceinputchannel ;
+    :hasInteractionFrequency "high" ;
+    :hasRole :DrivingCompanion_drivingcompanion ;
+    :hasTrackingCapability :DriverBehavior_driverbehavior ;
+    :interactsWithDriver :Driver_driver1 .
+
+:VoiceInterface_voiceassistant a :VoiceInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasValence "valence_value" .
+
+:VoiceInterface_voiceinteraction a :VoiceInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :requiresResource :CognitiveResource_additionalcognitiveresource .
+
+:VoiceInterface_voicemessage a :VoiceInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :requiresResource :CognitiveResource_additionalcognitiveresource .
 
 :VoiceQuality a owl:Class ;
     rdfs:subClassOf :DriverStudyCapability .
@@ -201,9 +544,66 @@
     rdfs:label "adjustsCabinTemperature" ;
     rdfs:domain :ClimateControl .
 
+:adoptedPerspective a owl:DatatypeProperty ;
+    rdfs:label "adoptedPerspective" .
+
+:aimsToEnsure a owl:DatatypeProperty ;
+    rdfs:label "aimsToEnsure" .
+
+:aimsToInduce a owl:DatatypeProperty ;
+    rdfs:label "aimsToInduce" .
+
+:alters a owl:DatatypeProperty ;
+    rdfs:label "alters" .
+
 :analyzes a owl:ObjectProperty ;
     rdfs:label "analyzes" ;
     rdfs:range :FatigueState .
+
+:appliesTo a owl:DatatypeProperty ;
+    rdfs:label "appliesTo" .
+
+:assists a owl:DatatypeProperty ;
+    rdfs:label "assists" .
+
+:associatedWith a owl:DatatypeProperty ;
+    rdfs:label "associatedWith" .
+
+:benefits a owl:DatatypeProperty ;
+    rdfs:label "benefits" .
+
+:calculatesRoute a owl:DatatypeProperty ;
+    rdfs:label "calculatesRoute" .
+
+:canAlter a owl:DatatypeProperty ;
+    rdfs:label "canAlter" .
+
+:canBenefitFrom a owl:DatatypeProperty ;
+    rdfs:label "canBenefitFrom" .
+
+:canCauseBehavior a owl:DatatypeProperty ;
+    rdfs:label "canCauseBehavior" .
+
+:canCauseIssue a owl:DatatypeProperty ;
+    rdfs:label "canCauseIssue" .
+
+:causedBy a owl:DatatypeProperty ;
+    rdfs:label "causedBy" .
+
+:causesOrInfluences a owl:DatatypeProperty ;
+    rdfs:label "causesOrInfluences" .
+
+:changedInterpretationOf a owl:DatatypeProperty ;
+    rdfs:label "changedInterpretationOf" .
+
+:changesFromMusicSelection a owl:DatatypeProperty ;
+    rdfs:label "changesFromMusicSelection" .
+
+:changesToMusicSelection a owl:DatatypeProperty ;
+    rdfs:label "changesToMusicSelection" .
+
+:claims a owl:DatatypeProperty ;
+    rdfs:label "claims" .
 
 :clear a owl:DatatypeProperty ;
     rdfs:label "clear" ;
@@ -215,6 +615,18 @@
     rdfs:domain :ContextAnalyzer ;
     rdfs:range [ a owl:Class ;
             owl:unionOf ( :HighCongestion :JourneyDelay :SuddenStop ) ] .
+
+:decreases a owl:DatatypeProperty ;
+    rdfs:label "decreases" .
+
+:dependsOn a owl:DatatypeProperty ;
+    rdfs:label "dependsOn" .
+
+:designs a owl:DatatypeProperty ;
+    rdfs:label "designs" .
+
+:desires a owl:DatatypeProperty ;
+    rdfs:label "desires" .
 
 :detectsAggressiveAcceleration a owl:ObjectProperty ;
     rdfs:label "detectsAggressiveAcceleration" ;
@@ -251,15 +663,33 @@
     rdfs:domain :SpeechRecognizer ;
     rdfs:range :SoundAnalysis .
 
+:determines a owl:DatatypeProperty ;
+    rdfs:label "determines" .
+
 :displaysAlternativeRoute a owl:ObjectProperty ;
     rdfs:label "displaysAlternativeRoute" ;
     rdfs:domain :VisualSystem ;
     rdfs:range :AlternativeRoute .
 
+:drivesAggressively a owl:DatatypeProperty ;
+    rdfs:label "drivesAggressively" .
+
+:enhances a owl:DatatypeProperty ;
+    rdfs:label "enhances" .
+
+:facilitates a owl:DatatypeProperty ;
+    rdfs:label "facilitates" .
+
+:focusesOn a owl:DatatypeProperty ;
+    rdfs:label "focusesOn" .
+
 :follows a owl:ObjectProperty ;
     rdfs:label "follows" ;
     rdfs:domain :LaneAssist ;
     rdfs:range :AdaptationRule .
+
+:forcedToListenTo a owl:DatatypeProperty ;
+    rdfs:label "forcedToListenTo" .
 
 :generatesAlertFor a owl:ObjectProperty ;
     rdfs:label "generatesAlertFor" ;
@@ -269,15 +699,159 @@
             owl:onProperty :forDriverState ;
             owl:someValuesFrom :DrowsinessState ] .
 
+:hasAbility a owl:DatatypeProperty ;
+    rdfs:label "hasAbility" .
+
+:hasAdaptationCapability a owl:DatatypeProperty ;
+    rdfs:label "hasAdaptationCapability" .
+
+:hasAdaptationCapabilityFor a owl:DatatypeProperty ;
+    rdfs:label "hasAdaptationCapabilityFor" .
+
+:hasAlert a owl:DatatypeProperty ;
+    rdfs:label "hasAlert" .
+
+:hasArousalState a owl:DatatypeProperty ;
+    rdfs:label "hasArousalState" .
+
+:hasAssociatedState a owl:DatatypeProperty ;
+    rdfs:label "hasAssociatedState" .
+
+:hasCapability a owl:DatatypeProperty ;
+    rdfs:label "hasCapability" .
+
+:hasCharacteristic a owl:DatatypeProperty ;
+    rdfs:label "hasCharacteristic" .
+
+:hasCondition a owl:DatatypeProperty ;
+    rdfs:label "hasCondition" .
+
+:hasConveyanceMode a owl:DatatypeProperty ;
+    rdfs:label "hasConveyanceMode" .
+
+:hasDefaultOption a owl:DatatypeProperty ;
+    rdfs:label "hasDefaultOption" .
+
+:hasDefaultStatus a owl:DatatypeProperty ;
+    rdfs:label "hasDefaultStatus" .
+
+:hasDesignRequirement a owl:DatatypeProperty ;
+    rdfs:label "hasDesignRequirement" .
+
+:hasDrivingBehavior a owl:DatatypeProperty ;
+    rdfs:label "hasDrivingBehavior" .
+
+:hasDuration a owl:DatatypeProperty ;
+    rdfs:label "hasDuration" .
+
+:hasEmotion a owl:DatatypeProperty ;
+    rdfs:label "hasEmotion" .
+
+:hasFrequency a owl:DatatypeProperty ;
+    rdfs:label "hasFrequency" .
+
+:hasFunction a owl:DatatypeProperty ;
+    rdfs:label "hasFunction" .
+
+:hasGoal a owl:DatatypeProperty ;
+    rdfs:label "hasGoal" .
+
+:hasImpact a owl:DatatypeProperty ;
+    rdfs:label "hasImpact" .
+
+:hasInfluenceOn a owl:DatatypeProperty ;
+    rdfs:label "hasInfluenceOn" .
+
+:hasIntensity a owl:DatatypeProperty ;
+    rdfs:label "hasIntensity" .
+
+:hasInteractionFrequency a owl:DatatypeProperty ;
+    rdfs:label "hasInteractionFrequency" .
+
+:hasJob a owl:DatatypeProperty ;
+    rdfs:label "hasJob" .
+
+:hasNegativeInfluenceOn a owl:DatatypeProperty ;
+    rdfs:label "hasNegativeInfluenceOn" .
+
+:hasOutcome a owl:DatatypeProperty ;
+    rdfs:label "hasOutcome" .
+
 :hasPersonalityTrait a owl:ObjectProperty ;
     rdfs:label "hasPersonalityTrait" ;
     rdfs:domain :AggressiveTendency ;
     rdfs:range :PersonalityTrait .
 
+:hasPositiveInfluenceOn a owl:DatatypeProperty ;
+    rdfs:label "hasPositiveInfluenceOn" .
+
+:hasPositiveRating a owl:DatatypeProperty ;
+    rdfs:label "hasPositiveRating" .
+
+:hasPreference a owl:DatatypeProperty ;
+    rdfs:label "hasPreference" .
+
+:hasProperty a owl:DatatypeProperty ;
+    rdfs:label "hasProperty" .
+
+:hasPurpose a owl:DatatypeProperty ;
+    rdfs:label "hasPurpose" .
+
+:hasReframingStyle a owl:DatatypeProperty ;
+    rdfs:label "hasReframingStyle" .
+
+:hasRegulationCapability a owl:DatatypeProperty ;
+    rdfs:label "hasRegulationCapability" .
+
+:hasRegulationTarget a owl:DatatypeProperty ;
+    rdfs:label "hasRegulationTarget" .
+
+:hasRegulationTechnique a owl:DatatypeProperty ;
+    rdfs:label "hasRegulationTechnique" .
+
+:hasResponseBehavior a owl:DatatypeProperty ;
+    rdfs:label "hasResponseBehavior" .
+
+:hasRole a owl:DatatypeProperty ;
+    rdfs:label "hasRole" .
+
+:hasShown a owl:DatatypeProperty ;
+    rdfs:label "hasShown" .
+
+:hasSource a owl:ObjectProperty ;
+    rdfs:label "hasSource" .
+
+:hasSubject a owl:DatatypeProperty ;
+    rdfs:label "hasSubject" .
+
+:hasTarget a owl:DatatypeProperty ;
+    rdfs:label "hasTarget" .
+
+:hasTopicOfInterest a owl:DatatypeProperty ;
+    rdfs:label "hasTopicOfInterest" .
+
+:hasTrackingCapability a owl:DatatypeProperty ;
+    rdfs:label "hasTrackingCapability" .
+
+:hasUsageExtent a owl:DatatypeProperty ;
+    rdfs:label "hasUsageExtent" .
+
+:hasValence a owl:DatatypeProperty ;
+    rdfs:label "hasValence" .
+
+:helpsImprove a owl:DatatypeProperty ;
+    rdfs:label "helpsImprove" .
+
 :hides a owl:ObjectProperty ;
     rdfs:label "hides" ;
     rdfs:domain :NonEssentialVisualElement ;
     rdfs:range :VisualElement .
+
+:implementedUsing a owl:DatatypeProperty ;
+    rdfs:label "implementedUsing" .
+
+:improves a owl:DatatypeProperty ;
+    rdfs:label "improves" .
 
 :indicatesCognitiveState a owl:ObjectProperty ;
     rdfs:label "indicatesCognitiveState" ;
@@ -289,10 +863,127 @@
     rdfs:domain :StressAnalyzer ;
     rdfs:range :EmotionalState .
 
+:indirectlyAffects a owl:DatatypeProperty ;
+    rdfs:label "indirectlyAffects" .
+
+:interactsWithDirectly a owl:DatatypeProperty ;
+    rdfs:label "interactsWithDirectly" .
+
+:interactsWithDriver a owl:DatatypeProperty ;
+    rdfs:label "interactsWithDriver" .
+
+:investigatedFor a owl:DatatypeProperty ;
+    rdfs:label "investigatedFor" .
+
+:involves a owl:DatatypeProperty ;
+    rdfs:label "involves" .
+
+:isA a owl:DatatypeProperty ;
+    rdfs:label "isA" .
+
+:isAdaptiveTo a owl:DatatypeProperty ;
+    rdfs:label "isAdaptiveTo" .
+
+:isBetterThan a owl:DatatypeProperty ;
+    rdfs:label "isBetterThan" .
+
+:isCausedBy a owl:DatatypeProperty ;
+    rdfs:label "isCausedBy" .
+
+:isComparativeTo a owl:DatatypeProperty ;
+    rdfs:label "isComparativeTo" .
+
+:isComparedTo a owl:DatatypeProperty ;
+    rdfs:label "isComparedTo" .
+
+:isComponentOf a owl:DatatypeProperty ;
+    rdfs:label "isComponentOf" .
+
+:isDesignedAs a owl:DatatypeProperty ;
+    rdfs:label "isDesignedAs" .
+
+:isDrawnAs a owl:DatatypeProperty ;
+    rdfs:label "isDrawnAs" .
+
+:isDueTo a owl:DatatypeProperty ;
+    rdfs:label "isDueTo" .
+
+:isEmployedIn a owl:DatatypeProperty ;
+    rdfs:label "isEmployedIn" .
+
+:isExemplifiedBy a owl:DatatypeProperty ;
+    rdfs:label "isExemplifiedBy" .
+
+:isImportantElementOf a owl:DatatypeProperty ;
+    rdfs:label "isImportantElementOf" .
+
+:isImportantFactorFor a owl:DatatypeProperty ;
+    rdfs:label "isImportantFactorFor" .
+
+:isImportantFor a owl:DatatypeProperty ;
+    rdfs:label "isImportantFor" .
+
+:isInContextOf a owl:DatatypeProperty ;
+    rdfs:label "isInContextOf" .
+
+:isIncludedIn a owl:DatatypeProperty ;
+    rdfs:label "isIncludedIn" .
+
+:isInfluencedBy a owl:DatatypeProperty ;
+    rdfs:label "isInfluencedBy" .
+
+:isInvolvedIn a owl:DatatypeProperty ;
+    rdfs:label "isInvolvedIn" .
+
+:isNecessaryFor a owl:DatatypeProperty ;
+    rdfs:label "isNecessaryFor" .
+
+:isNotChoiceOf a owl:DatatypeProperty ;
+    rdfs:label "isNotChoiceOf" .
+
+:isNotLimitedTo a owl:DatatypeProperty ;
+    rdfs:label "isNotLimitedTo" .
+
+:isOpposedTo a owl:DatatypeProperty ;
+    rdfs:label "isOpposedTo" .
+
+:isPartOf a owl:DatatypeProperty ;
+    rdfs:label "isPartOf" .
+
+:isPromisingSolutionFor a owl:DatatypeProperty ;
+    rdfs:label "isPromisingSolutionFor" .
+
+:isTriggeredBy a owl:DatatypeProperty ;
+    rdfs:label "isTriggeredBy" .
+
+:isUsedIn a owl:DatatypeProperty ;
+    rdfs:label "isUsedIn" .
+
+:leads_to a owl:DatatypeProperty ;
+    rdfs:label "leads_to" .
+
+:limits a owl:DatatypeProperty ;
+    rdfs:label "limits" .
+
 :lowers a owl:ObjectProperty ;
     rdfs:label "lowers" ;
     rdfs:domain :SoundSystem ;
     rdfs:range :BackgroundSound .
+
+:mayReinforce a owl:DatatypeProperty ;
+    rdfs:label "mayReinforce" .
+
+:negativelyInfluences a owl:DatatypeProperty ;
+    rdfs:label "negativelyInfluences" .
+
+:occurredDuring a owl:DatatypeProperty ;
+    rdfs:label "occurredDuring" .
+
+:occursDuring a owl:DatatypeProperty ;
+    rdfs:label "occursDuring" .
+
+:occursIn a owl:DatatypeProperty ;
+    rdfs:label "occursIn" .
 
 :pauses a owl:ObjectProperty ;
     rdfs:label "pauses" ;
@@ -315,15 +1006,63 @@
         :PedalFeedback ;
     rdfs:range :AcceleratorPedal .
 
+ns1:type a owl:DatatypeProperty ;
+    rdfs:label "rdf:type" .
+
+:reappraisedEvent a owl:DatatypeProperty ;
+    rdfs:label "reappraisedEvent" .
+
+:receivedNotification a owl:DatatypeProperty ;
+    rdfs:label "receivedNotification" .
+
 :reduces a owl:ObjectProperty ;
     rdfs:label "reduces" ;
     rdfs:domain :InstrumentPanel ;
     rdfs:range :InformationDensity .
 
+:reducesBehavior a owl:DatatypeProperty ;
+    rdfs:label "reducesBehavior" .
+
+:reframesEvent a owl:DatatypeProperty ;
+    rdfs:label "reframesEvent" .
+
+:regulates a owl:DatatypeProperty ;
+    rdfs:label "regulates" .
+
+:regulatesEmotionOf a owl:DatatypeProperty ;
+    rdfs:label "regulatesEmotionOf" .
+
+:regulatesEmotionTo a owl:DatatypeProperty ;
+    rdfs:label "regulatesEmotionTo" .
+
+:relatedTo a owl:DatatypeProperty ;
+    rdfs:label "relatedTo" .
+
 :relatesTo a owl:ObjectProperty ;
     rdfs:label "relatesTo" ;
     rdfs:domain :PersonalityScore ;
     rdfs:range :VehicleSystemAdaptationEffectiveness .
+
+:requires a owl:DatatypeProperty ;
+    rdfs:label "requires" .
+
+:requiresAdditionalResearch a owl:DatatypeProperty ;
+    rdfs:label "requiresAdditionalResearch" .
+
+:requiresResource a owl:DatatypeProperty ;
+    rdfs:label "requiresResource" .
+
+:resultsIn a owl:DatatypeProperty ;
+    rdfs:label "resultsIn" .
+
+:selects a owl:DatatypeProperty ;
+    rdfs:label "selects" .
+
+:selectsMusic a owl:DatatypeProperty ;
+    rdfs:label "selectsMusic" .
+
+:shouldConsider a owl:DatatypeProperty ;
+    rdfs:label "shouldConsider" .
 
 :showsTimeEstimate a owl:ObjectProperty ;
     rdfs:label "showsTimeEstimate" ;
@@ -335,6 +1074,15 @@
     rdfs:domain :VisualSystem ;
     rdfs:range :DisplayContent .
 
+:states a owl:DatatypeProperty ;
+    rdfs:label "states" .
+
+:suggests a owl:DatatypeProperty ;
+    rdfs:label "suggests" .
+
+:takesPlaceIn a owl:DatatypeProperty ;
+    rdfs:label "takesPlaceIn" .
+
 :targetsArousalReduction a owl:ObjectProperty ;
     rdfs:label "targetsArousalReduction" ;
     rdfs:domain :BlueScheme ;
@@ -345,10 +1093,22 @@
     rdfs:domain :VoiceAssistant ;
     rdfs:range :Speaker .
 
+:triggers a owl:DatatypeProperty ;
+    rdfs:label "triggers" .
+
+:usedAs a owl:DatatypeProperty ;
+    rdfs:label "usedAs" .
+
+:usedForEstimating a owl:DatatypeProperty ;
+    rdfs:label "usedForEstimating" .
+
 :uses a owl:ObjectProperty ;
     rdfs:label "uses" ;
     rdfs:domain :VoiceAssistant ;
     rdfs:range :Tone .
+
+:usesArchitecture a owl:DatatypeProperty ;
+    rdfs:label "usesArchitecture" .
 
 :usesBlueScheme a owl:ObjectProperty ;
     rdfs:label "usesBlueScheme" ;
@@ -368,9 +1128,21 @@
 :AbnormalPupilResponse a owl:Class ;
     rdfs:label "AbnormalPupilResponse" .
 
+:AdaptiveHMIDesign a owl:Class ;
+    rdfs:label "AdaptiveHMIDesign" .
+
+:AdaptiveHMIDesign_adaptivehmidesign1 a :AdaptiveHMIDesign ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :regulates :DriverBehavior_driverbehavior,
+        :DriverEmotion_driveremotions .
+
 :AlertPosition a owl:Class ;
     rdfs:label "AlertPosition" ;
     rdfs:subClassOf :PostureType .
+
+:Alert_emotionallyadaptivealert1 a :Alert ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isAdaptiveTo :EmotionalState .
 
 :AlternativeRoute a owl:Class ;
     rdfs:label "AlternativeRoute" .
@@ -378,12 +1150,40 @@
 :AmbientLight a owl:Class ;
     rdfs:label "AmbientLight" .
 
+:AmbientLightingFeature a owl:Class ;
+    rdfs:label "AmbientLightingFeature" .
+
+:AmbientLighting_blueAmbientLight a :AmbientLighting ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :improves :DriverState .
+
+:AmbientLighting_bluelight1 a :AmbientLighting .
+
+:AmbientLighting_orangeAmbientLight a :AmbientLighting ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :improves :DriverState .
+
 :AngleAnalyzer a owl:Class ;
     rdfs:label "AngleAnalyzer" ;
     rdfs:subClassOf :PatternAnalysis .
 
 :ArousalLevel a owl:Class ;
     rdfs:label "ArousalLevel" .
+
+:AttentionDiversion a owl:Class ;
+    rdfs:label "AttentionDiversion" .
+
+:AttentionDiversion_attentiondiversion a :AttentionDiversion ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :involves :GazeDiversionFromRoad_gazediversionfromroad .
+
+:AudioContent a owl:Class ;
+    rdfs:label "AudioContent" .
+
+:AudioContent_music a :AudioContent .
+
+:AutomationLevel a owl:Class ;
+    rdfs:label "AutomationLevel" .
 
 :AutonomousToManualTransition a owl:Class ;
     rdfs:label "Autonomous-to-Manual Transition" ;
@@ -399,6 +1199,8 @@
 
 :BackgroundSound a owl:Class ;
     rdfs:label "Background Sound" .
+
+:Benefit_benefit a :Benefit .
 
 :BodyMonitor a owl:Class ;
     rdfs:label "BodyMonitor" ;
@@ -432,6 +1234,19 @@
             owl:someValuesFrom :ObjectiveDifference ],
         :DriverStudyCapability .
 
+:CalmingMusic a owl:Class ;
+    rdfs:label "CalmingMusic" .
+
+:ChoiceArchitectureCharacteristic a owl:Class ;
+    rdfs:label "ChoiceArchitectureCharacteristic" .
+
+:ChoiceArchitectureCharacteristic_unavoidable a :ChoiceArchitectureCharacteristic .
+
+:ChoiceArchitectureFrame a owl:Class ;
+    rdfs:label "ChoiceArchitectureFrame" .
+
+:ChoiceArchitecture_choicearchitecture a :ChoiceArchitecture .
+
 :ClarityChecker a owl:Class ;
     rdfs:label "ClarityChecker" ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -441,6 +1256,17 @@
 :ClimateControl a owl:Class ;
     rdfs:label "ClimateControl" ;
     rdfs:subClassOf :VehicleSystem .
+
+:CognitiveBias a owl:Class ;
+    rdfs:label "CognitiveBias" .
+
+:CognitiveBias_cognitiveBias a :CognitiveBias .
+
+:CognitiveRegulationTechnique a owl:Class ;
+    rdfs:label "CognitiveRegulationTechnique" .
+
+:CognitiveResource a owl:Class ;
+    rdfs:label "CognitiveResource" .
 
 :ColorController a owl:Class ;
     rdfs:label "ColorController" ;
@@ -458,6 +1284,9 @@
 
 :ContrastLevel a owl:Class ;
     rdfs:label "ContrastLevel" .
+
+:CoolAir a owl:Class ;
+    rdfs:label "CoolAir" .
 
 :CoordinationSystem a owl:Class ;
     rdfs:label "CoordinationSystem" ;
@@ -499,8 +1328,32 @@
             owl:onProperty :hasInput ;
             owl:someValuesFrom :Data ] .
 
+:DataSource a owl:Class ;
+    rdfs:label "DataSource" .
+
 :DayNightSensor a owl:Class ;
     rdfs:label "DayNightSensor" .
+
+:DesignConcept a owl:Class ;
+    rdfs:label "DesignConcept" .
+
+:DesignDecision a owl:Class ;
+    rdfs:label "DesignDecision" .
+
+:DesignProcess_feedbackdesign a :DesignProcess ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :focusesOn :DriverWorkload_workload,
+        :EmotionalState .
+
+:DesignTask a owl:Class ;
+    rdfs:label "DesignTask" .
+
+:DesignTask_hmiarchitecturedesign a :DesignTask .
+
+:DesiredState a owl:Class ;
+    rdfs:label "DesiredState" .
+
+:DesiredState_optimizeddrivingemotionalstate a :DesiredState .
 
 :DisplayedInformation a owl:Class ;
     rdfs:label "DisplayedInformation" .
@@ -526,6 +1379,20 @@
             owl:onProperty :isAffectedBy ;
             owl:someValuesFrom :ExperienceMetric ] .
 
+:DriverAction a owl:Class ;
+    rdfs:label "DriverAction" .
+
+:DriverAction_selectmusic a :DriverAction ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :mayReinforce :DriverState .
+
+:DriverAlertness a owl:Class ;
+    rdfs:label "DriverAlertness" .
+
+:DriverAlertness_driveralertnessinstance a :DriverAlertness ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :resultsIn :SafeDriving_betterdrivinginstance .
+
 :DriverAssistance a owl:Class ;
     rdfs:label "Driver Assistance" .
 
@@ -535,8 +1402,89 @@
             owl:onProperty :hasConfidenceCalculation ;
             owl:someValuesFrom :ConfidenceCalculation ] .
 
+:DriverBehavior a owl:Class ;
+    rdfs:label "DriverBehavior" .
+
+:DriverEmotion_driveremotion a :DriverEmotion .
+
+:DriverEmotion_driveremotions a :DriverEmotion .
+
+:DriverError a owl:Class ;
+    rdfs:label "DriverError" .
+
+:DriverError_mistake a :DriverError .
+
+:DriverExperience a owl:Class ;
+    rdfs:label "DriverExperience" .
+
+:DriverExperience_enjoyableexperience a :DriverExperience .
+
+:DriverWorkload a owl:Class ;
+    rdfs:label "DriverWorkload" .
+
+:DriverWorkload_workload a :DriverWorkload .
+
+:Driver_angrydriver a :Driver ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :drivesAggressively "true" ;
+    :forcedToListenTo :Music_calmermusic ;
+    :hasDrivingBehavior :DriverState ;
+    :selects :AudioContent_music ;
+    :selectsMusic :Music_ownmusic .
+
+:Driver_angrydriver1 a :Driver ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasAbility :DriverAction_selectmusic .
+
+:Driver_driver a :Driver ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :adoptedPerspective :PositivePerspective_positiveperpsective ;
+    :changedInterpretationOf :FrustratingEvent_frustratingevent .
+
+:Driver_driver1 a :Driver ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasArousalState "low" .
+
+:Driver_driverinstance a :Driver .
+
+:DrivingActivity a owl:Class ;
+    rdfs:label "DrivingActivity" .
+
+:DrivingActivity_safedriving a :DrivingActivity .
+
+:DrivingCompanion a owl:Class ;
+    rdfs:label "DrivingCompanion" .
+
+:DrivingCompanion_drivingcompanion a :DrivingCompanion .
+
+:DrivingCondition a owl:Class ;
+    rdfs:label "DrivingCondition" .
+
+:DrivingCondition_optimalconditions1 a :DrivingCondition .
+
+:DrivingContext_driving a :DrivingContext .
+
+:DrivingContext_drivingContext a :DrivingContext .
+
+:DrivingExperience a owl:Class ;
+    rdfs:label "DrivingExperience" .
+
+:DrivingExperienceEnhancement a owl:Class ;
+    rdfs:label "DrivingExperienceEnhancement" .
+
+:DrivingExperienceEnhancement_drivingexperienceenhancement a :DrivingExperienceEnhancement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :occursDuring :NegativeSituation_negativesituation .
+
+:DrivingExperience_drivingExperience a :DrivingExperience .
+
 :DrivingInterface a owl:Class ;
     rdfs:label "DrivingInterface" .
+
+:DrivingSafety a owl:Class ;
+    rdfs:label "DrivingSafety" .
+
+:DrivingSafety_drivingSafety a :DrivingSafety .
 
 :ElevatedCognitiveState a owl:Class ;
     rdfs:label "ElevatedCognitiveState" ;
@@ -546,12 +1494,102 @@
     rdfs:label "EmailReading" ;
     rdfs:subClassOf :NonDrivingActivity .
 
+:EmotionDetection a owl:Class ;
+    rdfs:label "EmotionDetection" .
+
+:EmotionDetectionCapability a owl:Class ;
+    rdfs:label "EmotionDetectionCapability" .
+
+:EmotionDetectionCapability_driveremotiondetection a :EmotionDetectionCapability .
+
+:EmotionDetection_angerdetected1 a :EmotionDetection .
+
+:EmotionRegulation a owl:Class ;
+    rdfs:label "EmotionRegulation" .
+
+:EmotionRegulationTechnique_mostResearchedTechniques a :EmotionRegulationTechnique .
+
+:EmotionRegulation_negativeemotionregulation a :EmotionRegulation .
+
+:EmotionState_negativeemotionstate1 a :EmotionState .
+
+:EmotionState_positiveemotionstate1 a :EmotionState .
+
+:EmotionType_happy a :EmotionType .
+
+:EmotionType_neutral a :EmotionType .
+
+:EmotionType_sad a :EmotionType .
+
+:EmotionalContext a owl:Class ;
+    rdfs:label "EmotionalContext" .
+
+:EmotionalContext_differentContextsWhereUsersExperienceDifferentEmotions a :EmotionalContext .
+
+:EmotionalRegulationTechnique a owl:Class ;
+    rdfs:label "EmotionalRegulationTechnique" .
+
+:EmotionalResponse a owl:Class ;
+    rdfs:label "EmotionalResponse" .
+
+:EmotionalResponse_appropriateemotion a :EmotionalResponse .
+
+:Environment a owl:Class ;
+    rdfs:label "Environment" .
+
+:Environment_decisionenvironment a :Environment ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :facilitates :CognitiveState .
+
+:EnvironmentalAdaptation a owl:Class ;
+    rdfs:label "EnvironmentalAdaptation" .
+
+:EnvironmentalAdaptation_temperatureadaptation a :EnvironmentalAdaptation .
+
 :EnvironmentalScan a owl:Class ;
     rdfs:label "EnvironmentalScan" ;
     rdfs:subClassOf :Observation .
 
-:Feedback a owl:Class ;
-    rdfs:label "Feedback" .
+:Experience a owl:Class ;
+    rdfs:label "Experience" .
+
+:ExperienceFactor a owl:Class ;
+    rdfs:label "ExperienceFactor" .
+
+:ExperienceFactor_experienceenhancingFactors a :ExperienceFactor .
+
+:Experience_drivingexperience a :Experience .
+
+:Feature a owl:Class ;
+    rdfs:label "Feature" .
+
+:FeedbackChannel a owl:Class ;
+    rdfs:label "FeedbackChannel" .
+
+:FeedbackMechanism_providingFeedback a :FeedbackMechanism .
+
+:FeedbackModality_acousticspeech a :FeedbackModality .
+
+:FeedbackModality_visual a :FeedbackModality .
+
+:FeedbackType_olfactoryFeedback a :FeedbackType .
+
+:FeedbackType_visualfeedbackinstance a :FeedbackType .
+
+:FrustratingEvent a owl:Class ;
+    rdfs:label "FrustratingEvent" .
+
+:Function a owl:Class ;
+    rdfs:label "Function" .
+
+:Function_emotionregulationtool a :Function .
+
+:GazeDiversionFromRoad a owl:Class ;
+    rdfs:label "GazeDiversionFromRoad" .
+
+:GazeDiversionFromRoad_gazediversionfromroad a :GazeDiversionFromRoad ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasTarget :VisualFeedbackSource_visualfeedbacksource .
 
 :GoodAirQuality a owl:Class ;
     rdfs:label "GoodAirQuality" .
@@ -562,12 +1600,51 @@
             owl:onProperty :tracksUnderstandingMetric ;
             owl:someValuesFrom :UnderstandingMetric ] .
 
+:HMIComponent_hmicomponents a :HMIComponent ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :interactsWithDirectly :VehicleOperator_driver .
+
+:HMIDesign_hmiDesign a :HMIDesign .
+
 :HandoverSituation a owl:Class ;
     rdfs:label "HandoverSituation" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty :hasVisualization ;
             owl:someValuesFrom :LaneVisualizer ],
         :Situation .
+
+:HeatSensation a owl:Class ;
+    rdfs:label "HeatSensation" .
+
+:Heuristic_heuristic a :Heuristic .
+
+:Heuristic_ruleOfThumb a :Heuristic .
+
+:HumanMachineInterface_adaptiveHmi a :HumanMachineInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :aimsToEnsure :DrivingSafety_drivingSafety ;
+    :hasPurpose "optimize driving behavior",
+        "regulate emotions" ;
+    :hasTopicOfInterest "since 2000s" .
+
+:HumanMachineInterface_adaptivehmi a :HumanMachineInterface ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :adaptsToEmotionalState :DesiredState_optimizeddrivingemotionalstate ;
+    :detects :EmotionalState ;
+    :determines :InterventionStrategy .
+
+:Infotainment a owl:Class ;
+    rdfs:label "Infotainment" .
+
+:InfotainmentFeature a owl:Class ;
+    rdfs:label "InfotainmentFeature" .
+
+:InfotainmentSystem a owl:Class ;
+    rdfs:label "InfotainmentSystem" .
+
+:InfotainmentSystem_infotainmentSystem a :InfotainmentSystem .
+
+:Infotainment_infotainment a :Infotainment .
 
 :InfraredCamera a owl:Class ;
     rdfs:label "InfraredCamera" ;
@@ -578,15 +1655,44 @@
             owl:onProperty :enables ;
             owl:someValuesFrom :NightMonitoring ] .
 
-:Intervention a owl:Class ;
-    rdfs:label "Intervention" .
+:InputChannel a owl:Class ;
+    rdfs:label "InputChannel" .
+
+:InputChannel_voiceinputchannel a :InputChannel .
+
+:InteractionDesign a owl:Class ;
+    rdfs:label "InteractionDesign" .
+
+:InteriorFeature_salientInteriorFeature a :InteriorFeature .
 
 :JourneyDelay a owl:Class ;
     rdfs:label "JourneyDelay" .
 
+:KnowledgeBase a :KnowledgeBase,
+        owl:Class ;
+    rdfs:label "KnowledgeBase" ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :claims "Choices presented to people influence their decisions" ;
+    :states "humans are prone to making mistakes" ;
+    rdfs:subClassOf :Knowledge .
+
 :LaneVisualization a owl:Class ;
     rdfs:label "Lane Visualization" ;
     rdfs:subClassOf :InformationObject .
+
+:Lighting a owl:Class ;
+    rdfs:label "Lighting" .
+
+:LightingCondition a owl:Class ;
+    rdfs:label "LightingCondition" .
+
+:LightingCue a owl:Class ;
+    rdfs:label "LightingCue" .
+
+:LightingSystem a owl:Class ;
+    rdfs:label "LightingSystem" .
+
+:Lighting_lighting a :Lighting .
 
 :MatchingChecker a owl:Class ;
     rdfs:label "Matching Checker" ;
@@ -594,8 +1700,15 @@
             owl:onProperty :assessesCoordinationFor ;
             owl:someValuesFrom :DriverAssistanceFeature ] .
 
+:MentalState_emotionalstate a :MentalState .
+
 :MessageSystem a owl:Class ;
     rdfs:label "MessageSystem" .
+
+:Method a owl:Class ;
+    rdfs:label "Method" .
+
+:Method_effectivemethod a :Method .
 
 :MicroMovementCounter a owl:Class ;
     rdfs:label "MicroMovementCounter" ;
@@ -606,16 +1719,108 @@
 :Microphone a owl:Class ;
     rdfs:label "Microphone" .
 
+:MusicListeningActivity_sadmusiclistening a :MusicListeningActivity ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :affects :DriverState .
+
+:MusicListeningEvent a owl:Class ;
+    rdfs:label "MusicListeningEvent" .
+
+:MusicSelection_calmingmusic a :MusicSelection .
+
+:MusicSelection_selfselectedmusic a :MusicSelection .
+
+:Music_calmermusic a :Music ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isNotChoiceOf :Driver_angrydriver .
+
+:Music_calmermusic1 a :Music .
+
+:Music_ownmusic a :Music .
+
+:NavigationSystem_developingNavigationSystems a :NavigationSystem .
+
+:NegativeEvent a owl:Class ;
+    rdfs:label "NegativeEvent" .
+
+:NegativeEvent_negativeevent a :NegativeEvent .
+
+:NegativeSituation a owl:Class ;
+    rdfs:label "NegativeSituation" .
+
+:NegativeSituation_negativesituation a :NegativeSituation .
+
 :NonEssentialVisualElement a owl:Class ;
     rdfs:label "Non-essential Visual Element" ;
     rdfs:subClassOf :VisualElement .
+
+:NotificationType_olfactoryNotification a :NotificationType .
+
+:NotificationType_visualFeedback a :NotificationType .
+
+:Nudge a owl:Class ;
+    rdfs:label "Nudge" .
+
+:Nudge_nudges a :Nudge .
+
+:NudgingStrategy_invehiclenudgingstrategy a :NudgingStrategy .
+
+:NudgingTechnique a owl:Class ;
+    rdfs:label "NudgingTechnique" .
+
+:NudgingTechnique_eventreframing a :NudgingTechnique .
+
+:OutcomeDescription a owl:Class ;
+    rdfs:label "OutcomeDescription" .
+
+:OutcomeDescription_promisingresults a :OutcomeDescription .
+
+:Path a owl:Class ;
+    rdfs:label "Path" .
 
 :PedalAnalyzer a owl:Class ;
     rdfs:label "PedalAnalyzer" ;
     rdfs:subClassOf :PatternAnalysis .
 
+:PerformanceMetric a owl:Class ;
+    rdfs:label "PerformanceMetric" .
+
+:PerformanceMetric_performance a :PerformanceMetric .
+
+:PerformanceRegulation a owl:Class ;
+    rdfs:label "PerformanceRegulation" .
+
+:PerformanceRegulation_drivingperformanceregulation a :PerformanceRegulation ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :causedBy :EmotionalState .
+
+:Person a owl:Class ;
+    rdfs:label "Person" .
+
+:PhysiologicalState a owl:Class ;
+    rdfs:label "PhysiologicalState" .
+
+:PhysiologicalState_bodyreaction a :PhysiologicalState .
+
+:PhysiologicalSystem a owl:Class ;
+    rdfs:label "PhysiologicalSystem" .
+
+:PhysiologicalSystem_sympatheticNervousSystem a :PhysiologicalSystem .
+
 :PoorAirQuality a owl:Class ;
     rdfs:label "PoorAirQuality" .
+
+:PositiveAffectivity a owl:Class ;
+    rdfs:label "PositiveAffectivity" .
+
+:PositiveAffectivity_positiveaffectivityinstance a :PositiveAffectivity ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :hasSubject :Driver_driverinstance .
+
+:PositivePerspective a owl:Class ;
+    rdfs:label "PositivePerspective" .
+
+:PositivePerspective_positiveperpsective a :PositivePerspective .
 
 :PrivacyChecker a owl:Class ;
     rdfs:label "PrivacyChecker" ;
@@ -639,6 +1844,28 @@
     rdfs:label "RelaxedPosition" ;
     rdfs:subClassOf :PostureType .
 
+:Research a owl:Class ;
+    rdfs:label "Research" .
+
+:ResearchGoal a owl:Class ;
+    rdfs:label "ResearchGoal" .
+
+:ResearchGoal_idealcoloremotionmatching a :ResearchGoal .
+
+:Risk a owl:Class ;
+    rdfs:label "Risk" .
+
+:RiskFactor a owl:Class ;
+    rdfs:label "RiskFactor" .
+
+:RiskTaking_increasedrisktakingbehavior1 a :RiskTaking .
+
+:RiskTaking_increaseinrisktaking a :RiskTaking ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :relatedTo :Person_driver .
+
+:Risk_risk a :Risk .
+
 :RoadAhead a owl:Class ;
     rdfs:label "RoadAhead" .
 
@@ -653,6 +1880,32 @@
 
 :RoadType a owl:Class ;
     rdfs:label "RoadType" .
+
+:Role a owl:Class ;
+    rdfs:label "Role" .
+
+:RouteRecommendation a owl:Class ;
+    rdfs:label "RouteRecommendation" .
+
+:Route_fastestRoute a :Route .
+
+:Route_leadingRouteToSunset a :Route .
+
+:Route_passingRouteThroughBeautifulLandscape a :Route .
+
+:Route_route a :Route ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :enhances :DrivingExperience_drivingExperience .
+
+:SafeDriving a owl:Class ;
+    rdfs:label "SafeDriving" .
+
+:SafeDriving_betterdrivinginstance a :SafeDriving .
+
+:SafetyIssue a owl:Class ;
+    rdfs:label "SafetyIssue" .
+
+:SafetyIssue_majorsafetyissue a :SafetyIssue .
 
 :SeatPressurePattern a owl:Class ;
     rdfs:label "SeatPressurePattern" ;
@@ -675,7 +1928,7 @@
 :SelfReportedStress a owl:Class ;
     rdfs:label "SelfReportedStress" .
 
-:Situation a owl:Class .
+:Situation_timepressuredDeliberateActionSituations a :Situation .
 
 :SlowerReactionTime a owl:Class ;
     rdfs:label "SlowerReactionTime" ;
@@ -718,6 +1971,21 @@
             owl:onProperty :correlatesWith ;
             owl:someValuesFrom :FrustrationLevel ] .
 
+:SystemArchitecture a owl:Class ;
+    rdfs:label "SystemArchitecture" .
+
+:SystemArchitecture_nudgesbasedarchitecture a :SystemArchitecture .
+
+:System_navigationsystem a :System .
+
+:TechnicalSystem a owl:Class ;
+    rdfs:label "TechnicalSystem" .
+
+:Temperature a owl:Class ;
+    rdfs:label "Temperature" .
+
+:Temperature_temperature a :Temperature .
+
 :TimeEstimate a owl:Class ;
     rdfs:label "TimeEstimate" .
 
@@ -755,20 +2023,76 @@
             owl:onProperty :calculatesFatigueRisk ;
             owl:someValuesFrom :FatigueRisk ] .
 
+:Vehicle a owl:Class .
+
+:VehicleInteriorElement a owl:Class ;
+    rdfs:label "VehicleInteriorElement" .
+
+:VehicleInteriorElement_vehicleinteriorelements a :VehicleInteriorElement .
+
+:VehicleOperation_aggressiveacceleration a :VehicleOperation .
+
+:VehicleOperation_aggressivebraking a :VehicleOperation .
+
+:VehicleOperator a owl:Class ;
+    rdfs:label "VehicleOperator" .
+
+:VehicleOperator_driver a :VehicleOperator .
+
 :VirtualSimulator a owl:Class ;
     rdfs:label "VirtualSimulator" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty :provides ;
             owl:someValuesFrom :DriverStudyCapability ] .
 
+:VisualFeedbackSource a owl:Class ;
+    rdfs:label "VisualFeedbackSource" .
+
+:VisualFeedbackSource_visualfeedbacksource a :VisualFeedbackSource .
+
+:VisualNotification a owl:Class ;
+    rdfs:label "VisualNotification" .
+
 :Visualization a owl:Class ;
     rdfs:label "Visualization" .
+
+:VoiceAlertSystem a owl:Class ;
+    rdfs:label "VoiceAlertSystem" .
+
+:VoiceAlert_intensifiedvoicealert a :VoiceAlert .
+
+:VoiceAssistantAdaptation a owl:Class ;
+    rdfs:label "VoiceAssistantAdaptation" .
+
+:VoiceAssistantAdaptation_matchingemotionalvalenceofvoiceassistanttodriveremotion a :VoiceAssistantAdaptation ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :investigatedFor "15 years" .
+
+:VoiceAssistantOutput a owl:Class ;
+    rdfs:label "VoiceAssistantOutput" .
+
+:VoiceAssistantOutput_angryspeechoutput a :VoiceAssistantOutput ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :increases :DriverState ;
+    :reduces :DriverState .
 
 :WordChoice a owl:Class ;
     rdfs:label "WordChoice" .
 
 :Wording a owl:Class ;
     rdfs:label "Wording" .
+
+:WorkloadCondition a owl:Class ;
+    rdfs:label "WorkloadCondition" .
+
+:WorkloadCondition_increasedworkload a :WorkloadCondition ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :isDueTo :EmotionalState .
+
+:WorkloadFactor a owl:Class ;
+    rdfs:label "WorkloadFactor" .
+
+:WorkloadFactor_increasedworkloadduetonegativeemotionalstate a :WorkloadFactor .
 
 :WorkloadScale a owl:Class ;
     rdfs:label "WorkloadScale" ;
@@ -777,6 +2101,13 @@
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf ( :MentalLoad :FrustrationLevel :EffortLevel ) ] ],
         :DriverStudyCapability .
+
+:Workload_existingworkload a :Workload .
+
+:Workload_workload a :Workload .
+
+:activates a owl:DatatypeProperty ;
+    rdfs:label "activates" .
 
 :activatesThrough a owl:ObjectProperty ;
     rdfs:label "activatesThrough" ;
@@ -1462,6 +2793,16 @@
     rdfs:label "Audio Level",
         "AudioLevel" .
 
+:Benefit a owl:Class ;
+    rdfs:label "Benefit" .
+
+:ChoiceArchitecture a owl:Class ;
+    rdfs:label "ChoiceArchitecture" .
+
+:CognitiveResource_additionalcognitiveresource a :CognitiveResource ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :increases :Workload_existingworkload .
+
 :ConfusedDriver a owl:Class ;
     rdfs:label "ConfusedDriver" .
 
@@ -1478,6 +2819,9 @@
 :DecreasedHeartRateVariability a owl:Class ;
     rdfs:label "DecreasedHeartRateVariability" .
 
+:DesignProcess a owl:Class ;
+    rdfs:label "DesignProcess" .
+
 :DeviationFromNormalPattern a owl:Class ;
     rdfs:label "DeviationFromNormalPattern" .
 
@@ -1487,9 +2831,16 @@
             owl:onProperty :switches ;
             owl:someValuesFrom :DrivingInterface ] .
 
+:Distraction a :Distraction,
+        owl:Class ;
+    rdfs:label "Distraction" .
+
 :DriverAnalysis a owl:Class ;
     rdfs:label "DriverAnalysis" ;
     rdfs:subClassOf :Analysis .
+
+:DriverEmotion a owl:Class ;
+    rdfs:label "DriverEmotion" .
 
 :DriverReadiness a owl:Class ;
     rdfs:label "Driver Readiness" ;
@@ -1509,15 +2860,15 @@
             owl:onProperty :performsPatternAnalysis ;
             owl:someValuesFrom :PatternAnalysis ] .
 
+:DrivingContext a owl:Class ;
+    rdfs:label "DrivingContext" .
+
 :EffortLevel a owl:Class ;
     rdfs:label "EffortLevel" ;
     rdfs:subClassOf :DriverStudyCapability .
 
-:EnvironmentalCondition a owl:Class ;
-    rdfs:label "EnvironmentalCondition" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :influences ;
-            owl:someValuesFrom :VehicleSystem ] .
+:EmotionState a owl:Class ;
+    rdfs:label "EmotionState" .
 
 :EnvironmentalData a owl:Class ;
     rdfs:label "EnvironmentalData" .
@@ -1531,17 +2882,39 @@
 :FatigueRisk a owl:Class ;
     rdfs:label "FatigueRisk" .
 
+:Feedback a owl:Class ;
+    rdfs:label "Feedback" .
+
+:FeedbackModality a owl:Class ;
+    rdfs:label "FeedbackModality" .
+
 :ForceFeedback a owl:Class ;
     rdfs:label "ForceFeedback" .
 
+:FrustratingEvent_frustratingevent a :FrustratingEvent .
+
 :GPSResult a owl:Class ;
     rdfs:label "GPS Result" .
+
+:HMIComponent a owl:Class ;
+    rdfs:label "HMIComponent" .
+
+:HMIDesign a owl:Class ;
+    rdfs:label "HMIDesign" .
+
+:HMIDesign_hmidesign a :HMIDesign .
+
+:HMIElement a owl:Class ;
+    rdfs:label "HMIElement" .
 
 :Handover a owl:Class ;
     rdfs:label "Handover" .
 
 :HeartMonitorVariabilityAnalysis a owl:Class ;
     rdfs:label "Heart Monitor Variability Analysis" .
+
+:Heuristic a owl:Class ;
+    rdfs:label "Heuristic" .
 
 :IncomingMessage a owl:Class ;
     rdfs:label "Incoming Message",
@@ -1550,6 +2923,9 @@
 :InformationDensity a owl:Class ;
     rdfs:label "Information Density",
         "InformationDensity" .
+
+:InteriorFeature a owl:Class ;
+    rdfs:label "InteriorFeature" .
 
 :InterventionIntensity a owl:Class ;
     rdfs:label "InterventionIntensity" .
@@ -1591,21 +2967,51 @@
     rdfs:label "MentalLoad" ;
     rdfs:subClassOf :DriverStudyCapability .
 
+:MentalState a owl:Class ;
+    rdfs:label "MentalState" .
+
+:MentalState_emotion a :MentalState .
+
 :ModeTransition a owl:Class ;
     rdfs:label "Mode Transition" .
+
+:MusicListeningActivity a owl:Class ;
+    rdfs:label "MusicListeningActivity" .
 
 :MusicPlaylist a owl:Class ;
     rdfs:label "MusicPlaylist" .
 
+:MusicProperty a owl:Class ;
+    rdfs:label "MusicProperty" .
+
+:MusicSelection a owl:Class ;
+    rdfs:label "MusicSelection" .
+
 :NavigationDisplayAdaptation a owl:Class ;
     rdfs:label "Navigation Display Adaptation" .
+
+:NavigationSystem a owl:Class ;
+    rdfs:label "NavigationSystem" .
 
 :NightMonitoring a owl:Class ;
     rdfs:label "NightMonitoring" ;
     rdfs:subClassOf :Analysis .
 
+:NotificationType a owl:Class ;
+    rdfs:label "NotificationType" .
+
+:NudgingStrategy a owl:Class ;
+    rdfs:label "NudgingStrategy" .
+
 :ObjectiveDifference a owl:Class ;
     rdfs:label "ObjectiveDifference" .
+
+:Person_driver a :Person ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :desires :ExperienceFactor_experienceenhancingFactors,
+        :Route_fastestRoute ;
+    :hasPositiveRating :Route_leadingRouteToSunset,
+        :Route_passingRouteThroughBeautifulLandscape .
 
 :PhysicalStateChange a owl:Class ;
     rdfs:label "PhysicalStateChange" .
@@ -1642,6 +3048,15 @@
 
 :Regulation a owl:Class ;
     rdfs:label "Regulation" .
+
+:RiskPerception a :RiskPerception,
+        owl:Class ;
+    rdfs:label "RiskPerception" .
+
+:RiskTaking a owl:Class ;
+    rdfs:label "RiskTaking" ;
+    rdfs:subClassOf :PersonalityTrait,
+        :PersonalityTraits .
 
 :RoadComplexityAnalysis a owl:Class ;
     rdfs:label "Road Complexity Analysis" .
@@ -1682,6 +3097,8 @@
 
 :SimpleDisplay a owl:Class ;
     rdfs:label "SimpleDisplay" .
+
+:Situation a owl:Class .
 
 :SkinSensorSweatAnalysis a owl:Class ;
     rdfs:label "Skin Sensor Sweat Analysis" .
@@ -1740,6 +3157,9 @@
             owl:onProperty :affects ;
             owl:someValuesFrom :PostureAnalysis ] .
 
+:System a owl:Class ;
+    rdfs:label "System" .
+
 :TouchCues a owl:Class ;
     rdfs:label "TouchCues" ;
     rdfs:subClassOf :Cue .
@@ -1755,6 +3175,12 @@
 
 :UnderstandingMetric a owl:Class ;
     rdfs:label "UnderstandingMetric" .
+
+:VehicleComponent a owl:Class ;
+    rdfs:label "VehicleComponent" .
+
+:VehicleOperation a owl:Class ;
+    rdfs:label "VehicleOperation" .
 
 :VisibilityData a owl:Class ;
     rdfs:label "VisibilityData" .
@@ -1777,6 +3203,9 @@
 :WeatherMonitorReading a owl:Class ;
     rdfs:label "WeatherMonitorReading" ;
     rdfs:subClassOf :WeatherMonitor .
+
+:Workload a owl:Class ;
+    rdfs:label "Workload" .
 
 :adaptsTo a owl:ObjectProperty ;
     rdfs:label "adaptsTo" ;
@@ -1923,14 +3352,15 @@
 :AcceleratorSensor a owl:Class ;
     rdfs:label "AcceleratorSensor" .
 
+:Action a :Action,
+        owl:Class ;
+    rdfs:label "Action" .
+
 :AdaptationRuleParameter a owl:Class ;
     rdfs:label "AdaptationRuleParameter" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty :influencedBy ;
             owl:someValuesFrom :PersonalityTrait ] .
-
-:Alert a owl:Class ;
-    rdfs:label "Alert" .
 
 :BlueScheme a owl:Class ;
     rdfs:label "BlueScheme" .
@@ -1991,6 +3421,10 @@
 :Cue a owl:Class ;
     rdfs:label "Cue" .
 
+:Decision a :Decision,
+        owl:Class ;
+    rdfs:label "Decision" .
+
 :Display a owl:Class ;
     rdfs:label "Display" ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -2010,6 +3444,8 @@
 :DistractionState a owl:Class ;
     rdfs:label "Distraction State" .
 
+:DriverBehavior_driverbehavior a :DriverBehavior .
+
 :DriverProfile a owl:Class ;
     rdfs:label "DriverProfile" ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -2018,6 +3454,18 @@
         [ a owl:Restriction ;
             owl:onProperty :hasAgeFactors ;
             owl:someValuesFrom :AgeFactors ] .
+
+:EmotionType a owl:Class ;
+    rdfs:label "EmotionType" .
+
+:EnvironmentalCondition a owl:Class ;
+    rdfs:label "EnvironmentalCondition" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :influences ;
+            owl:someValuesFrom :VehicleSystem ] .
+
+:FeedbackMechanism a owl:Class ;
+    rdfs:label "FeedbackMechanism" .
 
 :FocusAnalysis a owl:Class ;
     rdfs:label "Focus Analysis",
@@ -2054,6 +3502,25 @@
 :HighCongestion a owl:Class ;
     rdfs:label "High Congestion",
         "HighCongestion" .
+
+:Intention a :Intention,
+        owl:Class ;
+    rdfs:label "Intention" .
+
+:InteriorElement a owl:Class ;
+    rdfs:label "InteriorElement" .
+
+:Intervention a owl:Class ;
+    rdfs:label "Intervention" .
+
+:InterventionStrategy a :InterventionStrategy,
+        owl:Class ;
+    rdfs:label "InterventionStrategy" ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :dependsOn :CognitiveState,
+        :MentalState_emotion ;
+    :influences :CognitiveState ;
+    rdfs:subClassOf :Intervention .
 
 :LaneControllerIntervention a owl:Class ;
     rdfs:label "LaneControllerIntervention" ;
@@ -2180,6 +3647,14 @@
 :VehicleSystemAdaptationEffectiveness a owl:Class ;
     rdfs:label "VehicleSystemAdaptationEffectiveness" .
 
+:Vehicle_vehicle a :Vehicle .
+
+:VoiceAlert a owl:Class ;
+    rdfs:label "VoiceAlert" .
+
+:VoiceInterface a owl:Class ;
+    rdfs:label "VoiceInterface" .
+
 :WaveAnalysis a owl:Class ;
     rdfs:label "WaveAnalysis" ;
     rdfs:subClassOf :DriverStudyCapability .
@@ -2241,9 +3716,15 @@
             owl:unionOf ( :PersonalityTrait :PersonalityScore ) ],
         :PersonalityTraits .
 
+:Alert a owl:Class ;
+    rdfs:label "Alert" .
+
 :AlertMessage a owl:Class ;
     rdfs:label "AlertMessage" ;
     rdfs:subClassOf :VisualElement .
+
+:AmbientLighting a owl:Class ;
+    rdfs:label "AmbientLighting" .
 
 :ConductanceAnalysis a owl:Class ;
     rdfs:label "Conductance Analysis",
@@ -2260,18 +3741,6 @@
         [ a owl:Restriction ;
             owl:onProperty :hasContrast ;
             owl:someValuesFrom xsd:float ] .
-
-:Driver a owl:Class ;
-    rdfs:label "Driver" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :hasDriverCharacteristics ;
-            owl:someValuesFrom :DriverCharacteristics ],
-        [ a owl:Restriction ;
-            owl:onProperty :hasReactionTime ;
-            owl:someValuesFrom :ReactionTime ],
-        [ a owl:Restriction ;
-            owl:onProperty :hasPersonalityTraits ;
-            owl:someValuesFrom :PersonalityTraits ] .
 
 :DriverPreferences a owl:Class ;
     rdfs:label "DriverPreferences" ;
@@ -2373,8 +3842,8 @@
             owl:onProperty :measuredPollenLevel ;
             owl:someValuesFrom :PollenLevel ] .
 
-:ReactionTime a owl:Class ;
-    rdfs:label "ReactionTime" .
+:Route a owl:Class ;
+    rdfs:label "Route" .
 
 :ThetaPattern a owl:Class ;
     rdfs:label "ThetaPattern" .
@@ -2456,6 +3925,16 @@
             owl:onProperty :performs ;
             owl:someValuesFrom :DriverAnalysis ] .
 
+:DrivingPerformance a :DrivingPerformance,
+        owl:Class ;
+    rdfs:label "DrivingPerformance" .
+
+:EmotionRegulationTechnique a owl:Class ;
+    rdfs:label "EmotionRegulationTechnique" .
+
+:FeedbackType a owl:Class ;
+    rdfs:label "FeedbackType" .
+
 :HeartMonitor a owl:Class ;
     rdfs:label "HeartMonitor" ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -2479,6 +3958,9 @@
         :DriverStudyCapability,
         :PhysiologicalMonitor .
 
+:HumanMachineInterface a owl:Class ;
+    rdfs:label "HumanMachineInterface" .
+
 :InstrumentPanel a owl:Class ;
     rdfs:label "Instrument Panel",
         "InstrumentPanel" ;
@@ -2497,6 +3979,9 @@
         :DriverAssistanceFeature,
         :VehicleSystem,
         :VisualSystem .
+
+:Music a owl:Class ;
+    rdfs:label "Music" .
 
 :PersonalityTrait a owl:Class ;
     rdfs:label "PersonalityTrait" .
@@ -2616,6 +4101,10 @@
         :VehicleSystem,
         :VisualSystem .
 
+:ReactionTime a :ReactionTime,
+        owl:Class ;
+    rdfs:label "ReactionTime" .
+
 :RoadSensor a owl:Class ;
     rdfs:label "RoadSensor" .
 
@@ -2728,36 +4217,6 @@
             owl:someValuesFrom :InstrumentPanel ],
         :DriverStudyCapability .
 
-:VoiceAssistant a owl:Class ;
-    rdfs:label "Voice Assistant",
-        "VoiceAssistant" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :adapts ;
-            owl:someValuesFrom :ToneOfVoice ],
-        [ a owl:Restriction ;
-            owl:onProperty :adapts ;
-            owl:someValuesFrom :WordChoice ],
-        [ a owl:Restriction ;
-            owl:onProperty :outputsThrough ;
-            owl:someValuesFrom :Speaker ],
-        [ a owl:Restriction ;
-            owl:onProperty :adaptsBasedOn ;
-            owl:someValuesFrom :HighCognitiveLoad ],
-        [ a owl:Restriction ;
-            owl:onProperty :generates ;
-            owl:someValuesFrom :Alert ],
-        [ a owl:Restriction ;
-            owl:onProperty :makesTiming ;
-            owl:someValuesFrom :TimingAdjustment ],
-        [ a owl:Restriction ;
-            owl:onProperty :generatesAlert ;
-            owl:someValuesFrom :Alert ],
-        [ a owl:Restriction ;
-            owl:onProperty :usesCalmerToneFor ;
-            owl:someValuesFrom :HighCognitiveLoad ],
-        :DriverAssistanceFeature,
-        :VehicleSystem .
-
 :detectsPattern a owl:ObjectProperty ;
     rdfs:label "detectsPattern" ;
     rdfs:domain [ a owl:Class ;
@@ -2776,21 +4235,6 @@
         owl:Thing ;
     rdfs:range :Analysis,
         :FrustrationDetection .
-
-:DriverState a owl:Class ;
-    rdfs:label "DriverState" ;
-    rdfs:subClassOf :CognitiveState,
-        :DriverStudyCapability .
-
-:EmotionalState a owl:Class ;
-    rdfs:label "Emotional State",
-        "EmotionalState" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :hasStressLevel ;
-            owl:someValuesFrom :StressLevel ],
-        [ a owl:Restriction ;
-            owl:onProperty :resultsFrom ;
-            owl:someValuesFrom :PatternAnalysis ] .
 
 :NoddingPattern a owl:Class ;
     rdfs:label "NoddingPattern" ;
@@ -2897,6 +4341,18 @@
     rdfs:range [ owl:unionOf ( :GazeAnalysis :BlinkAnalysis :PupilAnalysis ) ],
         owl:Thing .
 
+:Driver a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :hasDriverCharacteristics ;
+            owl:someValuesFrom :DriverCharacteristics ],
+        [ a owl:Restriction ;
+            owl:onProperty :hasReactionTime ;
+            owl:someValuesFrom :ReactionTime ],
+        [ a owl:Restriction ;
+            owl:onProperty :hasPersonalityTraits ;
+            owl:someValuesFrom :PersonalityTraits ] .
+
 :Observation a owl:Class ;
     rdfs:label "Observation" .
 
@@ -2922,6 +4378,36 @@
             owl:onProperty :detectsChangesIn ;
             owl:someValuesFrom :CognitiveState ],
         :EyeTracking .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:label "Voice Assistant",
+        "VoiceAssistant" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :adapts ;
+            owl:someValuesFrom :ToneOfVoice ],
+        [ a owl:Restriction ;
+            owl:onProperty :adapts ;
+            owl:someValuesFrom :WordChoice ],
+        [ a owl:Restriction ;
+            owl:onProperty :outputsThrough ;
+            owl:someValuesFrom :Speaker ],
+        [ a owl:Restriction ;
+            owl:onProperty :adaptsBasedOn ;
+            owl:someValuesFrom :HighCognitiveLoad ],
+        [ a owl:Restriction ;
+            owl:onProperty :generates ;
+            owl:someValuesFrom :Alert ],
+        [ a owl:Restriction ;
+            owl:onProperty :makesTiming ;
+            owl:someValuesFrom :TimingAdjustment ],
+        [ a owl:Restriction ;
+            owl:onProperty :generatesAlert ;
+            owl:someValuesFrom :Alert ],
+        [ a owl:Restriction ;
+            owl:onProperty :usesCalmerToneFor ;
+            owl:someValuesFrom :HighCognitiveLoad ],
+        :DriverAssistanceFeature,
+        :VehicleSystem .
 
 :performs a owl:ObjectProperty ;
     rdfs:label "performs" ;
@@ -3117,9 +4603,77 @@
             owl:onProperty :detectsCognitiveState ;
             owl:someValuesFrom :CognitiveState ] .
 
-:CognitiveState a owl:Class ;
+:DriverState a :DriverState,
+        owl:Class ;
+    rdfs:label "DriverState" ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :canCauseIssue :SafetyIssue_majorsafetyissue ;
+    :involves :VehicleOperation_aggressiveacceleration,
+        :VehicleOperation_aggressivebraking ;
+    :isCausedBy :WorkloadCondition_increasedworkload ;
+    :isOpposedTo :DriverState ;
+    ns1:type :DriverState ;
+    :triggers :VoiceAssistantOutput_angryspeechoutput ;
+    rdfs:subClassOf :CognitiveState,
+        :DriverStudyCapability .
+
+:EmotionalState a :EmotionalState,
+        owl:Class ;
+    rdfs:label "Emotional State",
+        "EmotionalState" ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :associatedWith :System_navigationsystem ;
+    :canBenefitFrom :EnvironmentalAdaptation_temperatureadaptation ;
+    :canCauseBehavior :DriverState ;
+    :causesOrInfluences :DriverState ;
+    :enables :DrivingCondition_optimalconditions1 ;
+    :hasDuration "temporary" ;
+    :hasImpact :DrivingContext_drivingContext ;
+    :hasRegulationTechnique :AmbientLighting_bluelight1 ;
+    :increases :Workload_workload ;
+    :influences :Action,
+        :Decision,
+        :DriverState,
+        :DrivingPerformance,
+        :Intention,
+        :ReactionTime ;
+    :isExemplifiedBy :EmotionalState ;
+    :leads_to :RiskTaking_increasedrisktakingbehavior1,
+        :RiskTaking_increaseinrisktaking ;
+    :negativelyInfluences :Distraction,
+        :RiskPerception ;
+    :triggers :VoiceAlert_intensifiedvoicealert ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :hasStressLevel ;
+            owl:someValuesFrom :StressLevel ],
+        [ a owl:Restriction ;
+            owl:onProperty :resultsFrom ;
+            owl:someValuesFrom :PatternAnalysis ] .
+
+:DriverStudyCapability a owl:Class ;
+    rdfs:label "DriverStudyCapability" .
+
+:CognitiveState a :CognitiveState,
+        owl:Class ;
     rdfs:label "Cognitive State",
         "CognitiveState" ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    :alters :CognitiveState ;
+    :appliesTo :Vehicle_vehicle ;
+    :assists :CognitiveState ;
+    :dependsOn :EmotionalState ;
+    :hasCharacteristic "emotionally impacted",
+        "instinctive",
+        "irrational" ;
+    :isImportantFor :Situation_timepressuredDeliberateActionSituations ;
+    :isInfluencedBy :MentalState_emotion ;
+    :limits :CognitiveState ;
+    :occursIn :Vehicle_vehicle ;
+    :reduces "amount of information required for decision-making" ;
+    :takesPlaceIn :Vehicle_vehicle ;
+    :usedAs :CognitiveState ;
+    :usedForEstimating :Benefit_benefit,
+        :Risk_risk ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty :includes ;
             owl:someValuesFrom :StressLevel ],
@@ -3130,9 +4684,6 @@
             owl:onProperty :isDetectedBy ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf ( :VisibilityMeasure :TrafficMonitor :GripSensor :PhysiologicalMonitor :DriverFacingCamera :ContextAnalyzer ) ] ] .
-
-:DriverStudyCapability a owl:Class ;
-    rdfs:label "DriverStudyCapability" .
 
 [] a owl:Class ;
     rdfs:subClassOf :AirQuality ;

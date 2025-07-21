@@ -1,0 +1,61 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State" .
+
+:GPSResult a owl:Class ;
+    rdfs:label "GPS Result" .
+
+:MapAnalyzerResult a owl:Class ;
+    rdfs:label "Map Analyzer Result" .
+
+:CognitiveStateMeasurement a owl:Class ;
+    rdfs:label "Cognitive State Measurement" ;
+    rdfs:subClassOf :Observation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isObservationOf ;
+        owl:onClass :CognitiveState ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+:GPSObservation a owl:Class ;
+    rdfs:label "GPS Observation" ;
+    rdfs:subClassOf :Observation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasResult ;
+        owl:onClass :GPSResult ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+:MapAnalyzerObservation a owl:Class ;
+    rdfs:label "Map Analyzer Observation" ;
+    rdfs:subClassOf :Observation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasResult ;
+        owl:onClass :MapAnalyzerResult ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+:hasResult a owl:ObjectProperty ;
+    rdfs:label "has result" ;
+    rdfs:domain :Observation ;
+    rdfs:range [ rdf:type owl:Class ;
+                 owl:unionOf (:GPSResult :MapAnalyzerResult)
+               ] .
+
+:isObservationOf a owl:ObjectProperty ;
+    rdfs:label "is observation of" ;
+    rdfs:domain :Observation ;
+    rdfs:range owl:Thing .
+
+:Observation a owl:Class ;
+    rdfs:label "Observation" .

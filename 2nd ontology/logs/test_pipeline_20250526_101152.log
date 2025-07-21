@@ -1,0 +1,5 @@
+2025-05-26 10:11:52,237 - __main__ - INFO - Loaded 3 patterns from data/patterns.csv
+2025-05-26 10:11:52,237 - __main__ - INFO - Pattern names: ['Situation', 'isPartOf', 'isParameterFor']
+2025-05-26 10:11:52,237 - __main__ - INFO - Starting test pipeline with AUTHORIZED PATTERNS from patterns.csv
+2025-05-26 10:11:52,237 - __main__ - INFO - Processing competency question 1: What PostureState indicators signal a driver's tra...
+2025-05-26 10:11:52,237 - __main__ - INFO - Using 1 authorized patterns

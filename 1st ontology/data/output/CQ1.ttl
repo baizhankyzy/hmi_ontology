@@ -1,0 +1,165 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:HeadPosition a owl:Class ;
+    rdfs:label "Head Position"@en ;
+    rdfs:subClassOf ahmi:PostureState .
+
+ahmi:EyeTracking a owl:Class ;
+    rdfs:label "Eye Tracking"@en ;
+    rdfs:subClassOf ahmi:PostureState .
+
+ahmi:BlinkDuration a owl:Class ;
+    rdfs:label "Blink Duration"@en ;
+    rdfs:subClassOf ahmi:PostureState .
+
+ahmi:Drowsiness a owl:Class ;
+    rdfs:label "Drowsiness"@en ;
+    rdfs:subClassOf ahmi:InattentionState .
+
+ahmi:Fatigue a owl:Class ;
+    rdfs:label "Fatigue"@en ;
+    rdfs:subClassOf ahmi:InattentionState .
+
+ahmi:InattentionState a owl:Class ;
+    rdfs:label "Inattention State"@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:hasPostureIndicator a owl:ObjectProperty ;
+    rdfs:label "has posture indicator"@en ;
+    rdfs:domain ahmi:InattentionState ;
+    rdfs:range ahmi:PostureState .
+
+ahmi:hasDetectionMethod a owl:ObjectProperty ;
+    rdfs:label "has detection method"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DetectionMethod .
+
+ahmi:DetectionMethod a owl:Class ;
+    rdfs:label "Detection Method"@en .
+
+ahmi:VisualSensor a owl:Class ;
+    rdfs:label "Visual Sensor"@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:BehavioralAnalysis a owl:Class ;
+    rdfs:label "Behavioral Analysis"@en ;
+    rdfs:subClassOf ahmi:DetectionMethod .
+
+ahmi:hasVisualFeedback a owl:ObjectProperty ;
+    rdfs:label "has visual feedback"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:VisualFeedback .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:hasTactileFeedback a owl:ObjectProperty ;
+    rdfs:label "has tactile feedback"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:TactileFeedback .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en .
+
+ahmi:HapticAlert a owl:Class ;
+    rdfs:label "Haptic Alert"@en ;
+    rdfs:subClassOf ahmi:TactileFeedback .
+
+ahmi:hasAudioFeedback a owl:ObjectProperty ;
+    rdfs:label "has audio feedback"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:AudioFeedback .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en .
+
+ahmi:AuditoryDisplay a owl:Class ;
+    rdfs:label "Auditory Display"@en ;
+    rdfs:subClassOf ahmi:AudioFeedback .
+
+ahmi:hasDialogFeedback a owl:ObjectProperty ;
+    rdfs:label "has dialog feedback"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DialogFeedback .
+
+ahmi:DialogFeedback a owl:Class ;
+    rdfs:label "Dialog Feedback"@en .
+
+ahmi:MessageStructure a owl:Class ;
+    rdfs:label "Message Structure"@en ;
+    rdfs:subClassOf ahmi:DialogFeedback .
+
+ahmi:hasAdaptivityParameter a owl:ObjectProperty ;
+    rdfs:label "has adaptivity parameter"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:AdaptivityParameter .
+
+ahmi:AdaptivityParameter a owl:Class ;
+    rdfs:label "Adaptivity Parameter"@en ;
+    rdfs:subClassOf dul:Parameter .
+
+ahmi:ForceFeedback a owl:Class ;
+    rdfs:label "Force Feedback"@en ;
+    rdfs:subClassOf ahmi:TactileFeedback .
+
+ahmi:DrivingBehavior a owl:Class ;
+    rdfs:label "Driving Behavior"@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:hasIndicatorFor a owl:ObjectProperty ;
+    rdfs:label "has indicator for"@en ;
+    rdfs:domain ahmi:PostureState ;
+    rdfs:range ahmi:InattentionState .
+
+ahmi:isDetectedBy a owl:ObjectProperty ;
+    rdfs:label "is detected by"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DetectionMethod .
+
+ahmi:triggers a owl:ObjectProperty ;
+    rdfs:label "triggers"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:Feedback .
+
+ahmi:Feedback a owl:Class ;
+    rdfs:label "Feedback"@en ;
+    rdfs:equivalentClass owl:unionOf(ahmi:VisualFeedback ahmi:TactileFeedback ahmi:AudioFeedback ahmi:DialogFeedback) .
+
+ahmi:hasParameter a owl:ObjectProperty ;
+    rdfs:label "has parameter"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:AdaptivityParameter .
+
+ahmi:isRelatedTo a owl:ObjectProperty ;
+    rdfs:label "is related to"@en ;
+    rdfs:domain ahmi:DrivingBehavior ;
+    rdfs:range ahmi:DriverState .

@@ -1,0 +1,82 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:PersonalityFactor a owl:Class ;
+    rdfs:label "Personality Factor"@en ;
+    rdfs:comment "A set of personality traits that characterize an individual."@en .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A system integrated into a vehicle to provide adaptive human-machine interfaces (HMIs)."@en .
+
+ahmi:Adaptation a owl:Class ;
+    rdfs:label "Adaptation"@en ;
+    rdfs:comment "A change or adjustment made by the vehicle system in response to driver states or contextual factors."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, emotional, or physiological condition of the driver."@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The mental state of the driver related to attention, workload, and information processing."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "A state where the driver's attention is diverted from the driving task."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:PersonalityFactorProfile a owl:Class ;
+    rdfs:label "Personality Factor Profile"@en ;
+    rdfs:comment "A representation of an individual's personality traits based on assessments."@en ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:hasPersonalityFactor a owl:ObjectProperty ;
+    rdfs:label "has personality factor"@en ;
+    rdfs:domain ahmi:PersonalityFactorProfile ;
+    rdfs:range ahmi:PersonalityFactor .
+
+ahmi:triggersAdaptation a owl:ObjectProperty ;
+    rdfs:label "triggers adaptation"@en ;
+    rdfs:comment "Relates a driver state or situation to the adaptation triggered by the vehicle system."@en ;
+    rdfs:domain dul:Situation ;
+    rdfs:range ahmi:Adaptation .
+
+ahmi:hasAdaptation a owl:ObjectProperty ;
+    rdfs:label "has adaptation"@en ;
+    rdfs:comment "Relates a vehicle system to the adaptations it can perform."@en ;
+    rdfs:domain ahmi:VehicleSystem ;
+    rdfs:range ahmi:Adaptation .
+
+ahmi:responsiveToAdaptation a owl:ObjectProperty ;
+    rdfs:label "responsive to adaptation"@en ;
+    rdfs:comment "Relates a personality factor or driver state to the adaptations that are effective for that factor or state."@en ;
+    rdfs:domain owl:Union(ahmi:PersonalityFactor ahmi:DriverState) ;
+    rdfs:range ahmi:Adaptation .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a situation to the driver state it represents."@en ;
+    rdfs:domain dul:Situation ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:equivalentProperty dul:satisfies ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en .
+
+ahmi:isPartOf a owl:ObjectProperty ;
+    rdfs:equivalentProperty dul:isPartOf ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "A relation between any entities, e.g. 'brain is a part of the human body'."@en .
+
+ahmi:isParameterFor a owl:ObjectProperty ;
+    rdfs:equivalentProperty dul:isParameterFor ;
+    rdfs:label "is parameter for"@en ;
+    rdfs:comment "A concept can have a parameter that constrains the attributes that a classified entity can have in a certain situation."@en .

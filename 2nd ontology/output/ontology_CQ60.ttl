@@ -1,0 +1,355 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:ConstructionDetector a owl:Class ;
+    rdfs:label "ConstructionDetector" .
+
+:EnvironmentalScan a owl:Class ;
+    rdfs:label "EnvironmentalScan" ;
+    rdfs:subClassOf :Observation .
+
+:FrontCamera a owl:Class ;
+    rdfs:label "FrontCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :EnvironmentalScan
+    ] .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :calculates ;
+        owl:someValuesFrom :TransitionTiming
+    ] .
+
+:TransitionTiming a owl:Class ;
+    rdfs:label "TransitionTiming" .
+
+:DriverMonitor a owl:Class ;
+    rdfs:label "DriverMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :assesses ;
+        owl:someValuesFrom :DriverState
+    ] .
+
+:DriverState a owl:Class ;
+    rdfs:label "DriverState" .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :DriverAnalysis
+    ] .
+
+:DriverAnalysis a owl:Class ;
+    rdfs:label "DriverAnalysis" .
+
+:InfraredCamera a owl:Class ;
+    rdfs:label "InfraredCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :enables ;
+        owl:someValuesFrom :NightMonitoring
+    ] .
+
+:NightMonitoring a owl:Class ;
+    rdfs:label "NightMonitoring" .
+
+:DistractionDetector a owl:Class ;
+    rdfs:label "DistractionDetector" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :identifies ;
+        owl:someValuesFrom :NonDrivingActivity
+    ] .
+
+:NonDrivingActivity a owl:Class ;
+    rdfs:label "NonDrivingActivity" .
+
+:CenterDisplay a owl:Class ;
+    rdfs:label "CenterDisplay" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :displays ;
+        owl:someValuesFrom :EmailReading
+    ] .
+
+:EmailReading a owl:Class ;
+    rdfs:subClassOf :NonDrivingActivity ;
+    rdfs:label "EmailReading" .
+
+:SeatSensor a owl:Class ;
+    rdfs:label "SeatSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :PostureType
+    ] .
+
+:PostureType a owl:Class ;
+    rdfs:label "PostureType" .
+
+:RelaxedPosition a owl:Class ;
+    rdfs:subClassOf :PostureType ;
+    rdfs:label "RelaxedPosition" .
+
+:AlertnessAnalyzer a owl:Class ;
+    rdfs:label "AlertnessAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicates ;
+        owl:someValuesFrom :CognitiveState
+    ] .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:LowVigilance a owl:Class ;
+    rdfs:subClassOf :CognitiveState ;
+    rdfs:label "LowVigilance" .
+
+:TransitionProtocol a owl:Class ;
+    rdfs:label "TransitionProtocol" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :initiates ;
+        owl:someValuesFrom :Handover
+    ] .
+
+:Handover a owl:Class ;
+    rdfs:label "Handover" .
+
+:CoordinationSystem a owl:Class ;
+    rdfs:label "CoordinationSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :manages ;
+        owl:someValuesFrom :Feedback
+    ] .
+
+:Feedback a owl:Class ;
+    rdfs:label "Feedback" .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjusts ;
+        owl:someValuesFrom :AmbientLight
+    ] .
+
+:AmbientLight a owl:Class ;
+    rdfs:label "AmbientLight" .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :generates ;
+        owl:someValuesFrom :TransitionNotice
+    ] .
+
+:TransitionNotice a owl:Class ;
+    rdfs:label "TransitionNotice" .
+
+:Speaker a owl:Class ;
+    rdfs:label "Speaker" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :outputs ;
+        owl:someValuesFrom :TransitionNotice
+    ] .
+
+:DisplayController a owl:Class ;
+    rdfs:label "DisplayController" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :switches ;
+        owl:someValuesFrom :DrivingInterface
+    ] .
+
+:DrivingInterface a owl:Class ;
+    rdfs:label "DrivingInterface" .
+
+:HeadUpDisplay a owl:Class ;
+    rdfs:label "HeadUpDisplay" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :highlights ;
+        owl:someValuesFrom :RoadInformation
+    ] .
+
+:RoadInformation a owl:Class ;
+    rdfs:label "RoadInformation" .
+
+:CountdownTimer a owl:Class ;
+    rdfs:label "CountdownTimer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :shows ;
+        owl:someValuesFrom :TimeToHandover
+    ] .
+
+:TimeToHandover a owl:Class ;
+    rdfs:label "TimeToHandover" .
+
+:LaneVisualizer a owl:Class ;
+    rdfs:label "LaneVisualizer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :displays ;
+        owl:someValuesFrom :RoadAhead
+    ] .
+
+:RoadAhead a owl:Class ;
+    rdfs:label "RoadAhead" .
+
+:PostureController a owl:Class ;
+    rdfs:label "PostureController" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :activates ;
+        owl:someValuesFrom :SeatAdjuster
+    ] .
+
+:SeatAdjuster a owl:Class ;
+    rdfs:label "SeatAdjuster" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :changes ;
+        owl:someValuesFrom :AlertPosition
+    ] .
+
+:AlertPosition a owl:Class ;
+    rdfs:subClassOf :PostureType ;
+    rdfs:label "AlertPosition" .
+
+:SeatVibrator a owl:Class ;
+    rdfs:label "SeatVibrator" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :provides ;
+        owl:someValuesFrom :TouchCue
+    ] .
+
+:TouchCue a owl:Class ;
+    rdfs:label "TouchCue" .
+
+:MonitoringSystem a owl:Class ;
+    rdfs:label "MonitoringSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :tracks ;
+        owl:someValuesFrom :Readiness
+    ] .
+
+:Readiness a owl:Class ;
+    rdfs:label "Readiness" .
+
+:EyeTracking a owl:Class ;
+    rdfs:label "EyeTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :monitors ;
+        owl:someValuesFrom :GazePattern
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty :monitors ;
+        owl:someValuesFrom :PupilSize
+    ] .
+
+:GazePattern a owl:Class ;
+    rdfs:label "GazePattern" .
+
+:PupilSize a owl:Class ;
+    rdfs:label "PupilSize" .
+
+:HeadTracking a owl:Class ;
+    rdfs:label "HeadTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :confirms ;
+        owl:someValuesFrom :ProperOrientation
+    ] .
+
+:ProperOrientation a owl:Class ;
+    rdfs:label "ProperOrientation" .
+
+:PostureTracking a owl:Class ;
+    rdfs:label "PostureTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :verifies ;
+        owl:someValuesFrom :AttentivePosition
+    ] .
+
+:AttentivePosition a owl:Class ;
+    rdfs:subClassOf :PostureType ;
+    rdfs:label "AttentivePosition" .
+
+:TimingController a owl:Class ;
+    rdfs:label "TimingController" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjusts ;
+        owl:someValuesFrom :Handover
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty :basedOn ;
+        owl:someValuesFrom :ReadinessScore
+    ] .
+
+:ReadinessScore a owl:Class ;
+    rdfs:label "ReadinessScore" .
+
+:TrustAlgorithm a owl:Class ;
+    rdfs:label "TrustAlgorithm" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :ensures ;
+        owl:someValuesFrom :SmoothTransition
+    ] .
+
+:SmoothTransition a owl:Class ;
+    rdfs:label "SmoothTransition" .
+
+:performs a owl:ObjectProperty ;
+    rdfs:label "performs" .
+
+:calculates a owl:ObjectProperty ;
+    rdfs:label "calculates" .
+
+:assesses a owl:ObjectProperty ;
+    rdfs:label "assesses" .
+
+:enables a owl:ObjectProperty ;
+    rdfs:label "enables" .
+
+:identifies a owl:ObjectProperty ;
+    rdfs:label "identifies" .
+
+:displays a owl:ObjectProperty ;
+    rdfs:label "displays" .
+
+:detects a owl:ObjectProperty ;
+    rdfs:label "detects" .
+
+:indicates a owl:ObjectProperty ;
+    rdfs:label "indicates" .
+
+:initiates a owl:ObjectProperty ;
+    rdfs:label "initiates" .
+
+:manages a owl:ObjectProperty ;

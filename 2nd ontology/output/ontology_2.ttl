@@ -1,0 +1,132 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :EyeTracking
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :HeadTracking
+    ] .
+
+:PhysiologicalMonitor a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :BodyMeasurement
+    ] .
+
+:EyeTracking a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :includesAnalysis ;
+        owl:someValuesFrom :GazeAnalysis
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty :includesAnalysis ;
+        owl:someValuesFrom :BlinkAnalysis
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty :includesAnalysis ;
+        owl:someValuesFrom :PupilAnalysis
+    ] .
+
+:BodyMeasurement a owl:Class .
+
+:HeadTracking a owl:Class .
+
+:GazeAnalysis a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :IrregularGazePattern
+    ] .
+
+:BlinkAnalysis a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :ReducedBlinkRate
+    ] .
+
+:PupilAnalysis a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :AbnormalPupilSize
+    ] .
+
+:HeadTracking a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :NoddingPattern
+    ] .
+
+:HeartRateAnalysis a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :DecreasedHeartRateVariability
+    ] .
+
+:BrainWaveAnalysis a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsState ;
+        owl:someValuesFrom :ThetaPattern
+    ] .
+
+:DrowsinessState a owl:Class ;
+    rdfs:subClassOf :InattentionState .
+
+:FatigueState a owl:Class ;
+    rdfs:subClassOf :InattentionState .
+
+:InattentionState a owl:Class ;
+    rdfs:subClassOf :CognitiveState .
+
+:CognitiveState a owl:Class .
+
+:NoddingPattern a owl:Class ;
+    rdfs:subClassOf :HeadPosition .
+
+:HeadPosition a owl:Class .
+
+:ReducedBlinkRate a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:IrregularGazePattern a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:AbnormalPupilSize a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:EyesCharacteristics a owl:Class .
+
+:DecreasedHeartRateVariability a owl:Class .
+
+:ThetaPattern a owl:Class .
+
+:performsAnalysis a owl:ObjectProperty ;
+    rdfs:domain owl:Class ;
+    rdfs:range owl:Class .
+
+:includesAnalysis a owl:ObjectProperty ;
+    rdfs:domain :EyeTracking ;
+    rdfs:range owl:Class .
+
+:detectsState a owl:ObjectProperty ;
+    rdfs:domain owl:Class ;
+    rdfs:range owl:Class .

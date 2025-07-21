@@ -1,0 +1,86 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:EmotionalState a owl:Class ;
+    rdfs:label "EmotionalState" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :resultsFrom ;
+        owl:someValuesFrom :PatternAnalysis
+    ] .
+
+:PatternAnalysis a owl:Class ;
+    rdfs:label "PatternAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasResult ;
+        owl:someValuesFrom :EmotionalState
+    ] .
+
+:DriverCharacteristics a owl:Class .
+:PersonalityTraits a owl:Class .
+:PersonalityScore a owl:Class .
+:AggressiveTendency a owl:Class ;
+    rdfs:subClassOf :PersonalityTraits .
+:Conscientiousness a owl:Class ;
+    rdfs:subClassOf :PersonalityScore .
+:Extraversion a owl:Class ;
+    rdfs:subClassOf :PersonalityScore .
+:Agreeableness a owl:Class ;
+    rdfs:subClassOf :PersonalityScore .
+:Neuroticism a owl:Class ;
+    rdfs:subClassOf :PersonalityScore .
+:Openness a owl:Class ;
+    rdfs:subClassOf :PersonalityScore .
+:TrafficJam a owl:Class .
+:SteeringAnalyzer a owl:Class ;
+    rdfs:subClassOf :PatternAnalysis .
+:SmoothnessAnalyzer a owl:Class ;
+    rdfs:subClassOf :PatternAnalysis .
+:AngleAnalyzer a owl:Class ;
+    rdfs:subClassOf :PatternAnalysis .
+:PedalAnalyzer a owl:Class ;
+    rdfs:subClassOf :PatternAnalysis .
+:UsageAnalysis a owl:Class .
+:BrakeSensor a owl:Class .
+:AcceleratorSensor a owl:Class .
+:GripSensor a owl:Class .
+:SteeringWheel a owl:Class .
+:Microphone a owl:Class .
+:SoundAnalysis a owl:Class .
+:SpeechRecognizer a owl:Class .
+:StressAnalyzer a owl:Class .
+:ContextAnalyzer a owl:Class .
+:HighCongestion a owl:Class .
+:JourneyDelay a owl:Class .
+:SuddenStop a owl:Class .
+:RiskTaking a owl:Class ;
+    rdfs:subClassOf :PersonalityTraits .
+:VehicleSystem a owl:Class .
+:VisualSystem a owl:Class .
+:AlternativeRoute a owl:Class .
+:NavigationDisplay a owl:Class .
+:TimeEstimate a owl:Class .
+:ColorController a owl:Class .
+:BlueScheme a owl:Class .
+:ArousalReduction a owl:Class .
+:SoundSystem a owl:Class .
+:MusicPlaylist a owl:Class .
+:ClimateControl a owl:Class .
+:PedalFeedback a owl:Class .
+:AcceleratorPedal a owl:Class .
+
+:resultsFrom a owl:ObjectProperty ;
+    rdfs:label "resultsFrom" ;
+    rdfs:domain :EmotionalState ;
+    rdfs:range :PatternAnalysis .
+
+:hasResult a owl:ObjectProperty ;
+    rdfs:label "hasResult" ;
+    rdfs:domain :PatternAnalysis ;
+    rdfs:range :EmotionalState .

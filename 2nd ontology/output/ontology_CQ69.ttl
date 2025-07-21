@@ -1,0 +1,43 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SatisfactionScale a owl:Class ;
+    rdfs:label "SatisfactionScale" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :collectsRatingFor ;
+        owl:someValuesFrom :SteeringVibration
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :collectsRatingFor ;
+        owl:someValuesFrom :SeatVibration
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :collectsRatingFor ;
+        owl:someValuesFrom :PedalFeedback
+    ] .
+
+:SteeringVibration a owl:Class ;
+    rdfs:label "SteeringVibration" .
+
+:SeatVibration a owl:Class ;
+    rdfs:label "SeatVibration" .
+
+:PedalFeedback a owl:Class ;
+    rdfs:label "PedalFeedback" .
+
+:collectsRatingFor a owl:ObjectProperty ;
+    rdfs:label "collectsRatingFor" ;
+    rdfs:domain :SatisfactionScale ;
+    rdfs:range [ rdf:type owl:Class ;
+                 owl:unionOf ( :SteeringVibration
+                               :SeatVibration
+                               :PedalFeedback )
+               ] .

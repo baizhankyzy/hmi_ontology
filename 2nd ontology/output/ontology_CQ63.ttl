@@ -1,0 +1,49 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SelfReportedMeasure a owl:Class ;
+    rdfs:label "Self-Reported Measure" .
+
+:SkinSensorSweatAnalysis a owl:Class ;
+    rdfs:label "Skin Sensor Sweat Analysis" .
+
+:HeartMonitorVariabilityAnalysis a owl:Class ;
+    rdfs:label "Heart Monitor Variability Analysis" .
+
+:CorrelationAnalysis a owl:Class ;
+    rdfs:label "Correlation Analysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :analyzesSelfReportedMeasure ;
+        owl:someValuesFrom :SelfReportedMeasure
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :analyzesSkinSensorSweatAnalysis ;
+        owl:someValuesFrom :SkinSensorSweatAnalysis
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :analyzesHeartMonitorVariabilityAnalysis ;
+        owl:someValuesFrom :HeartMonitorVariabilityAnalysis
+    ] .
+
+:analyzesSelfReportedMeasure a owl:ObjectProperty ;
+    rdfs:label "analyzes Self-Reported Measure" ;
+    rdfs:domain :CorrelationAnalysis ;
+    rdfs:range :SelfReportedMeasure .
+
+:analyzesSkinSensorSweatAnalysis a owl:ObjectProperty ;
+    rdfs:label "analyzes Skin Sensor Sweat Analysis" ;
+    rdfs:domain :CorrelationAnalysis ;
+    rdfs:range :SkinSensorSweatAnalysis .
+
+:analyzesHeartMonitorVariabilityAnalysis a owl:ObjectProperty ;
+    rdfs:label "analyzes Heart Monitor Variability Analysis" ;
+    rdfs:domain :CorrelationAnalysis ;
+    rdfs:range :HeartMonitorVariabilityAnalysis .

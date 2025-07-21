@@ -1,0 +1,76 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+<http://www.example.org/test#> a owl:Ontology .
+:Drowsiness a owl:Class ;
+    rdfs:label "Drowsiness"@en ;
+    rdfs:comment "State where the driver is becoming sleepy"@en ;
+    rdfs:subClassOf :InattentionState .
+:InattentionState a owl:Class ;
+    rdfs:label "Inattention State"@en ;
+    rdfs:comment "States where the driver's attention is compromised"@en .
+:DetectionMethodology a owl:Class ;
+    rdfs:label "Detection Methodology"@en ;
+    rdfs:comment "Methods used to detect driver states"@en .
+:Sensor a owl:Class ;
+    rdfs:label "Sensor"@en ;
+    rdfs:comment "Physical sensors used in detection"@en ;
+    rdfs:subClassOf :DetectionMethodology .
+:DriverFacingVisualSensor a owl:Class ;
+    rdfs:label "Driver Facing Visual Sensor"@en ;
+    rdfs:comment "Camera or visual sensor focused on the driver"@en ;
+    rdfs:subClassOf :Sensor .
+:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "Sensors that measure physiological parameters"@en ;
+    rdfs:subClassOf :Sensor .
+:AnalysisSystem a owl:Class ;
+    rdfs:label "Analysis System"@en ;
+    rdfs:comment "Systems that analyze sensor data"@en ;
+    rdfs:subClassOf :DetectionMethodology .
+:BehavioralAnalysis a owl:Class ;
+    rdfs:label "Behavioral Analysis"@en ;
+    rdfs:comment "Analysis of driver behavior patterns"@en ;
+    rdfs:subClassOf :AnalysisSystem .
+:identifiesDrowsiness a owl:ObjectProperty ;
+    rdfs:label "identifies drowsiness"@en ;
+    rdfs:comment "Relationship between detection method and drowsiness identification"@en ;
+    rdfs:domain :DetectionMethodology ;
+    rdfs:range :Drowsiness .
+:hasMethod a owl:ObjectProperty ;
+    rdfs:label "has method"@en ;
+    rdfs:comment "Links drowsiness to detection methods that identify it"@en ;
+    rdfs:domain :Drowsiness ;
+    rdfs:range :DetectionMethodology .
+:Drowsiness rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :hasMethod ;
+    owl:someValuesFrom :DriverFacingVisualSensor
+] ,
+[
+a owl:Restriction ;
+    owl:onProperty :hasMethod ;
+    owl:someValuesFrom :PhysiologicalSensor
+] ,
+[
+a owl:Restriction ;
+    owl:onProperty :hasMethod ;
+    owl:someValuesFrom :BehavioralAnalysis
+] .
+:DriverFacingVisualSensor rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :identifiesDrowsiness ;
+    owl:someValuesFrom :Drowsiness
+] .
+:PhysiologicalSensor rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :identifiesDrowsiness ;
+    owl:someValuesFrom :Drowsiness
+] .
+:BehavioralAnalysis rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :identifiesDrowsiness ;
+    owl:someValuesFrom :Drowsiness
+] .

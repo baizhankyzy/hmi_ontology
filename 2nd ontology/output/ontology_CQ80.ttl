@@ -1,0 +1,31 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SpeedChecker a owl:Class ;
+    rdfs:label "SpeedChecker" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :usesThresholdBasedOn ;
+        owl:someValuesFrom :RoadSensor
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :usesThresholdBasedOn ;
+        owl:someValuesFrom :EnvironmentalData
+    ] .
+
+:RoadSensor a owl:Class ;
+    rdfs:label "RoadSensor" .
+
+:EnvironmentalData a owl:Class ;
+    rdfs:label "EnvironmentalData" .
+
+:usesThresholdBasedOn a owl:ObjectProperty ;
+    rdfs:label "usesThresholdBasedOn" ;
+    rdfs:domain :SpeedChecker ;
+    rdfs:range [ owl:unionOf ( :RoadSensor :EnvironmentalData ) ] .

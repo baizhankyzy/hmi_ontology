@@ -1,0 +1,353 @@
+"CQID","Competency Question","Query Used","Output"
+"CQ1-1","What characteristics of HeadPosition and EyesCharacteristics indicate DrowsinessState within InattentionState class?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :DrowsinessState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :DrowsinessState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ1-2","What analyses do DriverFacingCamera and PhysiologicalMonitor perform to detect DrowsinessState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :PhysiologicalMonitor || ?subject = :DriverFacingCamera)
+  FILTER(CONTAINS(STR(?object), ""DrowsinessState""))
+}","No results found"
+"CQ1-3","What types of CognitiveState can VehicleSystem detect?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :VehicleSystem)
+  FILTER(CONTAINS(STR(?object), ""CognitiveState""))
+}","VehicleSystem -> detectsCognitiveState -> CognitiveState"
+"CQ1-4","What VehicleSystem components modify DisplayBrightness in response to detected InattentionState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :VehicleSystem)
+  FILTER(CONTAINS(STR(?object), ""InattentionState""))
+}","VehicleSystem -> adaptsToDetected -> InattentionState"
+"CQ1-5","What TouchFeedback does VehicleSystem activate when analyses indicate DrowsinessState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :DrowsinessState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :DrowsinessState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ1-6","What Volume and AlertMessage does SoundSystem adjust when analyses indicate FatigueState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :FatigueState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :FatigueState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ1-7","What patterns does DrivingAnalyzer detect that indicate severe InattentionState requiring intervention?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :InattentionState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :InattentionState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ1-8","How do HeadTracking and EyeTracking results relate to InattentionState classification?","No query generated","Could not generate appropriate query for this question"
+"CQ1-9","What AlertMessage does VoiceAssistant generate for drivers in DrowsinessState?","No query generated","Could not generate appropriate query for this question"
+"CQ1-10","What EnvironmentalConditions influence VehicleSystem responses to detected InattentionState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :VehicleSystem)
+  FILTER(CONTAINS(STR(?object), ""InattentionState""))
+}","VehicleSystem -> adaptsToDetected -> InattentionState"
+"CQ1-11","How does GazeAnalysis within EyeTracking detect InattentionState?","No query generated","Could not generate appropriate query for this question"
+"CQ1-12","How does PupilAnalysis detect changes in CognitiveState?","No query generated","Could not generate appropriate query for this question"
+"CQ2-1","What analyses detect HighCognitiveLoad in drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ2-2","What patterns do HeartMonitor and SkinMonitor detect that indicate StressLevel during HighCongestion?","No query generated","Could not generate appropriate query for this question"
+"CQ2-3","How do VisibilityMeasure and TrafficMonitor data affect CognitiveState detection?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :TrafficMonitor)
+  FILTER(CONTAINS(STR(?object), ""CognitiveState""))
+}","No results found"
+"CQ2-4","What VisualElements does VisualSystem prioritize when analyses indicate elevated CognitiveState?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :CognitiveState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :CognitiveState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ2-5","Which driver assistance features adapt based on CognitiveState results?","No query generated","Could not generate appropriate query for this question"
+"CQ2-6","What coordination happens for detected DistractionState?","No query generated","Could not generate appropriate query for this question"
+"CQ2-7","What TrafficDensity patterns impact CognitiveState measurements?","No query generated","Could not generate appropriate query for this question"
+"CQ2-8","How do WeatherMonitor and VisibilityMeasure readings influence VehicleSystem adaptations?","No query generated","Could not generate appropriate query for this question"
+"CQ2-9","What changes does NotificationSystem make based on CognitiveState results?","No query generated","Could not generate appropriate query for this question"
+"CQ2-10","What do SkinMonitor ConductanceAnalysis and HeartMonitor VariabilityAnalysis provide for DistractionState detection?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :SkinMonitor || ?subject = :HeartMonitor)
+  FILTER(CONTAINS(STR(?object), ""DistractionState""))
+}","No results found"
+"CQ2-11","How does ForceAnalysis from GripSensor correlate with StressLevel?","No query generated","Could not generate appropriate query for this question"
+"CQ2-12","What modifications does InstrumentPanel make for HighCognitiveLoad states?","No query generated","Could not generate appropriate query for this question"
+"CQ3-1","What PersonalityTraits and PersonalityScore values indicate AggressiveTendency?","No query generated","Could not generate appropriate query for this question"
+"CQ3-2","What are the measured dimensions in PersonalityScore?","No query generated","Could not generate appropriate query for this question"
+"CQ3-3","What anger expressions does SoundAnalysis detect during HighCongestion?","No query generated","Could not generate appropriate query for this question"
+"CQ3-4","What analyses do StressAnalyzer and SpeechRecognizer perform to detect Frustration?","No query generated","Could not generate appropriate query for this question"
+"CQ3-5","How do PersonalityTraits influence AdaptationRule parameters?","No query generated","Could not generate appropriate query for this question"
+"CQ3-6","What BlueScheme does ColorController use to reduce ArousalLevel in frustrated drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ3-7","What resistance does AcceleratorPedal provide to discourage aggressive driving?","No query generated","Could not generate appropriate query for this question"
+"CQ3-8","How do EmotionalState results relate to PatternAnalysis findings?","No query generated","Could not generate appropriate query for this question"
+"CQ3-9","What metrics does ContextAnalyzer calculate that indicate elevated Frustration?","No query generated","Could not generate appropriate query for this question"
+"CQ3-10","What MusicPlaylist does SoundSystem suggest for drivers with specific PersonalityTraits?","No query generated","Could not generate appropriate query for this question"
+"CQ3-11","How do BrakeSensor and AcceleratorSensor analyses reflect EmotionalState changes?","No query generated","Could not generate appropriate query for this question"
+"CQ3-12","What NavigationDisplay adaptations suit drivers with high Neuroticism scores?","No query generated","Could not generate appropriate query for this question"
+"CQ4-1","What DisplaySettings does VisualSystem configure for elderly drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ4-2","What measurements do WeatherMonitor and VisibilityMeasure provide for elderly drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ4-3","How do AgeFactors in DriverProfile influence TextSize across displays?","No query generated","Could not generate appropriate query for this question"
+"CQ4-4","What patterns does SteeringAnalyzer detect that indicate increased AttentionDemand in elderly drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ4-5","What Timing adjustments does VoiceAssistant make based on AgeFactors?","No query generated","Could not generate appropriate query for this question"
+"CQ4-6","What sensitivity settings does LaneAssist use for different age groups?","No query generated","Could not generate appropriate query for this question"
+"CQ4-7","How do GPS and MapAnalyzer results relate to CognitiveState measurements?","No query generated","Could not generate appropriate query for this question"
+"CQ4-8","What simple words does MessageSystem use for drivers with slower ReactionTime?","No query generated","Could not generate appropriate query for this question"
+"CQ4-9","What VibrationPattern does TouchFeedback generate for elderly drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ4-10","What environmental data do LightSensor and VisibilityMeasure provide for elderly driver support?","No query generated","Could not generate appropriate query for this question"
+"CQ4-11","How does NavigationDisplay complexity adapt based on ReactionTime measurements?","No query generated","Could not generate appropriate query for this question"
+"CQ4-12","What PostureChanges does SeatSensor detect that indicate FatigueState in elderly drivers?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :FatigueState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :FatigueState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ5-1","What analyses do DriverFacingCamera and InfraredCamera perform during AutonomousMode?","No query generated","Could not generate appropriate query for this question"
+"CQ5-2","What NonDrivingActivity types does DistractionDetector identify during AutonomousMode?","No query generated","Could not generate appropriate query for this question"
+"CQ5-3","What PostureType from SeatSensor indicates readiness for manual control?","No query generated","Could not generate appropriate query for this question"
+"CQ5-4","What components does CoordinationSystem manage for control transitions?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?component ?property ?value
+WHERE {
+  :CoordinationSystem rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?property .
+  ?restriction owl:someValuesFrom ?component .
+}","nc8dd1e80fa7a4c308100fb5ab88ad905b28 -> manages
+Feedback -> manages"
+"CQ5-5","What information does HeadUpDisplay show during autonomous-to-manual transitions?","No query generated","Could not generate appropriate query for this question"
+"CQ5-6","How do GazePattern and PupilSize results relate to driver readiness?","No query generated","Could not generate appropriate query for this question"
+"CQ5-7","What TouchCues does SeatVibrator generate for transition alerting?","No query generated","Could not generate appropriate query for this question"
+"CQ5-8","What parameters does TimingController adjust based on CognitiveState?","No query generated","Could not generate appropriate query for this question"
+"CQ5-9","What calculations does TrustAlgorithm perform during mode transitions?","No query generated","Could not generate appropriate query for this question"
+"CQ5-10","What visualization does LaneVisualizer display during handovers?","No query generated","Could not generate appropriate query for this question"
+"CQ5-11","How do SeatAdjuster changes facilitate better PostureType?","No query generated","Could not generate appropriate query for this question"
+"CQ5-12","How does ConstructionDetector output affect handover timing?","No query generated","Could not generate appropriate query for this question"
+"CQ6-1","What tests does QuestionnaireSystem administer to assess PersonalityProfile?","No query generated","Could not generate appropriate query for this question"
+"CQ6-2","What ratings does WorkloadScale collect for driver assessment?","No query generated","Could not generate appropriate query for this question"
+"CQ6-3","How do self-reported measures correlate with SkinSensor SweatAnalysis and HeartMonitor VariabilityAnalysis?","No query generated","Could not generate appropriate query for this question"
+"CQ6-4","What SweatAnalysis patterns correlate with reported FrustrationLevel?","No query generated","Could not generate appropriate query for this question"
+"CQ6-5","What WaveAnalysis patterns from BrainMonitor indicate different CognitiveState conditions?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?indicator ?characteristic
+WHERE {
+  {
+    :CognitiveState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?indicator .
+    FILTER(CONTAINS(STR(?indicator), ""Position"") || CONTAINS(STR(?indicator), ""Characteristics""))
+  }
+  UNION
+  {
+    :CognitiveState rdfs:subClassOf ?restriction .
+    ?restriction a owl:Restriction .
+    ?restriction owl:onProperty ?property .
+    ?restriction owl:someValuesFrom ?union .
+    ?union owl:unionOf ?list .
+    ?list rdf:rest*/rdf:first ?characteristic .
+    FILTER(CONTAINS(STR(?characteristic), ""Position"") || CONTAINS(STR(?characteristic), ""Characteristics""))
+  }
+}","No results found"
+"CQ6-6","Which DriverStates are assessed through SatisfactionScale versus BodyMonitor?","No query generated","Could not generate appropriate query for this question"
+"CQ6-7","What adjustments does CalibrationTool make based on subjective and objective differences?","No query generated","Could not generate appropriate query for this question"
+"CQ6-8","How do PersonalityScore values relate to VehicleSystem adaptation effectiveness?","No query generated","Could not generate appropriate query for this question"
+"CQ6-9","What ratings does SatisfactionScale collect for SteeringVibration and SeatVibration and PedalFeedback?","No query generated","Could not generate appropriate query for this question"
+"CQ6-10","What patterns does CrossModalChecker identify from data comparison?","No query generated","Could not generate appropriate query for this question"
+"CQ6-11","How does VariabilityAnalysis data complement self-reported stress?","No query generated","Could not generate appropriate query for this question"
+"CQ6-12","What capabilities does VirtualSimulator provide for driver studies?","No query generated","Could not generate appropriate query for this question"
+"CQ7-1","What surface conditions does RoadSensor detect that affect PostureAnalysis?","No query generated","Could not generate appropriate query for this question"
+"CQ7-2","What air quality levels does AirMonitor detect and what pollen levels does PollenSensor measure?","No query generated","Could not generate appropriate query for this question"
+"CQ7-3","How do AirMonitor and PollenSensor readings influence AirFilter responses?","No query generated","Could not generate appropriate query for this question"
+"CQ7-4","What breathing patterns does BreathingSensor detect in response to air quality?","No query generated","Could not generate appropriate query for this question"
+"CQ7-5","What light levels does LightSensor measure that affect DisplayBrightness?","No query generated","Could not generate appropriate query for this question"
+"CQ7-6","What patterns does MicroMovementCounter detect with changing road conditions?","No query generated","Could not generate appropriate query for this question"
+"CQ7-7","What combination of DayNightSensor and WeatherMonitor readings creates highest ComplexityScore?","No query generated","Could not generate appropriate query for this question"
+"CQ7-8","What thresholds does SpeedChecker use based on RoadSensor and environmental data?","No query generated","Could not generate appropriate query for this question"
+"CQ7-9","What metrics does TripTimer calculate that indicate FatigueRisk?","No query generated","Could not generate appropriate query for this question"
+"CQ7-10","How do SeatPressure patterns relate to RoadSensor readings?","No query generated","Could not generate appropriate query for this question"
+"CQ7-11","How does AirFilter respond to PollenSensor measurements?","No query generated","Could not generate appropriate query for this question"
+"CQ7-12","What PhysicalState changes does BodyResponseMonitor detect when AirMonitor shows poor quality?","PREFIX : <http://www.example.org/test#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?action ?object
+WHERE {
+  ?subject rdfs:subClassOf ?restriction .
+  ?restriction a owl:Restriction .
+  ?restriction owl:onProperty ?action .
+  ?restriction owl:someValuesFrom ?object .
+  FILTER(?subject = :BodyResponseMonitor || ?subject = :AirMonitor)
+  FILTER(CONTAINS(STR(?object), ""PhysicalState""))
+}","BodyResponseMonitor -> detectsPhysicalStateChange -> PhysicalStateChange"
+"CQ8-1","What regulations govern LaneController interventions?","No query generated","Could not generate appropriate query for this question"
+"CQ8-2","What coordination does MatchingChecker assess for driver assistance features?","No query generated","Could not generate appropriate query for this question"
+"CQ8-3","What ForceFeedback does SteeringWheel generate for LaneController?","No query generated","Could not generate appropriate query for this question"
+"CQ8-4","What standard symbols does InstrumentPanel show for lane departure?","No query generated","Could not generate appropriate query for this question"
+"CQ8-5","What timing does TimingChecker measure for alerts across Speaker and displays?","No query generated","Could not generate appropriate query for this question"
+"CQ8-6","What message improvements does ClarityChecker measure for confused drivers?","No query generated","Could not generate appropriate query for this question"
+"CQ8-7","What ExperienceMetrics affect driver acceptance of safety features?","No query generated","Could not generate appropriate query for this question"
+"CQ8-8","What confidence calculations does TrustChecker perform for driver assistance?","No query generated","Could not generate appropriate query for this question"
+"CQ8-9","How do SpeedingTester results relate to intervention intensity?","No query generated","Could not generate appropriate query for this question"
+"CQ8-10","What understanding metrics does GuidanceOptimizer track?","No query generated","Could not generate appropriate query for this question"
+"CQ8-11","How does PrivacyChecker verify protection in monitoring systems?","No query generated","Could not generate appropriate query for this question"
+"CQ8-12","What compliance checks does DocumentationSystem perform?","No query generated","Could not generate appropriate query for this question"

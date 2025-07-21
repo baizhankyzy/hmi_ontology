@@ -1,0 +1,100 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:SteeringBehaviorAnalysis a owl:Class ;
+    rdfs:label "Steering Behavior Analysis"@en ;
+    rdfs:comment "Analysis of the driver's steering behavior and vehicle dynamics."@en .
+
+ahmi:MicroadjustmentsFrequency a owl:Class ;
+    rdfs:label "Micro-adjustments Frequency"@en ;
+    rdfs:subClassOf ahmi:SteeringBehaviorAnalysis ;
+    rdfs:comment "Frequency of small steering corrections made by the driver."@en .
+
+ahmi:RoadCondition a owl:Class ;
+    rdfs:label "Road Condition"@en ;
+    rdfs:comment "The state of the road surface."@en .
+
+ahmi:EvenRoad a owl:Class ;
+    rdfs:label "Even Road"@en ;
+    rdfs:subClassOf ahmi:RoadCondition ;
+    rdfs:comment "A road with a smooth, level surface."@en .
+
+ahmi:UnevenRoad a owl:Class ;
+    rdfs:label "Uneven Road"@en ;
+    rdfs:subClassOf ahmi:RoadCondition ;
+    rdfs:comment "A road with an irregular or bumpy surface."@en .
+
+ahmi:hasRoadCondition a owl:ObjectProperty ;
+    rdfs:label "has road condition"@en ;
+    rdfs:domain ahmi:SteeringBehaviorAnalysis ;
+    rdfs:range ahmi:RoadCondition ;
+    rdfs:comment "Relates a steering behavior analysis to the road condition being analyzed."@en .
+
+ahmi:hasMetric a owl:ObjectProperty ;
+    rdfs:label "has metric"@en ;
+    rdfs:domain ahmi:SteeringBehaviorAnalysis ;
+    rdfs:range ahmi:SteeringBehaviorMetric ;
+    rdfs:comment "Relates a steering behavior analysis to the metrics being measured."@en .
+
+ahmi:SteeringBehaviorMetric a owl:Class ;
+    rdfs:label "Steering Behavior Metric"@en ;
+    rdfs:comment "A quantifiable measure of the driver's steering behavior."@en .
+
+ahmi:MicroadjustmentsFrequencyValue a owl:DatatypeProperty ;
+    rdfs:label "Micro-adjustments Frequency Value"@en ;
+    rdfs:domain ahmi:MicroadjustmentsFrequency ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The measured frequency of micro-adjustments made by the driver."@en .
+
+ahmi:EvenToUnevenRoadSituation a owl:Class ;
+    rdfs:label "Even to Uneven Road Situation"@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:comment "A situation where the road condition changes from even to uneven."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:domain ahmi:EvenToUnevenRoadSituation ;
+    rdfs:range ahmi:RoadConditionDescription ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en .
+
+ahmi:RoadConditionDescription a owl:Class ;
+    rdfs:label "Road Condition Description"@en ;
+    rdfs:subClassOf ahmi:Description ;
+    rdfs:comment "A conceptualization of road conditions."@en .
+
+ahmi:hasInitialCondition a owl:ObjectProperty ;
+    rdfs:label "has initial condition"@en ;
+    rdfs:domain ahmi:EvenToUnevenRoadSituation ;
+    rdfs:range ahmi:EvenRoad ;
+    rdfs:comment "Relates a situation to the initial road condition."@en .
+
+ahmi:hasFinalCondition a owl:ObjectProperty ;
+    rdfs:label "has final condition"@en ;
+    rdfs:domain ahmi:EvenToUnevenRoadSituation ;
+    rdfs:range ahmi:UnevenRoad ;
+    rdfs:comment "Relates a situation to the final road condition."@en .
+
+ahmi:hasMetricChange a owl:ObjectProperty ;
+    rdfs:label "has metric change"@en ;
+    rdfs:domain ahmi:EvenToUnevenRoadSituation ;
+    rdfs:range ahmi:MetricChange ;
+    rdfs:comment "Relates a situation to the change in a steering behavior metric."@en .
+
+ahmi:MetricChange a owl:Class ;
+    rdfs:label "Metric Change"@en ;
+    rdfs:comment "A change in the value of a steering behavior metric."@en .
+
+ahmi:hasMetricBefore a owl:ObjectProperty ;
+    rdfs:label "has metric before"@en ;
+    rdfs:domain ahmi:MetricChange ;
+    rdfs:range ahmi:SteeringBehaviorMetric ;
+    rdfs:comment "Relates a metric change to the metric value before the change."@en .
+
+ahmi:hasMetricAfter a owl:ObjectProperty ;
+    rdfs:label "has metric after"@en ;
+    rdfs:domain ahmi:MetricChange ;
+    rdfs:range ahmi:SteeringBehaviorMetric ;
+    rdfs:comment "Relates a metric change to the metric value after the change."@en .

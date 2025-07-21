@@ -1,0 +1,34 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:RoadSensor a owl:Class ;
+    rdfs:label "RoadSensor" .
+
+:SeatPressure a owl:Class ;
+    rdfs:label "SeatPressure" .
+
+:SeatPressurePattern a owl:Class ;
+    rdfs:label "SeatPressurePattern" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectedBy ;
+        owl:someValuesFrom :SeatPressure
+    ] .
+
+:RoadSensorReading a owl:Class ;
+    rdfs:label "RoadSensorReading" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectedBy ;
+        owl:someValuesFrom :RoadSensor
+    ] .
+
+:detectedBy a owl:ObjectProperty ;
+    rdfs:label "detectedBy" ;
+    rdfs:domain [ rdf:type owl:Class ; owl:unionOf ( :SeatPressurePattern :RoadSensorReading ) ] ;
+    rdfs:range [ rdf:type owl:Class ; owl:unionOf ( :SeatPressure :RoadSensor ) ] .

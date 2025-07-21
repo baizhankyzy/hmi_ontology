@@ -1,0 +1,282 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:GazeAnalysis a owl:Class ;
+    rdfs:label "GazeAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :IrregularGazePattern
+    ] .
+
+:EyeTracking a owl:Class ;
+    rdfs:label "EyeTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :includes ;
+        owl:someValuesFrom :GazeAnalysis
+    ] .
+
+:InattentionState a owl:Class ;
+    rdfs:label "InattentionState" ;
+    rdfs:subClassOf :CognitiveState .
+
+:DriverState a owl:Class ;
+    rdfs:label "DriverState" .
+
+:HeadPosition a owl:Class ;
+    rdfs:label "HeadPosition" .
+
+:NoddingPattern a owl:Class ;
+    rdfs:subClassOf :HeadPosition .
+
+:EyesCharacteristics a owl:Class ;
+    rdfs:label "EyesCharacteristics" .
+
+:ReducedBlinkRate a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:IrregularGazePattern a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:AbnormalPupilSize a owl:Class ;
+    rdfs:subClassOf :EyesCharacteristics .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :EyeTracking
+    ] .
+
+:BlinkAnalysis a owl:Class ;
+    rdfs:label "BlinkAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :ExtendedBlinkDuration
+    ] .
+
+:PupilAnalysis a owl:Class ;
+    rdfs:label "PupilAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :AbnormalPupilResponse
+    ] .
+
+:HeadTracking a owl:Class ;
+    rdfs:label "HeadTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :NoddingMovement
+    ] .
+
+:PhysiologicalMonitor a owl:Class ;
+    rdfs:label "PhysiologicalMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :BodyMeasurement
+    ] .
+
+:HeartMonitor a owl:Class ;
+    rdfs:label "HeartMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :HeartRateAnalysis
+    ] .
+
+:BrainMonitor a owl:Class ;
+    rdfs:label "BrainMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :BrainWaveAnalysis
+    ] .
+
+:DrowsinessState a owl:Class ;
+    rdfs:label "DrowsinessState" ;
+    rdfs:subClassOf :InattentionState .
+
+:FatigueState a owl:Class ;
+    rdfs:label "FatigueState" ;
+    rdfs:subClassOf :InattentionState .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "VehicleSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adapts ;
+        owl:someValuesFrom :DriverState
+    ] .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf :VehicleSystem ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :modifies ;
+        owl:someValuesFrom :DisplayBrightness
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjusts ;
+        owl:someValuesFrom :VisualElementContrast
+    ] .
+
+:DisplayBrightness a owl:Class ;
+    rdfs:label "DisplayBrightness" .
+
+:CenterDisplay a owl:Class ;
+    rdfs:subClassOf :DisplayBrightness .
+
+:HeadUpDisplay a owl:Class ;
+    rdfs:subClassOf :DisplayBrightness .
+
+:VisualElementContrast a owl:Class ;
+    rdfs:label "VisualElementContrast" .
+
+:VisualElement a owl:Class ;
+    rdfs:label "VisualElement" .
+
+:TouchFeedback a owl:Class ;
+    rdfs:label "TouchFeedback" .
+
+:SteeringWheel a owl:Class ;
+    rdfs:label "SteeringWheel" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :produces ;
+        owl:someValuesFrom :VibrationPattern
+    ] .
+
+:VibrationPattern a owl:Class ;
+    rdfs:label "VibrationPattern" .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjusts ;
+        owl:someValuesFrom :Volume
+    ] .
+
+:Volume a owl:Class ;
+    rdfs:label "Volume" .
+
+:Speaker a owl:Class ;
+    rdfs:label "Speaker" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :increases ;
+        owl:someValuesFrom :NavigationVolume
+    ] .
+
+:NavigationVolume a owl:Class ;
+    rdfs:subClassOf :Volume .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:label "VoiceAssistant" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :generates ;
+        owl:someValuesFrom :GentleAlert
+    ] .
+
+:GentleAlert a owl:Class ;
+    rdfs:label "GentleAlert" .
+
+:AlertMessage a owl:Class ;
+    rdfs:label "AlertMessage" .
+
+:DrivingAnalyzer a owl:Class ;
+    rdfs:label "DrivingAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performs ;
+        owl:someValuesFrom :PatternAnalysis
+    ] .
+
+:PatternAnalysis a owl:Class ;
+    rdfs:label "PatternAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :DeviationFromNormalPattern
+    ] .
+
+:DeviationFromNormalPattern a owl:Class ;
+    rdfs:label "DeviationFromNormalPattern" .
+
+:AdaptationRule a owl:Class ;
+    rdfs:label "AdaptationRule" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isSpecificTo ;
+        owl:someValuesFrom :InattentionState
+    ] .
+
+:VisualAlert a owl:Class ;
+    rdfs:label "VisualAlert" .
+
+:detects a owl:ObjectProperty ;
+    rdfs:label "detects" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+:includes a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+:performs a owl:ObjectProperty ;
+    rdfs:label "performs" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+:adapts a owl:ObjectProperty ;
+    rdfs:label "adapts" ;
+    rdfs:domain :VehicleSystem ;
+    rdfs:range :DriverState .
+
+:modifies a owl:ObjectProperty ;
+    rdfs:label "modifies" ;
+    rdfs:domain :VisualSystem ;
+    rdfs:range :DisplayBrightness .
+
+:adjusts a owl:ObjectProperty ;
+    rdfs:label "adjusts" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+:produces a owl:ObjectProperty ;
+    rdfs:label "produces" ;
+    rdfs:domain :SteeringWheel ;
+    rdfs:range :VibrationPattern .
+
+:increases a owl:ObjectProperty ;
+    rdfs:label "increases" ;
+    rdfs:domain :Speaker ;
+    rdfs:range :NavigationVolume .
+
+:generates a owl:ObjectProperty ;
+    rdfs:label "generates" ;
+    rdfs:domain :VoiceAssistant ;
+    rdfs:range :GentleAlert .
+
+:isSpecificTo a owl:ObjectProperty ;
+    rdfs:label "isSpecificTo" ;
+    rdfs:domain :AdaptationRule ;
+    rdfs:range :InattentionState .

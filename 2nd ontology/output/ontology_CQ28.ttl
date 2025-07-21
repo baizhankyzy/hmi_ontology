@@ -1,0 +1,31 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:StressAnalyzer a owl:Class ;
+    rdfs:label "StressAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :FrustrationDetection
+    ] .
+
+:SpeechRecognizer a owl:Class ;
+    rdfs:label "SpeechRecognizer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :FrustrationDetection
+    ] .
+
+:FrustrationDetection a owl:Class ;
+    rdfs:label "FrustrationDetection" .
+
+:performsAnalysis a owl:ObjectProperty ;
+    rdfs:label "performsAnalysis" ;
+    rdfs:domain [ rdf:type owl:Class ; owl:unionOf ( :StressAnalyzer :SpeechRecognizer ) ] ;
+    rdfs:range :FrustrationDetection .

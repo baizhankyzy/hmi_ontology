@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driver Monitoring System Ontology Query Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        async function submitQuery() {
+            const query = document.getElementById('query').value;
+            const resultsDiv = document.getElementById('results');
+            const sparqlDiv = document.getElementById('sparql');
+            
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: query }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    resultsDiv.innerHTML = `<p class="text-red-500">Error: ${data.error}</p>`;
+                    sparqlDiv.innerHTML = '';
+                } else {
+                    sparqlDiv.innerHTML = `<pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto">${data.sparql}</pre>`;
+                    resultsDiv.innerHTML = '<ul class="list-disc pl-5">' +
+                        data.results.map(result => `<li class="mb-2">${result}</li>`).join('') +
+                        '</ul>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+                sparqlDiv.innerHTML = '';
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">Driver Monitoring System Ontology Query Interface</h1>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Ask a Question</h2>
+            <div class="mb-4">
+                <textarea id="query" 
+                          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          rows="3"
+                          placeholder="Enter your question here (e.g., 'What are all the types of driver states?')"></textarea>
+            </div>
+            <button onclick="submitQuery()"
+                    class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Submit Query
+            </button>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">Generated SPARQL Query</h2>
+                <div id="sparql" class="text-sm"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">Results</h2>
+                <div id="results"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

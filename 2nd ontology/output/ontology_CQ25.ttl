@@ -1,0 +1,54 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:PersonalityTrait a owl:Class ;
+    rdfs:label "PersonalityTrait" .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "PersonalityScore" .
+
+:AggressiveTendency a owl:Class ;
+    rdfs:label "AggressiveTendency" ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                      owl:unionOf ( :PersonalityTrait
+                                    :PersonalityScore )
+                    ] .
+
+:hasPersonalityTrait a owl:ObjectProperty ;
+    rdfs:label "hasPersonalityTrait" ;
+    rdfs:domain :AggressiveTendency ;
+    rdfs:range :PersonalityTrait .
+
+:hasPersonalityScore a owl:ObjectProperty ;
+    rdfs:label "hasPersonalityScore" ;
+    rdfs:domain :AggressiveTendency ;
+    rdfs:range :PersonalityScore .
+
+:Conscientiousness a owl:Class ;
+    rdfs:label "Conscientiousness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Extraversion a owl:Class ;
+    rdfs:label "Extraversion" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Agreeableness a owl:Class ;
+    rdfs:label "Agreeableness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Neuroticism a owl:Class ;
+    rdfs:label "Neuroticism" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Openness a owl:Class ;
+    rdfs:label "Openness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:RiskTaking a owl:Class ;
+    rdfs:label "RiskTaking" ;
+    rdfs:subClassOf :PersonalityTrait .

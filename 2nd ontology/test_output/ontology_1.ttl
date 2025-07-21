@@ -1,0 +1,85 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+<http://www.example.org/test#> a owl:Ontology .
+:DriverParameter a owl:Class ;
+    rdfs:label "Driver Parameter"@en ;
+    rdfs:comment "Parameters that characterize a driver's state"@en .
+:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "Mental state of the driver"@en ;
+    rdfs:subClassOf :DriverParameter .
+:InattentionState a owl:Class ;
+    rdfs:label "Inattention State"@en ;
+    rdfs:comment "States where the driver's attention is compromised"@en ;
+    rdfs:subClassOf :CognitiveState .
+:Drowsiness a owl:Class ;
+    rdfs:label "Drowsiness"@en ;
+    rdfs:comment "State where the driver is becoming sleepy"@en ;
+    rdfs:subClassOf :InattentionState .
+:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:comment "Physical posture indicators of the driver"@en ;
+    rdfs:subClassOf :DriverParameter .
+:HeadPosition a owl:Class ;
+    rdfs:label "Head Position"@en ;
+    rdfs:comment "Position of the driver's head"@en ;
+    rdfs:subClassOf :PostureState .
+:NodPattern a owl:Class ;
+    rdfs:label "Nod Pattern"@en ;
+    rdfs:comment "Pattern of head nodding indicating drowsiness"@en ;
+    rdfs:subClassOf :HeadPosition .
+:EyeMetric a owl:Class ;
+    rdfs:label "Eye Metric"@en ;
+    rdfs:comment "Measurements related to the driver's eyes"@en ;
+    rdfs:subClassOf :PostureState .
+:BlinkDuration a owl:Class ;
+    rdfs:label "Blink Duration"@en ;
+    rdfs:comment "Duration of eye blinks, longer indicates drowsiness"@en ;
+    rdfs:subClassOf :EyeMetric .
+:EyeTracking a owl:Class ;
+    rdfs:label "Eye Tracking"@en ;
+    rdfs:comment "Metrics related to eye movement tracking"@en ;
+    rdfs:subClassOf :EyeMetric .
+:signalsTransitionTo a owl:ObjectProperty ;
+    rdfs:label "signals transition to"@en ;
+    rdfs:comment "Indicates how posture states signal a transition to an inattention state"@en ;
+    rdfs:domain :PostureState ;
+    rdfs:range :InattentionState .
+:hasPostureIndicator a owl:ObjectProperty ;
+    rdfs:label "has posture indicator"@en ;
+    rdfs:comment "Links inattention states to their posture indicators"@en ;
+    rdfs:domain :InattentionState ;
+    rdfs:range :PostureState .
+:Drowsiness rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :hasPostureIndicator ;
+    owl:someValuesFrom :NodPattern
+] ,
+[
+a owl:Restriction ;
+    owl:onProperty :hasPostureIndicator ;
+    owl:someValuesFrom :BlinkDuration
+] ,
+[
+a owl:Restriction ;
+    owl:onProperty :hasPostureIndicator ;
+    owl:someValuesFrom :EyeTracking
+] .
+:NodPattern rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :signalsTransitionTo ;
+    owl:someValuesFrom :Drowsiness
+] .
+:BlinkDuration rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :signalsTransitionTo ;
+    owl:someValuesFrom :Drowsiness
+] .
+:EyeTracking rdfs:subClassOf [
+a owl:Restriction ;
+    owl:onProperty :signalsTransitionTo ;
+    owl:someValuesFrom :Drowsiness
+] .

@@ -1,0 +1,90 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:PhysiologicalSensor a owl:Class ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that measures physiological signals from the driver's body."@en .
+
+ahmi:EyeTrackingSensor a owl:Class ;
+    rdfs:label "Eye Tracking Sensor"@en ;
+    rdfs:comment "A sensor that tracks the driver's eye movements."@en ;
+    rdfs:subClassOf ahmi:PhysiologicalSensor .
+
+ahmi:HeartRateSensor a owl:Class ;
+    rdfs:label "Heart Rate Sensor"@en ;
+    rdfs:comment "A sensor that measures the driver's heart rate."@en ;
+    rdfs:subClassOf ahmi:PhysiologicalSensor .
+
+ahmi:SteeringWheelGripSensor a owl:Class ;
+    rdfs:label "Steering Wheel Grip Sensor"@en ;
+    rdfs:comment "A sensor that measures the driver's grip on the steering wheel."@en ;
+    rdfs:subClassOf ahmi:PhysiologicalSensor .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The cognitive state of the driver, such as cognitive load or distraction."@en .
+
+ahmi:ElevatedCognitiveLoad a owl:Class ;
+    rdfs:label "Elevated Cognitive Load"@en ;
+    rdfs:comment "A state of high cognitive load experienced by the driver."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "A state of distraction experienced by the driver."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State"@en ;
+    rdfs:comment "The emotional state of the driver, such as stress or calmness."@en .
+
+ahmi:ElevatedStress a owl:Class ;
+    rdfs:label "Elevated Stress"@en ;
+    rdfs:comment "A state of high stress experienced by the driver."@en ;
+    rdfs:subClassOf ahmi:EmotionalState .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The overall state of the driver, including cognitive, emotional, and physiological aspects."@en ;
+    rdfs:equivalentClass [ rdf:type owl:Class ;
+                           owl:intersectionOf ( ahmi:CognitiveState
+                                                ahmi:EmotionalState
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty ahmi:detectedBy ;
+                                                  owl:someValuesFrom ahmi:PhysiologicalSensor
+                                                ]
+                                              )
+                         ] .
+
+ahmi:detectedBy a owl:ObjectProperty ;
+    rdfs:label "detected by"@en ;
+    rdfs:comment "Relates a driver state to the physiological sensor(s) used to detect it."@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:PhysiologicalSensor .
+
+ahmi:DriverStateDetectionSituation a owl:Class ;
+    rdfs:label "Driver State Detection Situation"@en ;
+    rdfs:comment "A situation representing the detection of a driver's state based on physiological sensor data."@en ;
+    rdfs:subClassOf :Situation ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty :satisfies ;
+                      owl:someValuesFrom ahmi:DriverStateDetectionDescription
+                    ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty ahmi:observes ;
+                      owl:someValuesFrom ahmi:DriverState
+                    ] .
+
+ahmi:DriverStateDetectionDescription a owl:Class ;
+    rdfs:label "Driver State Detection Description"@en ;
+    rdfs:comment "A description that provides a conceptualization for interpreting driver state detection situations."@en ;
+    rdfs:subClassOf :Description .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event or state it observes."@en ;
+    rdfs:domain :Situation ;
+    rdfs:range owl:Thing .

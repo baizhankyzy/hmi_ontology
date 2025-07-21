@@ -1,0 +1,49 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:BodyResponseMonitor a owl:Class ;
+    rdfs:label "BodyResponseMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsPhysicalStateChange ;
+        owl:someValuesFrom :PhysicalStateChange
+    ] .
+
+:AirMonitor a owl:Class ;
+    rdfs:label "AirMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsAirQuality ;
+        owl:someValuesFrom :AirQuality
+    ] .
+
+:PhysicalStateChange a owl:Class ;
+    rdfs:label "PhysicalStateChange" .
+
+:AirQuality a owl:Class ;
+    rdfs:label "AirQuality" .
+
+:detectsPhysicalStateChange a owl:ObjectProperty ;
+    rdfs:label "detectsPhysicalStateChange" ;
+    rdfs:domain :BodyResponseMonitor ;
+    rdfs:range :PhysicalStateChange .
+
+:detectsAirQuality a owl:ObjectProperty ;
+    rdfs:label "detectsAirQuality" ;
+    rdfs:domain :AirMonitor ;
+    rdfs:range :AirQuality .
+
+[ a owl:Class ;
+    owl:unionOf (:PoorAirQuality :GoodAirQuality)
+] rdfs:subClassOf :AirQuality .
+
+:PoorAirQuality a owl:Class ;
+    rdfs:label "PoorAirQuality" .
+
+:GoodAirQuality a owl:Class ;
+    rdfs:label "GoodAirQuality" .

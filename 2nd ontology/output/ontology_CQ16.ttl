@@ -1,0 +1,39 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :prioritizesVisualElement ;
+        owl:someValuesFrom :VisualElement ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass [
+            rdf:type owl:Class ;
+            owl:unionOf ( :HighCognitiveLoad :ElevatedCognitiveState )
+        ]
+    ] .
+
+:VisualElement a owl:Class ;
+    rdfs:label "VisualElement" .
+
+:prioritizesVisualElement a owl:ObjectProperty ;
+    rdfs:label "prioritizesVisualElement" ;
+    rdfs:domain :VisualSystem ;
+    rdfs:range :VisualElement .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:HighCognitiveLoad a owl:Class ;
+    rdfs:label "HighCognitiveLoad" ;
+    rdfs:subClassOf :CognitiveState .
+
+:ElevatedCognitiveState a owl:Class ;
+    rdfs:label "ElevatedCognitiveState" ;
+    rdfs:subClassOf :CognitiveState .

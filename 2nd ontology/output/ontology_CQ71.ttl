@@ -1,0 +1,33 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VariabilityAnalysis a owl:Class ;
+    rdfs:label "VariabilityAnalysis" .
+
+:SelfReportedStress a owl:Class ;
+    rdfs:label "SelfReportedStress" .
+
+:ComplementsData a owl:ObjectProperty ;
+    rdfs:label "ComplementsData" ;
+    rdfs:domain :VariabilityAnalysis ;
+    rdfs:range :SelfReportedStress .
+
+:DriverState a owl:Class ;
+    rdfs:label "DriverState" .
+
+:DataCollector a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :records ;
+        owl:someValuesFrom :DriverState
+    ] .
+
+:records a owl:ObjectProperty ;
+    rdfs:label "records" ;
+    rdfs:domain :DataCollector ;
+    rdfs:range :DriverState .

@@ -1,0 +1,35 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:MessageSystem a owl:Class ;
+    rdfs:label "MessageSystem" .
+
+:Driver a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasReactionTime ;
+        owl:someValuesFrom :ReactionTime
+    ] .
+
+:ReactionTime a owl:Class ;
+    rdfs:label "ReactionTime" .
+
+:SlowerReactionTime a owl:Class ;
+    rdfs:label "SlowerReactionTime" ;
+    rdfs:subClassOf :ReactionTime .
+
+:hasReactionTime a owl:ObjectProperty ;
+    rdfs:label "hasReactionTime" ;
+    rdfs:domain :Driver ;
+    rdfs:range :ReactionTime .
+
+:usesSimpleWords a owl:ObjectProperty ;
+    rdfs:label "usesSimpleWords" ;
+    rdfs:domain :MessageSystem ;
+    rdfs:range :SlowerReactionTime .

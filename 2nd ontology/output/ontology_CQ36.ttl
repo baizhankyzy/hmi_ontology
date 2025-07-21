@@ -1,0 +1,128 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:Driver a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasDriverCharacteristics ;
+        owl:someValuesFrom :DriverCharacteristics
+    ] .
+
+:DriverCharacteristics a owl:Class ;
+    rdfs:label "Driver Characteristics" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityTraits ;
+        owl:someValuesFrom :PersonalityTraits
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityScores ;
+        owl:someValuesFrom :PersonalityScores
+    ] .
+
+:PersonalityTraits a owl:Class ;
+    rdfs:label "Personality Traits" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAggressiveTendency ;
+        owl:someValuesFrom :AggressiveTendency
+    ] .
+
+:AggressiveTendency a owl:Class ;
+    rdfs:label "Aggressive Tendency" .
+
+:PersonalityScores a owl:Class ;
+    rdfs:label "Personality Scores" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasConscientiousnessScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasExtraversionScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgreeablenessScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasNeuroticismScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasOpennessScore ;
+        owl:someValuesFrom xsd:float
+    ] .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "Navigation Display" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAdaptation ;
+        owl:someValuesFrom :NavigationDisplayAdaptation
+    ] .
+
+:NavigationDisplayAdaptation a owl:Class ;
+    rdfs:label "Navigation Display Adaptation" .
+
+:hasDriverCharacteristics a owl:ObjectProperty ;
+    rdfs:label "has Driver Characteristics" ;
+    rdfs:domain :Driver ;
+    rdfs:range :DriverCharacteristics .
+
+:hasPersonalityTraits a owl:ObjectProperty ;
+    rdfs:label "has Personality Traits" ;
+    rdfs:domain :DriverCharacteristics ;
+    rdfs:range :PersonalityTraits .
+
+:hasPersonalityScores a owl:ObjectProperty ;
+    rdfs:label "has Personality Scores" ;
+    rdfs:domain :DriverCharacteristics ;
+    rdfs:range :PersonalityScores .
+
+:hasAggressiveTendency a owl:ObjectProperty ;
+    rdfs:label "has Aggressive Tendency" ;
+    rdfs:domain :PersonalityTraits ;
+    rdfs:range :AggressiveTendency .
+
+:hasConscientiousnessScore a owl:DatatypeProperty ;
+    rdfs:label "has Conscientiousness Score" ;
+    rdfs:domain :PersonalityScores ;
+    rdfs:range xsd:float .
+
+:hasExtraversionScore a owl:DatatypeProperty ;
+    rdfs:label "has Extraversion Score" ;
+    rdfs:domain :PersonalityScores ;
+    rdfs:range xsd:float .
+
+:hasAgreeablenessScore a owl:DatatypeProperty ;
+    rdfs:label "has Agreeableness Score" ;
+    rdfs:domain :PersonalityScores ;
+    rdfs:range xsd:float .
+
+:hasNeuroticismScore a owl:DatatypeProperty ;
+    rdfs:label "has Neuroticism Score" ;
+    rdfs:domain :PersonalityScores ;
+    rdfs:range xsd:float .
+
+:hasOpennessScore a owl:DatatypeProperty ;
+    rdfs:label "has Openness Score" ;
+    rdfs:domain :PersonalityScores ;
+    rdfs:range xsd:float .
+
+:hasAdaptation a owl:ObjectProperty ;
+    rdfs:label "has Adaptation" ;
+    rdfs:domain :NavigationDisplay ;
+    rdfs:range :NavigationDisplayAdaptation .

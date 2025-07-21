@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:AirFilter a owl:Class ;
+    rdfs:label "AirFilter" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :respondsTo ;
+        owl:someValuesFrom :PollenSensor
+    ] .
+
+:PollenSensor a owl:Class ;
+    rdfs:label "PollenSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasMeasurement ;
+        owl:someValuesFrom :PollenMeasurement
+    ] .
+
+:PollenMeasurement a owl:Class ;
+    rdfs:label "PollenMeasurement" .
+
+:respondsTo a owl:ObjectProperty ;
+    rdfs:label "respondsTo" ;
+    rdfs:domain :AirFilter ;
+    rdfs:range :PollenSensor .
+
+:hasMeasurement a owl:ObjectProperty ;
+    rdfs:label "hasMeasurement" ;
+    rdfs:domain :PollenSensor ;
+    rdfs:range :PollenMeasurement .

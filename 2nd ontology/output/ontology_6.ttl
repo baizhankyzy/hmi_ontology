@@ -1,0 +1,55 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjustsVolume ;
+        owl:someValuesFrom :Volume ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :generatesAlertMessage ;
+        owl:someValuesFrom :AlertMessage ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+:Volume a owl:Class ;
+    rdfs:label "Volume" .
+
+:AlertMessage a owl:Class ;
+    rdfs:label "AlertMessage" .
+
+:FatigueState a owl:Class ;
+    rdfs:label "FatigueState" .
+
+:adjustsVolume a owl:ObjectProperty ;
+    rdfs:label "adjustsVolume" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :Volume .
+
+:generatesAlertMessage a owl:ObjectProperty ;
+    rdfs:label "generatesAlertMessage" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :AlertMessage .
+
+[ rdf:type owl:Class ;
+  owl:unionOf ( :FatigueState :DrowsinessState )
+] rdfs:subClassOf :InattentionState .
+
+:InattentionState a owl:Class ;
+    rdfs:label "InattentionState" ;
+    rdfs:subClassOf :CognitiveState .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:DrowsinessState a owl:Class ;
+    rdfs:label "DrowsinessState" .

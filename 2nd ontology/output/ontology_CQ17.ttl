@@ -1,0 +1,202 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverAssistanceFeature a owl:Class ;
+    rdfs:label "Driver Assistance Feature" .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State" .
+
+:adaptsBasedOn a owl:ObjectProperty ;
+    rdfs:label "adapts based on" ;
+    rdfs:domain :DriverAssistanceFeature ;
+    rdfs:range :CognitiveState .
+
+:HighCognitiveLoad a owl:Class ;
+    rdfs:label "High Cognitive Load" ;
+    rdfs:subClassOf :CognitiveState .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "Visual System" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:DisplayContent a owl:Class ;
+    rdfs:label "Display Content" .
+
+:simplifies a owl:ObjectProperty ;
+    rdfs:label "simplifies" ;
+    rdfs:domain :VisualSystem ;
+    rdfs:range :DisplayContent .
+
+:InstrumentPanel a owl:Class ;
+    rdfs:label "Instrument Panel" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:InformationDensity a owl:Class ;
+    rdfs:label "Information Density" .
+
+:reduces a owl:ObjectProperty ;
+    rdfs:label "reduces" ;
+    rdfs:domain :InstrumentPanel ;
+    rdfs:range :InformationDensity .
+
+:VisualElement a owl:Class ;
+    rdfs:label "Visual Element" .
+
+:NonEssentialVisualElement a owl:Class ;
+    rdfs:label "Non-essential Visual Element" ;
+    rdfs:subClassOf :VisualElement .
+
+:hides a owl:ObjectProperty ;
+    rdfs:label "hides" ;
+    rdfs:domain :NonEssentialVisualElement ;
+    rdfs:range :VisualElement .
+
+:NotificationSystem a owl:Class ;
+    rdfs:label "Notification System" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:IncomingMessage a owl:Class ;
+    rdfs:label "Incoming Message" .
+
+:pauses a owl:ObjectProperty ;
+    rdfs:label "pauses" ;
+    rdfs:domain :NotificationSystem ;
+    rdfs:range :IncomingMessage .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "Navigation Display" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:CriticalInformation a owl:Class ;
+    rdfs:label "Critical Information" .
+
+:shows a owl:ObjectProperty ;
+    rdfs:label "shows" ;
+    rdfs:domain :NavigationDisplay ;
+    rdfs:range :CriticalInformation .
+
+:Contrast a owl:Class ;
+    rdfs:label "Contrast" .
+
+:increases a owl:ObjectProperty ;
+    rdfs:label "increases" ;
+    rdfs:domain :NavigationDisplay ;
+    rdfs:range :Contrast .
+
+:LaneAssist a owl:Class ;
+    rdfs:label "Lane Assist" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:AdaptationRule a owl:Class ;
+    rdfs:label "Adaptation Rule" .
+
+:follows a owl:ObjectProperty ;
+    rdfs:label "follows" ;
+    rdfs:domain :LaneAssist ;
+    rdfs:range :AdaptationRule .
+
+:SteeringSupport a owl:Class ;
+    rdfs:label "Steering Support" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:provides a owl:ObjectProperty ;
+    rdfs:label "provides" ;
+    rdfs:domain :SteeringSupport ;
+    rdfs:range :DriverAssistance .
+
+:DriverAssistance a owl:Class ;
+    rdfs:label "Driver Assistance" .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "Sound System" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:AudioLevel a owl:Class ;
+    rdfs:label "Audio Level" .
+
+:adjusts a owl:ObjectProperty ;
+    rdfs:label "adjusts" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :AudioLevel .
+
+:lowers a owl:ObjectProperty ;
+    rdfs:label "lowers" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :BackgroundSound .
+
+:BackgroundSound a owl:Class ;
+    rdfs:label "Background Sound" .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:label "Voice Assistant" ;
+    rdfs:subClassOf :DriverAssistanceFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsBasedOn ;
+        owl:someValuesFrom :HighCognitiveLoad
+    ] .
+
+:Tone a owl:Class ;
+    rdfs:label "Tone" .
+
+:uses a owl:ObjectProperty ;
+    rdfs:label "uses" ;
+    rdfs:domain :VoiceAssistant ;
+    rdfs:range :Tone .
+
+:Wording a owl:Class ;
+    rdfs:label "Wording" .
+
+:clear a owl:DatatypeProperty ;
+    rdfs:label "clear" ;
+    rdfs:domain :Wording ;
+    rdfs:range xsd:boolean .
+
+:Speaker a owl:Class ;
+    rdfs:label "Speaker" .
+
+:through a owl:ObjectProperty ;
+    rdfs:label "through" ;
+    rdfs:domain :VoiceAssistant ;
+    rdfs:range :Speaker .

@@ -1,0 +1,40 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DayNightSensor a owl:Class ;
+    rdfs:label "DayNightSensor" .
+
+:WeatherMonitor a owl:Class ;
+    rdfs:label "WeatherMonitor" .
+
+:ComplexityScore a owl:Class ;
+    rdfs:label "ComplexityScore" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasComplexityScore ;
+        owl:someValuesFrom [
+            rdf:type owl:Class ;
+            owl:unionOf ( :DayNightSensorReading :WeatherMonitorReading )
+        ]
+    ] .
+
+:DayNightSensorReading a owl:Class ;
+    rdfs:label "DayNightSensorReading" ;
+    rdfs:subClassOf :DayNightSensor .
+
+:WeatherMonitorReading a owl:Class ;
+    rdfs:label "WeatherMonitorReading" ;
+    rdfs:subClassOf :WeatherMonitor .
+
+:hasComplexityScore a owl:ObjectProperty ;
+    rdfs:label "hasComplexityScore" ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf ( :DayNightSensorReading :WeatherMonitorReading )
+    ] ;
+    rdfs:range :ComplexityScore .

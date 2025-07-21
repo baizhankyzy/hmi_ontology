@@ -1,0 +1,49 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:ForceAnalysis a owl:Class ;
+    rdfs:label "ForceAnalysis" .
+
+:GripSensor a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsForceAnalysis ;
+        owl:someValuesFrom :ForceAnalysis
+    ] .
+
+:StressLevel a owl:Class .
+
+:SteeringWheel a owl:Class .
+
+:performsForceAnalysis a owl:ObjectProperty ;
+    rdfs:label "performs ForceAnalysis" ;
+    rdfs:domain :GripSensor ;
+    rdfs:range :ForceAnalysis .
+
+:hasStressLevel a owl:ObjectProperty ;
+    rdfs:label "has StressLevel" ;
+    rdfs:domain :EmotionalState ;
+    rdfs:range :StressLevel .
+
+:EmotionalState a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasStressLevel ;
+        owl:someValuesFrom :StressLevel
+    ] .
+
+:ForceAnalysis rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :correlatesWith ;
+    owl:someValuesFrom :StressLevel
+] .
+
+:correlatesWith a owl:ObjectProperty ;
+    rdfs:label "correlates with" ;
+    rdfs:domain :ForceAnalysis ;
+    rdfs:range :StressLevel .

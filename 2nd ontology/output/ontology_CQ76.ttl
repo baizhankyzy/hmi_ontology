@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:BreathingSensor a owl:Class ;
+    rdfs:label "BreathingSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsBreathingPattern ;
+        owl:someValuesFrom :BreathingPattern
+    ] .
+
+:BreathingPattern a owl:Class ;
+    rdfs:label "BreathingPattern" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :inResponseTo ;
+        owl:someValuesFrom :AirQuality
+    ] .
+
+:AirQuality a owl:Class ;
+    rdfs:label "AirQuality" .
+
+:detectsBreathingPattern a owl:ObjectProperty ;
+    rdfs:label "detects breathing pattern" ;
+    rdfs:domain :BreathingSensor ;
+    rdfs:range :BreathingPattern .
+
+:inResponseTo a owl:ObjectProperty ;
+    rdfs:label "in response to" ;
+    rdfs:domain :BreathingPattern ;
+    rdfs:range :AirQuality .

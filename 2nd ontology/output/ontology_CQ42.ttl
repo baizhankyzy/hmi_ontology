@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:LaneAssist a owl:Class ;
+    rdfs:label "LaneAssist" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasSensitivitySetting ;
+        owl:someValuesFrom :SensitivitySetting
+    ] .
+
+:SensitivitySetting a owl:Class ;
+    rdfs:label "SensitivitySetting" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :forAgeGroup ;
+        owl:someValuesFrom :AgeGroup
+    ] .
+
+:AgeGroup a owl:Class ;
+    rdfs:label "AgeGroup" .
+
+:hasSensitivitySetting a owl:ObjectProperty ;
+    rdfs:label "hasSensitivitySetting" ;
+    rdfs:domain :LaneAssist ;
+    rdfs:range :SensitivitySetting .
+
+:forAgeGroup a owl:ObjectProperty ;
+    rdfs:label "forAgeGroup" ;
+    rdfs:domain :SensitivitySetting ;
+    rdfs:range :AgeGroup .

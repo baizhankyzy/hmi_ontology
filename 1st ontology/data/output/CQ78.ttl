@@ -1,0 +1,127 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi: a owl:Ontology .
+
+### Classes
+
+ahmi:TrustCalibrationMechanism rdfs:label "Trust Calibration Mechanism"@en ;
+    rdfs:comment "A mechanism for adjusting the level of trust conveyed to the driver by the system's feedback and interventions."@en ;
+    rdfs:subClassOf ahmi:AdaptationStrategy .
+
+ahmi:AdaptationStrategy rdfs:label "Adaptation Strategy"@en ;
+    rdfs:comment "A strategy for adapting the system's behavior or feedback based on the driver's state or context."@en ;
+    rdfs:subClassOf ahmi:SystemComponent .
+
+ahmi:SystemComponent rdfs:label "System Component"@en ;
+    rdfs:comment "A component of the vehicle's ADAS or HMI system."@en .
+
+ahmi:DriverState rdfs:label "Driver State"@en ;
+    rdfs:comment "A state or condition experienced by the driver, such as confusion or a tendency for speed violations."@en .
+
+ahmi:DiscreteEmotiveState rdfs:label "Discrete Emotive State"@en ;
+    rdfs:comment "A specific emotional state experienced by the driver, such as confusion."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:BehavioralTendency rdfs:label "Behavioral Tendency"@en ;
+    rdfs:comment "A tendency or pattern in the driver's behavior, such as a tendency for speed violations."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Event rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process or occurrence."@en .
+
+ahmi:LaneDepartureEvent rdfs:label "Lane Departure Event"@en ;
+    rdfs:comment "An event where the vehicle departs from its intended lane."@en ;
+    rdfs:subClassOf ahmi:Event .
+
+ahmi:Situation rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a particular description or conceptualization."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations and events."@en .
+
+ahmi:LaneDepartureSituation rdfs:label "Lane Departure Situation"@en ;
+    rdfs:comment "A situation representing the interpretation of a lane departure event."@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:LaneDepartureEvent
+    ] .
+
+ahmi:FeedbackModality rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A modality or channel through which feedback is provided to the driver, such as visual, auditory, or tactile."@en ;
+    rdfs:subClassOf ahmi:SystemComponent .
+
+ahmi:VisualFeedback rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Feedback provided through visual elements or displays."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AudioFeedback rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "Feedback provided through auditory warnings or tones."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:TactileFeedback rdfs:label "Tactile Feedback"@en ;
+    rdfs:comment "Feedback provided through tactile or force feedback mechanisms, such as vibrations or steering wheel resistance."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:DialogDesign rdfs:label "Dialog Design"@en ;
+    rdfs:comment "The design of the dialog or interaction between the system and the driver."@en ;
+    rdfs:subClassOf ahmi:SystemComponent .
+
+ahmi:MessageStructure rdfs:label "Message Structure"@en ;
+    rdfs:comment "The structure and organization of messages or information presented to the driver."@en ;
+    rdfs:subClassOf ahmi:SystemComponent .
+
+ahmi:RegulationStrategy rdfs:label "Regulation Strategy"@en ;
+    rdfs:comment "A strategy or guideline defined by regulations or standards for system behavior or feedback."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+ahmi:UserExperienceFactor rdfs:label "User Experience Factor"@en ;
+    rdfs:comment "A factor or principle related to user experience, such as maintaining appropriate trust levels or avoiding frustration."@en ;
+    rdfs:subClassOf ahmi:Description .
+
+### Object Properties
+
+ahmi:satisfies rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:observes rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it observes or interprets."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:hasAdaptationStrategy rdfs:label "has adaptation strategy"@en ;
+    rdfs:comment "Relates a system component to the adaptation strategies it employs."@en ;
+    rdfs:domain ahmi:SystemComponent ;
+    rdfs:range ahmi:AdaptationStrategy .
+
+ahmi:hasFeedbackModality rdfs:label "has feedback modality"@en ;
+    rdfs:comment "Relates a system component to the feedback modalities it uses."@en ;
+    rdfs:domain ahmi:SystemComponent ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:addressesDriverState rdfs:label "addresses driver state"@en ;
+    rdfs:comment "Relates an adaptation strategy to the driver state it addresses."@en ;
+    rdfs:domain ahmi:AdaptationStrategy ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:conformsToRegulation rdfs:label "conforms to regulation"@en ;
+    rdfs:comment "Relates a system component or adaptation strategy to the regulation strategies it conforms to."@en ;
+    rdfs:domain [ owl:unionOf (ahmi:SystemComponent ahmi:AdaptationStrategy) ] ;
+    rdfs:range ahmi:RegulationStrategy .
+
+ahmi:considersUserExperienceFactor rdfs:label "considers user experience factor"@en ;
+    rdfs:comment "Relates a system component or adaptation strategy to the user experience factors it considers."@en ;
+    rdfs:domain [ owl:unionOf (ahmi:SystemComponent ahmi:AdaptationStrategy) ] ;
+    rdfs:range ahmi:UserExperienceFactor .

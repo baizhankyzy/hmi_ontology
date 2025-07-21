@@ -1,0 +1,104 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:CognitiveState rdfs:subClassOf ahmi:DriverState ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "A state representing the driver's cognitive load and mental processing capacity."@en .
+
+ahmi:DriverState rdfs:subClassOf dul:Situation ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "A situation describing the driver's physical, cognitive, and emotional condition."@en .
+
+ahmi:EmotionalState rdfs:subClassOf ahmi:DriverState ;
+    rdfs:label "Emotional State"@en ;
+    rdfs:comment "A situation describing the driver's emotional condition, such as stress or calmness."@en .
+
+ahmi:EnvironmentFactor rdfs:subClassOf dul:Parameter ;
+    rdfs:label "Environment Factor"@en ;
+    rdfs:comment "A parameter representing external conditions that may influence the driver's state or vehicle behavior."@en .
+
+ahmi:RoadComplexity rdfs:subClassOf ahmi:EnvironmentFactor ;
+    rdfs:label "Road Complexity"@en ;
+    rdfs:comment "A factor describing the complexity of the road environment, such as the presence of construction, pedestrians, or unpredictable traffic."@en .
+
+ahmi:TrafficDensity rdfs:subClassOf ahmi:EnvironmentFactor ;
+    rdfs:label "Traffic Density"@en ;
+    rdfs:comment "A factor representing the level of congestion and traffic density on the road."@en .
+
+ahmi:WeatherCondition rdfs:subClassOf ahmi:EnvironmentFactor ;
+    rdfs:label "Weather Condition"@en ;
+    rdfs:comment "A factor describing the current weather conditions, such as rain or clear skies."@en .
+
+ahmi:DriverMonitoring rdfs:subClassOf dul:Concept ;
+    rdfs:label "Driver Monitoring"@en ;
+    rdfs:comment "A concept representing the monitoring and analysis of the driver's state and behavior."@en .
+
+ahmi:PhysiologicalSensor rdfs:subClassOf ahmi:DriverMonitoring ;
+    rdfs:label "Physiological Sensor"@en ;
+    rdfs:comment "A sensor that measures the driver's physiological signals, such as heart rate or eye movements."@en .
+
+ahmi:BehavioralAnalysis rdfs:subClassOf ahmi:DriverMonitoring ;
+    rdfs:label "Behavioral Analysis"@en ;
+    rdfs:comment "An analysis of the driver's behavior, such as steering wheel grip or eye movements, to infer their cognitive and emotional state."@en .
+
+ahmi:ContextualAnalysis rdfs:subClassOf dul:Concept ;
+    rdfs:label "Contextual Analysis"@en ;
+    rdfs:comment "An analysis of the driving context, including environmental factors and road conditions, to assess the overall complexity and potential risks."@en .
+
+ahmi:HMIAdaptation rdfs:subClassOf dul:Concept ;
+    rdfs:label "HMI Adaptation"@en ;
+    rdfs:comment "A concept representing the adaptation of the vehicle's human-machine interface (HMI) based on the driver's state and the driving context."@en .
+
+ahmi:VisualFeedbackAdaptation rdfs:subClassOf ahmi:HMIAdaptation ;
+    rdfs:label "Visual Feedback Adaptation"@en ;
+    rdfs:comment "An adaptation of the visual feedback provided to the driver, such as simplifying displays or adjusting visual elements."@en .
+
+ahmi:AudioFeedbackAdaptation rdfs:subClassOf ahmi:HMIAdaptation ;
+    rdfs:label "Audio Feedback Adaptation"@en ;
+    rdfs:comment "An adaptation of the audio feedback provided to the driver, such as adjusting volume, tone, or wording."@en .
+
+ahmi:DialogDesignAdaptation rdfs:subClassOf ahmi:HMIAdaptation ;
+    rdfs:label "Dialog Design Adaptation"@en ;
+    rdfs:comment "An adaptation of the dialog design and interaction flow between the vehicle and the driver, such as pausing notifications or prioritizing critical information."@en .
+
+ahmi:ADASAdaptation rdfs:subClassOf dul:Concept ;
+    rdfs:label "ADAS Adaptation"@en ;
+    rdfs:comment "A concept representing the adaptation of advanced driver assistance systems (ADAS) based on the driver's state and the driving context."@en .
+
+ahmi:LaneKeepingAssistAdaptation rdfs:subClassOf ahmi:ADASAdaptation ;
+    rdfs:label "Lane Keeping Assist Adaptation"@en ;
+    rdfs:comment "An adaptation of the lane keeping assist system, providing varying levels of steering support based on the driver's state."@en .
+
+ahmi:hasDriverState rdfs:domain ahmi:DriverMonitoring ;
+    rdfs:range ahmi:DriverState ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a driver monitoring system to the detected driver state."@en .
+
+ahmi:hasEnvironmentFactor rdfs:domain ahmi:ContextualAnalysis ;
+    rdfs:range ahmi:EnvironmentFactor ;
+    rdfs:label "has environment factor"@en ;
+    rdfs:comment "Relates a contextual analysis to the environmental factors considered."@en .
+
+ahmi:triggersAdaptation rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:HMIAdaptation , ahmi:ADASAdaptation ;
+    rdfs:label "triggers adaptation"@en ;
+    rdfs:comment "Relates a driver state to the adaptations of the HMI or ADAS systems that should be triggered in response."@en .
+
+ahmi:hasParameter rdfs:domain ahmi:DriverState , ahmi:HMIAdaptation , ahmi:ADASAdaptation ;
+    rdfs:range ahmi:EnvironmentFactor ;
+    rdfs:label "has parameter"@en ;
+    rdfs:comment "Relates a situation or concept to the environmental factors that serve as parameters or constraints."@en .
+
+ahmi:satisfies rdfs:domain ahmi:DriverState ;
+    rdfs:range dul:Description ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a driver state situation to the description or conceptualization it satisfies."@en .
+
+ahmi:isPartOf rdfs:domain ahmi:VisualFeedbackAdaptation , ahmi:AudioFeedbackAdaptation , ahmi:DialogDesignAdaptation ;
+    rdfs:range ahmi:HMIAdaptation ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "Relates specific HMI adaptation strategies to the overall HMI adaptation concept."@en .

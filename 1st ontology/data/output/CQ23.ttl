@@ -1,0 +1,86 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:DiscreteEmotiveState a owl:Class ;
+    rdfs:label "Discrete Emotive State"@en ;
+    rdfs:comment "A distinct emotional state experienced by a person."@en ;
+    rdfs:subClassOf ahmi:EmotionalState .
+
+ahmi:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State"@en ;
+    rdfs:comment "The emotional condition or experience of a person."@en .
+
+ahmi:Frustration a owl:Class ;
+    rdfs:label "Frustration"@en ;
+    rdfs:comment "The emotional state of feeling annoyed or dissatisfied due to unfulfilled needs or unmet expectations."@en ;
+    rdfs:subClassOf ahmi:DiscreteEmotiveState .
+
+ahmi:TrafficCondition a owl:Class ;
+    rdfs:label "Traffic Condition"@en ;
+    rdfs:comment "The state of traffic flow on a road or highway."@en .
+
+ahmi:HighCongestion a owl:Class ;
+    rdfs:label "High Congestion"@en ;
+    rdfs:comment "A traffic condition characterized by a high volume of vehicles and slow or stopped movement."@en ;
+    rdfs:subClassOf ahmi:TrafficCondition .
+
+ahmi:triggers a owl:ObjectProperty ;
+    rdfs:label "triggers"@en ;
+    rdfs:comment "Relates a traffic condition to the emotional state it may cause."@en ;
+    rdfs:domain ahmi:TrafficCondition ;
+    rdfs:range ahmi:EmotionalState .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of events based on a particular context or description."@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:FrustrationSituation a owl:Class ;
+    rdfs:label "Frustration Situation"@en ;
+    rdfs:comment "A situation where a person experiences frustration due to traffic conditions and other contextual factors."@en ;
+    rdfs:subClassOf ahmi:Situation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty dul:satisfies ;
+        owl:someValuesFrom ahmi:FrustrationDescription
+    ] .
+
+ahmi:FrustrationDescription a owl:Class ;
+    rdfs:label "Frustration Description"@en ;
+    rdfs:comment "A conceptualization that provides a context for interpreting situations involving frustration."@en ;
+    rdfs:subClassOf dul:Description .
+
+ahmi:hasTrafficCondition a owl:ObjectProperty ;
+    rdfs:label "has traffic condition"@en ;
+    rdfs:comment "Relates a situation to the traffic condition involved."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:TrafficCondition .
+
+ahmi:hasContextualFactor a owl:ObjectProperty ;
+    rdfs:label "has contextual factor"@en ;
+    rdfs:comment "Relates a situation to other contextual factors that contribute to the interpretation."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:ContextualFactor .
+
+ahmi:ContextualFactor a owl:Class ;
+    rdfs:label "Contextual Factor"@en ;
+    rdfs:comment "Additional factors that influence the interpretation of a situation."@en .
+
+ahmi:JourneyContext a owl:Class ;
+    rdfs:label "Journey Context"@en ;
+    rdfs:comment "The context related to the journey or trip being undertaken."@en ;
+    rdfs:subClassOf ahmi:ContextualFactor .
+
+ahmi:DeviationFromExpectedTimeOnTask a owl:Class ;
+    rdfs:label "Deviation from Expected Time on Task"@en ;
+    rdfs:comment "A situation where the actual time spent on a task deviates significantly from the expected or planned duration."@en ;
+    rdfs:subClassOf ahmi:JourneyContext .
+
+ahmi:BrakingBehavior a owl:Class ;
+    rdfs:label "Braking Behavior"@en ;
+    rdfs:comment "The behavior exhibited by a driver when applying the brakes of a vehicle."@en ;
+    rdfs:subClassOf ahmi:ContextualFactor .

@@ -1,0 +1,84 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:HighCognitiveLoad a owl:Class ;
+    rdfs:label "High Cognitive Load" ;
+    rdfs:subClassOf :CognitiveState ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isDetectedBy ;
+        owl:someValuesFrom [
+            rdf:type owl:Class ;
+            owl:unionOf (
+                :ForceAnalysis
+                :HeartAnalysis
+                :VariabilityAnalysis
+                :ConductanceAnalysis
+                :GazeAnalysis
+                :FocusAnalysis
+                :PupilAnalysis
+                :RoadComplexityAnalysis
+                :TrafficDensityAnalysis
+            )
+        ]
+    ] .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State" .
+
+:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State" .
+
+:StressLevel a owl:Class ;
+    rdfs:label "Stress Level" ;
+    rdfs:subClassOf :EmotionalState .
+
+:ForceAnalysis a owl:Class ;
+    rdfs:label "Force Analysis" .
+
+:HeartAnalysis a owl:Class ;
+    rdfs:label "Heart Analysis" .
+
+:VariabilityAnalysis a owl:Class ;
+    rdfs:label "Variability Analysis" .
+
+:ConductanceAnalysis a owl:Class ;
+    rdfs:label "Conductance Analysis" .
+
+:GazeAnalysis a owl:Class ;
+    rdfs:label "Gaze Analysis" .
+
+:FocusAnalysis a owl:Class ;
+    rdfs:label "Focus Analysis" .
+
+:PupilAnalysis a owl:Class ;
+    rdfs:label "Pupil Analysis" .
+
+:RoadComplexityAnalysis a owl:Class ;
+    rdfs:label "Road Complexity Analysis" .
+
+:TrafficDensityAnalysis a owl:Class ;
+    rdfs:label "Traffic Density Analysis" .
+
+:isDetectedBy a owl:ObjectProperty ;
+    rdfs:label "is detected by" ;
+    rdfs:domain :HighCognitiveLoad ;
+    rdfs:range [
+        rdf:type owl:Class ;
+        owl:unionOf (
+            :ForceAnalysis
+            :HeartAnalysis
+            :VariabilityAnalysis
+            :ConductanceAnalysis
+            :GazeAnalysis
+            :FocusAnalysis
+            :PupilAnalysis
+            :RoadComplexityAnalysis
+            :TrafficDensityAnalysis
+        )
+    ] .

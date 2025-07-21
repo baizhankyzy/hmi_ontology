@@ -1,0 +1,116 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VirtualSimulator a owl:Class ;
+    rdfs:label "VirtualSimulator" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :provides ;
+        owl:someValuesFrom :DriverStudyCapability
+    ] .
+
+:DriverStudyCapability a owl:Class ;
+    rdfs:label "DriverStudyCapability" .
+
+:provides a owl:ObjectProperty ;
+    rdfs:label "provides" ;
+    rdfs:domain :VirtualSimulator ;
+    rdfs:range :DriverStudyCapability .
+
+:PersonalityTest a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:AggressionTest a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:PersonalityProfile a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:DataCollector a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:DriverState a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:DistractionTrigger a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:CognitiveMonitor a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:WorkloadScale a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:MentalLoad a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:FrustrationLevel a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:EffortLevel a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:TimeKeeper a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:BodyMonitor a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SkinSensor a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SweatAnalysis a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:HeartMonitor a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:VariabilityAnalysis a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:BrainMonitor a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:WaveAnalysis a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SatisfactionScale a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SteeringVibration a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SeatVibration a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:PedalFeedback a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:SpeakerClarity a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:VoiceQuality a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:VisualElement a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:DataCombiner a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:CalibrationTool a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:AdaptationRule a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:TrustOptimizer a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .
+
+:CrossModalChecker a owl:Class ;
+    rdfs:subClassOf :DriverStudyCapability .

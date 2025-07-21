@@ -1,0 +1,27 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:TimingChecker a owl:Class ;
+    rdfs:label "TimingChecker" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :measuresAlertDelayFor ;
+        owl:someValuesFrom [ rdf:type owl:Class ;
+                              owl:unionOf ( :Speaker :Display )
+                            ]
+    ] .
+
+:Speaker a owl:Class .
+:Display a owl:Class .
+
+:measuresAlertDelayFor a owl:ObjectProperty ;
+    rdfs:label "measuresAlertDelayFor" ;
+    rdfs:domain :TimingChecker ;
+    rdfs:range [ rdf:type owl:Class ;
+                 owl:unionOf ( :Speaker :Display )
+               ] .

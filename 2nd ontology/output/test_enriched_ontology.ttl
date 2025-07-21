@@ -1,0 +1,145 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dms: <http://www.example.org/test#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dms:Statement_k1 a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:Emotion_emotion ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Statement_ksemotionalstatesdrivingperformance a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:EmotionalState_emotionalstate ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Statement_ksemotionalstatesreactiontimes a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:EmotionalState_emotionalstate1 ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Statement_nudgesbaseddesign1 a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:CognitiveShortcut_heuristic ;
+            dms:confidenceValue 0.85 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicThinking ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicThinking ;
+            dms:confidenceValue 0.8 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicthinking ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicThinking ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:Error_mistake ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:AffectiveHeuristic_affectiveheuristic1 ;
+            dms:confidenceValue 0.8 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicThinking ;
+            dms:confidenceValue 0.8 ],
+        [ dms:confidenceFor dms:CognitiveProcess_heuristicThinking ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:Error_mistake ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:AffectiveHeuristic_affectiveheuristic1 ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:AffectiveHeuristic_affectiveheuristic1 ;
+            dms:confidenceValue 0.85 ],
+        [ dms:confidenceFor dms:CognitiveShortcut_heuristic ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:AffectiveHeuristic_affectiveheuristic1 ;
+            dms:confidenceValue 0.85 ],
+        [ dms:confidenceFor dms:Error_mistake ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Statement_nudgesemotionregulationdriving a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:CognitiveProcess_emotionbasedThinking ;
+            dms:confidenceValue 0.9 ],
+        [ dms:confidenceFor dms:CognitiveProcess_affectivebasedThinking ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Statement_nudgetheoryhumanmistakes a dms:KnowledgeStatement ;
+    dcterms:source "Nudges-Based Design Method for Adaptive HMI to Improve Driving Safety.pdf" ;
+    dms:hasConfidence [ dms:confidenceFor dms:Theory_nudgetheory ;
+            dms:confidenceValue 0.9 ] ;
+    dms:sectionTitle "Nudges and Emotion Regulation" ;
+    dms:topic "Emotional regulation techniques for safe driving" .
+
+dms:Benefit_benefit a dms:Benefit .
+
+dms:CognitiveBias_cognitiveBias a dms:CognitiveBias .
+
+dms:CognitiveProcess_affectivebasedThinking a dms:CognitiveProcess ;
+    dms:isImportantFor dms:Situation_timepressuredDeliberateActionSituations .
+
+dms:CognitiveProcess_decisionmaking a dms:CognitiveProcess .
+
+dms:CognitiveProcess_emotionbasedThinking a dms:CognitiveProcess ;
+    dms:isImportantFor dms:Situation_timepressuredDeliberateActionSituations .
+
+dms:CognitiveProcess_heuristicthinking a dms:CognitiveProcess ;
+    dms:assists dms:CognitiveProcess_decisionmaking .
+
+dms:CognitiveShortcut_shortcut a dms:CognitiveShortcut .
+
+dms:DrivingContext_drivingContext a dms:DrivingContext .
+
+dms:DrivingPerformance_drivingperformance a dms:DrivingPerformance .
+
+dms:EmotionalState_emotionalstate a dms:EmotionalState ;
+    dms:influences dms:DrivingPerformance_drivingperformance .
+
+dms:EmotionalState_emotionalstate1 a dms:EmotionalState ;
+    dms:influences dms:ReactionTime_reactiontime1 .
+
+dms:Heuristic_heuristic a dms:Heuristic .
+
+dms:Heuristic_ruleOfThumb a dms:Heuristic .
+
+dms:ReactionTime_reactiontime1 a dms:ReactionTime .
+
+dms:Risk_risk a dms:Risk .
+
+dms:Theory_nudgetheory a dms:Theory ;
+    dms:states "humans are prone to making mistakes" .
+
+dms:Vehicle_vehicle a dms:Vehicle .
+
+dms:CognitiveProcess_thinking a dms:CognitiveProcess .
+
+dms:CognitiveShortcut_heuristic a dms:CognitiveShortcut ;
+    dms:reduces "amount of information required for decision-making" ;
+    dms:usedAs dms:CognitiveShortcut_shortcut .
+
+dms:Emotion_emotion a dms:Emotion ;
+    dms:hasImpact dms:DrivingContext_drivingContext .
+
+dms:Situation_timepressuredDeliberateActionSituations a dms:Situation .
+
+dms:Error_mistake a dms:Error ;
+    dms:hasSource dms:CognitiveBias_cognitiveBias,
+        dms:Heuristic_heuristic,
+        dms:Heuristic_ruleOfThumb .
+
+dms:AffectiveHeuristic_affectiveheuristic1 a dms:AffectiveHeuristic ;
+    dms:appliesTo dms:Vehicle_vehicle ;
+    dms:reliesOn dms:Emotion_emotion ;
+    dms:usedForEstimating dms:Benefit_benefit,
+        dms:Risk_risk .
+
+dms:CognitiveProcess_heuristicThinking a dms:CognitiveProcess ;
+    dms:alters dms:CognitiveProcess_thinking ;
+    dms:hasCharacteristic "emotionally impacted",
+        "instinctive",
+        "irrational" ;
+    dms:limits dms:CognitiveProcess_thinking .
+

@@ -1,0 +1,330 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SteeringAnalyzer a owl:Class ;
+    rdfs:label "SteeringAnalyzer" .
+
+:AttentionDemand a owl:Class ;
+    rdfs:label "AttentionDemand" .
+
+:ElderlyDriver a owl:Class ;
+    rdfs:label "ElderlyDriver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasDriverProfile ;
+        owl:someValuesFrom :DriverProfile
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasCognitiveProfile ;
+        owl:someValuesFrom :CognitiveProfile
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPreferences ;
+        owl:someValuesFrom :DriverPreferences
+    ] .
+
+:DriverProfile a owl:Class ;
+    rdfs:label "DriverProfile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgeFactors ;
+        owl:someValuesFrom :AgeFactors
+    ] .
+
+:CognitiveProfile a owl:Class ;
+    rdfs:label "CognitiveProfile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasReactionTime ;
+        owl:someValuesFrom :ReactionTime
+    ] .
+
+:DriverPreferences a owl:Class ;
+    rdfs:label "DriverPreferences" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :requiresSimpleDisplays ;
+        owl:someValuesFrom :SimpleDisplay
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :requiresLargeVisualElements ;
+        owl:someValuesFrom :LargeVisualElement
+    ] .
+
+:AgeFactors a owl:Class ;
+    rdfs:label "AgeFactors" .
+
+:ReactionTime a owl:Class ;
+    rdfs:label "ReactionTime" .
+
+:SimpleDisplay a owl:Class ;
+    rdfs:label "SimpleDisplay" .
+
+:LargeVisualElement a owl:Class ;
+    rdfs:label "LargeVisualElement" .
+
+:WeatherMonitor a owl:Class ;
+    rdfs:label "WeatherMonitor" .
+
+:LightSensor a owl:Class ;
+    rdfs:label "LightSensor" .
+
+:VisibilityMeasure a owl:Class ;
+    rdfs:label "VisibilityMeasure" .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsEyeTracking ;
+        owl:someValuesFrom :EyeTracking
+    ] .
+
+:EyeTracking a owl:Class ;
+    rdfs:label "EyeTracking" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsGazeAlternation ;
+        owl:someValuesFrom :GazeAlternation
+    ] .
+
+:GazeAlternation a owl:Class ;
+    rdfs:label "GazeAlternation" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :alternatesBetween ;
+        owl:someValuesFrom :NavigationDisplay
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :alternatesBetween ;
+        owl:someValuesFrom :Road
+    ] .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "NavigationDisplay" .
+
+:Road a owl:Class ;
+    rdfs:label "Road" .
+
+:GazeAnalysis a owl:Class ;
+    rdfs:label "GazeAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsFocusTime ;
+        owl:someValuesFrom :FocusTime
+    ] .
+
+:FocusTime a owl:Class ;
+    rdfs:label "FocusTime" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :showsIncreasedStaring ;
+        owl:someValuesFrom :IncreasedStaring
+    ] .
+
+:IncreasedStaring a owl:Class ;
+    rdfs:label "IncreasedStaring" .
+
+:MicroMovement a owl:Class ;
+    rdfs:label "MicroMovement" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsIncreasedFrequency ;
+        owl:someValuesFrom :IncreasedFrequency
+    ] .
+
+:IncreasedFrequency a owl:Class ;
+    rdfs:label "IncreasedFrequency" .
+
+:RandomnessCalculator a owl:Class ;
+    rdfs:label "RandomnessCalculator" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsHigherIrregularity ;
+        owl:someValuesFrom :HigherIrregularity
+    ] .
+
+:HigherIrregularity a owl:Class ;
+    rdfs:label "HigherIrregularity" .
+
+:SeatSensor a owl:Class ;
+    rdfs:label "SeatSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsPostureChanges ;
+        owl:someValuesFrom :PostureChange
+    ] .
+
+:PostureChange a owl:Class ;
+    rdfs:label "PostureChange" .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :registersEnvironmentalChanges ;
+        owl:someValuesFrom :EnvironmentalChange
+    ] .
+
+:EnvironmentalChange a owl:Class ;
+    rdfs:label "EnvironmentalChange" .
+
+:GPS a owl:Class ;
+    rdfs:label "GPS" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :confirmsUnfamiliarLocation ;
+        owl:someValuesFrom :UnfamiliarLocation
+    ] .
+
+:UnfamiliarLocation a owl:Class ;
+    rdfs:label "UnfamiliarLocation" .
+
+:MapAnalyzer a owl:Class ;
+    rdfs:label "MapAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :identifiesNewRoute ;
+        owl:someValuesFrom :NewRoute
+    ] .
+
+:NewRoute a owl:Class ;
+    rdfs:label "NewRoute" .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "VehicleSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsToDriverProfile ;
+        owl:someValuesFrom :DriverProfile
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsToConditions ;
+        owl:someValuesFrom :DrivingCondition
+    ] .
+
+:DrivingCondition a owl:Class ;
+    rdfs:label "DrivingCondition" .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :modifiesDisplaySettings ;
+        owl:someValuesFrom :DisplaySettings
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :increasesTextSize ;
+        owl:someValuesFrom :TextSize
+    ] .
+
+:DisplaySettings a owl:Class ;
+    rdfs:label "DisplaySettings" .
+
+:TextSize a owl:Class ;
+    rdfs:label "TextSize" .
+
+:ContrastControl a owl:Class ;
+    rdfs:label "ContrastControl" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :enhancesVisibility ;
+        owl:someValuesFrom :InstrumentPanel
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :enhancesVisibility ;
+        owl:someValuesFrom :CenterDisplay
+    ] .
+
+:InstrumentPanel a owl:Class ;
+    rdfs:label "InstrumentPanel" .
+
+:CenterDisplay a owl:Class ;
+    rdfs:label "CenterDisplay" .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adjustsTiming ;
+        owl:someValuesFrom :Timing
+    ] .
+
+:Timing a owl:Class ;
+    rdfs:label "Timing" .
+
+:VoiceAssistant a owl:Class ;
+    rdfs:label "VoiceAssistant" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :providesEarlierAnnouncements ;
+        owl:someValuesFrom :EarlierAnnouncement
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :providesInstructionsWithClarification ;
+        owl:someValuesFrom :ClarifiedInstruction
+    ] .
+
+:EarlierAnnouncement a owl:Class ;
+    rdfs:label "EarlierAnnouncement" .
+
+:ClarifiedInstruction a owl:Class ;
+    rdfs:label "ClarifiedInstruction" .
+
+:MessageSystem a owl:Class ;
+    rdfs:label "MessageSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :usesSimpleWords ;
+        owl:someValuesFrom :SimpleWord
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :improvesUnderstanding ;
+        owl:someValuesFrom :ImprovedUnderstanding
+    ] .
+
+:SimpleWord a owl:Class ;
+    rdfs:label "SimpleWord" .
+
+:ImprovedUnderstanding a owl:Class ;
+    rdfs:label "ImprovedUnderstanding" .
+
+:LaneAssist a owl:Class ;
+    rdfs:label "LaneAssist" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :increaseSensitivity ;
+        owl:someValuesFrom :AdaptationRule
+    ] .
+
+:AdaptationRule a owl:Class ;
+    rdfs:label "AdaptationRule" .
+
+:LaneCamera a owl:Class ;
+    rdfs:label "LaneCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :monitorsPosition ;
+        owl:someValuesFrom :LanePosition
+    ] .
+
+:LanePosition a owl:Class ;
+    rdfs:label "LanePosition" .
+
+:SteeringSupport a owl:Class ;
+    rdfs:label "SteeringSupport" ;
+    rdfs:subClassOf [

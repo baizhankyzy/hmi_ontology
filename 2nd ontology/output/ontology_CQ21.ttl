@@ -1,0 +1,24 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:NotificationSystem a owl:Class ;
+    rdfs:label "NotificationSystem" .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:NotificationSystem rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :makesChangesBasedOn ;
+    owl:someValuesFrom :CognitiveState
+] .
+
+:makesChangesBasedOn a owl:ObjectProperty ;
+    rdfs:label "makesChangesBasedOn" ;
+    rdfs:domain :NotificationSystem ;
+    rdfs:range :CognitiveState .

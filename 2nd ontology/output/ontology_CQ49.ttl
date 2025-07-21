@@ -1,0 +1,42 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:AutonomousMode a owl:Class ;
+    rdfs:label "AutonomousMode" .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :DriverAnalysis
+    ] .
+
+:InfraredCamera a owl:Class ;
+    rdfs:label "InfraredCamera" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsAnalysis ;
+        owl:someValuesFrom :NightMonitoring
+    ] .
+
+:DriverAnalysis a owl:Class ;
+    rdfs:label "DriverAnalysis" ;
+    rdfs:subClassOf :Analysis .
+
+:NightMonitoring a owl:Class ;
+    rdfs:label "NightMonitoring" ;
+    rdfs:subClassOf :Analysis .
+
+:Analysis a owl:Class ;
+    rdfs:label "Analysis" .
+
+:performsAnalysis a owl:ObjectProperty ;
+    rdfs:label "performsAnalysis" ;
+    rdfs:domain [ rdf:type owl:Class ; owl:unionOf ( :DriverFacingCamera :InfraredCamera ) ] ;
+    rdfs:range :Analysis .

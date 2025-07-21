@@ -1,0 +1,85 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:BiologicalSensor a owl:Class ;
+    rdfs:label "Biological Sensor"@en ;
+    rdfs:comment "A sensor that detects biological signals from the driver."@en .
+
+ahmi:EnvironmentalAirQuality a owl:Class ;
+    rdfs:label "Environmental Air Quality"@en ;
+    rdfs:comment "The quality of air in the environment."@en ;
+    rdfs:subClassOf ahmi:EnvironmentalFactor .
+
+ahmi:EnvironmentalFactor a owl:Class ;
+    rdfs:label "Environmental Factor"@en ;
+    rdfs:comment "A factor related to the environment that can affect the driver or vehicle."@en .
+
+ahmi:DriverReaction a owl:Class ;
+    rdfs:label "Driver Reaction"@en ;
+    rdfs:comment "A reaction or response from the driver."@en .
+
+ahmi:DetectionSituation a owl:Class ;
+    rdfs:label "Detection Situation"@en ;
+    rdfs:comment "A situation where a driver reaction is detected based on environmental factors."@en ;
+    rdfs:subClassOf owl:Situation ;
+    owl:equivalentClass [
+        a owl:Restriction ;
+        owl:onProperty ahmi:detects ;
+        owl:someValuesFrom ahmi:DriverReaction
+    ] .
+
+ahmi:detects a owl:ObjectProperty ;
+    rdfs:label "detects"@en ;
+    rdfs:comment "Relates a detection situation to the driver reaction it detects."@en ;
+    rdfs:domain ahmi:DetectionSituation ;
+    rdfs:range ahmi:DriverReaction .
+
+ahmi:hasEnvironmentalFactor a owl:ObjectProperty ;
+    rdfs:label "has environmental factor"@en ;
+    rdfs:comment "Relates a detection situation to the environmental factor involved."@en ;
+    rdfs:domain ahmi:DetectionSituation ;
+    rdfs:range ahmi:EnvironmentalFactor .
+
+ahmi:usesSensor a owl:ObjectProperty ;
+    rdfs:label "uses sensor"@en ;
+    rdfs:comment "Relates a detection situation to the biological sensor used for detection."@en ;
+    rdfs:domain ahmi:DetectionSituation ;
+    rdfs:range ahmi:BiologicalSensor .
+
+ahmi:Respiration a owl:Class ;
+    rdfs:label "Respiration"@en ;
+    rdfs:comment "The process of breathing."@en ;
+    rdfs:subClassOf ahmi:DriverReaction .
+
+ahmi:RespirationSensor a owl:Class ;
+    rdfs:label "Respiration Sensor"@en ;
+    rdfs:comment "A biological sensor that detects respiration."@en ;
+    rdfs:subClassOf ahmi:BiologicalSensor .
+
+ahmi:AirQualityDetectionSituation a owl:Class ;
+    rdfs:label "Air Quality Detection Situation"@en ;
+    rdfs:comment "A situation where a driver reaction to air quality is detected."@en ;
+    rdfs:subClassOf ahmi:DetectionSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasEnvironmentalFactor ;
+        owl:someValuesFrom ahmi:EnvironmentalAirQuality
+    ] .
+
+ahmi:RespirationDetectionSituation a owl:Class ;
+    rdfs:label "Respiration Detection Situation"@en ;
+    rdfs:comment "A situation where a driver's respiration is detected."@en ;
+    rdfs:subClassOf ahmi:AirQualityDetectionSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:detects ;
+        owl:someValuesFrom ahmi:Respiration
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:usesSensor ;
+        owl:someValuesFrom ahmi:RespirationSensor
+    ] .

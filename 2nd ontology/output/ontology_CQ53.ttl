@@ -1,0 +1,58 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:HeadUpDisplay a owl:Class ;
+    rdfs:label "Head-Up Display" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :showsInformation ;
+        owl:someValuesFrom :InformationObject
+    ] .
+
+:InformationObject a owl:Class ;
+    rdfs:label "Information Object" .
+
+:showsInformation a owl:ObjectProperty ;
+    rdfs:label "shows information" ;
+    rdfs:domain :HeadUpDisplay ;
+    rdfs:range :InformationObject .
+
+:RoadInformation a owl:Class ;
+    rdfs:label "Road Information" ;
+    rdfs:subClassOf :InformationObject .
+
+:LaneVisualization a owl:Class ;
+    rdfs:label "Lane Visualization" ;
+    rdfs:subClassOf :InformationObject .
+
+:CountdownTimer a owl:Class ;
+    rdfs:label "Countdown Timer" ;
+    rdfs:subClassOf :InformationObject .
+
+:AutonomousToManualTransition a owl:Class ;
+    rdfs:label "Autonomous-to-Manual Transition" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasInformation ;
+        owl:someValuesFrom :RoadInformation
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasInformation ;
+        owl:someValuesFrom :LaneVisualization
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasInformation ;
+        owl:someValuesFrom :CountdownTimer
+    ] .
+
+:hasInformation a owl:ObjectProperty ;
+    rdfs:label "has information" ;
+    rdfs:domain :AutonomousToManualTransition ;
+    rdfs:range :InformationObject .

@@ -1,0 +1,51 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:PersonalityFactor a owl:Class ;
+    rdfs:label "Personality Factor"@en ;
+    rdfs:comment "A trait or characteristic of an individual's personality."@en .
+
+ahmi:BigFivePersonalityTrait a owl:Class ;
+    rdfs:label "Big Five Personality Trait"@en ;
+    rdfs:subClassOf ahmi:PersonalityFactor ;
+    rdfs:comment "One of the five broad personality dimensions: Openness, Conscientiousness, Extroversion, Agreeableness, and Neuroticism."@en .
+
+ahmi:AggressiveDrivingTendency a owl:Class ;
+    rdfs:label "Aggressive Driving Tendency"@en ;
+    rdfs:subClassOf ahmi:PersonalityFactor ;
+    rdfs:comment "A personality trait related to aggressive or risky driving behavior."@en .
+
+ahmi:Questionnaire a owl:Class ;
+    rdfs:label "Questionnaire"@en ;
+    rdfs:comment "A set of questions or prompts used to assess or measure a particular aspect or trait."@en .
+
+ahmi:BigFivePersonalityQuestionnaire a owl:Class ;
+    rdfs:label "Big Five Personality Questionnaire"@en ;
+    rdfs:subClassOf ahmi:Questionnaire ;
+    rdfs:comment "A questionnaire designed to assess an individual's Big Five personality traits."@en .
+
+ahmi:AggressiveDrivingTendencyQuestionnaire a owl:Class ;
+    rdfs:label "Aggressive Driving Tendency Questionnaire"@en ;
+    rdfs:subClassOf ahmi:Questionnaire ;
+    rdfs:comment "A questionnaire designed to assess an individual's tendency towards aggressive driving behavior."@en .
+
+ahmi:assessesPersonalityFactor a owl:ObjectProperty ;
+    rdfs:label "assesses personality factor"@en ;
+    rdfs:comment "Relates a questionnaire to the personality factor it is designed to assess."@en ;
+    rdfs:domain ahmi:Questionnaire ;
+    rdfs:range ahmi:PersonalityFactor .
+
+ahmi:BigFivePersonalityQuestionnaire rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty ahmi:assessesPersonalityFactor ;
+    owl:someValuesFrom ahmi:BigFivePersonalityTrait
+] .
+
+ahmi:AggressiveDrivingTendencyQuestionnaire rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty ahmi:assessesPersonalityFactor ;
+    owl:someValuesFrom ahmi:AggressiveDrivingTendency
+] .

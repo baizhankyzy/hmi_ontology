@@ -1,0 +1,124 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :configuresDisplaySettings ;
+        owl:someValuesFrom :DisplaySettings
+    ] .
+
+:DisplaySettings a owl:Class ;
+    rdfs:label "DisplaySettings" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasTextSize ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasContrast ;
+        owl:someValuesFrom xsd:float
+    ] .
+
+:ElderlyDriver a owl:Class ;
+    rdfs:label "ElderlyDriver" ;
+    rdfs:subClassOf :Driver ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgeFactors ;
+        owl:someValuesFrom :AgeFactors
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasCognitiveProfile ;
+        owl:someValuesFrom :CognitiveProfile
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPreferences ;
+        owl:someValuesFrom :DriverPreferences
+    ] .
+
+:Driver a owl:Class .
+
+:AgeFactors a owl:Class ;
+    rdfs:label "AgeFactors" .
+
+:CognitiveProfile a owl:Class ;
+    rdfs:label "CognitiveProfile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasReactionTime ;
+        owl:someValuesFrom xsd:float
+    ] .
+
+:DriverPreferences a owl:Class ;
+    rdfs:label "DriverPreferences" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :prefersSimpleDisplays ;
+        owl:someValuesFrom :SimpleDisplay
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :prefersLargeVisualElements ;
+        owl:someValuesFrom :LargeVisualElement
+    ] .
+
+:SimpleDisplay a owl:Class ;
+    rdfs:label "SimpleDisplay" .
+
+:LargeVisualElement a owl:Class ;
+    rdfs:label "LargeVisualElement" .
+
+:configuresDisplaySettings a owl:ObjectProperty ;
+    rdfs:label "configuresDisplaySettings" ;
+    rdfs:domain :VisualSystem ;
+    rdfs:range :DisplaySettings .
+
+:hasTextSize a owl:DatatypeProperty ;
+    rdfs:label "hasTextSize" ;
+    rdfs:domain :DisplaySettings ;
+    rdfs:range xsd:float .
+
+:hasContrast a owl:DatatypeProperty ;
+    rdfs:label "hasContrast" ;
+    rdfs:domain :DisplaySettings ;
+    rdfs:range xsd:float .
+
+:hasAgeFactors a owl:ObjectProperty ;
+    rdfs:label "hasAgeFactors" ;
+    rdfs:domain :ElderlyDriver ;
+    rdfs:range :AgeFactors .
+
+:hasCognitiveProfile a owl:ObjectProperty ;
+    rdfs:label "hasCognitiveProfile" ;
+    rdfs:domain :ElderlyDriver ;
+    rdfs:range :CognitiveProfile .
+
+:hasReactionTime a owl:DatatypeProperty ;
+    rdfs:label "hasReactionTime" ;
+    rdfs:domain :CognitiveProfile ;
+    rdfs:range xsd:float .
+
+:hasPreferences a owl:ObjectProperty ;
+    rdfs:label "hasPreferences" ;
+    rdfs:domain :ElderlyDriver ;
+    rdfs:range :DriverPreferences .
+
+:prefersSimpleDisplays a owl:ObjectProperty ;
+    rdfs:label "prefersSimpleDisplays" ;
+    rdfs:domain :DriverPreferences ;
+    rdfs:range :SimpleDisplay .
+
+:prefersLargeVisualElements a owl:ObjectProperty ;
+    rdfs:label "prefersLargeVisualElements" ;
+    rdfs:domain :DriverPreferences ;
+    rdfs:range :LargeVisualElement .

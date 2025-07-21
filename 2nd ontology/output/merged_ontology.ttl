@@ -1,0 +1,152 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+<http://www.example.org/test#BrainWaveAnalysis> a owl:Class ;
+    rdfs:label "BrainWaveAnalysis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#detects> ;
+            owl:someValuesFrom <http://www.example.org/test#ThetaBrainWavePattern> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#DriverFacingVisualSensor> a owl:Class ;
+    rdfs:label "DriverFacingVisualSensor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#performs> ;
+            owl:someValuesFrom <http://www.example.org/test#EyeTracking> ] .
+
+<http://www.example.org/test#FatigueState> a owl:Class ;
+    rdfs:label "FatigueState" ;
+    rdfs:subClassOf <http://www.example.org/test#InattentionState> .
+
+<http://www.example.org/test#HeartRateAnalysis> a owl:Class ;
+    rdfs:label "HeartRateAnalysis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#detects> ;
+            owl:someValuesFrom <http://www.example.org/test#DecreasedHeartRateVariability> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#NoddingPattern> a owl:Class ;
+    rdfs:label "NoddingPattern" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#indicatesDrowsinessState> ;
+            owl:someValuesFrom <http://www.example.org/test#DrowsinessState> ],
+        <http://www.example.org/test#HeadPosition> .
+
+<http://www.example.org/test#PhysiologicalSensor> a owl:Class ;
+    rdfs:label "PhysiologicalSensor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#performs> ;
+            owl:someValuesFrom <http://www.example.org/test#BodyMeasurement> ] .
+
+<http://www.example.org/test#ReducedBlinkRate> a owl:Class ;
+    rdfs:label "ReducedBlinkRate" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#indicatesDrowsinessState> ;
+            owl:someValuesFrom <http://www.example.org/test#DrowsinessState> ],
+        <http://www.example.org/test#EyesCharacteristics> .
+
+<http://www.example.org/test#AbnormalPupilSize> a owl:Class ;
+    rdfs:label "AbnormalPupilSize" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#indicatesDrowsinessState> ;
+            owl:someValuesFrom <http://www.example.org/test#DrowsinessState> ],
+        <http://www.example.org/test#EyesCharacteristics> .
+
+<http://www.example.org/test#BlinkAnalysis> a owl:Class ;
+    rdfs:label "BlinkAnalysis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#detects> ;
+            owl:someValuesFrom <http://www.example.org/test#ExtendedBlinkDuration> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#BodyMeasurement> a owl:Class ;
+    rdfs:label "BodyMeasurement" ;
+    rdfs:subClassOf <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#CognitiveState> a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+<http://www.example.org/test#DecreasedHeartRateVariability> a owl:Class ;
+    rdfs:label "DecreasedHeartRateVariability" .
+
+<http://www.example.org/test#ExtendedBlinkDuration> a owl:Class ;
+    rdfs:label "ExtendedBlinkDuration" .
+
+<http://www.example.org/test#EyeTracking> a owl:Class ;
+    rdfs:label "EyeTracking" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#includes> ;
+            owl:someValuesFrom <http://www.example.org/test#GazeAnalysis> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#includes> ;
+            owl:someValuesFrom <http://www.example.org/test#BlinkAnalysis> ],
+        [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#includes> ;
+            owl:someValuesFrom <http://www.example.org/test#PupilAnalysis> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#GazeAnalysis> a owl:Class ;
+    rdfs:label "GazeAnalysis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#detects> ;
+            owl:someValuesFrom <http://www.example.org/test#IrregularGazePattern> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#IrregularGazePattern> a owl:Class ;
+    rdfs:label "IrregularGazePattern" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#indicatesDrowsinessState> ;
+            owl:someValuesFrom <http://www.example.org/test#DrowsinessState> ],
+        <http://www.example.org/test#EyesCharacteristics> .
+
+<http://www.example.org/test#PupilAnalysis> a owl:Class ;
+    rdfs:label "PupilAnalysis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty <http://www.example.org/test#detects> ;
+            owl:someValuesFrom <http://www.example.org/test#AbnormalPupilSize> ],
+        <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#ThetaBrainWavePattern> a owl:Class ;
+    rdfs:label "ThetaBrainWavePattern" .
+
+<http://www.example.org/test#HeadPosition> a owl:Class ;
+    rdfs:label "HeadPosition" .
+
+<http://www.example.org/test#InattentionState> a owl:Class ;
+    rdfs:label "InattentionState" ;
+    rdfs:subClassOf <http://www.example.org/test#CognitiveState> .
+
+<http://www.example.org/test#performs> a owl:ObjectProperty ;
+    rdfs:label "performs" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#includes> a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:domain <http://www.example.org/test#Analysis> ;
+    rdfs:range <http://www.example.org/test#Analysis> .
+
+<http://www.example.org/test#EyesCharacteristics> a owl:Class ;
+    rdfs:label "EyesCharacteristics" .
+
+<http://www.example.org/test#indicatesDrowsinessState> a owl:ObjectProperty ;
+    rdfs:label "indicatesDrowsinessState" ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( <http://www.example.org/test#HeadPosition> <http://www.example.org/test#EyesCharacteristics> ) ] ;
+    rdfs:range <http://www.example.org/test#DrowsinessState> .
+
+<http://www.example.org/test#DrowsinessState> a owl:Class ;
+    rdfs:label "DrowsinessState" ;
+    rdfs:subClassOf <http://www.example.org/test#InattentionState> .
+
+<http://www.example.org/test#detects> a owl:ObjectProperty ;
+    rdfs:label "detects" ;
+    rdfs:domain <http://www.example.org/test#Analysis> ;
+    rdfs:range owl:Thing .
+
+<http://www.example.org/test#Analysis> a owl:Class ;
+    rdfs:label "Analysis" .
+

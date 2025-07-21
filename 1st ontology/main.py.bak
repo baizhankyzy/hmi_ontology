@@ -1,0 +1,232 @@
+"""
+Main script for generating the Adaptive HMI ontology using Ontogenia prompting.
+"""
+import os
+import json
+import pandas as pd
+import logging
+from typing import List, Tuple
+import argparse
+from datetime import datetime
+
+# Import from our modules
+from src.api_client import ClaudeAPIClient
+from src.ontogenia import OntogeniaPrompting
+from src.ontology_merger import OntologyMerger
+import config
+
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(f"ontology_generation_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+def load_user_story(story_id: str, file_path: str) -> str:
+    """
+    Load a user story by ID from the file.
+    
+    Args:
+        story_id: The ID of the story to load
+        file_path: Path to the user stories CSV file
+        
+    Returns:
+        The user story text or a default if not found
+    """
+    try:
+        if os.path.exists(file_path):
+            df = pd.read_csv(file_path)
+            story = df[df['StoryID'] == story_id]['UserStory'].values
+            if len(story) > 0:
+                return story[0]
+    except Exception as e:
+        logger.error(f"Error loading user story: {str(e)}")
+    
+    return f"No story found for ID: {story_id}"
+
+
+def load_competency_questions(file_path: str) -> List[Tuple[str, str]]:
+    """
+    Load competency questions and their user stories from a CSV file.
+    
+    Args:
+        file_path: Path to the CSV file
+        
+    Returns:
+        List of (question, story) tuples
+    """
+    try:
+        df = pd.read_csv(file_path)
+        # Ensure the required columns exist
+        required_cols = ['CompetencyQuestion', 'UserStory']
+        if not all(col in df.columns for col in required_cols):
+            logger.error(f"CSV file missing required columns: {required_cols}")
+            # Create sample data if file format is incorrect
+            return [
+                ("What posture indicators signal a driver's transition into drowsiness?", 
+                 "Michael is driving home after a long workday, traveling on a highway for over two hours. As night falls, his posture begins to change—his head occasionally nods forward, and the vehicle's driver monitoring system detects reduced eye movement and longer blink durations. The system identifies these patterns as indicators of drowsiness."),
+                ("What combination of physiological indicators signals cognitive overload in urban driving conditions?", 
+                 "Elena is navigating through dense city traffic during rush hour. It's raining moderately, and the congestion is heavy. Multiple vehicles are changing lanes unpredictably, pedestrians are crossing between cars, and construction signs require immediate attention. Elena's grip on the steering wheel tightens noticeably, her heart rate increases, and her eyes dart rapidly between multiple points on the road."),
+                ("How should visual elements adapt for drivers with age-related vision and processing requirements?", 
+                 "Martha is 78 years old and drives a vehicle equipped with adaptive systems. She is traveling to visit her grandchildren in an unfamiliar suburban area. As she drives, the weather transitions from clear to light fog, reducing visibility. Martha's driver profile indicates age-related factors including slightly slower reaction times and a preference for simplified interfaces with larger visual elements.")
+            ]
+        
+        return list(zip(df['CompetencyQuestion'], df['UserStory']))
+    except Exception as e:
+        logger.error(f"Error loading competency questions: {str(e)}")
+        # Return sample data if file loading fails
+        return [
+            ("What posture indicators signal a driver's transition into drowsiness?", 
+             "Michael is driving home after a long workday, traveling on a highway for over two hours. As night falls, his posture begins to change—his head occasionally nods forward, and the vehicle's driver monitoring system detects reduced eye movement and longer blink durations. The system identifies these patterns as indicators of drowsiness."),
+            ("What combination of physiological indicators signals cognitive overload in urban driving conditions?", 
+             "Elena is navigating through dense city traffic during rush hour. It's raining moderately, and the congestion is heavy. Multiple vehicles are changing lanes unpredictably, pedestrians are crossing between cars, and construction signs require immediate attention. Elena's grip on the steering wheel tightens noticeably, her heart rate increases, and her eyes dart rapidly between multiple points on the road."),
+            ("How should visual elements adapt for drivers with age-related vision and processing requirements?", 
+             "Martha is 78 years old and drives a vehicle equipped with adaptive systems. She is traveling to visit her grandchildren in an unfamiliar suburban area. As she drives, the weather transitions from clear to light fog, reducing visibility. Martha's driver profile indicates age-related factors including slightly slower reaction times and a preference for simplified interfaces with larger visual elements.")
+        ]
+
+def create_sample_patterns_csv():
+    """Create a sample patterns CSV file if one doesn't exist."""
+    if not os.path.exists(config.PATTERNS_PATH):
+        os.makedirs(os.path.dirname(config.PATTERNS_PATH), exist_ok=True)
+        
+        patterns_data = pd.read_csv('examples/patterns.csv') if os.path.exists('examples/patterns.csv') else None
+        
+        if patterns_data is None:
+            # Use the sample patterns from config if CSV doesn't exist
+            patterns_data = {
+                'Name': list(config.SAMPLE_PATTERNS.keys()),
+                'Pattern_owl': list(config.SAMPLE_PATTERNS.values())
+            }
+            patterns_data = pd.DataFrame(patterns_data)
+        
+        patterns_data.to_csv(config.PATTERNS_PATH, index=False)
+        logger.info(f"Created patterns file at {config.PATTERNS_PATH}")
+
+def create_sample_competency_questions_csv():
+    """Create a sample competency questions CSV file if one doesn't exist."""
+    if not os.path.exists(config.COMPETENCY_QUESTIONS_PATH):
+        os.makedirs(os.path.dirname(config.COMPETENCY_QUESTIONS_PATH), exist_ok=True)
+        
+        cq_data = {
+            'CompetencyQuestion': [
+                "What posture indicators signal a driver's transition into drowsiness?",
+                "Which detection methods can reliably distinguish between normal fatigue and dangerous drowsiness?",
+                "What combination of physiological indicators signals cognitive overload in urban driving conditions?",
+                "How do different traffic conditions affect appropriate system adaptations for cognitive load management?",
+                "What combination of driving behaviors and physiological signals indicates increasing frustration in congested traffic?",
+                "How should visual elements adapt for drivers with age-related vision and processing requirements?",
+                "What posture changes indicate a driver shifting from relaxed passenger mode to active driving engagement?",
+                "How should vehicle systems build driver profiles during the initial ownership period?"
+            ],
+            'UserStory': [
+                "Michael is driving home after a long workday, traveling on a highway for over two hours. As night falls, his posture begins to change—his head occasionally nods forward, and the vehicle's driver monitoring system detects reduced eye movement and longer blink durations. The system identifies these patterns as indicators of drowsiness.",
+                "Michael is driving home after a long workday, traveling on a highway for over two hours. As night falls, his posture begins to change—his head occasionally nods forward, and the vehicle's driver monitoring system detects reduced eye movement and longer blink durations. The system identifies these patterns as indicators of drowsiness.",
+                "Elena is navigating through dense city traffic during rush hour. It's raining moderately, and the congestion is heavy. Multiple vehicles are changing lanes unpredictably, pedestrians are crossing between cars, and construction signs require immediate attention. Elena's grip on the steering wheel tightens noticeably, her heart rate increases, and her eyes dart rapidly between multiple points on the road.",
+                "Elena is navigating through dense city traffic during rush hour. It's raining moderately, and the congestion is heavy. Multiple vehicles are changing lanes unpredictably, pedestrians are crossing between cars, and construction signs require immediate attention. Elena's grip on the steering wheel tightens noticeably, her heart rate increases, and her eyes dart rapidly between multiple points on the road.",
+                "Daniel tends toward aggressive driving and has low frustration tolerance. He is currently stuck in stop-and-go traffic on a city road due to construction. The vehicle's monitoring system detects several concerning behaviors—harder than normal acceleration when space briefly opens up, forceful braking, increased pressure on the steering wheel, and verbal expressions of anger picked up by the cabin microphone.",
+                "Martha is 78 years old and drives a vehicle equipped with adaptive systems. She is traveling to visit her grandchildren in an unfamiliar suburban area. As she drives, the weather transitions from clear to light fog, reducing visibility. Martha's driver profile indicates age-related factors including slightly slower reaction times and a preference for simplified interfaces with larger visual elements.",
+                "Alex is commuting to work in a vehicle with advanced autonomy capabilities. The journey begins on a highway in autonomous mode, but construction ahead will require manual driving. The system detects the upcoming transition zone through its environmental sensors and prepares Alex for the handover.",
+                "James recently purchased a new vehicle with advanced driver monitoring and adaptive interface systems. He's still getting used to all the features as he commutes to work each day. During his morning drive, James receives an incoming call. The vehicle detects that he's navigating a complex section of highway with heavy merging traffic and automatically routes the call to voicemail without disturbing him."
+            ]
+        }
+        
+        pd.DataFrame(cq_data).to_csv(config.COMPETENCY_QUESTIONS_PATH, index=False)
+        logger.info(f"Created sample competency questions file at {config.COMPETENCY_QUESTIONS_PATH}")
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate Adaptive HMI Ontology")
+    parser.add_argument('--cq-file', type=str, help='Path to competency questions CSV file')
+    parser.add_argument('--patterns-file', type=str, help='Path to patterns CSV file')
+    parser.add_argument('--output-dir', type=str, help='Output directory')
+    parser.add_argument('--num-questions', type=int, default=None, help='Number of questions to process (default: all)')
+    parser.add_argument('--use-situation-event', action='store_true', help='Emphasize situation-event modeling')
+    args = parser.parse_args()
+    
+    # Override config with command line arguments if provided
+    if args.cq_file:
+        config.COMPETENCY_QUESTIONS_PATH = args.cq_file
+    if args.patterns_file:
+        config.PATTERNS_PATH = args.patterns_file
+    if args.output_dir:
+        config.OUTPUT_DIR = args.output_dir
+    
+    # Create sample files if they don't exist
+    create_sample_patterns_csv()
+    create_sample_competency_questions_csv()
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(config.OUTPUT_DIR, exist_ok=True)
+    
+    logger.info("Starting Adaptive HMI Ontology generation")
+    
+    # If specified, modify the metacognitive procedure to emphasize situation-event modeling
+    if args.use_situation_event:
+        logger.info("Emphasizing situation-event modeling in the metacognitive procedure")
+        config.METACOGNITIVE_PROCEDURE = config.METACOGNITIVE_PROCEDURE.replace(
+            "Pay special attention to driver states, vehicle systems, feedback modalities, and environmental factors",
+            "Pay special attention to driver states, vehicle systems, feedback modalities, environmental factors, and the distinction between events and situations"
+        )
+    
+    # Initialize the API client
+    api_client = ClaudeAPIClient(config.API_URL)
+    
+    # Initialize the Ontogenia prompting system
+    ontogenia = OntogeniaPrompting(
+        api_client=api_client,
+        patterns_path=config.PATTERNS_PATH,
+        ontology_elements=config.ONTOLOGY_ELEMENTS,
+        metacognitive_procedure=config.METACOGNITIVE_PROCEDURE,
+        output_dir=config.OUTPUT_DIR
+    )
+    
+    # Load competency questions
+    competency_questions = load_competency_questions(config.COMPETENCY_QUESTIONS_PATH)
+    
+    # Limit the number of questions if specified
+    if args.num_questions is not None and args.num_questions > 0:
+        competency_questions = competency_questions[:args.num_questions]
+        logger.info(f"Processing {args.num_questions} competency questions")
+    else:
+        logger.info(f"Processing all {len(competency_questions)} competency questions")
+    
+    # Process each competency question independently
+    ontologies = ontogenia.process_competency_questions(competency_questions)
+    
+    if ontologies:
+        # Initialize the ontology merger
+        merger = OntologyMerger()
+        
+        # Merge the ontologies
+        merged_ontology = merger.merge_ontologies(ontologies)
+        
+        if merged_ontology:
+            # Save the merged ontology
+            merged_path = os.path.join(config.OUTPUT_DIR, "adaptive_hmi_merged.ttl")
+            with open(merged_path, "w", encoding="utf-8") as f:
+                f.write(merged_ontology)
+            
+            logger.info(f"Saved merged ontology to {merged_path}")
+            
+            # Get and log statistics
+            stats = merger.get_statistics()
+            logger.info(f"Ontology statistics: {stats}")
+            
+            # Save statistics to JSON
+            stats_path = os.path.join(config.OUTPUT_DIR, "statistics.json")
+            with open(stats_path, "w", encoding="utf-8") as f:
+                json.dump(stats, f, indent=2)
+            
+            logger.info(f"Saved statistics to {stats_path}")
+        else:
+            logger.error("Failed to merge ontologies")
+    else:
+        logger.error("No ontologies were generated")
+    
+    logger.info("Adaptive HMI Ontology generation completed")
+
+if __name__ == "__main__":
+    main()

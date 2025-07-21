@@ -1,0 +1,299 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :calculatesFrustrationMetric ;
+        owl:someValuesFrom :FrustrationMetric
+    ] .
+
+:FrustrationMetric a owl:Class ;
+    rdfs:label "FrustrationMetric" .
+
+:calculatesFrustrationMetric a owl:ObjectProperty ;
+    rdfs:label "calculatesFrustrationMetric" ;
+    rdfs:domain :ContextAnalyzer ;
+    rdfs:range :FrustrationMetric .
+
+:DriverCharacteristics a owl:Class ;
+    rdfs:label "DriverCharacteristics" .
+
+:PersonalityTraits a owl:Class ;
+    rdfs:label "PersonalityTraits" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :includesPersonalityTrait ;
+        owl:someValuesFrom :AggressiveTendency
+    ] .
+
+:AggressiveTendency a owl:Class ;
+    rdfs:label "AggressiveTendency" .
+
+:includesPersonalityTrait a owl:ObjectProperty ;
+    rdfs:label "includesPersonalityTrait" ;
+    rdfs:domain :PersonalityTraits ;
+    rdfs:range :AggressiveTendency .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "PersonalityScore" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasLowConscientiousness ;
+        owl:someValuesFrom :Conscientiousness
+    ] .
+
+:Conscientiousness a owl:Class ;
+    rdfs:label "Conscientiousness" .
+
+:hasLowConscientiousness a owl:ObjectProperty ;
+    rdfs:label "hasLowConscientiousness" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range :Conscientiousness .
+
+:Profile a owl:Class ;
+    rdfs:label "Profile" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasExtraversion ;
+        owl:someValuesFrom :Extraversion
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgreeableness ;
+        owl:someValuesFrom :Agreeableness
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasNeuroticism ;
+        owl:someValuesFrom :Neuroticism
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasOpenness ;
+        owl:someValuesFrom :Openness
+    ] .
+
+:Extraversion a owl:Class ;
+    rdfs:label "Extraversion" .
+
+:hasExtraversion a owl:ObjectProperty ;
+    rdfs:label "hasExtraversion" ;
+    rdfs:domain :Profile ;
+    rdfs:range :Extraversion .
+
+:Agreeableness a owl:Class ;
+    rdfs:label "Agreeableness" .
+
+:hasAgreeableness a owl:ObjectProperty ;
+    rdfs:label "hasAgreeableness" ;
+    rdfs:domain :Profile ;
+    rdfs:range :Agreeableness .
+
+:Neuroticism a owl:Class ;
+    rdfs:label "Neuroticism" .
+
+:hasNeuroticism a owl:ObjectProperty ;
+    rdfs:label "hasNeuroticism" ;
+    rdfs:domain :Profile ;
+    rdfs:range :Neuroticism .
+
+:Openness a owl:Class ;
+    rdfs:label "Openness" .
+
+:hasOpenness a owl:ObjectProperty ;
+    rdfs:label "hasOpenness" ;
+    rdfs:domain :Profile ;
+    rdfs:range :Openness .
+
+:TrafficJam a owl:Class ;
+    rdfs:label "TrafficJam" .
+
+:SteeringAnalyzer a owl:Class ;
+    rdfs:label "SteeringAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsPatternAnalysis ;
+        owl:someValuesFrom :PatternAnalysis
+    ] .
+
+:PatternAnalysis a owl:Class ;
+    rdfs:label "PatternAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsHarderAcceleration ;
+        owl:someValuesFrom :HarderAcceleration
+    ] .
+
+:HarderAcceleration a owl:Class ;
+    rdfs:label "HarderAcceleration" .
+
+:performsPatternAnalysis a owl:ObjectProperty ;
+    rdfs:label "performsPatternAnalysis" ;
+    rdfs:domain :SteeringAnalyzer ;
+    rdfs:range :PatternAnalysis .
+
+:detectsHarderAcceleration a owl:ObjectProperty ;
+    rdfs:label "detectsHarderAcceleration" ;
+    rdfs:domain :PatternAnalysis ;
+    rdfs:range :HarderAcceleration .
+
+:SmoothnessAnalyzer a owl:Class ;
+    rdfs:label "SmoothnessAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsIrregularMovements ;
+        owl:someValuesFrom :IrregularMovements
+    ] .
+
+:IrregularMovements a owl:Class ;
+    rdfs:label "IrregularMovements" .
+
+:detectsIrregularMovements a owl:ObjectProperty ;
+    rdfs:label "detectsIrregularMovements" ;
+    rdfs:domain :SmoothnessAnalyzer ;
+    rdfs:range :IrregularMovements .
+
+:AngleAnalyzer a owl:Class ;
+    rdfs:label "AngleAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsIncreasedVariations ;
+        owl:someValuesFrom :IncreasedVariations
+    ] .
+
+:IncreasedVariations a owl:Class ;
+    rdfs:label "IncreasedVariations" .
+
+:detectsIncreasedVariations a owl:ObjectProperty ;
+    rdfs:label "detectsIncreasedVariations" ;
+    rdfs:domain :AngleAnalyzer ;
+    rdfs:range :IncreasedVariations .
+
+:PedalAnalyzer a owl:Class ;
+    rdfs:label "PedalAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsUsageAnalysis ;
+        owl:someValuesFrom :UsageAnalysis
+    ] .
+
+:UsageAnalysis a owl:Class ;
+    rdfs:label "UsageAnalysis" .
+
+:performsUsageAnalysis a owl:ObjectProperty ;
+    rdfs:label "performsUsageAnalysis" ;
+    rdfs:domain :PedalAnalyzer ;
+    rdfs:range :UsageAnalysis .
+
+:BrakeSensor a owl:Class ;
+    rdfs:label "BrakeSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsForcefulBraking ;
+        owl:someValuesFrom :ForcefulBraking
+    ] .
+
+:ForcefulBraking a owl:Class ;
+    rdfs:label "ForcefulBraking" .
+
+:detectsForcefulBraking a owl:ObjectProperty ;
+    rdfs:label "detectsForcefulBraking" ;
+    rdfs:domain :BrakeSensor ;
+    rdfs:range :ForcefulBraking .
+
+:AcceleratorSensor a owl:Class ;
+    rdfs:label "AcceleratorSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsAggressiveAcceleration ;
+        owl:someValuesFrom :AggressiveAcceleration
+    ] .
+
+:AggressiveAcceleration a owl:Class ;
+    rdfs:label "AggressiveAcceleration" .
+
+:detectsAggressiveAcceleration a owl:ObjectProperty ;
+    rdfs:label "detectsAggressiveAcceleration" ;
+    rdfs:domain :AcceleratorSensor ;
+    rdfs:range :AggressiveAcceleration .
+
+:GripSensor a owl:Class ;
+    rdfs:label "GripSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsExcessivePressure ;
+        owl:someValuesFrom :ExcessivePressure
+    ] .
+
+:ExcessivePressure a owl:Class ;
+    rdfs:label "ExcessivePressure" .
+
+:SteeringWheel a owl:Class ;
+    rdfs:label "SteeringWheel" .
+
+:detectsExcessivePressure a owl:ObjectProperty ;
+    rdfs:label "detectsExcessivePressure" ;
+    rdfs:domain :GripSensor ;
+    rdfs:range [ owl:intersectionOf ( :ExcessivePressure :SteeringWheel ) ] .
+
+:Microphone a owl:Class ;
+    rdfs:label "Microphone" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsSoundAnalysis ;
+        owl:someValuesFrom :SoundAnalysis
+    ] .
+
+:SoundAnalysis a owl:Class ;
+    rdfs:label "SoundAnalysis" .
+
+:performsSoundAnalysis a owl:ObjectProperty ;
+    rdfs:label "performsSoundAnalysis" ;
+    rdfs:domain :Microphone ;
+    rdfs:range :SoundAnalysis .
+
+:SpeechRecognizer a owl:Class ;
+    rdfs:label "SpeechRecognizer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsVerbalAnger ;
+        owl:someValuesFrom :VerbalAnger
+    ] .
+
+:VerbalAnger a owl:Class ;
+    rdfs:label "VerbalAnger" .
+
+:detectsVerbalAnger a owl:ObjectProperty ;
+    rdfs:label "detectsVerbalAnger" ;
+    rdfs:domain :SpeechRecognizer ;
+    rdfs:range :VerbalAnger .
+
+:StressAnalyzer a owl:Class ;
+    rdfs:label "StressAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicatesElevatedMarkers ;
+        owl:someValuesFrom :ElevatedMarkers
+    ] .
+
+:ElevatedMarkers a owl:Class ;
+    rdfs:label "ElevatedMarkers" .
+
+:indicatesElevatedMarkers a owl:ObjectProperty ;
+    rdfs:label "indicatesElevatedMarkers" ;
+    rdfs:domain :StressAnalyzer ;
+    rdfs:range :ElevatedMarkers .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :confirmsEnvironmentalTriggers ;
+        owl:someValuesFrom [ owl

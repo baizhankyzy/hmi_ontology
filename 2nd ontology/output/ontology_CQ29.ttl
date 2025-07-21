@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:PersonalityTrait a owl:Class ;
+    rdfs:label "PersonalityTrait" .
+
+:AdaptationRule a owl:Class ;
+    rdfs:label "AdaptationRule" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasParameter ;
+        owl:someValuesFrom :AdaptationRuleParameter
+    ] .
+
+:AdaptationRuleParameter a owl:Class ;
+    rdfs:label "AdaptationRuleParameter" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :influencedBy ;
+        owl:someValuesFrom :PersonalityTrait
+    ] .
+
+:influencedBy a owl:ObjectProperty ;
+    rdfs:label "influencedBy" ;
+    rdfs:domain :AdaptationRuleParameter ;
+    rdfs:range :PersonalityTrait .
+
+:hasParameter a owl:ObjectProperty ;
+    rdfs:label "hasParameter" ;
+    rdfs:domain :AdaptationRule ;
+    rdfs:range :AdaptationRuleParameter .

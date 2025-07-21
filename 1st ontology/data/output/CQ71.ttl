@@ -1,0 +1,157 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi: a owl:Ontology .
+
+###### Classes ######
+
+ahmi:RegulationStrategy a owl:Class ;
+    rdfs:label "Regulation Strategy"@en ;
+    rdfs:comment "A set of guidelines or rules governing the behavior of vehicle systems and interventions."@en .
+
+ahmi:LaneKeepingAssistIntervention a owl:Class ;
+    rdfs:label "Lane Keeping Assist Intervention"@en ;
+    rdfs:comment "An intervention by the vehicle's lane keeping assist system to prevent lane departure."@en ;
+    rdfs:subClassOf ahmi:VehicleSystemIntervention .
+
+ahmi:VehicleSystemIntervention a owl:Class ;
+    rdfs:label "Vehicle System Intervention"@en ;
+    rdfs:comment "An action or response by a vehicle system to a particular situation or event."@en ;
+    rdfs:subClassOf ahmi:Event .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process or occurrence."@en .
+
+ahmi:LaneDepartureEvent a owl:Class ;
+    rdfs:label "Lane Departure Event"@en ;
+    rdfs:comment "An event where the vehicle departs from its intended lane."@en ;
+    rdfs:subClassOf ahmi:Event .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a particular description or conceptualization."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A sensory channel through which feedback or information is conveyed to the driver."@en .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Feedback conveyed through visual elements or displays."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AudibleFeedback a owl:Class ;
+    rdfs:label "Audible Feedback"@en ;
+    rdfs:comment "Feedback conveyed through audible sounds or tones."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:comment "Feedback conveyed through tactile or haptic sensations."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, emotional, or behavioral state of the driver."@en .
+
+ahmi:DiscreteEmotiveState a owl:Class ;
+    rdfs:label "Discrete Emotive State"@en ;
+    rdfs:comment "A distinct emotional state experienced by the driver, such as confusion or frustration."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Confusion a owl:Class ;
+    rdfs:label "Confusion"@en ;
+    rdfs:comment "A state of bewilderment or lack of understanding experienced by the driver."@en ;
+    rdfs:subClassOf ahmi:DiscreteEmotiveState .
+
+ahmi:SpeedViolationTendency a owl:Class ;
+    rdfs:label "Speed Violation Tendency"@en ;
+    rdfs:comment "A tendency or inclination of the driver to exceed posted speed limits."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+###### Object Properties ######
+
+ahmi:governs a owl:ObjectProperty ;
+    rdfs:label "governs"@en ;
+    rdfs:comment "Relates a regulation strategy to the interventions or actions it governs."@en ;
+    rdfs:domain ahmi:RegulationStrategy ;
+    rdfs:range ahmi:VehicleSystemIntervention .
+
+ahmi:triggers a owl:ObjectProperty ;
+    rdfs:label "triggers"@en ;
+    rdfs:comment "Relates an event to the intervention or action it triggers."@en ;
+    rdfs:domain ahmi:Event ;
+    rdfs:range ahmi:VehicleSystemIntervention .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description or conceptualization it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:providesFor a owl:ObjectProperty ;
+    rdfs:label "provides for"@en ;
+    rdfs:comment "Relates a feedback modality to the intervention or action it provides feedback for."@en ;
+    rdfs:domain ahmi:FeedbackModality ;
+    rdfs:range ahmi:VehicleSystemIntervention .
+
+ahmi:adaptsTo a owl:ObjectProperty ;
+    rdfs:label "adapts to"@en ;
+    rdfs:comment "Relates an intervention or action to the driver state it adapts to."@en ;
+    rdfs:domain ahmi:VehicleSystemIntervention ;
+    rdfs:range ahmi:DriverState .
+
+###### Restrictions ######
+
+ahmi:LaneKeepingAssistIntervention
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:triggers ;
+        owl:someValuesFrom ahmi:LaneDepartureEvent
+    ] .
+
+ahmi:VisualFeedback
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:providesFor ;
+        owl:someValuesFrom ahmi:LaneKeepingAssistIntervention
+    ] .
+
+ahmi:AudibleFeedback
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:providesFor ;
+        owl:someValuesFrom ahmi:LaneKeepingAssistIntervention
+    ] .
+
+ahmi:TactileFeedback
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:providesFor ;
+        owl:someValuesFrom ahmi:LaneKeepingAssistIntervention
+    ] .
+
+ahmi:LaneKeepingAssistIntervention
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:adaptsTo ;
+        owl:someValuesFrom ahmi:Confusion
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:adaptsTo ;
+        owl:someValuesFrom ahmi:SpeedViolationTendency
+    ] .

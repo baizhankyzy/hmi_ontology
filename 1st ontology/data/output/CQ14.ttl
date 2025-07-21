@@ -1,0 +1,108 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:comment "A component of the visual interface presented to the driver." .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:comment "A type of visual display used in the vehicle interface." ;
+    rdfs:subClassOf ahmi:VisualElement .
+
+ahmi:NavigationDisplay a owl:Class ;
+    rdfs:label "Navigation Display"@en ;
+    rdfs:comment "A visual display showing navigation information." ;
+    rdfs:subClassOf ahmi:DisplayType .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, emotional, or physiological state of the driver." .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The cognitive state of the driver, such as cognitive load or distraction." ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:ElevatedCognitiveLoad a owl:Class ;
+    rdfs:label "Elevated Cognitive Load"@en ;
+    rdfs:comment "A state of high cognitive load experienced by the driver." ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State"@en ;
+    rdfs:comment "The emotional state of the driver, such as stress or calmness." ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Stress a owl:Class ;
+    rdfs:label "Stress"@en ;
+    rdfs:comment "A state of elevated stress experienced by the driver." ;
+    rdfs:subClassOf ahmi:EmotionalState .
+
+ahmi:DriverSituation a owl:Class ;
+    rdfs:label "Driver Situation"@en ;
+    rdfs:comment "A view or interpretation of the driver's state and context." ;
+    rdfs:subClassOf :Situation .
+
+ahmi:ElevatedCognitiveLoadSituation a owl:Class ;
+    rdfs:label "Elevated Cognitive Load Situation"@en ;
+    rdfs:comment "A situation where the driver is experiencing elevated cognitive load." ;
+    rdfs:subClassOf ahmi:DriverSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :satisfies ;
+        owl:someValuesFrom [
+            a owl:Restriction ;
+            owl:onProperty ahmi:hasDriverState ;
+            owl:someValuesFrom ahmi:ElevatedCognitiveLoad
+        ]
+    ] .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a driver situation to the driver state it involves." ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:prioritizeVisualElement a owl:ObjectProperty ;
+    rdfs:label "prioritize visual element"@en ;
+    rdfs:comment "Relates a driver situation to the visual elements that should be prioritized." ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:VisualElement .
+
+ahmi:simplifyDisplayType a owl:ObjectProperty ;
+    rdfs:label "simplify display type"@en ;
+    rdfs:comment "Relates a driver situation to the display types that should be simplified." ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DisplayType .
+
+ahmi:hideNonEssentialVisualElement a owl:ObjectProperty ;
+    rdfs:label "hide non-essential visual element"@en ;
+    rdfs:comment "Relates a driver situation to the non-essential visual elements that should be hidden." ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:VisualElement .
+
+ahmi:increaseVisualContrast a owl:ObjectProperty ;
+    rdfs:label "increase visual contrast"@en ;
+    rdfs:comment "Relates a driver situation to the visual elements for which contrast should be increased." ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:VisualElement .
+
+ahmi:ElevatedCognitiveLoadSituation rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty ahmi:prioritizeVisualElement ;
+    owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ahmi:isEssentialFor ;
+        owl:hasValue ahmi:NavigationDisplay
+    ]
+] .
+
+ahmi:isEssentialFor a owl:ObjectProperty ;
+    rdfs:label "is essential for"@en ;
+    rdfs:comment "Relates a visual element to the driver situation where it is considered essential." ;
+    rdfs:domain ahmi:VisualElement ;
+    rdfs:range ahmi:DriverSituation .

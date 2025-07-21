@@ -1,0 +1,46 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:WeatherMonitor a owl:Class ;
+    rdfs:label "WeatherMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :providesWeatherMeasurement ;
+        owl:someValuesFrom :WeatherMeasurement
+    ] .
+
+:VisibilityMeasure a owl:Class ;
+    rdfs:label "VisibilityMeasure" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :providesVisibilityMeasurement ;
+        owl:someValuesFrom :VisibilityMeasurement
+    ] .
+
+:ElderlyDriver a owl:Class ;
+    rdfs:label "ElderlyDriver" ;
+    rdfs:subClassOf :Driver .
+
+:WeatherMeasurement a owl:Class ;
+    rdfs:label "WeatherMeasurement" .
+
+:VisibilityMeasurement a owl:Class ;
+    rdfs:label "VisibilityMeasurement" .
+
+:Driver a owl:Class ;
+    rdfs:label "Driver" .
+
+:providesWeatherMeasurement a owl:ObjectProperty ;
+    rdfs:label "providesWeatherMeasurement" ;
+    rdfs:domain :WeatherMonitor ;
+    rdfs:range :WeatherMeasurement .
+
+:providesVisibilityMeasurement a owl:ObjectProperty ;
+    rdfs:label "providesVisibilityMeasurement" ;
+    rdfs:domain :VisibilityMeasure ;
+    rdfs:range :VisibilityMeasurement .

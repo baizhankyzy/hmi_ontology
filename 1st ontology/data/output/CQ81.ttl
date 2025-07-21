@@ -1,0 +1,105 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:DriverParameter a owl:Class ;
+    rdfs:label "Driver Parameter"@en ;
+    rdfs:comment "Parameters related to the driver's state, behavior, or characteristics."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The physical, mental, or emotional state of the driver."@en ;
+    rdfs:subClassOf ahmi:DriverParameter .
+
+ahmi:Distraction a owl:Class ;
+    rdfs:label "Distraction"@en ;
+    rdfs:comment "A state where the driver's attention is diverted from the driving task."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Fatigue a owl:Class ;
+    rdfs:label "Fatigue"@en ;
+    rdfs:comment "A state of physical or mental exhaustion experienced by the driver."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:Impairment a owl:Class ;
+    rdfs:label "Impairment"@en ;
+    rdfs:comment "A condition that reduces the driver's ability to operate the vehicle safely."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DriverBehavior a owl:Class ;
+    rdfs:label "Driver Behavior"@en ;
+    rdfs:comment "The actions or patterns of behavior exhibited by the driver."@en ;
+    rdfs:subClassOf ahmi:DriverParameter .
+
+ahmi:AggressiveDriving a owl:Class ;
+    rdfs:label "Aggressive Driving"@en ;
+    rdfs:comment "A behavior characterized by unsafe or hostile driving actions."@en ;
+    rdfs:subClassOf ahmi:DriverBehavior .
+
+ahmi:DriverCharacteristic a owl:Class ;
+    rdfs:label "Driver Characteristic"@en ;
+    rdfs:comment "Traits or attributes that describe the driver."@en ;
+    rdfs:subClassOf ahmi:DriverParameter .
+
+ahmi:Experience a owl:Class ;
+    rdfs:label "Experience"@en ;
+    rdfs:comment "The level of driving experience possessed by the driver."@en ;
+    rdfs:subClassOf ahmi:DriverCharacteristic .
+
+ahmi:Age a owl:Class ;
+    rdfs:label "Age"@en ;
+    rdfs:comment "The age of the driver."@en ;
+    rdfs:subClassOf ahmi:DriverCharacteristic .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a driver to their current state."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:hasDriverBehavior a owl:ObjectProperty ;
+    rdfs:label "has driver behavior"@en ;
+    rdfs:comment "Relates a driver to their exhibited behavior."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DriverBehavior .
+
+ahmi:hasDriverCharacteristic a owl:ObjectProperty ;
+    rdfs:label "has driver characteristic"@en ;
+    rdfs:comment "Relates a driver to their personal characteristics."@en ;
+    rdfs:domain ahmi:Driver ;
+    rdfs:range ahmi:DriverCharacteristic .
+
+ahmi:Driver a owl:Class ;
+    rdfs:label "Driver"@en ;
+    rdfs:comment "The person operating the vehicle."@en .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process that occurs."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event based on a particular description or context."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:observes ;
+        owl:someValuesFrom ahmi:Event
+    ] .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a situation to the event it is observing or interpreting."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Event .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies or is consistent with."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .

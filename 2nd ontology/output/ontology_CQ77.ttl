@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:LightSensor a owl:Class ;
+    rdfs:label "LightSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :measuresLightLevel ;
+        owl:someValuesFrom :LightLevel
+    ] .
+
+:LightLevel a owl:Class ;
+    rdfs:label "LightLevel" .
+
+:DisplayBrightness a owl:Class ;
+    rdfs:label "DisplayBrightness" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isAffectedByLightLevel ;
+        owl:someValuesFrom :LightLevel
+    ] .
+
+:measuresLightLevel a owl:ObjectProperty ;
+    rdfs:label "measuresLightLevel" ;
+    rdfs:domain :LightSensor ;
+    rdfs:range :LightLevel .
+
+:isAffectedByLightLevel a owl:ObjectProperty ;
+    rdfs:label "isAffectedByLightLevel" ;
+    rdfs:domain :DisplayBrightness ;
+    rdfs:range :LightLevel .

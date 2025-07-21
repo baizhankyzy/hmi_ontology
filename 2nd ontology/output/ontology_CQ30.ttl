@@ -1,0 +1,181 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:DriverCharacteristics a owl:Class ;
+    rdfs:label "DriverCharacteristics" .
+
+:PersonalityTraits a owl:Class ;
+    rdfs:label "PersonalityTraits" ;
+    rdfs:subClassOf :DriverCharacteristics .
+
+:AggressiveTendency a owl:Class ;
+    rdfs:label "AggressiveTendency" ;
+    rdfs:subClassOf :PersonalityTraits .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "PersonalityScore" ;
+    rdfs:subClassOf :DriverCharacteristics .
+
+:Conscientiousness a owl:Class ;
+    rdfs:label "Conscientiousness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Extraversion a owl:Class ;
+    rdfs:label "Extraversion" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Agreeableness a owl:Class ;
+    rdfs:label "Agreeableness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Neuroticism a owl:Class ;
+    rdfs:label "Neuroticism" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:Openness a owl:Class ;
+    rdfs:label "Openness" ;
+    rdfs:subClassOf :PersonalityScore .
+
+:TrafficJam a owl:Class ;
+    rdfs:label "TrafficJam" .
+
+:SteeringAnalyzer a owl:Class ;
+    rdfs:label "SteeringAnalyzer" .
+
+:PatternAnalysis a owl:Class ;
+    rdfs:label "PatternAnalysis" .
+
+:SmoothnessAnalyzer a owl:Class ;
+    rdfs:label "SmoothnessAnalyzer" .
+
+:AngleAnalyzer a owl:Class ;
+    rdfs:label "AngleAnalyzer" .
+
+:PedalAnalyzer a owl:Class ;
+    rdfs:label "PedalAnalyzer" .
+
+:UsageAnalysis a owl:Class ;
+    rdfs:label "UsageAnalysis" .
+
+:BrakeSensor a owl:Class ;
+    rdfs:label "BrakeSensor" .
+
+:AcceleratorSensor a owl:Class ;
+    rdfs:label "AcceleratorSensor" .
+
+:GripSensor a owl:Class ;
+    rdfs:label "GripSensor" .
+
+:SteeringWheel a owl:Class ;
+    rdfs:label "SteeringWheel" .
+
+:Microphone a owl:Class ;
+    rdfs:label "Microphone" .
+
+:SoundAnalysis a owl:Class ;
+    rdfs:label "SoundAnalysis" .
+
+:SpeechRecognizer a owl:Class ;
+    rdfs:label "SpeechRecognizer" .
+
+:StressAnalyzer a owl:Class ;
+    rdfs:label "StressAnalyzer" .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" .
+
+:HighCongestion a owl:Class ;
+    rdfs:label "HighCongestion" .
+
+:JourneyDelay a owl:Class ;
+    rdfs:label "JourneyDelay" .
+
+:SuddenStop a owl:Class ;
+    rdfs:label "SuddenStop" .
+
+:RiskTaking a owl:Class ;
+    rdfs:label "RiskTaking" ;
+    rdfs:subClassOf :PersonalityTraits .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "VehicleSystem" .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "VisualSystem" ;
+    rdfs:subClassOf :VehicleSystem .
+
+:AlternativeRoute a owl:Class ;
+    rdfs:label "AlternativeRoute" .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "NavigationDisplay" .
+
+:TimeEstimate a owl:Class ;
+    rdfs:label "TimeEstimate" .
+
+:ColorController a owl:Class ;
+    rdfs:label "ColorController" ;
+    rdfs:subClassOf :VehicleSystem .
+
+:BlueScheme a owl:Class ;
+    rdfs:label "BlueScheme" .
+
+:usesBlueScheme a owl:ObjectProperty ;
+    rdfs:label "usesBlueScheme" ;
+    rdfs:domain :ColorController ;
+    rdfs:range :BlueScheme .
+
+:ArousalLevel a owl:Class ;
+    rdfs:label "ArousalLevel" .
+
+:ArousalReduction a owl:Class ;
+    rdfs:label "ArousalReduction" ;
+    rdfs:subClassOf [ rdf:type owl:Class ;
+                      owl:unionOf ( :BlueScheme :ArousalLevel )
+                    ] .
+
+:EmotionalState a owl:Class ;
+    rdfs:label "EmotionalState" .
+
+:targetsArousalReduction a owl:ObjectProperty ;
+    rdfs:label "targetsArousalReduction" ;
+    rdfs:domain :BlueScheme ;
+    rdfs:range :ArousalReduction .
+
+:withinEmotionalState a owl:ObjectProperty ;
+    rdfs:label "withinEmotionalState" ;
+    rdfs:domain :ArousalReduction ;
+    rdfs:range :EmotionalState .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf :VehicleSystem .
+
+:MusicPlaylist a owl:Class ;
+    rdfs:label "MusicPlaylist" .
+
+:suggestsMusicPlaylist a owl:ObjectProperty ;
+    rdfs:label "suggestsMusicPlaylist" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :MusicPlaylist .
+
+:ClimateControl a owl:Class ;
+    rdfs:label "ClimateControl" ;
+    rdfs:subClassOf :VehicleSystem .
+
+:PedalFeedback a owl:Class ;
+    rdfs:label "PedalFeedback" ;
+    rdfs:subClassOf :VehicleSystem .
+
+:AcceleratorPedal a owl:Class ;
+    rdfs:label "AcceleratorPedal" .
+
+:providesResistance a owl:ObjectProperty ;
+    rdfs:label "providesResistance" ;
+    rdfs:domain :PedalFeedback ;
+    rdfs:range :AcceleratorPedal .

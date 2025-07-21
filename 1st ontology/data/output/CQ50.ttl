@@ -1,0 +1,230 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive and physical state of the driver." .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:subClassOf ahmi:DriverState ;
+    rdfs:comment "The state of the driver being distracted from driving tasks." .
+
+ahmi:NonDrivingRelatedActivity a owl:Class ;
+    rdfs:label "Non-Driving Related Activity"@en ;
+    rdfs:subClassOf ahmi:DistractionState ;
+    rdfs:comment "Activities not related to driving that can distract the driver." .
+
+ahmi:PostureState a owl:Class ;
+    rdfs:label "Posture State"@en ;
+    rdfs:subClassOf ahmi:DriverState ;
+    rdfs:comment "The physical posture and body position of the driver." .
+
+ahmi:RelaxedPosture a owl:Class ;
+    rdfs:label "Relaxed Posture"@en ;
+    rdfs:subClassOf ahmi:PostureState ;
+    rdfs:comment "A relaxed body position indicating low vigilance." .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:subClassOf ahmi:DriverState ;
+    rdfs:comment "The cognitive state and attention level of the driver." .
+
+ahmi:LowVigilance a owl:Class ;
+    rdfs:label "Low Vigilance"@en ;
+    rdfs:subClassOf ahmi:CognitiveState ;
+    rdfs:comment "A state of low attentiveness and awareness." .
+
+ahmi:DriverSituation a owl:Class ;
+    rdfs:label "Driver Situation"@en ;
+    rdfs:subClassOf dul:Situation ;
+    rdfs:comment "A view or interpretation of the driver's state and context." .
+
+ahmi:HandoverSituation a owl:Class ;
+    rdfs:label "Handover Situation"@en ;
+    rdfs:subClassOf ahmi:DriverSituation ;
+    rdfs:comment "A situation involving the transfer of control from the vehicle to the driver." .
+
+ahmi:EnvironmentalCondition a owl:Class ;
+    rdfs:label "Environmental Condition"@en ;
+    rdfs:comment "The conditions of the external environment." .
+
+ahmi:ConstructionZone a owl:Class ;
+    rdfs:label "Construction Zone"@en ;
+    rdfs:subClassOf ahmi:EnvironmentalCondition ;
+    rdfs:comment "An area with ongoing construction work." .
+
+ahmi:TransitionZone a owl:Class ;
+    rdfs:label "Transition Zone"@en ;
+    rdfs:subClassOf ahmi:EnvironmentalCondition ;
+    rdfs:comment "An area where a transition from autonomous to manual driving is required." .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "The systems and components of the vehicle." .
+
+ahmi:HMISystem a owl:Class ;
+    rdfs:label "HMI System"@en ;
+    rdfs:subClassOf ahmi:VehicleSystem ;
+    rdfs:comment "The human-machine interface system of the vehicle." .
+
+ahmi:DetectionMethodology a owl:Class ;
+    rdfs:label "Detection Methodology"@en ;
+    rdfs:comment "Methods used by the vehicle to detect and assess the driver's state." .
+
+ahmi:CameraDetection a owl:Class ;
+    rdfs:label "Camera Detection"@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology ;
+    rdfs:comment "Detection methods using cameras to monitor the driver." .
+
+ahmi:PhysiologicalSensing a owl:Class ;
+    rdfs:label "Physiological Sensing"@en ;
+    rdfs:subClassOf ahmi:DetectionMethodology ;
+    rdfs:comment "Detection methods using physiological sensors to monitor the driver." .
+
+ahmi:MultimodalIntegration a owl:Class ;
+    rdfs:label "Multimodal Integration"@en ;
+    rdfs:comment "The integration of multiple feedback modalities for driver interaction." .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:subClassOf ahmi:MultimodalIntegration ;
+    rdfs:comment "Visual cues and information provided to the driver." .
+
+ahmi:AmbientLighting a owl:Class ;
+    rdfs:label "Ambient Lighting"@en ;
+    rdfs:subClassOf ahmi:VisualFeedback ;
+    rdfs:comment "Adjustments to the ambient lighting in the vehicle." .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:subClassOf ahmi:VisualFeedback ;
+    rdfs:comment "Different types of displays used for visual feedback." .
+
+ahmi:DrivingInterface a owl:Class ;
+    rdfs:label "Driving Interface"@en ;
+    rdfs:subClassOf ahmi:DisplayType ;
+    rdfs:comment "A simplified interface for driving-related information." .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:subClassOf ahmi:VisualFeedback ;
+    rdfs:comment "Visual elements displayed to the driver." .
+
+ahmi:LaneDetectionVisualization a owl:Class ;
+    rdfs:label "Lane Detection Visualization"@en ;
+    rdfs:subClassOf ahmi:VisualElement ;
+    rdfs:comment "Visual representations of detected lane markings." .
+
+ahmi:CountdownTimer a owl:Class ;
+    rdfs:label "Countdown Timer"@en ;
+    rdfs:subClassOf ahmi:VisualElement ;
+    rdfs:comment "A visual timer counting down to the handover point." .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:subClassOf ahmi:MultimodalIntegration ;
+    rdfs:comment "Auditory cues and notifications provided to the driver." .
+
+ahmi:HapticAlert a owl:Class ;
+    rdfs:label "Haptic Alert"@en ;
+    rdfs:subClassOf ahmi:MultimodalIntegration ;
+    rdfs:comment "Tactile feedback and alerts provided to the driver." .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:subClassOf ahmi:HapticAlert ;
+    rdfs:comment "Tactile cues and vibrations provided to the driver." .
+
+ahmi:PostureSupportSystem a owl:Class ;
+    rdfs:label "Posture Support System"@en ;
+    rdfs:subClassOf ahmi:VehicleSystem ;
+    rdfs:comment "Systems that adjust the driver's posture and seating position." .
+
+ahmi:SeatPositionAdjustment a owl:Class ;
+    rdfs:label "Seat Position Adjustment"@en ;
+    rdfs:subClassOf ahmi:PostureSupportSystem ;
+    rdfs:comment "Adjustments made to the seat position to encourage an attentive posture." .
+
+ahmi:AttentivePosture a owl:Class ;
+    rdfs:label "Attentive Posture"@en ;
+    rdfs:subClassOf ahmi:PostureState ;
+    rdfs:comment "A body posture indicating alertness and readiness." .
+
+ahmi:DriverMonitoring a owl:Class ;
+    rdfs:label "Driver Monitoring"@en ;
+    rdfs:comment "The continuous monitoring of the driver's state and behavior." .
+
+ahmi:EyeTracking a owl:Class ;
+    rdfs:label "Eye Tracking"@en ;
+    rdfs:subClassOf ahmi:DriverMonitoring ;
+    rdfs:comment "Tracking the driver's eye movements and gaze direction." .
+
+ahmi:HeadPositionTracking a owl:Class ;
+    rdfs:label "Head Position Tracking"@en ;
+    rdfs:subClassOf ahmi:DriverMonitoring ;
+    rdfs:comment "Tracking the position and orientation of the driver's head." .
+
+ahmi:PostureStateMonitoring a owl:Class ;
+    rdfs:label "Posture State Monitoring"@en ;
+    rdfs:subClassOf ahmi:DriverMonitoring ;
+    rdfs:comment "Monitoring the driver's body posture and position." .
+
+ahmi:InteractionTiming a owl:Class ;
+    rdfs:label "Interaction Timing"@en ;
+    rdfs:comment "The timing and sequencing of interactions between the driver and the vehicle." .
+
+ahmi:TrustCalibration a owl:Class ;
+    rdfs:label "Trust Calibration"@en ;
+    rdfs:comment "Mechanisms for calibrating the level of trust between the driver and the vehicle system." .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:DriverState ;
+    rdfs:comment "Relates a driver situation to the driver's state." .
+
+ahmi:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:label "has environmental condition"@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:EnvironmentalCondition ;
+    rdfs:comment "Relates a driver situation to the environmental conditions." .
+
+ahmi:requiresHandover a owl:ObjectProperty ;
+    rdfs:label "requires handover"@en ;
+    rdfs:domain ahmi:DriverSituation ;
+    rdfs:range ahmi:HandoverSituation ;
+    rdfs:comment "Indicates that a driver situation requires a handover of control." .
+
+ahmi:detectedBy a owl:ObjectProperty ;
+    rdfs:label "detected by"@en ;
+    rdfs:domain ahmi:EnvironmentalCondition ;
+    rdfs:range ahmi:DetectionMethodology ;
+    rdfs:comment "Relates an environmental condition to the detection methodology used to identify it." .
+
+ahmi:preparedBy a owl:ObjectProperty ;
+    rdfs:label "prepared by"@en ;
+    rdfs:domain ahmi:HandoverSituation ;
+    rdfs:range ahmi:HMISystem ;
+    rdfs:comment "Relates a handover situation to the HMI system that prepares the driver." .
+
+ahmi:assessedBy a owl:ObjectProperty ;
+    rdfs:label "assessed by"@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DetectionMethodology ;
+    rdfs:comment "Relates a driver state to the detection methodology used to assess it." .
+
+ahmi:providedBy a owl:ObjectProperty ;
+    rdfs:label "provided by"@en ;
+    rdfs:domain ahmi:MultimodalIntegration ;
+    rdfs:range ahmi:HMISystem ;
+    rdfs:comment "Relates a multimodal integration to the HMI system that provides it." .
+
+ahmi:hasVisualFeedback a owl:ObjectProperty ;
+    rdfs:label "has visual feedback"@en ;
+    rdfs:domain ahmi:MultimodalIntegration ;
+    rdfs:range ah

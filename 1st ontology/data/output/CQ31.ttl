@@ -1,0 +1,212 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:AdaptiveHMI a owl:Class ;
+    rdfs:label "Adaptive HMI"@en ;
+    rdfs:comment "A human-machine interface that adapts its feedback modalities based on driver state and context."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive and physical state of the driver."@en .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The cognitive aspects of the driver's state, such as attention and reaction time."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:AgeRelatedFactor a owl:Class ;
+    rdfs:label "Age-Related Factor"@en ;
+    rdfs:comment "A factor related to the driver's age that affects their cognitive or physical state."@en ;
+    rdfs:subClassOf ahmi:CognitiveState .
+
+ahmi:SlowerReactionTime a owl:Class ;
+    rdfs:label "Slower Reaction Time"@en ;
+    rdfs:comment "A cognitive state characterized by slower reaction times."@en ;
+    rdfs:subClassOf ahmi:AgeRelatedFactor .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "The visual feedback provided by the HMI."@en ;
+    rdfs:subClassOf ahmi:AdaptiveHMI .
+
+ahmi:DisplayType a owl:Class ;
+    rdfs:label "Display Type"@en ;
+    rdfs:comment "The type of display used for visual feedback."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:VisualElement a owl:Class ;
+    rdfs:label "Visual Element"@en ;
+    rdfs:comment "An individual visual element displayed on the HMI."@en ;
+    rdfs:subClassOf ahmi:VisualFeedback .
+
+ahmi:SimplifiedDisplay a owl:Class ;
+    rdfs:label "Simplified Display"@en ;
+    rdfs:comment "A display type with fewer visual elements and simpler layout."@en ;
+    rdfs:subClassOf ahmi:DisplayType .
+
+ahmi:LargeVisualElement a owl:Class ;
+    rdfs:label "Large Visual Element"@en ;
+    rdfs:comment "A visual element with increased size for better visibility."@en ;
+    rdfs:subClassOf ahmi:VisualElement .
+
+ahmi:HighContrastDisplay a owl:Class ;
+    rdfs:label "High Contrast Display"@en ;
+    rdfs:comment "A display type with enhanced contrast between visual elements and background."@en ;
+    rdfs:subClassOf ahmi:DisplayType .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "The audio feedback provided by the HMI."@en ;
+    rdfs:subClassOf ahmi:AdaptiveHMI .
+
+ahmi:AudioParameter a owl:Class ;
+    rdfs:label "Audio Parameter"@en ;
+    rdfs:comment "A parameter that affects the audio feedback."@en ;
+    rdfs:subClassOf ahmi:AudioFeedback .
+
+ahmi:EarlyVoicePrompt a owl:Class ;
+    rdfs:label "Early Voice Prompt"@en ;
+    rdfs:comment "An audio parameter that provides voice prompts earlier than usual."@en ;
+    rdfs:subClassOf ahmi:AudioParameter .
+
+ahmi:ClearDialogDesign a owl:Class ;
+    rdfs:label "Clear Dialog Design"@en ;
+    rdfs:comment "An audio parameter that uses clear and understandable dialog design."@en ;
+    rdfs:subClassOf ahmi:AudioParameter .
+
+ahmi:WordingSystem a owl:Class ;
+    rdfs:label "Wording System"@en ;
+    rdfs:comment "The system that generates the wording and message structure for audio and visual feedback."@en ;
+    rdfs:subClassOf ahmi:AdaptiveHMI .
+
+ahmi:MessageStructure a owl:Class ;
+    rdfs:label "Message Structure"@en ;
+    rdfs:comment "The structure and organization of the messages presented to the driver."@en ;
+    rdfs:subClassOf ahmi:WordingSystem .
+
+ahmi:SimpleMessageStructure a owl:Class ;
+    rdfs:label "Simple Message Structure"@en ;
+    rdfs:comment "A message structure that uses simpler wording and organization for better comprehensibility."@en ;
+    rdfs:subClassOf ahmi:MessageStructure .
+
+ahmi:IncreaseComprehensibility a owl:Class ;
+    rdfs:label "Increase Comprehensibility"@en ;
+    rdfs:comment "An adaptation strategy that increases the comprehensibility of messages and feedback."@en ;
+    rdfs:subClassOf ahmi:WordingSystem .
+
+ahmi:ADAS a owl:Class ;
+    rdfs:label "Advanced Driver Assistance System"@en ;
+    rdfs:comment "A system that provides assistance and feedback to the driver."@en ;
+    rdfs:subClassOf ahmi:AdaptiveHMI .
+
+ahmi:LaneKeepingAssist a owl:Class ;
+    rdfs:label "Lane Keeping Assist"@en ;
+    rdfs:comment "An ADAS feature that assists the driver in staying within the lane."@en ;
+    rdfs:subClassOf ahmi:ADAS .
+
+ahmi:IncreaseAssistSensitivity a owl:Class ;
+    rdfs:label "Increase Assist Sensitivity"@en ;
+    rdfs:comment "An adaptation strategy that increases the sensitivity of driver assistance systems."@en ;
+    rdfs:subClassOf ahmi:ADAS .
+
+ahmi:HapticAlert a owl:Class ;
+    rdfs:label "Haptic Alert"@en ;
+    rdfs:comment "A feedback modality that provides haptic alerts to the driver."@en ;
+    rdfs:subClassOf ahmi:AdaptiveHMI .
+
+ahmi:SteeringWheelAlert a owl:Class ;
+    rdfs:label "Steering Wheel Alert"@en ;
+    rdfs:comment "A haptic alert provided through the steering wheel."@en ;
+    rdfs:subClassOf ahmi:HapticAlert .
+
+ahmi:LaneDriftAlert a owl:Class ;
+    rdfs:label "Lane Drift Alert"@en ;
+    rdfs:comment "A haptic alert that notifies the driver when drifting out of the lane."@en ;
+    rdfs:subClassOf ahmi:SteeringWheelAlert .
+
+ahmi:hasPreferredDisplayType a owl:ObjectProperty ;
+    rdfs:label "has preferred display type"@en ;
+    rdfs:comment "Relates a driver state to the preferred display type for that state."@en ;
+    rdfs:domain ahmi:DriverState ;
+    rdfs:range ahmi:DisplayType .
+
+ahmi:hasVisualElement a owl:ObjectProperty ;
+    rdfs:label "has visual element"@en ;
+    rdfs:comment "Relates a display type to the visual elements it includes."@en ;
+    rdfs:domain ahmi:DisplayType ;
+    rdfs:range ahmi:VisualElement .
+
+ahmi:hasAudioParameter a owl:ObjectProperty ;
+    rdfs:label "has audio parameter"@en ;
+    rdfs:comment "Relates the audio feedback to the parameters that affect it."@en ;
+    rdfs:domain ahmi:AudioFeedback ;
+    rdfs:range ahmi:AudioParameter .
+
+ahmi:hasMessageStructure a owl:ObjectProperty ;
+    rdfs:label "has message structure"@en ;
+    rdfs:comment "Relates the wording system to the message structure it uses."@en ;
+    rdfs:domain ahmi:WordingSystem ;
+    rdfs:range ahmi:MessageStructure .
+
+ahmi:hasAssistSensitivity a owl:ObjectProperty ;
+    rdfs:label "has assist sensitivity"@en ;
+    rdfs:comment "Relates an ADAS to the sensitivity level of its assistance."@en ;
+    rdfs:domain ahmi:ADAS ;
+    rdfs:range ahmi:IncreaseAssistSensitivity .
+
+ahmi:providesHapticAlert a owl:ObjectProperty ;
+    rdfs:label "provides haptic alert"@en ;
+    rdfs:comment "Relates an ADAS or HMI component to the haptic alerts it provides."@en ;
+    rdfs:domain ahmi:AdaptiveHMI ;
+    rdfs:range ahmi:HapticAlert .
+
+ahmi:ageRelatedFactorValue a owl:DatatypeProperty ;
+    rdfs:label "age-related factor value"@en ;
+    rdfs:comment "The value or severity of an age-related factor affecting the driver's state."@en ;
+    rdfs:domain ahmi:AgeRelatedFactor ;
+    rdfs:range xsd:float .
+
+ahmi:visualElementSize a owl:DatatypeProperty ;
+    rdfs:label "visual element size"@en ;
+    rdfs:comment "The size of a visual element displayed on the HMI."@en ;
+    rdfs:domain ahmi:VisualElement ;
+    rdfs:range xsd:float .
+
+ahmi:displayContrast a owl:DatatypeProperty ;
+    rdfs:label "display contrast"@en ;
+    rdfs:comment "The contrast level of a display type."@en ;
+    rdfs:domain ahmi:DisplayType ;
+    rdfs:range xsd:float .
+
+ahmi:voicePromptTiming a owl:DatatypeProperty ;
+    rdfs:label "voice prompt timing"@en ;
+    rdfs:comment "The timing of voice prompts relative to events or actions."@en ;
+    rdfs:domain ahmi:EarlyVoicePrompt ;
+    rdfs:range xsd:float .
+
+ahmi:dialogComprehensibility a owl:DatatypeProperty ;
+    rdfs:label "dialog comprehensibility"@en ;
+    rdfs:comment "The level of comprehensibility of the dialog design used in audio feedback."@en ;
+    rdfs:domain ahmi:ClearDialogDesign ;
+    rdfs:range xsd:float .
+
+ahmi:messageComplexity a owl:DatatypeProperty ;
+    rdfs:label "message complexity"@en ;
+    rdfs:comment "The complexity level of the message structure used in feedback."@en ;
+    rdfs:domain ahmi:MessageStructure ;
+    rdfs:range xsd:float .
+
+ahmi:assistSensitivityLevel a owl:DatatypeProperty ;
+    rdfs:label "assist sensitivity level"@en ;
+    rdfs:comment "The sensitivity level of an ADAS assistance feature."@en ;
+    rdfs:domain ahmi:IncreaseAssistSensitivity ;
+    rdfs:range xsd:float .
+
+ahmi:hapticAlertIntensity a owl:DatatypeProperty ;
+    rdfs:label "haptic alert intensity"@en ;
+    rdfs:comment "The intensity or strength of a haptic alert provided to the driver."@en ;
+    rdfs:domain ahmi:HapticAlert ;
+    rdfs:range xsd:float .

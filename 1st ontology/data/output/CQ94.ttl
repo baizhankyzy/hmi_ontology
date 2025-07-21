@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "A physical, social, or mental process that occurs over time."@en .
+
+ahmi:Situation a owl:Class ;
+    rdfs:label "Situation"@en ;
+    rdfs:comment "A view or interpretation of an event, consistent with a particular description."@en ;
+    rdfs:subClassOf ahmi:SocialObject ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:satisfies ;
+        owl:someValuesFrom ahmi:Description
+    ] .
+
+ahmi:Description a owl:Class ;
+    rdfs:label "Description"@en ;
+    rdfs:comment "A conceptualization that provides context for interpreting situations and events."@en ;
+    rdfs:subClassOf ahmi:SocialObject .
+
+ahmi:SocialObject a owl:Class ;
+    rdfs:label "Social Object"@en ;
+    rdfs:comment "An object that is created in a social context."@en .
+
+ahmi:RoadFacingCamera a owl:Class ;
+    rdfs:label "Road-facing Camera"@en ;
+    rdfs:comment "A camera system mounted on a vehicle to capture visual information about the road and environment."@en ;
+    rdfs:subClassOf ahmi:VehicleSystem .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "A system or component integrated into a vehicle."@en .
+
+ahmi:EnvironmentalConditionAssessment a owl:Class ;
+    rdfs:label "Environmental Condition Assessment"@en ;
+    rdfs:comment "The process of evaluating and determining the current state of the environment surrounding a vehicle."@en ;
+    rdfs:subClassOf ahmi:Situation .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a situation to the description it satisfies."@en ;
+    rdfs:domain ahmi:Situation ;
+    rdfs:range ahmi:Description .
+
+ahmi:isPartOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:comment "Indicates that one entity is a part of another entity."@en ;
+    rdfs:domain ahmi:Entity ;
+    rdfs:range ahmi:Entity .
+
+ahmi:Entity a owl:Class ;
+    rdfs:label "Entity"@en ;
+    rdfs:comment "Any physical, social, or mental object, event, or quality."@en .
+
+ahmi:providesDataFor a owl:ObjectProperty ;
+    rdfs:label "provides data for"@en ;
+    rdfs:comment "Relates a vehicle system to the situation it provides data for."@en ;
+    rdfs:domain ahmi:VehicleSystem ;
+    rdfs:range ahmi:Situation ;
+    rdfs:subPropertyOf ahmi:isRelatedToSituation .
+
+ahmi:isRelatedToSituation a owl:ObjectProperty ;
+    rdfs:label "is related to situation"@en ;
+    rdfs:comment "A general relation between an entity and a situation."@en ;
+    rdfs:domain ahmi:Entity ;
+    rdfs:range ahmi:Situation .

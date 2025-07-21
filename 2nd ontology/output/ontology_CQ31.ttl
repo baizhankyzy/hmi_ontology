@@ -1,0 +1,321 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:Driver a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasDriverCharacteristics ;
+        owl:someValuesFrom :DriverCharacteristics
+    ] .
+
+:DriverCharacteristics a owl:Class ;
+    rdfs:label "Driver Characteristics" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityTraits ;
+        owl:someValuesFrom :PersonalityTraits
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityScore ;
+        owl:someValuesFrom :PersonalityScore
+    ] .
+
+:PersonalityTraits a owl:Class ;
+    rdfs:label "Personality Traits" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :includesAggressiveTendency ;
+        owl:someValuesFrom :AggressiveTendency
+    ] .
+
+:AggressiveTendency a owl:Class ;
+    rdfs:label "Aggressive Tendency" .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "Personality Score" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasConscientiousnessScore ;
+        owl:someValuesFrom :ConscientiousnessScore
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasExtraversionScore ;
+        owl:someValuesFrom :ExtraversionScore
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgreeablenessScore ;
+        owl:someValuesFrom :AgreeablenessScore
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasNeuroticism Score ;
+        owl:someValuesFrom :NeuroticiSmScore
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasOpennessScore ;
+        owl:someValuesFrom :OpennessScore
+    ] .
+
+:ConscientiousnessScore a owl:Class ;
+    rdfs:label "Conscientiousness Score" .
+
+:ExtraversionScore a owl:Class ;
+    rdfs:label "Extraversion Score" .
+
+:AgreeablenessScore a owl:Class ;
+    rdfs:label "Agreeableness Score" .
+
+:NeuroticiSmScore a owl:Class ;
+    rdfs:label "Neuroticism Score" .
+
+:OpennessScore a owl:Class ;
+    rdfs:label "Openness Score" .
+
+:TrafficJam a owl:Class ;
+    rdfs:label "Traffic Jam" .
+
+:ConstructionZone a owl:Class ;
+    rdfs:label "Construction Zone" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :causesTrafficJam ;
+        owl:someValuesFrom :TrafficJam
+    ] .
+
+:SteeringAnalyzer a owl:Class ;
+    rdfs:label "Steering Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsPatternAnalysis ;
+        owl:someValuesFrom :PatternAnalysis
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsHarderAcceleration ;
+        owl:someValuesFrom :HarderAcceleration
+    ] .
+
+:PatternAnalysis a owl:Class ;
+    rdfs:label "Pattern Analysis" .
+
+:HarderAcceleration a owl:Class ;
+    rdfs:label "Harder Acceleration" .
+
+:SmoothnessAnalyzer a owl:Class ;
+    rdfs:label "Smoothness Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsIrregularMovements ;
+        owl:someValuesFrom :IrregularMovements
+    ] .
+
+:IrregularMovements a owl:Class ;
+    rdfs:label "Irregular Movements" .
+
+:AngleAnalyzer a owl:Class ;
+    rdfs:label "Angle Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsIncreasedVariations ;
+        owl:someValuesFrom :IncreasedVariations
+    ] .
+
+:IncreasedVariations a owl:Class ;
+    rdfs:label "Increased Variations" .
+
+:PedalAnalyzer a owl:Class ;
+    rdfs:label "Pedal Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsUsageAnalysis ;
+        owl:someValuesFrom :UsageAnalysis
+    ] .
+
+:UsageAnalysis a owl:Class ;
+    rdfs:label "Usage Analysis" .
+
+:BrakeSensor a owl:Class ;
+    rdfs:label "Brake Sensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsForcefulBraking ;
+        owl:someValuesFrom :ForcefulBraking
+    ] .
+
+:ForcefulBraking a owl:Class ;
+    rdfs:label "Forceful Braking" .
+
+:AcceleratorSensor a owl:Class ;
+    rdfs:label "Accelerator Sensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsAggressiveAcceleration ;
+        owl:someValuesFrom :AggressiveAcceleration
+    ] .
+
+:AggressiveAcceleration a owl:Class ;
+    rdfs:label "Aggressive Acceleration" .
+
+:GripSensor a owl:Class ;
+    rdfs:label "Grip Sensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsExcessivePressure ;
+        owl:someValuesFrom :ExcessivePressure
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsPressureOn ;
+        owl:someValuesFrom :SteeringWheel
+    ] .
+
+:ExcessivePressure a owl:Class ;
+    rdfs:label "Excessive Pressure" .
+
+:SteeringWheel a owl:Class ;
+    rdfs:label "Steering Wheel" .
+
+:Microphone a owl:Class ;
+    rdfs:label "Microphone" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :performsSoundAnalysis ;
+        owl:someValuesFrom :SoundAnalysis
+    ] .
+
+:SoundAnalysis a owl:Class ;
+    rdfs:label "Sound Analysis" .
+
+:SpeechRecognizer a owl:Class ;
+    rdfs:label "Speech Recognizer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detectsVerbalAnger ;
+        owl:someValuesFrom :VerbalAnger
+    ] .
+
+:VerbalAnger a owl:Class ;
+    rdfs:label "Verbal Anger" .
+
+:StressAnalyzer a owl:Class ;
+    rdfs:label "Stress Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicatesElevatedMarkers ;
+        owl:someValuesFrom :ElevatedMarkers
+    ] .
+
+:ElevatedMarkers a owl:Class ;
+    rdfs:label "Elevated Markers" .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "Context Analyzer" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :confirmsEnvironmentalTriggers ;
+        owl:someValuesFrom :EnvironmentalTriggers
+    ] .
+
+:EnvironmentalTriggers a owl:Class ;
+    rdfs:label "Environmental Triggers" ;
+    rdfs:subClassOf [
+        a owl:Union ;
+        owl:unionOf (:HighCongestion :JourneyDelay :SuddenStops)
+    ] .
+
+:HighCongestion a owl:Class ;
+    rdfs:label "High Congestion" .
+
+:JourneyDelay a owl:Class ;
+    rdfs:label "Journey Delay" .
+
+:SuddenStops a owl:Class ;
+    rdfs:label "Sudden Stops" .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :accessesPersonalityTraits ;
+        owl:someValuesFrom :PersonalityTraits
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :includesRiskTakingTendencies ;
+        owl:someValuesFrom :RiskTakingTendencies
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :adaptsToEmotionalState ;
+        owl:someValuesFrom :EmotionalState
+    ] .
+
+:RiskTakingTendencies a owl:Class ;
+    rdfs:label "Risk Taking Tendencies" .
+
+:EmotionalState a owl:Class ;
+    rdfs:label "Emotional State" .
+
+:VisualSystem a owl:Class ;
+    rdfs:label "Visual System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :displaysAlternativeRoute ;
+        owl:someValuesFrom :AlternativeRoute
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :displaysOn ;
+        owl:someValuesFrom :NavigationDisplay
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :showsAccurateTimeEstimate ;
+        owl:someValuesFrom :TimeEstimate
+    ] .
+
+:AlternativeRoute a owl:Class ;
+    rdfs:label "Alternative Route" .
+
+:NavigationDisplay a owl:Class ;
+    rdfs:label "Navigation Display" .
+
+:TimeEstimate a owl:Class ;
+    rdfs:label "Time Estimate" .
+
+:ColorController a owl:Class ;
+    rdfs:label "Color Controller" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :usesBlueScheme ;
+        owl:someValuesFrom :BlueScheme
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :targetsArousalReduction ;
+        owl:someValuesFrom :ArousalReduction
+    ] .
+
+:BlueScheme a owl:Class ;
+    rdfs:label "Blue Scheme" .
+
+:ArousalReduction a owl:Class ;
+    rdfs:label "Arousal Reduction" .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "Sound System" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :suggestsPreferredMusicPlaylist ;
+        owl:someValuesFrom :MusicPlaylist
+    

@@ -1,0 +1,102 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:Driver a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityTraits ;
+        owl:someValuesFrom :PersonalityTraits
+    ] .
+
+:PersonalityTraits a owl:Class ;
+    rdfs:label "PersonalityTraits" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPersonalityScore ;
+        owl:someValuesFrom :PersonalityScore
+    ] .
+
+:PersonalityScore a owl:Class ;
+    rdfs:label "PersonalityScore" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasConscientiousnessScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasExtraversionScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasAgreeablenessScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasNeuroticismScore ;
+        owl:someValuesFrom xsd:float
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasOpennessScore ;
+        owl:someValuesFrom xsd:float
+    ] .
+
+:SoundSystem a owl:Class ;
+    rdfs:label "SoundSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :suggestsMusicPlaylist ;
+        owl:someValuesFrom :MusicPlaylist
+    ] .
+
+:MusicPlaylist a owl:Class ;
+    rdfs:label "MusicPlaylist" .
+
+:hasPersonalityTraits a owl:ObjectProperty ;
+    rdfs:label "hasPersonalityTraits" ;
+    rdfs:domain :Driver ;
+    rdfs:range :PersonalityTraits .
+
+:hasPersonalityScore a owl:ObjectProperty ;
+    rdfs:label "hasPersonalityScore" ;
+    rdfs:domain :PersonalityTraits ;
+    rdfs:range :PersonalityScore .
+
+:hasConscientiousnessScore a owl:DatatypeProperty ;
+    rdfs:label "hasConscientiousnessScore" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range xsd:float .
+
+:hasExtraversionScore a owl:DatatypeProperty ;
+    rdfs:label "hasExtraversionScore" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range xsd:float .
+
+:hasAgreeablenessScore a owl:DatatypeProperty ;
+    rdfs:label "hasAgreeablenessScore" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range xsd:float .
+
+:hasNeuroticismScore a owl:DatatypeProperty ;
+    rdfs:label "hasNeuroticismScore" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range xsd:float .
+
+:hasOpennessScore a owl:DatatypeProperty ;
+    rdfs:label "hasOpennessScore" ;
+    rdfs:domain :PersonalityScore ;
+    rdfs:range xsd:float .
+
+:suggestsMusicPlaylist a owl:ObjectProperty ;
+    rdfs:label "suggestsMusicPlaylist" ;
+    rdfs:domain :SoundSystem ;
+    rdfs:range :MusicPlaylist .

@@ -1,0 +1,71 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:CoordinationSystem a owl:Class ;
+    rdfs:label "CoordinationSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :manages ;
+        owl:someValuesFrom [
+            rdf:type owl:Class ;
+            owl:unionOf (
+                :VisualSystem
+                :SoundSystem
+                :DisplayController
+                :HeadUpDisplay
+                :LaneVisualizer
+                :PostureController
+                :SeatAdjuster
+                :SeatVibrator
+                :MonitoringSystem
+                :EyeTracking
+                :HeadTracking
+                :PostureTracking
+                :TimingController
+                :TrustAlgorithm
+            )
+        ]
+    ] .
+
+:VisualSystem a owl:Class .
+:SoundSystem a owl:Class .
+:DisplayController a owl:Class .
+:HeadUpDisplay a owl:Class .
+:LaneVisualizer a owl:Class .
+:PostureController a owl:Class .
+:SeatAdjuster a owl:Class .
+:SeatVibrator a owl:Class .
+:MonitoringSystem a owl:Class .
+:EyeTracking a owl:Class .
+:HeadTracking a owl:Class .
+:PostureTracking a owl:Class .
+:TimingController a owl:Class .
+:TrustAlgorithm a owl:Class .
+
+:manages a owl:ObjectProperty ;
+    rdfs:label "manages" ;
+    rdfs:domain :CoordinationSystem ;
+    rdfs:range [
+        rdf:type owl:Class ;
+        owl:unionOf (
+            :VisualSystem
+            :SoundSystem
+            :DisplayController
+            :HeadUpDisplay
+            :LaneVisualizer
+            :PostureController
+            :SeatAdjuster
+            :SeatVibrator
+            :MonitoringSystem
+            :EyeTracking
+            :HeadTracking
+            :PostureTracking
+            :TimingController
+            :TrustAlgorithm
+        )
+    ] .

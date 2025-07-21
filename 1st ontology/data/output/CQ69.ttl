@@ -1,0 +1,94 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+
+ahmi:TripDuration a owl:Class ;
+    rdfs:label "Trip Duration"@en ;
+    rdfs:comment "The duration of a trip or journey."@en .
+
+ahmi:FatigueRisk a owl:Class ;
+    rdfs:label "Fatigue Risk"@en ;
+    rdfs:comment "The risk or likelihood of experiencing fatigue during a trip."@en .
+
+ahmi:EnvironmentalCondition a owl:Class ;
+    rdfs:label "Environmental Condition"@en ;
+    rdfs:comment "The conditions of the environment during a trip."@en .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The physical and mental state of the driver during a trip."@en .
+
+ahmi:VehicleSystem a owl:Class ;
+    rdfs:label "Vehicle System"@en ;
+    rdfs:comment "The systems and components of the vehicle."@en .
+
+ahmi:Adaptation a owl:Class ;
+    rdfs:label "Adaptation"@en ;
+    rdfs:comment "The adjustments or modifications made by the vehicle systems in response to changing conditions."@en .
+
+ahmi:hasEnvironmentalCondition a owl:ObjectProperty ;
+    rdfs:label "has environmental condition"@en ;
+    rdfs:comment "Relates a trip or situation to the environmental conditions present."@en ;
+    rdfs:domain ahmi:TripDuration ;
+    rdfs:range ahmi:EnvironmentalCondition .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a trip or situation to the driver's physical and mental state."@en ;
+    rdfs:domain ahmi:TripDuration ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:hasVehicleSystem a owl:ObjectProperty ;
+    rdfs:label "has vehicle system"@en ;
+    rdfs:comment "Relates a trip or situation to the vehicle systems involved."@en ;
+    rdfs:domain ahmi:TripDuration ;
+    rdfs:range ahmi:VehicleSystem .
+
+ahmi:hasAdaptation a owl:ObjectProperty ;
+    rdfs:label "has adaptation"@en ;
+    rdfs:comment "Relates a vehicle system or situation to the adaptations made."@en ;
+    rdfs:domain ahmi:VehicleSystem , ahmi:TripDuration ;
+    rdfs:range ahmi:Adaptation .
+
+ahmi:indicatesRiskOf a owl:ObjectProperty ;
+    rdfs:label "indicates risk of"@en ;
+    rdfs:comment "Relates a trip duration or situation to the fatigue risk it indicates."@en ;
+    rdfs:domain ahmi:TripDuration ;
+    rdfs:range ahmi:FatigueRisk .
+
+ahmi:TripSituation a owl:Class ;
+    rdfs:label "Trip Situation"@en ;
+    rdfs:comment "A situation representing a specific view or interpretation of a trip event."@en ;
+    rdfs:subClassOf ahmi:TripDuration ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasEnvironmentalCondition ;
+        owl:someValuesFrom ahmi:EnvironmentalCondition
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasDriverState ;
+        owl:someValuesFrom ahmi:DriverState
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasVehicleSystem ;
+        owl:someValuesFrom ahmi:VehicleSystem
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:hasAdaptation ;
+        owl:someValuesFrom ahmi:Adaptation
+    ] .
+
+ahmi:FatigueSituation a owl:Class ;
+    rdfs:label "Fatigue Situation"@en ;
+    rdfs:comment "A situation representing a view or interpretation of a trip event where fatigue risk is increased."@en ;
+    rdfs:subClassOf ahmi:TripSituation ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ahmi:indicatesRiskOf ;
+        owl:someValuesFrom ahmi:FatigueRisk
+    ] .

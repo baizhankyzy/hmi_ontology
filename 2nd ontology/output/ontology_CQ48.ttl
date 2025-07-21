@@ -1,0 +1,36 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SeatSensor a owl:Class ;
+    rdfs:label "SeatSensor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :PostureChange
+    ] .
+
+:PostureChange a owl:Class ;
+    rdfs:label "PostureChange" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicates ;
+        owl:someValuesFrom :FatigueState
+    ] .
+
+:FatigueState a owl:Class ;
+    rdfs:label "FatigueState" .
+
+:detects a owl:ObjectProperty ;
+    rdfs:label "detects" ;
+    rdfs:domain :SeatSensor ;
+    rdfs:range :PostureChange .
+
+:indicates a owl:ObjectProperty ;
+    rdfs:label "indicates" ;
+    rdfs:domain :PostureChange ;
+    rdfs:range :FatigueState .

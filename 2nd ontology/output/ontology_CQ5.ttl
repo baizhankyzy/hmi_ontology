@@ -1,0 +1,34 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VehicleSystem a owl:Class ;
+    rdfs:label "VehicleSystem" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :activatesTouchFeedback ;
+        owl:someValuesFrom :TouchFeedback
+    ] .
+
+:DrowsinessState a owl:Class ;
+    rdfs:label "DrowsinessState" ;
+    rdfs:subClassOf :InattentionState .
+
+:InattentionState a owl:Class ;
+    rdfs:label "InattentionState" ;
+    rdfs:subClassOf :CognitiveState .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:TouchFeedback a owl:Class ;
+    rdfs:label "TouchFeedback" .
+
+:activatesTouchFeedback a owl:ObjectProperty ;
+    rdfs:label "activatesTouchFeedback" ;
+    rdfs:domain :VehicleSystem ;
+    rdfs:range :TouchFeedback .

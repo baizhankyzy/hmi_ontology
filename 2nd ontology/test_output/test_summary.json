@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-05-26T10:10:57.637111",
+  "test_mode": true,
+  "authorized_patterns_used": true,
+  "patterns_file": "data/patterns.csv",
+  "competency_questions": [
+    "What PostureState indicators signal a driver's transition into Drowsiness within the InattentionState class?",
+    "What Detection methodologies are used to identify Drowsiness in drivers?"
+  ],
+  "ontologies_generated": 2,
+  "merged_ontology_created": true,
+  "merging_principles_applied": [
+    "Preserved both competency questions",
+    "Eliminated duplicates through property consolidation",
+    "Maintained clear naming and relationships",
+    "Balanced expressivity with simplicity",
+    "Used inverse properties to reduce redundancy"
+  ],
+  "authorized_patterns_info": "Used patterns from data/patterns.csv"
+}

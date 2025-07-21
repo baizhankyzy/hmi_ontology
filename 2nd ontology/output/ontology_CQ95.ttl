@@ -1,0 +1,23 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:PrivacyChecker a owl:Class ;
+    rdfs:label "PrivacyChecker" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :verifiesPrivacyProtectionIn ;
+        owl:someValuesFrom :MonitoringSystem
+    ] .
+
+:MonitoringSystem a owl:Class ;
+    rdfs:label "MonitoringSystem" .
+
+:verifiesPrivacyProtectionIn a owl:ObjectProperty ;
+    rdfs:label "verifiesPrivacyProtectionIn" ;
+    rdfs:domain :PrivacyChecker ;
+    rdfs:range :MonitoringSystem .

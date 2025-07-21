@@ -1,0 +1,178 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ahmi: <http://example.org/ahmi#> .
+@prefix dul: <http://ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+ahmi:DriverState a owl:Class ;
+    rdfs:label "Driver State"@en ;
+    rdfs:comment "The cognitive, emotional, and physiological state of a driver during a driving scenario."@en .
+
+ahmi:PersonalityFactor a owl:Class ;
+    rdfs:label "Personality Factor"@en ;
+    rdfs:comment "A trait or characteristic that influences a driver's behavior and state."@en ;
+    rdfs:subClassOf dul:Parameter .
+
+ahmi:DistractionState a owl:Class ;
+    rdfs:label "Distraction State"@en ;
+    rdfs:comment "A state of reduced attention or focus due to external factors."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:CognitiveState a owl:Class ;
+    rdfs:label "Cognitive State"@en ;
+    rdfs:comment "The mental state related to perception, attention, and decision-making."@en ;
+    rdfs:subClassOf ahmi:DriverState .
+
+ahmi:DetectionMethod a owl:Class ;
+    rdfs:label "Detection Method"@en ;
+    rdfs:comment "A technique or sensor used to objectively measure driver states."@en .
+
+ahmi:SelfMeasure a owl:Class ;
+    rdfs:label "Self-Measure"@en ;
+    rdfs:comment "A subjective assessment provided by the driver about their state or experience."@en .
+
+ahmi:Questionnaire a owl:Class ;
+    rdfs:label "Questionnaire"@en ;
+    rdfs:comment "A set of questions used to collect self-reported data from the driver."@en ;
+    rdfs:subClassOf ahmi:SelfMeasure .
+
+ahmi:FeedbackModality a owl:Class ;
+    rdfs:label "Feedback Modality"@en ;
+    rdfs:comment "A sensory channel through which feedback is provided to the driver."@en .
+
+ahmi:TactileFeedback a owl:Class ;
+    rdfs:label "Tactile Feedback"@en ;
+    rdfs:comment "Feedback provided through touch or haptic sensations."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AudioFeedback a owl:Class ;
+    rdfs:label "Audio Feedback"@en ;
+    rdfs:comment "Feedback provided through sound or auditory cues."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:VisualFeedback a owl:Class ;
+    rdfs:label "Visual Feedback"@en ;
+    rdfs:comment "Feedback provided through visual displays or cues."@en ;
+    rdfs:subClassOf ahmi:FeedbackModality .
+
+ahmi:AdaptationStrategy a owl:Class ;
+    rdfs:label "Adaptation Strategy"@en ;
+    rdfs:comment "A method or approach for adjusting the vehicle system based on driver state."@en .
+
+ahmi:TrustCalibrationMechanism a owl:Class ;
+    rdfs:label "Trust Calibration Mechanism"@en ;
+    rdfs:comment "A process for aligning the driver's trust in the system with its actual capabilities."@en ;
+    rdfs:subClassOf ahmi:AdaptationStrategy .
+
+ahmi:RegulationStrategy a owl:Class ;
+    rdfs:label "Regulation Strategy"@en ;
+    rdfs:comment "A method for managing or influencing the driver's state through system interventions."@en ;
+    rdfs:subClassOf ahmi:AdaptationStrategy .
+
+ahmi:MultimodalIntegration a owl:Class ;
+    rdfs:label "Multimodal Integration"@en ;
+    rdfs:comment "The combination and coordination of multiple feedback modalities."@en ;
+    rdfs:subClassOf ahmi:AdaptationStrategy .
+
+ahmi:CrossModalCongruence a owl:Class ;
+    rdfs:label "Cross-Modal Congruence"@en ;
+    rdfs:comment "The alignment and consistency of feedback across different modalities."@en ;
+    rdfs:subClassOf ahmi:MultimodalIntegration .
+
+ahmi:DrivingScenario a owl:Class ;
+    rdfs:label "Driving Scenario"@en ;
+    rdfs:comment "A simulated or real-world driving situation with specific conditions and events."@en .
+
+ahmi:TrafficCondition a owl:Class ;
+    rdfs:label "Traffic Condition"@en ;
+    rdfs:comment "The state of traffic flow and density in a driving scenario."@en ;
+    rdfs:subClassOf dul:Parameter .
+
+ahmi:WeatherCondition a owl:Class ;
+    rdfs:label "Weather Condition"@en ;
+    rdfs:comment "The atmospheric conditions, such as precipitation or visibility, in a driving scenario."@en ;
+    rdfs:subClassOf dul:Parameter .
+
+ahmi:DrivingEvent a owl:Class ;
+    rdfs:label "Driving Event"@en ;
+    rdfs:comment "An occurrence or incident that happens during a driving scenario."@en ;
+    rdfs:subClassOf dul:Event .
+
+ahmi:DrivingSituation a owl:Class ;
+    rdfs:label "Driving Situation"@en ;
+    rdfs:comment "A view or interpretation of a driving event from a particular perspective or context."@en ;
+    rdfs:subClassOf dul:Situation .
+
+ahmi:hasDriverState a owl:ObjectProperty ;
+    rdfs:label "has driver state"@en ;
+    rdfs:comment "Relates a driving situation to the driver's state observed or interpreted in that situation."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:DriverState .
+
+ahmi:hasPersonalityFactor a owl:ObjectProperty ;
+    rdfs:label "has personality factor"@en ;
+    rdfs:comment "Relates a driver to their personality traits or characteristics."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:PersonalityFactor .
+
+ahmi:hasDetectionMethod a owl:ObjectProperty ;
+    rdfs:label "has detection method"@en ;
+    rdfs:comment "Relates a driving situation to the objective methods used to measure driver states."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:DetectionMethod .
+
+ahmi:hasSelfMeasure a owl:ObjectProperty ;
+    rdfs:label "has self-measure"@en ;
+    rdfs:comment "Relates a driving situation to the subjective measures provided by the driver."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:SelfMeasure .
+
+ahmi:hasFeedbackModality a owl:ObjectProperty ;
+    rdfs:label "has feedback modality"@en ;
+    rdfs:comment "Relates a driving situation to the feedback modalities used by the vehicle system."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:FeedbackModality .
+
+ahmi:hasAdaptationStrategy a owl:ObjectProperty ;
+    rdfs:label "has adaptation strategy"@en ;
+    rdfs:comment "Relates a driving situation to the strategies used by the vehicle system to adapt to the driver's state."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:AdaptationStrategy .
+
+ahmi:requiresAdjustment a owl:ObjectProperty ;
+    rdfs:label "requires adjustment"@en ;
+    rdfs:comment "Indicates that a trust calibration mechanism needs to be adjusted based on discrepancies between subjective and objective measures."@en ;
+    rdfs:domain ahmi:TrustCalibrationMechanism ;
+    rdfs:range dul:Situation .
+
+ahmi:hasDiscrepancy a owl:DatatypeProperty ;
+    rdfs:label "has discrepancy"@en ;
+    rdfs:comment "A measure of the difference between subjective and objective assessments of driver state."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range xsd:float .
+
+ahmi:hasTrafficCondition a owl:ObjectProperty ;
+    rdfs:label "has traffic condition"@en ;
+    rdfs:comment "Relates a driving scenario to the traffic conditions present."@en ;
+    rdfs:domain ahmi:DrivingScenario ;
+    rdfs:range ahmi:TrafficCondition .
+
+ahmi:hasWeatherCondition a owl:ObjectProperty ;
+    rdfs:label "has weather condition"@en ;
+    rdfs:comment "Relates a driving scenario to the weather conditions present."@en ;
+    rdfs:domain ahmi:DrivingScenario ;
+    rdfs:range ahmi:WeatherCondition .
+
+ahmi:observes a owl:ObjectProperty ;
+    rdfs:label "observes"@en ;
+    rdfs:comment "Relates a driving situation to the driving event it is an observation or interpretation of."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range ahmi:DrivingEvent .
+
+ahmi:satisfies a owl:ObjectProperty ;
+    rdfs:subPropertyOf dul:satisfies ;
+    rdfs:label "satisfies"@en ;
+    rdfs:comment "Relates a driving situation to the conceptualization or description it satisfies."@en ;
+    rdfs:domain ahmi:DrivingSituation ;
+    rdfs:range dul:Description .

@@ -1,0 +1,96 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:HeadTracking a owl:Class ;
+    rdfs:label "HeadTracking" .
+
+:EyeTracking a owl:Class ;
+    rdfs:label "EyeTracking" ;
+    rdfs:subClassOf [
+        a owl:Class ;
+        owl:unionOf ( :GazeAnalysis :BlinkAnalysis :PupilAnalysis )
+    ] .
+
+:GazeAnalysis a owl:Class ;
+    rdfs:label "GazeAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :IrregularGazePattern
+    ] .
+
+:BlinkAnalysis a owl:Class ;
+    rdfs:label "BlinkAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :ExtendedBlinkDuration
+    ] .
+
+:PupilAnalysis a owl:Class ;
+    rdfs:label "PupilAnalysis" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :detects ;
+        owl:someValuesFrom :AbnormalPupilSize
+    ] .
+
+:IrregularGazePattern a owl:Class ;
+    rdfs:label "IrregularGazePattern" .
+
+:ExtendedBlinkDuration a owl:Class ;
+    rdfs:label "ExtendedBlinkDuration" .
+
+:AbnormalPupilSize a owl:Class ;
+    rdfs:label "AbnormalPupilSize" .
+
+:HeadPosition a owl:Class ;
+    rdfs:label "HeadPosition" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasPattern ;
+        owl:someValuesFrom :NoddingPattern
+    ] .
+
+:NoddingPattern a owl:Class ;
+    rdfs:label "NoddingPattern" .
+
+:hasPattern a owl:ObjectProperty ;
+    rdfs:label "hasPattern" ;
+    rdfs:domain :HeadPosition ;
+    rdfs:range owl:Thing .
+
+:detects a owl:ObjectProperty ;
+    rdfs:label "detects" ;
+    rdfs:domain [ rdf:type owl:Class ; owl:unionOf ( :GazeAnalysis :BlinkAnalysis :PupilAnalysis ) ] ;
+    rdfs:range owl:Thing .
+
+:InattentionState a owl:Class ;
+    rdfs:label "InattentionState" ;
+    rdfs:subClassOf :CognitiveState ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :indicatedBy ;
+        owl:someValuesFrom [ rdf:type owl:Class ; owl:unionOf ( :DrowsinessState :FatigueState ) ]
+    ] .
+
+:DrowsinessState a owl:Class ;
+    rdfs:label "DrowsinessState" ;
+    rdfs:subClassOf :InattentionState .
+
+:FatigueState a owl:Class ;
+    rdfs:label "FatigueState" ;
+    rdfs:subClassOf :InattentionState .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" .
+
+:indicatedBy a owl:ObjectProperty ;
+    rdfs:label "indicatedBy" ;
+    rdfs:domain :InattentionState ;
+    rdfs:range owl:Thing .

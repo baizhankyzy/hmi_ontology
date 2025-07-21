@@ -1,0 +1,69 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:VisibilityMeasure a owl:Class ;
+    rdfs:label "VisibilityMeasure" .
+
+:TrafficMonitor a owl:Class ;
+    rdfs:label "TrafficMonitor" .
+
+:CognitiveState a owl:Class ;
+    rdfs:label "CognitiveState" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isDetectedBy ;
+        owl:someValuesFrom [
+            rdf:type owl:Class ;
+            owl:unionOf (
+                :VisibilityMeasure
+                :TrafficMonitor
+                :GripSensor
+                :PhysiologicalMonitor
+                :DriverFacingCamera
+                :ContextAnalyzer
+            )
+        ]
+    ] .
+
+:GripSensor a owl:Class ;
+    rdfs:label "GripSensor" .
+
+:PhysiologicalMonitor a owl:Class ;
+    rdfs:label "PhysiologicalMonitor" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasSubsystem ;
+        owl:someValuesFrom :HeartMonitor
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasSubsystem ;
+        owl:someValuesFrom :SkinMonitor
+    ] .
+
+:HeartMonitor a owl:Class ;
+    rdfs:label "HeartMonitor" .
+
+:SkinMonitor a owl:Class ;
+    rdfs:label "SkinMonitor" .
+
+:DriverFacingCamera a owl:Class ;
+    rdfs:label "DriverFacingCamera" .
+
+:ContextAnalyzer a owl:Class ;
+    rdfs:label "ContextAnalyzer" .
+
+:isDetectedBy a owl:ObjectProperty ;
+    rdfs:label "isDetectedBy" ;
+    rdfs:domain :CognitiveState ;
+    rdfs:range owl:Class .
+
+:hasSubsystem a owl:ObjectProperty ;
+    rdfs:label "hasSubsystem" ;
+    rdfs:domain :PhysiologicalMonitor ;
+    rdfs:range owl:Class .

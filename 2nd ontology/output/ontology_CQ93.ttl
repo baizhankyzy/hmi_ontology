@@ -1,0 +1,47 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:SpeedingTester a owl:Class ;
+    rdfs:label "SpeedingTester" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :evaluatesInterventionBalance ;
+        owl:someValuesFrom :InterventionIntensity
+    ] .
+
+:InterventionIntensity a owl:Class ;
+    rdfs:label "InterventionIntensity" .
+
+:evaluatesInterventionBalance a owl:ObjectProperty ;
+    rdfs:label "evaluatesInterventionBalance" ;
+    rdfs:domain :SpeedingTester ;
+    rdfs:range :InterventionIntensity .
+
+:Vehicle a owl:Class .
+:Driver a owl:Class .
+:SystemMonitor a owl:Class .
+:LaneCamera a owl:Class .
+:LaneController a owl:Class .
+:SteeringActuator a owl:Class .
+:SteeringWheel a owl:Class .
+:ForceFeedback a owl:Class .
+:VisualAlert a owl:Class .
+:InstrumentPanel a owl:Class .
+:SoundWarning a owl:Class .
+:Speaker a owl:Class .
+:MeasurementTool a owl:Class .
+:TimingChecker a owl:Class .
+:MatchingChecker a owl:Class .
+:TrustChecker a owl:Class .
+:ConfusionSimulator a owl:Class .
+:AdaptationMonitor a owl:Class .
+:ClarityChecker a owl:Class .
+:GuidanceOptimizer a owl:Class .
+:ExperienceMetrics a owl:Class .
+:DocumentationSystem a owl:Class .
+:PrivacyChecker a owl:Class .

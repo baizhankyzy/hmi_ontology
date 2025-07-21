@@ -1,0 +1,14 @@
+2025-05-26 10:55:35,238 - __main__ - INFO - Loaded 3 patterns from data/patterns.csv
+2025-05-26 10:55:35,238 - __main__ - INFO - Pattern names: ['Situation', 'isPartOf', 'isParameterFor']
+2025-05-26 10:55:35,238 - __main__ - INFO - Starting test pipeline with AUTHORIZED PATTERNS from patterns.csv
+2025-05-26 10:55:35,238 - __main__ - INFO - Processing competency question 1: What PostureState indicators signal a driver's tra...
+2025-05-26 10:55:35,238 - __main__ - INFO - Using 1 authorized patterns
+2025-05-26 10:55:35,238 - __main__ - INFO - Generating ontology for competency question: What PostureState indicators signal a driver's tra...
+2025-05-26 10:55:35,238 - __main__ - INFO - Saved individual ontology to test_output/ontology_1.ttl
+2025-05-26 10:55:35,238 - __main__ - INFO - Processing competency question 2: What Detection methodologies are used to identify ...
+2025-05-26 10:55:35,238 - __main__ - INFO - Using 1 authorized patterns
+2025-05-26 10:55:35,238 - __main__ - INFO - Generating ontology for competency question: What Detection methodologies are used to identify ...
+2025-05-26 10:55:35,239 - __main__ - INFO - Saved individual ontology to test_output/ontology_2.ttl
+2025-05-26 10:55:35,239 - __main__ - INFO - Merging ontologies using strategic five-principle approach with authorized patterns
+2025-05-26 10:55:35,239 - __main__ - INFO - Merging multiple ontologies
+2025-05-26 10:55:35,239 - __main__ - INFO - Saved merged ontology to test_output/merged_ontology.ttl

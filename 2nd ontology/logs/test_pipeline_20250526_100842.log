@@ -1,0 +1,35 @@
+2025-05-26 10:08:42,034 - __main__ - INFO - Loaded 3 authorized patterns from data/patterns.csv
+2025-05-26 10:08:42,034 - __main__ - INFO - Pattern names: ['Situation', 'isPartOf', 'isParameterFor']
+2025-05-26 10:08:42,034 - __main__ - INFO - Starting test pipeline with AUTHORIZED PATTERNS from patterns.csv
+2025-05-26 10:08:42,034 - __main__ - INFO - Processing competency question 1: What PostureState indicators signal a driver's tra...
+2025-05-26 10:08:42,034 - __main__ - INFO - Using 1 authorized patterns
+2025-05-26 10:08:42,034 - __main__ - INFO - Generating ontology with 0 authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Saved individual ontology to test_output/ontology_1.ttl
+2025-05-26 10:08:42,035 - __main__ - INFO - Processing competency question 2: What Detection methodologies are used to identify ...
+2025-05-26 10:08:42,035 - __main__ - INFO - Using 1 authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Generating ontology with 0 authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Saved individual ontology to test_output/ontology_2.ttl
+2025-05-26 10:08:42,035 - __main__ - INFO - Merging ontologies using strategic five-principle approach with authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Performing strategic merge with authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Saved merged ontology to test_output/merged_ontology.ttl
+2025-05-26 10:08:42,035 - __main__ - INFO - === FIVE-PRINCIPLE MERGING STRATEGY WITH AUTHORIZED PATTERNS ===
+2025-05-26 10:08:42,035 - __main__ - INFO - 1. PRESERVED BOTH COMPETENCY QUESTIONS:
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Kept :hasPostureIndicator and :signalsTransitionTo for posture indicators
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Kept :hasMethod and :identifiesDrowsiness for detection methodologies
+2025-05-26 10:08:42,035 - __main__ - INFO - 2. ELIMINATED DUPLICATES THROUGH CONSOLIDATION:
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Merged duplicate Drowsiness classes
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Consolidated similar detection methodology classes
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Used authorized patterns as canonical sources
+2025-05-26 10:08:42,035 - __main__ - INFO - 3. MAINTAINED CLEAR NAMING AND RELATIONSHIPS:
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Used consistent rdfs:label and rdfs:comment for all entities
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Maintained logical hierarchy (Drowsiness -> InattentionState -> CognitiveState)
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Incorporated naming conventions from authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - 4. BALANCED EXPRESSIVITY WITH SIMPLICITY:
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Kept essential restrictions for both competency questions
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Avoided over-complex property chains
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Reused proven patterns from authorized sources
+2025-05-26 10:08:42,035 - __main__ - INFO - 5. USED INVERSE PROPERTIES TO REDUCE REDUNDANCY:
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Added owl:inverseOf declarations for :identifiesDrowsiness/:hasMethod
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Added owl:inverseOf declarations for :signalsTransitionTo/:hasPostureIndicator
+2025-05-26 10:08:42,035 - __main__ - INFO -    - Applied inverse property patterns from authorized patterns
+2025-05-26 10:08:42,035 - __main__ - INFO - Test completed successfully! Summary saved to test_output/test_summary.json

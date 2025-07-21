@@ -1,0 +1,40 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://www.example.org/test#> a owl:Ontology .
+
+:LaneController a owl:Class ;
+    rdfs:label "LaneController" ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasIntervention ;
+        owl:someValuesFrom :LaneControllerIntervention
+    ] .
+
+:LaneControllerIntervention a owl:Class ;
+    rdfs:label "LaneControllerIntervention" ;
+    rdfs:subClassOf :Intervention ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :isGovernedBy ;
+        owl:someValuesFrom :Regulation
+    ] .
+
+:Regulation a owl:Class ;
+    rdfs:label "Regulation" .
+
+:Intervention a owl:Class ;
+    rdfs:label "Intervention" .
+
+:hasIntervention a owl:ObjectProperty ;
+    rdfs:label "hasIntervention" ;
+    rdfs:domain :LaneController ;
+    rdfs:range :LaneControllerIntervention .
+
+:isGovernedBy a owl:ObjectProperty ;
+    rdfs:label "isGovernedBy" ;
+    rdfs:domain :LaneControllerIntervention ;
+    rdfs:range :Regulation .
